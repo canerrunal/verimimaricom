@@ -1,6 +1,7 @@
 // @ts-nocheck
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { fallbackBlogPosts } from '@/lib/blog'
 import { sanityFetch } from '@/lib/sanity'
 
 const blogQuery = `*[_type == "blogPost"] | order(_updatedAt desc)[0...3]{
@@ -25,14 +26,12 @@ const skillQuery = `*[_type == "skill"] | order(trendScore desc)[0...6]{
 }`
 
 const fallback = {
-  blogs: [
-    {
-      title: 'Digital Garden Başlangıç Notları',
-      excerpt: 'Seed aşamasındaki fikirlerin ürünleşme sürecine dönüşümü.',
-      slug: '#',
-      maturity: 'seed',
-    },
-  ],
+  blogs: fallbackBlogPosts.slice(0, 3).map((post) => ({
+    title: post.title,
+    excerpt: post.excerpt,
+    slug: post.slug,
+    maturity: post.maturity,
+  })),
   projects: [
     {
       title: 'E-ticaret Dönüşüm Dashboardu',
@@ -189,9 +188,20 @@ const fallbackKnowledgeGraph = {
       maturity: 'evergreen',
       recency: 'mid',
     },
+    {
+      id: 'n6',
+      label: 'Claude Fable 5',
+      slug: 'claude-fable-5-vercel-ai-gateway',
+      group: 'AI',
+      weight: 2,
+      maturity: 'growing',
+      recency: 'recent',
+    },
   ],
   edges: [
     { source: 'n1', target: 'n2', relationType: 'expands', strength: 0.8 },
+    { source: 'n1', target: 'n6', relationType: 'tracks', strength: 0.8 },
+    { source: 'n6', target: 'n5', relationType: 'supports', strength: 0.7 },
     { source: 'n3', target: 'n4', relationType: 'applies_to', strength: 0.7 },
     { source: 'n5', target: 'n3', relationType: 'supports', strength: 0.6 },
     { source: 'n2', target: 'n3', relationType: 'prerequisite', strength: 0.5 },
@@ -323,4 +333,3 @@ export async function getKnowledgeGraphData() {
     edges: uniqueEdges.length ? uniqueEdges : fallbackKnowledgeGraph.edges,
   }
 }
-

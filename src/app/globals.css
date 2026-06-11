@@ -451,6 +451,17 @@ a {
   color: var(--text-1);
 }
 
+.article-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--text-1);
+  line-height: 1.55;
+}
+
+.article-list li + li {
+  margin-top: 0.5rem;
+}
+
 .metrics-grid {
   margin-top: 0.85rem;
   display: grid;
@@ -1227,4 +1238,3 @@ a {
     grid-column: span 12;
   }
 }
-
