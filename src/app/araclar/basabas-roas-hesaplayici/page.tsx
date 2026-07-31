@@ -25,7 +25,7 @@ export default function BreakEvenRasPage() {
         <Link href="/araclar" className="back-link">← Araçlara Dön</Link>
         <span className="eyebrow">Araçlar / Ücretsiz</span>
         <h1>Başabaş ROAS Hesaplayıcı</h1>
-        <p className="section-description">
+        <p style={{ color: '#666', maxWidth: 500, fontSize: 12, margin: '0 0 40px' }}>
           Ürün maliyeti, kargo, komisyon ve iade oranınıza göre zarar etmeye başladığınız ROAS seviyesini bulun.
           Kayıt olmadan kullanın; tüm hesaplamalar tarayıcınızda yapılır.
         </p>

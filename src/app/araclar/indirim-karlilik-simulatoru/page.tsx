@@ -38,7 +38,7 @@ export default function IndirimSimulatorPage() {
         <Link href="/araclar" className="back-link">← Araçlara Dön</Link>
         <span className="eyebrow">Araçlar / Yakında</span>
         <h1>İndirim Kârlılık Simülatörü</h1>
-        <p className="section-description">
+        <p style={{ color: '#666', maxWidth: 500, fontSize: 12, margin: '0 0 40px' }}>
           İndirim oranının satış başına kârınıza ve gerekli satış hacmine etkisini karşılaştırın.
         </p>
 

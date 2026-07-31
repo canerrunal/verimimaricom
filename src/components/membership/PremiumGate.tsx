@@ -19,15 +19,15 @@ export default async function PremiumGate({
   }
 
   return (
-    <section className="case-block" aria-label="Kilitli içerik kutusu">
-      <h2>{title}</h2>
-      <div className="lock-box">
-        <p>{preview}</p>
-        <Link className="cta-link" href="/uyelik">
-          Üyeliği Aktifleştir
-        </Link>
-      </div>
+    <section className="tool-sm" style={{ maxWidth: 500, margin: '40px auto' }} aria-label="Kilitli içerik kutusu">
+      <div className="indicator yellow"></div>
+      <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+        {title}
+      </h3>
+      <p style={{ fontSize: 10, color: '#777', margin: '0 0 16px' }}>{preview}</p>
+      <Link className="btn" href="/uyelik">
+        Üyeliği Aktifleştir ↗
+      </Link>
     </section>
   )
 }
-

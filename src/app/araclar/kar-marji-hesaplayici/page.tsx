@@ -27,7 +27,7 @@ export default function KarMarjiPage() {
         <Link href="/araclar" className="back-link">← Araçlara Dön</Link>
         <span className="eyebrow">Araçlar / Ücretsiz</span>
         <h1>Kâr Marjı Hesaplayıcı</h1>
-        <p className="section-description">
+        <p style={{ color: '#666', maxWidth: 500, fontSize: 12, margin: '0 0 40px' }}>
           Satış fiyatından tüm maliyetleri çıkarın; ürün başına katkı payınızı ve net marjınızı görün.
         </p>
 
