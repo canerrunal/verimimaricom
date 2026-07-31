@@ -44,10 +44,12 @@ export default function VakaAnalizleriPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">VAKA ANALİZLERİ / ÖLÇÜLEBİLİR SONUÇLAR</span>
-        <h1>Gerçek Problemler ve Metrik Odaklı Çözümler</h1>
-        <p>Teorik pazarlama tanımları değil; problemin tanımı, uygulanan veri metotları ve elde edilen somut sonuçlar.</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">VAKA ANALİZLERİ / DOĞRULAMA VE ŞEFFAFLIK</div>
+          <h1>Sonucu değil, yöntemi de görün.</h1>
+          <p className="intro">Gerçek vaka, anonim vaka ve simülasyonlar açıkça etiketlenir. Her analiz yöntem ve hipoteziyle sunulur.</p>
+        </div>
       </section>
 
       <section className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>

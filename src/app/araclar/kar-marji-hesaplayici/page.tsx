@@ -86,19 +86,21 @@ function KarMarjiContent() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">ARAÇLAR / KÂRLILIK / 02</span>
-        <h1>Ürün Kâr Marjı Hesaplayıcı</h1>
-        <p>Satış fiyatı, ürün maliyeti, pazaryeri komisyonu, kargo ve reklam giderlerinizle net kâr marjınızı ve sipariş başına katkı payınızı anında hesaplayın.</p>
-        <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
-          <button
-            onClick={copyShareUrl}
-            className="card-cta"
-            style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
-          >
-            {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
-          </button>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">ARAÇLAR / KÂRLILIK / 02</div>
+          <h1>Ürün Kâr Marjı Hesaplayıcı</h1>
+          <p className="intro">Satış fiyatı, ürün maliyeti, pazaryeri komisyonu, kargo ve reklam giderlerinizle net kâr marjınızı ve sipariş başına katkı payınızı anında hesaplayın.</p>
+          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
+            <button
+              onClick={copyShareUrl}
+              className="card-cta"
+              style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
+            >
+              {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
+            </button>
+          </div>
         </div>
       </section>
 

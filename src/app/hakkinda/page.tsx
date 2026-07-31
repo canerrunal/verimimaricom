@@ -26,10 +26,12 @@ export default function HakkindaPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">VERİ MİMARI / KURUCU VE UZMANLIK</span>
-        <h1>Caner Ünal Hakkında</h1>
-        <p style={{ fontSize: '1.1rem' }}>Veriyi teori olmaktan çıkarıp günlük e-ticaret kararlarına dönüştüren sistemler inşa ediyorum.</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">VERİ MİMARI / KURUCU VE UZMANLIK</div>
+          <h1>Bilgiyi araçlara dönüştürüyorum.</h1>
+          <p className="intro">E-ticaret, dijital pazarlama, AI ve yazılım geliştirmeyi birleştirerek günlük işlerde kullanılabilir sistemler tasarlıyorum.</p>
+        </div>
       </section>
 
       {/* Stats Cockpit */}

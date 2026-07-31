@@ -90,19 +90,21 @@ function IndirimSimulatorContent() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">ARAÇLAR / KÂRLILIK / 03</span>
-        <h1>İndirim Kârlılık Simülatörü</h1>
-        <p>İndirim kampanyalarının birim kârlılığa etkisini görün. İndirim sonrası toplam kârınızı korumak için satış adedinizi yüzde kaç artırmanız gerektiğini simüle edin.</p>
-        <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
-          <button
-            onClick={copyShareUrl}
-            className="card-cta"
-            style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
-          >
-            {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
-          </button>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">ARAÇLAR / KÂRLILIK / 03</div>
+          <h1>İndirim Kârlılık Simülatörü</h1>
+          <p className="intro">İndirim kampanyalarının birim kârlılığa etkisini görün. İndirim sonrası toplam kârınızı korumak için satış adedinizi yüzde kaç artırmanız gerektiğini simüle edin.</p>
+          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
+            <button
+              onClick={copyShareUrl}
+              className="card-cta"
+              style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
+            >
+              {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
+            </button>
+          </div>
         </div>
       </section>
 

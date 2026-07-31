@@ -14,10 +14,12 @@ export default function GizlilikPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">POLİTİKA VE GÜVENLİK</span>
-        <h1>Gizlilik ve Araç Veri Politikası</h1>
-        <p>Son Güncelleme: 31 Temmuz 2026</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">POLİTİKA VE GÜVENLİK / GİZLİLİK</div>
+          <h1>Verileriniz saklanmaz, tarayıcınızda işlenir.</h1>
+          <p className="intro">Hesaplama araçlarına girdiğiniz hiçbir veri sunucularımıza kaydedilmez. Tüm hesaplamalar %100 istemci taraflı çalışır.</p>
+        </div>
       </section>
 
       <div style={{ display: 'grid', gap: '1rem' }}>

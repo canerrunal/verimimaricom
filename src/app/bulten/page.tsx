@@ -39,57 +39,57 @@ export default function BultenPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
-        <span className="maturity-chip growing" style={{ marginBottom: '0.8rem' }}>HAFTALIK E-TİCARET ZEKÂSI</span>
-        <h1 style={{ maxWidth: '100%' }}>Veri Mimarı Notları</h1>
-        <p style={{ maxWidth: '520px', margin: '0.8rem auto 1.5rem' }}>
-          Her hafta e-ticaret kârlılığı, reklam performans analizi ve çalışan yapay zeka sistemleri üzerine uygulamalı 1 not.
-        </p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">VERİ MİMARİ NOTLARI / HAFTALIK</div>
+          <h1>Her hafta, daha iyi bir e-ticaret kararı.</h1>
+          <p className="intro">Yeni araçlar, önemli gelişmeler ve uygulanabilir veri notları. Gereksiz gündem yok.</p>
 
-        {!subscribed ? (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-posta adresiniz"
-              required
-              style={{
-                padding: '0.65rem 1rem',
-                border: '1px solid rgba(255,255,255,0.22)',
-                borderRadius: '0.65rem',
-                fontSize: '0.9rem',
-                width: '280px',
-                background: 'rgba(255,255,255,0.08)',
-                color: 'var(--text-0)',
-                outline: 'none',
-              }}
-            />
-            <button
-              type="submit"
-              className="cta-link cta-primary"
-              style={{
-                padding: '0.65rem 1.2rem',
-                borderRadius: '0.65rem',
-                border: '1px solid rgba(185,221,255,0.55)',
-                fontWeight: 600,
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                color: 'var(--text-0)',
-              }}
-            >
-              Abone Ol →
-            </button>
-          </form>
-        ) : (
-          <div style={{ background: 'rgba(74,222,128,0.15)', border: '1px solid #4ade80', padding: '1rem', borderRadius: '0.75rem', color: '#4ade80', fontWeight: 600 }}>
-            ✓ <strong>{email}</strong> adresinizle Veri Mimarı Notları bültenine başarıyla katıldınız!
-          </div>
-        )}
+          {!subscribed ? (
+            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1.2rem' }}>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="E-posta adresiniz"
+                required
+                style={{
+                  padding: '0.65rem 1rem',
+                  border: '1px solid rgba(255,255,255,0.22)',
+                  borderRadius: '0.65rem',
+                  fontSize: '0.9rem',
+                  width: '280px',
+                  background: 'rgba(255,255,255,0.08)',
+                  color: 'var(--text-0)',
+                  outline: 'none',
+                }}
+              />
+              <button
+                type="submit"
+                className="cta-link cta-primary"
+                style={{
+                  padding: '0.65rem 1.2rem',
+                  borderRadius: '0.65rem',
+                  border: '1px solid rgba(185,221,255,0.55)',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  color: 'var(--text-0)',
+                }}
+              >
+                Abone Ol →
+              </button>
+            </form>
+          ) : (
+            <div style={{ background: 'rgba(74,222,128,0.15)', border: '1px solid #4ade80', padding: '1rem', borderRadius: '0.75rem', color: '#4ade80', fontWeight: 600, marginTop: '1.2rem' }}>
+              ✓ <strong>{email}</strong> adresinizle Veri Mimarı Notları bültenine başarıyla katıldınız!
+            </div>
+          )}
 
-        <p style={{ marginTop: '1rem', fontSize: '0.78rem', color: 'var(--text-1)' }}>
-          Spam yok. İstediğiniz zaman tek tıkla ayrılabilirsiniz.
-        </p>
+          <p style={{ marginTop: '1rem', fontSize: '0.78rem', color: 'var(--text-1)' }}>
+            Spam yok. İstediğiniz zaman tek tıkla ayrılabilirsiniz.
+          </p>
+        </div>
       </section>
 
       {/* Past Editions Preview */}

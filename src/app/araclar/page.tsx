@@ -62,10 +62,12 @@ export default function AraclarPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">ARAÇLAR / ÜCRETSİZ HESAPLAMA VE ANALİZ</span>
-        <h1>Kararlarınızı Kolaylaştıran Ücretsiz E-Ticaret Araçları</h1>
-        <p>Kârlılık, reklam ve operasyon verilerinizi görünür sonuçlara dönüştürün. Kayıt olmadan başlayın; yöntemleri açıkça inceleyin.</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">ARAÇLAR / ÜCRETSİZ HESAPLAMA VE ANALİZ</div>
+          <h1>Kararlarınızı Kolaylaştıran Ücretsiz E-Ticaret Araçları</h1>
+          <p className="intro">Kârlılık, reklam ve operasyon verilerinizi görünür sonuçlara dönüştürün. Kayıt olmadan başlayın; yöntemleri açıkça inceleyin.</p>
+        </div>
       </section>
 
       {/* Filter and Search Bar */}

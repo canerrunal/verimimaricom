@@ -91,19 +91,21 @@ function PazaryeriContent() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">ARAÇLAR / PAZARYERİ / 04</span>
-        <h1>Pazaryeri Komisyon Karşılaştırma Hesaplayıcı</h1>
-        <p>Trendyol, Hepsiburada, Amazon TR, N11 ve Kendi E-Ticaret Sitenizdeki net hakedişinizi, komisyon tutarlarını ve birim kârlılığınızı yan yana karşılaştırın.</p>
-        <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
-          <button
-            onClick={copyShareUrl}
-            className="card-cta"
-            style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
-          >
-            {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
-          </button>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">ARAÇLAR / PAZARYERİ / 04</div>
+          <h1>Pazaryeri Komisyon Karşılaştırma Hesaplayıcı</h1>
+          <p className="intro">Trendyol, Hepsiburada, Amazon TR, N11 ve Kendi E-Ticaret Sitenizdeki net hakedişinizi, komisyon tutarlarını ve birim kârlılığınızı yan yana karşılaştırın.</p>
+          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
+            <button
+              onClick={copyShareUrl}
+              className="card-cta"
+              style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
+            >
+              {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
+            </button>
+          </div>
         </div>
       </section>
 

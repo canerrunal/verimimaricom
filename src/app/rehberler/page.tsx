@@ -23,10 +23,12 @@ export default function RehberlerPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">REHBERLER / E-TİCARET ZEKÂSI VE BÜYÜME</span>
-        <h1>Uygulanabilir E-Ticaret ve Veri Rehberleri</h1>
-        <p>Karmaşık pazarlama metriklerini, kârlılık dinamiklerini ve veri sistemlerini sadeleştiren rehberler.</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">REHBERLER / E-TİCARET ZEKÂSI VE BÜYÜME</div>
+          <h1>Karmaşık metrikleri, uygulanabilir kararlarla okuyun.</h1>
+          <p className="intro">Teorik tanımlar değil; hesaplama yöntemi, örnek senaryo ve atılacak sonraki adım.</p>
+        </div>
       </section>
 
       {/* Search and Category Filter */}

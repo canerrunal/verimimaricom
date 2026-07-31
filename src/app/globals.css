@@ -74,7 +74,7 @@ a {
   display: flex;
   align-items: center;
   font: 700 14px 'Space Mono';
-  letter-spacing: -.1em;
+  letter-spacing: -.03em;
 }
 
 .logo::before {
@@ -165,9 +165,16 @@ a {
   min-height: 575px;
 }
 
+.hero.single {
+  display: block;
+  max-width: 800px;
+  min-height: auto;
+  padding-bottom: 30px;
+}
+
 .hero h1 {
-  font: 700 clamp(38px, 4.5vw, 67px)/.99 'Space Mono';
-  letter-spacing: -.105em;
+  font: 700 clamp(34px, 4.5vw, 62px)/1.04 'Space Mono';
+  letter-spacing: -.02em;
   margin: 0 0 22px;
   max-width: 710px;
 }
@@ -400,7 +407,7 @@ a {
 
 .head h2 {
   font: 700 31px/1.15 'Space Mono';
-  letter-spacing: -.09em;
+  letter-spacing: -.02em;
   margin: 5px 0 0;
 }
 
@@ -418,7 +425,7 @@ a {
   font-size: 10px;
 }
 
-/* ─── Tools ─── */
+/* ─── Tool Section ─── */
 .tool-layout {
   display: grid;
   grid-template-columns: 1.52fr 1fr;
@@ -439,20 +446,20 @@ a {
   content: 'ROAS';
   position: absolute;
   font: 700 120px 'Space Mono';
-  letter-spacing: -.15em;
+  letter-spacing: -.04em;
   right: -25px;
   bottom: -50px;
   color: rgba(255, 255, 255, .04);
 }
 
-.tool-main .number {
+.number {
   font-size: 10px;
   color: #9ca8ba;
 }
 
 .tool-main h3 {
   font: 700 34px/1.04 'Space Mono';
-  letter-spacing: -.1em;
+  letter-spacing: -.02em;
   margin: 55px 0 12px;
   max-width: 455px;
 }
@@ -491,7 +498,7 @@ a {
 
 .tool-sm h3 {
   font: 700 17px/1.16 'Space Mono';
-  letter-spacing: -.07em;
+  letter-spacing: -.02em;
   margin: 36px 0 8px;
 }
 
@@ -567,7 +574,7 @@ a {
 
 .guide h3 {
   font: 700 20px/1.14 'Space Mono';
-  letter-spacing: -.08em;
+  letter-spacing: -.02em;
   margin: 55px 0 10px;
 }
 
@@ -600,7 +607,7 @@ a {
 
 .zolm h2 {
   font: 700 42px/1 'Space Mono';
-  letter-spacing: -.12em;
+  letter-spacing: -.02em;
   margin: 22px 0 15px;
 }
 
@@ -718,7 +725,7 @@ a {
 
 .case h3, .founder h3 {
   font: 700 22px/1.15 'Space Mono';
-  letter-spacing: -.085em;
+  letter-spacing: -.02em;
   margin: 17px 0 8px;
 }
 
@@ -770,7 +777,7 @@ a {
 
 .newsletter h2 {
   font: 700 32px/1.12 'Space Mono';
-  letter-spacing: -.1em;
+  letter-spacing: -.02em;
   margin: 12px 0;
 }
 

@@ -62,10 +62,12 @@ export default function ProjelerPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">PROJELER & ÜRÜNLER</span>
-        <h1>Geliştirilen Sistemler ve Ürünler</h1>
-        <p>E-ticaret, veri analitiği, yapay zeka entegrasyonu ve otomasyon alanında inşa edilen yazılım projeleri.</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">PROJELER & ÜRÜNLER / VERİ MİMARI PORTEFÖYÜ</div>
+          <h1>E-Ticaret ve Veri Ekosistemi İçin Geliştirilen Ürünler</h1>
+          <p className="intro">Ölçülebilir kârlılık, yapay zeka entegrasyonu ve otomasyon alanında inşa edilen yazılım projeleri.</p>
+        </div>
       </section>
 
       {/* Filter and Search */}

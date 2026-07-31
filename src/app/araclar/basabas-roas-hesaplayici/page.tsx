@@ -84,19 +84,21 @@ function CalculatorContent() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">ARAÇLAR / KÂRLILIK / 01</span>
-        <h1>Başa Baş ROAS Hesaplayıcı</h1>
-        <p>Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve operasyon maliyetlerinizi girin.</p>
-        <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
-          <button
-            onClick={copyShareUrl}
-            className="card-cta"
-            style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
-          >
-            {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
-          </button>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">ARAÇLAR / KÂRLILIK / 01</div>
+          <h1>Başa Baş ROAS Hesaplayıcı</h1>
+          <p className="intro">Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve operasyon maliyetlerinizi girin.</p>
+          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
+            <button
+              onClick={copyShareUrl}
+              className="card-cta"
+              style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
+            >
+              {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
+            </button>
+          </div>
         </div>
       </section>
 

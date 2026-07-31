@@ -15,10 +15,12 @@ export default function IsBirligiPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass">
-        <span className="eyebrow">İLETİŞİM / PROJE VE DANIŞMANLIK</span>
-        <h1>İş Birliği İletişimi</h1>
-        <p style={{ fontSize: '1.1rem' }}>E-ticaret büyümesi, reklam analitiği veya yapay zeka otomasyon projeleriniz için doğrudan iletişime geçin.</p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">İLETİŞİM / PROJE VE DANIŞMANLIK</div>
+          <h1>Projeniz veya markanız için iletişime geçin.</h1>
+          <p className="intro">E-ticaret büyümesi, kârlılık modelleri veya yapay zeka otomasyon projeleriniz için doğrudan iletişim.</p>
+        </div>
       </section>
 
       <div style={{ display: 'grid', gap: '1rem' }}>

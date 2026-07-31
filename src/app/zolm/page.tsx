@@ -15,12 +15,12 @@ export default function ZolmPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="hero glass" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
-        <span className="maturity-chip seed" style={{ marginBottom: '0.8rem' }}>YAKINDA / BEKLEME LİSTESİ</span>
-        <h1 style={{ maxWidth: '100%' }}>Zolm — E-Ticaret Reklam Zekâsı</h1>
-        <p style={{ maxWidth: '640px', margin: '0.8rem auto 0' }}>
-          Reklam harcamalarınızı ürün bazlı katkı payı ve başa baş ROAS ile otomatik eşleştiren akıllı karar platformu.
-        </p>
+      <section className="wrap hero single">
+        <div>
+          <div className="crumb">PROJELER / ÜRÜN EKOSİSTEMİ</div>
+          <h1>Zolm — E-Ticaret Reklam Zekâsı ve Kârlılık Platformu</h1>
+          <p className="intro">Reklam harcamalarınızı ürün bazlı katkı payı ve başa baş ROAS ile otomatik eşleştiren akıllı karar platformu.</p>
+        </div>
       </section>
 
       <section className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
