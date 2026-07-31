@@ -3,14 +3,14 @@ export default function NewsletterSection({ t }: { t: any }) {
     <section className="newsletter">
       <div className="wrap">
         <span className="eyebrow">BÜLTEN</span>
-        <h2>{t.newsletter.title}</h2>
-        <p>{t.newsletter.description}</p>
+        <h2>{t?.newsletter?.title || 'Veri Mimarı Notları'}</h2>
+        <p>{t?.newsletter?.description || 'Her hafta e-ticaret kârlılığı ve reklam analitiği üzerine 1 uygulamalı not.'}</p>
         <div className="mail">
-          <input type="email" placeholder={t.newsletter.placeholder} />
+          <input type="email" placeholder={t?.newsletter?.placeholder || 'E-posta adresiniz'} />
           <button type="button" className="btn">Abone Ol</button>
         </div>
         <span style={{ fontSize: 9, color: '#999', marginTop: 10, display: 'block' }}>
-          {t.newsletter.privacy}
+          {t?.newsletter?.privacy || 'Spam yok. İstediğiniz zaman ayrılabilirsiniz.'}
         </span>
       </div>
     </section>

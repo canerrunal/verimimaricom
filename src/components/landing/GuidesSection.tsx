@@ -1,26 +1,25 @@
+import { fallbackBlogPosts } from '@/lib/blog'
+
 export default function GuidesSection({ t }: { t: any }) {
   return (
-    <section className="section" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div className="head">
-          <div>
-            <span className="eyebrow">{t.guides.eyebrow}</span>
-            <h2>{t.guides.title}</h2>
+    <section className="wrap section">
+      <div className="head">
+        <div>
+          <span className="eyebrow">{t?.guides?.eyebrow || '/ 02 · REHBERLER'}</span>
+          <h2>{t?.guides?.title || 'Metrikleri doğru okuyun.'}</h2>
+        </div>
+        <p>{t?.guides?.description || 'Uygulanabilir e-ticaret ve kârlılık rehberleri.'}</p>
+      </div>
+
+      <div className="grid">
+        {fallbackBlogPosts.map((post, idx) => (
+          <div key={post.slug} className="card">
+            <span className="eyebrow">0{idx + 1} · {post.maturity?.toUpperCase() || 'REHBER'}</span>
+            <h3>{post.title}</h3>
+            <p>{post.excerpt}</p>
+            <a className="link" href={`/rehberler/${post.slug}`}>Rehberi oku</a>
           </div>
-          <p>{t.guides.description}</p>
-        </div>
-        <div className="guides">
-          {t.guides.items.map((guide: any, idx: number) => (
-            <div key={`guide-${idx}`} className={`guide ${idx === 0 ? 'featured' : ''}`}>
-              <div className="guide-top">
-                <span className="eyebrow">0{idx + 1}</span>
-                <span>rehber</span>
-              </div>
-              <h3>{guide.title}</h3>
-              <a className="link" href={guide.href}>Oku</a>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
     </section>
   )

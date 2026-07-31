@@ -105,6 +105,13 @@ export const dictionaries = {
         evergreen: 'Evergreen',
       },
     },
+    problem: {
+      cards: [
+        { title: 'Yanlış ROAS Hedefi', description: 'Katkı payını hesaba katmadan verilen reklam kararları kâr erimesine yol açar.' },
+        { title: 'Gizli Maliyetler', description: 'Kargo, iade ve komisyon maliyetlerinin ürün bazında izlenememesi.' },
+        { title: 'Verisiz Kararlar', description: 'Sezgisel pazarlama harcamaları ve ölçülemeyen kampanya sonuçları.' },
+      ],
+    },
     knowledgeGraph: {
       sectionAriaLabel: 'Dijital Bahçe bilgi grafiği',
       eyebrow: 'Digital Garden · Knowledge Graph',
@@ -117,6 +124,13 @@ export const dictionaries = {
   en: {
     locale: 'en',
     basePath: '/en',
+    problem: {
+      cards: [
+        { title: 'Wrong ROAS Target', description: 'Ad spend decisions made without accounting for contribution margin lead to profit erosion.' },
+        { title: 'Hidden Overhead', description: 'Unmonitored shipping, return, and marketplace commission costs at the SKU level.' },
+        { title: 'Intuition-Based Spend', description: 'Unmeasured marketing expenditure driven by guesswork instead of hard metrics.' },
+      ],
+    },
     nav: {
       ariaLabel: 'Main navigation',
       brandAriaLabel: 'Veri Mimarı home page',

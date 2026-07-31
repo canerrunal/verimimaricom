@@ -1,37 +1,34 @@
 export default function ToolsSection({ t }: { t: any }) {
   return (
-    <section className="section">
-      <div className="wrap">
-        <div className="head">
-          <div>
-            <span className="eyebrow">{t.tools.eyebrow}</span>
-            <h2>{t.tools.title}</h2>
-          </div>
-          <p>{t.tools.description}</p>
+    <section className="wrap section">
+      <div className="head">
+        <div>
+          <span className="eyebrow">{t?.tools?.eyebrow || '/ 01 · ARAÇLAR'}</span>
+          <h2>{t?.tools?.title || 'Önce hesabı görün.'}</h2>
         </div>
-        <div className="tool-layout">
-          <div className="tool-main">
-            <span className="number">01 / ÜCRETSİZ</span>
-            <h3>{t.tools.items[0].name}</h3>
-            <p>{t.tools.items[0].description}</p>
-            <a className="btn" href={t.tools.items[0].href}>{t.tools.items[0].cta} ↗</a>
-          </div>
-          <div className="tool-side">
-            <div className="tool-sm">
-              <div className="indicator blue"></div>
-              <span className="icon-box">📊</span>
-              <h3>{t.tools.items[1].name}</h3>
-              <p>{t.tools.items[1].description}</p>
-              <a className="link" href={t.tools.items[1].href}>{t.tools.items[1].cta}</a>
-            </div>
-            <div className="tool-sm">
-              <div className="indicator yellow"></div>
-              <span className="icon-box">🎯</span>
-              <h3>{t.tools.items[2].name}</h3>
-              <p>{t.tools.items[2].description}</p>
-              <a className="link" href={t.tools.items[2].href}>{t.tools.items[2].cta}</a>
-            </div>
-          </div>
+        <p>{t?.tools?.description || 'Karar vermek için gereken metrikleri sadeleştiren ücretsiz araçlar.'}</p>
+      </div>
+
+      <div className="grid">
+        <div className="feature">
+          <span className="eyebrow" style={{ color: '#aaa' }}>CANLI / 2 DK</span>
+          <h3 style={{ font: "700 24px 'Space Mono'", letterSpacing: '-0.02em' }}>Başa Baş ROAS Hesaplayıcı</h3>
+          <p>Reklamda zarar etmeye başladığınız seviyeyi bulun.</p>
+          <a className="btn" href="/araclar/basabas-roas-hesaplayici">Hesaplamayı Başlat</a>
+        </div>
+
+        <div className="card">
+          <span className="tag">YAKINDA</span>
+          <h3>Kâr Marjı Hesaplayıcı</h3>
+          <p>Sipariş başına katkı payınızı görün.</p>
+          <a className="link" href="/araclar">Aracı incele</a>
+        </div>
+
+        <div className="card">
+          <span className="tag">YAKINDA</span>
+          <h3>İndirim Kârlılık Simülatörü</h3>
+          <p>İndirimin kârınıza etkisini karşılaştırın.</p>
+          <a className="link" href="/araclar">Aracı incele</a>
         </div>
       </div>
     </section>

@@ -1,54 +1,21 @@
 export default function ProjectsSection({ t }: { t: any }) {
   return (
-    <section className="section" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div className="head">
-          <div>
-            <span className="eyebrow">{t.projects.eyebrow}</span>
-            <h2>{t.projects.title}</h2>
-          </div>
-          <p>{t.projects.description}</p>
+    <section className="wrap section">
+      <div className="head">
+        <div>
+          <span className="eyebrow">{t?.projects?.eyebrow || '/ 03 · PROJELER VE ZOLM'}</span>
+          <h2>{t?.projects?.title || 'Çalışan sistemler.'}</h2>
         </div>
-        <div className="zolm">
-          <div>
-            <span className="eyebrow">PROJE / BETA</span>
-            <h2>{t.projects.items[0].name}</h2>
-            <p>{t.projects.items[0].description}</p>
-            <a className="btn" href={t.projects.items[0].href} style={{ marginTop: 20 }}>
-              {t.projects.items[0].cta} ↗
-            </a>
-          </div>
-          <div className="zolm-panel">
-            <div className="zp-head">
-              <span>ZOLM / E-TİCARET DASHBOARD</span>
-              <span className="status">● BETA</span>
-            </div>
-            <div className="zp-grid">
-              <div className="zp-menu">
-                <p>Kampanyalar</p>
-                <p>Ürünler</p>
-                <p>Kârlılık</p>
-                <p>Raporlar</p>
-              </div>
-              <div className="zp-data">
-                <div className="metric">
-                  <small>Aylık Gelir</small>
-                  <b>₺2.4M</b>
-                </div>
-                <div className="metric">
-                  <small>Ort. Kâr Marjı</small>
-                  <b>%34</b>
-                </div>
-                <div className="metric wide">
-                  <small>ROAS Trendi</small>
-                  <b>3.2x → 4.1x</b>
-                  <div className="bar"><span></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <p>{t?.projects?.description || 'E-ticaret zekası ve otomasyon platformları.'}</p>
+      </div>
+
+      <div className="grid">
+        <div className="card" style={{ background: '#ece7ff', border: '1px solid #d8d0f7' }}>
+          <span className="eyebrow" style={{ color: '#7652db' }}>PROJE / BEKLEME LİSTESİ</span>
+          <h3 style={{ color: '#111' }}>Zolm — E-Ticaret Reklam Zekâsı</h3>
+          <p style={{ color: '#555' }}>Reklam harcamalarını ürün bazlı katkı payı ve başa baş ROAS ile otomatik eşleştiren akıllı karar platformu.</p>
+          <a className="link" href="/zolm" style={{ color: '#7652db' }}>İncele ve Katıl</a>
         </div>
-        <p style={{ fontSize: 10, color: '#777', marginTop: 16 }}>{t.projects.note}</p>
       </div>
     </section>
   )

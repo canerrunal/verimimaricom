@@ -25,7 +25,7 @@ export default async function HomePage() {
       <ProjectsSection t={t} />
       <ProofSection t={t} />
       <NewsletterSection t={t} />
-      <Footer />
+      <Footer t={t} />
       <FloatingCursor />
     </main>
   )
