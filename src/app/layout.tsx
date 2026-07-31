@@ -1,15 +1,22 @@
-// @ts-nocheck
 import './globals.css'
 import type { Metadata } from 'next'
-import { JetBrains_Mono } from 'next/font/google'
+import { DM_Mono, Space_Mono } from 'next/font/google'
 import VeriBotChat from '@/components/veribot/VeriBotChat'
 import VisitorCounter from '@/components/analytics/VisitorCounter'
 import { brandProfile, getGlobalJsonLd, getSiteUrl } from '@/lib/seo'
 
-const jetbrains = JetBrains_Mono({
+const dmMono = DM_Mono({
   subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
-  variable: '--font-jetbrains',
+  variable: '--font-dm-mono',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-space-mono',
 })
 
 const siteUrl = getSiteUrl()
@@ -78,7 +85,7 @@ export default function RootLayout({ children }: { children: any }) {
   const jsonLd = getGlobalJsonLd()
 
   return (
-    <html lang="tr" className={jetbrains.variable}>
+    <html lang="tr" className={`${dmMono.variable} ${spaceMono.variable}`}>
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />

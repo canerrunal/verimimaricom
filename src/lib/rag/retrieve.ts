@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 function normalize(text: string) {
   return String(text || '').toLocaleLowerCase('tr-TR')

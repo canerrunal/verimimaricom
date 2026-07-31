@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 const ACTION_HINT_TAG = /<ACTION_HINT>([\s\S]*?)<\/ACTION_HINT>/i
 

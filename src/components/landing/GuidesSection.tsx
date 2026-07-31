@@ -1,36 +1,16 @@
-// @ts-nocheck
-import TrackLink from '@/components/analytics/TrackLink'
-
-function resolveHref(href: string, basePath: string) {
-  if (String(href || '').startsWith('#')) {
-    return basePath === '/' ? href : `${basePath}${href}`
-  }
-  return href
-}
-
-export default function GuidesSection({ t }) {
+export default function GuidesSection({ t }: { t: any }) {
   return (
-    <section className="section" aria-label="Rehberler">
-      <span className="eyebrow">{t.guides.eyebrow}</span>
-      <h2>{t.guides.title}</h2>
-      <p className="section-description">{t.guides.description}</p>
-
-      <ul className="card-list">
-        {t.guides.items.map((guide: any, index: number) => (
-          <li key={index}>
-            <a href={resolveHref(guide.href, t.basePath)}>{guide.title}</a>
-          </li>
+    <section className="wrap guides">
+      <div className="guides-title">REHBERLER / E-TİCARETTE VERİ KULLANIMI</div>
+      <div className="guides">
+        {t.guides.items.map((guide: any, idx: number) => (
+          <div key={`guide-${idx}`} className={idx === 0 ? 'featured' : ''}>
+            <a href={guide.href}>
+              <h3>{guide.title}</h3>
+            </a>
+          </div>
         ))}
-      </ul>
-
-      <TrackLink
-        href={resolveHref(t.guides.ctaHref || '/rehberler', t.basePath)}
-        className="card-cta section-cta"
-        eventName="cta_all_guides_click"
-        payload={{ placement: 'guides_section' }}
-      >
-        {t.guides.cta} →
-      </TrackLink>
+      </div>
     </section>
   )
 }

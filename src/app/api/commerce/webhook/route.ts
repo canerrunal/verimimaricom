@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextResponse } from 'next/server'
 import { verifyLemonSignature } from '@/lib/commerce'
 import { grantMembership, markWebhookProcessed } from '@/lib/entitlements'

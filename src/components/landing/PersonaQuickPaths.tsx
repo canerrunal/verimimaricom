@@ -1,4 +1,3 @@
-// @ts-nocheck
 import TrackLink from '@/components/analytics/TrackLink'
 
 function resolveHref(href: string, basePath: string) {

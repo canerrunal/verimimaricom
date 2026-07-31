@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 function normalizeSeries(metric: any) {
   if (Array.isArray(metric?.trendPoints) && metric.trendPoints.length > 1) {

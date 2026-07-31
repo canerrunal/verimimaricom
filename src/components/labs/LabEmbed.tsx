@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 export default function LabEmbed({ item }: { item: any }) {
   const isGradio = item.type === 'gradio'
 
@@ -20,6 +18,7 @@ export default function LabEmbed({ item }: { item: any }) {
 
       <div className="lab-frame-wrap" aria-label={`${item.title} embed`}>
         {isGradio ? (
+          // @ts-expect-error -- gradio-app is a custom web component
           <gradio-app src={item.src} />
         ) : (
           <iframe

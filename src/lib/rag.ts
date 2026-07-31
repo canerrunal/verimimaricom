@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { buildRagCorpus } from '@/lib/rag/ingest'
 import { retrieveCandidates } from '@/lib/rag/retrieve'
 import { rankRagContext } from '@/lib/rag/rank'

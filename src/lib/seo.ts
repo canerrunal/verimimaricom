@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 export function getSiteUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || 'https://verimimari.com').replace(/\/$/, '')
@@ -7,10 +6,10 @@ export function getSiteUrl() {
 export const brandProfile = {
   name: 'Caner Ünal',
   brand: 'Veri Mimarı',
-  role: 'Yapay Zeka ve Veri Bilimi Uzmanı',
-  title: 'Web Developer · E-ticaret · Grafik Tasarım · Dijital Pazarlama',
+  role: 'E-ticaret Veri ve Kârlılık Uzmanı',
+  title: 'E-ticaret · Veri Analitiği · Yapay Zekâ · Büyüme Araçları',
   description:
-    'Caner Ünal için Veri, Yapay Zeka, Web Geliştirme ve Dijital Pazarlama odaklı kişisel marka platformu.',
+    'E-ticaret verisini daha kârlı kararlara dönüştüren ücretsiz araçlar, rehberler ve ürünler.',
   email: 'hello@verimimari.com',
   image: '/og/veri-mimari-og.png',
   sameAs: [

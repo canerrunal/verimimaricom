@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client'
 
 import { useMemo, useState } from 'react'
@@ -25,7 +24,31 @@ function maturityColor(maturity: string) {
   return '#d97706'
 }
 
-export default function KnowledgeGraph({ graph }) {
+type GraphNode = {
+  id: string
+  label: string
+  slug?: string
+  group?: string
+  weight?: number
+  maturity?: string
+  recency?: string
+}
+
+type GraphEdge = {
+  source: string
+  target: string
+  relationType?: string
+  strength?: number
+}
+
+type KnowledgeGraphProps = {
+  graph?: {
+    nodes?: GraphNode[]
+    edges?: GraphEdge[]
+  }
+}
+
+export default function KnowledgeGraph({ graph }: KnowledgeGraphProps) {
   const [activeNode, setActiveNode] = useState<string | null>(null)
   const [topicFilter, setTopicFilter] = useState('all')
   const [maturityFilter, setMaturityFilter] = useState('all')

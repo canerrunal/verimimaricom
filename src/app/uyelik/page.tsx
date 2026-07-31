@@ -1,6 +1,5 @@
 "use client"
 
-// @ts-nocheck
 import { trackEvent } from '@/lib/analytics'
 
 export default function MembershipPage() {

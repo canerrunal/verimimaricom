@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { labsCatalog } from '@/lib/labs'
 import LabEmbed from '@/components/labs/LabEmbed'
 import GradioLoader from '@/components/labs/GradioLoader'

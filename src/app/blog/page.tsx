@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Metadata } from 'next'
 import { fallbackBlogPosts } from '@/lib/blog'
 

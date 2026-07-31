@@ -1,6 +1,3 @@
-// @ts-nocheck
-import OpenCommandPaletteButton from '@/components/navigation/OpenCommandPaletteButton'
-
 function resolveHref(href: string, basePath: string) {
   if (String(href || '').startsWith('#')) {
     return basePath === '/' ? href : `${basePath}${href}`
@@ -8,43 +5,24 @@ function resolveHref(href: string, basePath: string) {
   return href
 }
 
-export default function NavBar({ t }) {
+export default function NavBar({ t }: { t: any }) {
   return (
-    <header className="top-nav" aria-label={t.nav.ariaLabel}>
-      <a href={t.basePath} className="brand" aria-label={t.nav.brandAriaLabel}>
-        <span className="dot" />
-        <span>{t.nav.brandText}</span>
+    <header className="wrap header">
+      <a href={t.basePath} className="logo" aria-label={t.nav.brandAriaLabel}>
+        VERİ MİMARI <small>CANER ÜNAL</small>
       </a>
-      <nav className="nav-links">
+      <nav className="nav">
         {t.nav.links.map((item: any, idx: number) => (
           <a key={`${item.href}-${idx}`} href={resolveHref(item.href, t.basePath)}>
             {item.label}
           </a>
         ))}
       </nav>
-      <div className="nav-right">
-        <span className="lang-switch" aria-label="Language switcher">
-          <a
-            href={t.nav.languageSwitch.trHref}
-            className={t.locale === 'tr' ? 'active' : ''}
-            aria-current={t.locale === 'tr' ? 'page' : undefined}
-          >
-            {t.nav.languageSwitch.trLabel}
-          </a>
-          <a
-            href={t.nav.languageSwitch.enHref}
-            className={t.locale === 'en' ? 'active' : ''}
-            aria-current={t.locale === 'en' ? 'page' : undefined}
-          >
-            {t.nav.languageSwitch.enLabel}
-          </a>
-        </span>
-        <a href={t.basePath === '/' ? '/araclar' : '/en/araclar'} className="nav-cta">
-          {t.nav.cta}
+      <div className="actions">
+        <span className="lang">TR / EN</span>
+        <a href={t.basePath === '/' ? '/araclar' : '/en/araclar'} className="btn">
+          Ücretsiz Araçlar ↗
         </a>
-        <OpenCommandPaletteButton className="nav-cmdk" source="navbar">
-          ⌘K
-        </OpenCommandPaletteButton>
       </div>
     </header>
   )

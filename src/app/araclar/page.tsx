@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Metadata } from 'next'
 import TrackLink from '@/components/analytics/TrackLink'
 import { getDictionary } from '@/lib/i18n'

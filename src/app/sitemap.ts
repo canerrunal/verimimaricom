@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { MetadataRoute } from 'next'
 import { fallbackBlogPosts } from '@/lib/blog'
 import { getSiteUrl } from '@/lib/seo'
@@ -11,19 +10,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${siteUrl}/`,
       lastModified: now,
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as const,
       priority: 1,
     },
     {
       url: `${siteUrl}/projeler`,
       lastModified: now,
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
     {
       url: `${siteUrl}/blog`,
       lastModified: now,
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
   ]

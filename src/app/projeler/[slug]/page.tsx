@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getCaseStudyBySlug } from '@/lib/cms'
 import MetricsBoard from '@/components/case-study/MetricsBoard'
 import { getCaseStudyJsonLd } from '@/lib/seo'

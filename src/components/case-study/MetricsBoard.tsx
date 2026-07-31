@@ -1,4 +1,3 @@
-// @ts-nocheck
 import KpiTrendChart from '@/components/case-study/KpiTrendChart'
 
 function formatValue(value: number | null | undefined, unit?: string) {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import crypto from 'node:crypto'
 
 const lemonApi = 'https://api.lemonsqueezy.com/v1'

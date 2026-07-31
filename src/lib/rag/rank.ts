@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 function topByKind(items: any[], kind: string, limit: number) {
   return (items || [])
