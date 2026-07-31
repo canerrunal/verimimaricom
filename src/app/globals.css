@@ -944,8 +944,34 @@ a {
   color: var(--ink);
 }
 
-/* ─── Responsive ─── */
+/* ─── Mobile Menu Toggle ─── */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 6px 10px;
+  font: 500 10px 'DM Mono', monospace;
+  color: var(--ink);
+  cursor: pointer;
+}
+
 @media (max-width: 820px) {
+  .menu-toggle { display: inline-flex; align-items: center; gap: 6px; }
+  .nav.open {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px;
+    gap: 12px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
   .nav { display: none; }
   .hero, .zolm { grid-template-columns: 1fr; gap: 30px; }
   .hero { padding-top: 45px; }
@@ -953,7 +979,7 @@ a {
   .tool-layout { grid-template-columns: 1fr; }
   .tool-page-layout { grid-template-columns: 1fr; }
   .proof { grid-template-columns: 1fr; }
-  .header { height: 60px; }
+  .header { height: 60px; position: relative; }
   .section { padding: 65px 0; }
   .wrap { padding: 0 18px; }
   .utility { display: none; }
