@@ -19,43 +19,31 @@ function clampBar(deltaPercent: number) {
 
 export default function MetricsBoard({ metrics = [] }) {
   return (
-    <section className="case-block" aria-label="Case study metrics visualization">
-      <h2>Metrik Görselleştirmesi</h2>
-      <p>Öncesi ve sonrası değerleri karşılaştırmalı olarak veri hikayeciliği yaklaşımıyla sunulur.</p>
-
-      <div className="metrics-grid">
+    <section aria-label="Metrik görselleştirme">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
         {metrics.map((metric: any, index: number) => {
           const delta = safePercent(metric.baselineValue, metric.resultValue)
           const barWidth = clampBar(delta)
           const isUp = delta >= 0
 
           return (
-            <article key={`${metric.metricKey || 'metric'}-${index}`} className="metric-row">
-              <div className="metric-head">
-                <strong>{metric.metricLabel || metric.metricKey || 'Metric'}</strong>
-                <small>{metric.periodLabel || 'Dönem belirtilmedi'}</small>
-              </div>
-
-              <div className="metric-values">
-                <span>
-                  Baseline: {formatValue(metric.baselineValue, metric.unit)} · Result:{' '}
-                  {formatValue(metric.resultValue, metric.unit)}
-                </span>
-                <span className={`delta ${isUp ? 'up' : 'down'}`}>
+            <div key={`${metric.metricKey || 'metric'}-${index}`} className="metric">
+              <small>{metric.metricLabel || metric.metricKey || 'Metric'}</small>
+              <b>{formatValue(metric.resultValue, metric.unit)}</b>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#999', marginTop: 4 }}>
+                <span>Base: {formatValue(metric.baselineValue, metric.unit)}</span>
+                <span style={{ color: isUp ? 'var(--green)' : 'var(--red)' }}>
                   {isUp ? '▲' : '▼'} {Math.abs(delta).toFixed(1)}%
                 </span>
               </div>
-
-              <div className="metric-bar" aria-hidden="true">
-                <span style={{ width: `${barWidth}%` }} />
+              <div style={{ height: 4, background: '#eee', borderRadius: 5, marginTop: 8, overflow: 'hidden' }}>
+                <span style={{ display: 'block', height: '100%', background: isUp ? 'var(--green)' : 'var(--red)', width: `${barWidth}%`, borderRadius: 5 }} />
               </div>
-
               <KpiTrendChart metric={metric} />
-            </article>
+            </div>
           )
         })}
       </div>
     </section>
   )
 }
-
