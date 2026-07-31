@@ -26,6 +26,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      url: `${siteUrl}/araclar/kar-marji-hesaplayici`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/araclar/indirim-karlilik-simulatoru`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/rehberler`,
       lastModified: now,
       changeFrequency: 'weekly',

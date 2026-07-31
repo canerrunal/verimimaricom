@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import NavBar from '@/components/landing/NavBar'
 import { getDictionary } from '@/lib/i18n'
 
@@ -31,8 +32,9 @@ function Field({ label, hint, value, onChange }: { label: string; hint: string; 
   )
 }
 
-export default function RoasCalculatorPage() {
+function CalculatorContent() {
   const t = getDictionary('tr')
+  const searchParams = useSearchParams()
 
   const [sale, setSale] = useState(1000)
   const [cost, setCost] = useState(300)
@@ -40,6 +42,16 @@ export default function RoasCalculatorPage() {
   const [shipping, setShipping] = useState(100)
   const [returns, setReturns] = useState(40)
   const [targetMargin, setTargetMargin] = useState(10)
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    if (searchParams.has('sale')) setSale(Number(searchParams.get('sale')) || 1000)
+    if (searchParams.has('cost')) setCost(Number(searchParams.get('cost')) || 300)
+    if (searchParams.has('commission')) setCommission(Number(searchParams.get('commission')) || 15)
+    if (searchParams.has('shipping')) setShipping(Number(searchParams.get('shipping')) || 100)
+    if (searchParams.has('returns')) setReturns(Number(searchParams.get('returns')) || 40)
+    if (searchParams.has('margin')) setTargetMargin(Number(searchParams.get('margin')) || 10)
+  }, [searchParams])
 
   const comAmount = (sale * commission) / 100
   const contribution = sale - cost - comAmount - shipping - returns
@@ -52,6 +64,21 @@ export default function RoasCalculatorPage() {
 
   const fmt = (n: number) => n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 
+  const copyShareUrl = () => {
+    const params = new URLSearchParams({
+      sale: String(sale),
+      cost: String(cost),
+      commission: String(commission),
+      shipping: String(shipping),
+      returns: String(returns),
+      margin: String(targetMargin),
+    })
+    const url = `${window.location.origin}${window.location.pathname}?${params.toString()}`
+    navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
+
   return (
     <main className="page">
       <NavBar t={t} />
@@ -60,7 +87,16 @@ export default function RoasCalculatorPage() {
         <span className="eyebrow">ARAÇLAR / KÂRLILIK / 01</span>
         <h1>Başa Baş ROAS Hesaplayıcı</h1>
         <p>Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve operasyon maliyetlerinizi girin.</p>
-        <span className="maturity-chip growing" style={{ marginTop: '0.6rem' }}>AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
+        <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
+          <button
+            onClick={copyShareUrl}
+            className="card-cta"
+            style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
+          >
+            {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
+          </button>
+        </div>
       </section>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '1rem', alignItems: 'start' }}>
@@ -113,5 +149,13 @@ export default function RoasCalculatorPage() {
         </section>
       </div>
     </main>
+  )
+}
+
+export default function RoasCalculatorPage() {
+  return (
+    <Suspense fallback={<div className="page" style={{ padding: '2rem', textAlign: 'center' }}>Yükleniyor...</div>}>
+      <CalculatorContent />
+    </Suspense>
   )
 }

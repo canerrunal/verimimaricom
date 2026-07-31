@@ -3,9 +3,9 @@ import NavBar from '@/components/landing/NavBar'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'Ücretsiz E-ticaret Araçları',
+  title: 'Ücretsiz E-ticaret Araçları | Veri Mimarı',
   description:
-    'E-ticaret kârlılığınızı ve reklam performansınızı ölçen ücretsiz hesaplama araçları.',
+    'E-ticaret kârlılığınızı ve reklam performansınızı ölçen ücretsiz hesaplama araçları. Başa baş ROAS, kâr marjı ve indirim simülasyonları.',
 }
 
 const tools = [
@@ -18,20 +18,20 @@ const tools = [
     cta: 'Hesaplamayı Başlat →',
   },
   {
-    title: 'Kâr Marjı Hesaplayıcı',
-    description: 'Satış fiyatı, ürün maliyeti ve değişken giderlerle sipariş başına katkı payını hesaplayın.',
-    status: 'YAKINDA',
-    badge: 'PLANLANIYOR',
-    href: '#',
-    cta: 'Bekleme Listesine Katıl',
+    title: 'Ürün Kâr Marjı Hesaplayıcı',
+    description: 'Satış fiyatı, ürün maliyeti, pazaryeri komisyonu, kargo ve reklam kesintileriyle sipariş başına net kârınızı hesaplayın.',
+    status: 'CANLI',
+    badge: 'CANLI · 2 DK · ÜCRETSİZ',
+    href: '/araclar/kar-marji-hesaplayici',
+    cta: 'Hesaplamayı Başlat →',
   },
   {
     title: 'İndirim Kârlılık Simülatörü',
     description: 'Yapılacak kampanyanın kârlılığınıza etkisini ve kârı korumak için gereken ek satış adedini simüle edin.',
-    status: 'YAKINDA',
-    badge: 'PLANLANIYOR',
-    href: '#',
-    cta: 'Bekleme Listesine Katıl',
+    status: 'CANLI',
+    badge: 'CANLI · 2 DK · ÜCRETSİZ',
+    href: '/araclar/indirim-karlilik-simulatoru',
+    cta: 'Simülasyonu Başlat →',
   },
   {
     title: 'Pazaryeri Komisyon Hesaplayıcı',
