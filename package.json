@@ -15,7 +15,6 @@
   "dependencies": {
     "@ai-sdk/openai": "^1.1.15",
     "@sanity/vision": "^4.10.1",
-    "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.111.0",
     "ai": "^4.0.34",
     "mermaid": "^11.4.1",
