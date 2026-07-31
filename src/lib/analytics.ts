@@ -1,4 +1,3 @@
-
 type AnalyticsPayload = Record<string, string | number | boolean | null | undefined>
 
 declare global {
@@ -39,3 +38,18 @@ export function trackEvent(eventName: string, payload: AnalyticsPayload = {}) {
   }
 }
 
+export function trackCalculatorCalc(toolName: string, inputs: AnalyticsPayload = {}) {
+  trackEvent('calculator_calculate', { tool: toolName, ...inputs })
+}
+
+export function trackShareCopy(toolName: string, url: string) {
+  trackEvent('share_link_copy', { tool: toolName, url })
+}
+
+export function trackWaitlistJoin(role: string, queueNumber: number) {
+  trackEvent('waitlist_join', { role, queueNumber })
+}
+
+export function trackFeedbackSubmit(toolName: string, vote: 'yes' | 'no', comment?: string) {
+  trackEvent('feedback_submit', { tool: toolName, vote, hasComment: Boolean(comment) })
+}

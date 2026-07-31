@@ -136,12 +136,11 @@ export const dictionaries = {
       brandAriaLabel: 'Veri Mimarı home page',
       brandText: 'DATA ARCHITECT',
       links: [
-        { href: '#projeler', label: 'Case Studies' },
-        { href: '#blog', label: 'Articles' },
-        { href: '/en/labs', label: 'Labs' },
-        { href: '#yetkinlik', label: 'Tech Stack' },
-        { href: '/en/uyelik', label: 'Premium' },
-        { href: '#iletisim', label: 'Collaboration' },
+        { href: '/araclar', label: 'Tools' },
+        { href: '/rehberler', label: 'Guides' },
+        { href: '/projeler', label: 'Projects' },
+        { href: '/vaka-analizleri', label: 'Case Studies' },
+        { href: '/hakkinda', label: 'About' },
       ],
       commandCenterLabel: 'Command Center',
       languageSwitch: {
