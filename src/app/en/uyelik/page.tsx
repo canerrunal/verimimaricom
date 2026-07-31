@@ -1,95 +1,83 @@
-"use client"
+'use client'
 
+import Link from 'next/link'
 import { trackEvent } from '@/lib/analytics'
 
 export default function MembershipPageEN() {
   return (
-    <main className="page membership-page" aria-label="Membership and digital asset sales page">
-      <section className="membership-card">
-        <span className="eyebrow">Phase 2 · Digital Assets + Membership</span>
-        <h1>Premium Membership and Digital Asset Sales</h1>
-        <p>
-          With this infrastructure, you can lock selected content, accept payments via Lemon
-          Squeezy checkout, and unlock content after membership verification.
-        </p>
+    <main className="page" aria-label="Membership">
+      <section className="section">
+        <div className="wrap">
+          <Link href="/en" className="back-link">← Back to Home</Link>
+          <span className="eyebrow">MEMBERSHIP</span>
+          <h1 style={{ font: '700 clamp(28px,3.5vw,42px)/1.1 "Space Mono"', letterSpacing: '-.09em', margin: '5px 0 22px' }}>
+            Premium Membership and Digital Asset Sales
+          </h1>
+          <p style={{ color: '#666', maxWidth: 500, fontSize: 12, margin: '0 0 40px' }}>
+            With this infrastructure, you can lock selected content, accept payments via Lemon
+            Squeezy checkout, and unlock content after membership verification.
+          </p>
 
-        <ul className="feature-list">
-          <li>Locked content support (PremiumGate)</li>
-          <li>Lemon Squeezy checkout redirection</li>
-          <li>Membership entitlement processing via webhook</li>
-          <li>Membership activation with email (unlock)</li>
-        </ul>
-      </section>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="tool-sm">
+              <div className="indicator blue"></div>
+              <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+                1) Start Membership with Payment
+              </h3>
+              <p style={{ fontSize: 10, color: '#777', margin: '0 0 16px' }}>
+                Enter your email and continue to checkout flow.
+              </p>
+              <form
+                action="/api/commerce/checkout"
+                method="GET"
+                onSubmit={() => {
+                  trackEvent('membership_checkout_start', { placement: 'membership_page_en' })
+                }}
+              >
+                <div className="form-group" style={{ marginBottom: 12 }}>
+                  <input type="email" name="email" required placeholder="example@domain.com" aria-label="Membership email" />
+                </div>
+                <button type="submit" className="btn">Lemon Checkout ↗</button>
+              </form>
+            </div>
 
-      <section className="membership-card">
-        <h2>1) Start Membership with Payment</h2>
-        <p>Enter your email and continue to checkout flow.</p>
+            <div className="tool-sm">
+              <div className="indicator green"></div>
+              <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+                2) Activate Membership (Demo)
+              </h3>
+              <p style={{ fontSize: 10, color: '#777', margin: '0 0 16px' }}>
+                After webhook is received, activate membership with the same email.
+              </p>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault()
+                  const form = e.currentTarget as HTMLFormElement
+                  const email = (new FormData(form).get('email') || '').toString()
+                  const res = await fetch('/api/membership/unlock', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                  })
 
-        <form
-          className="checkout-form"
-          action="/api/commerce/checkout"
-          method="GET"
-          onSubmit={(e) => {
-            const form = e.currentTarget as HTMLFormElement
-            const email = (new FormData(form).get('email') || '').toString()
-
-            trackEvent('membership_checkout_start', {
-              placement: 'membership_page_en',
-              has_email: Boolean(email),
-              email_domain: email.includes('@') ? email.split('@')[1] : undefined,
-            })
-          }}
-        >
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="example@domain.com"
-            aria-label="Membership email"
-          />
-          <button type="submit">Lemon Checkout</button>
-        </form>
-      </section>
-
-      <section className="membership-card">
-        <h2>2) Activate Membership (Demo)</h2>
-        <p>
-          After webhook is received, activate membership with the same email. This step is for demo
-          purposes and should be replaced in production with real session + DB verification.
-        </p>
-
-        <form
-          className="unlock-form"
-          onSubmit={async (e) => {
-            e.preventDefault()
-            const form = e.currentTarget as HTMLFormElement
-            const email = (new FormData(form).get('email') || '').toString()
-            const res = await fetch('/api/membership/unlock', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email }),
-            })
-
-            if (res.ok) {
-              trackEvent('membership_unlock_success', {
-                placement: 'membership_page_en',
-                email_domain: email.includes('@') ? email.split('@')[1] : undefined,
-              })
-              window.location.href = '/projeler/ornek-vaka'
-            } else {
-              trackEvent('membership_unlock_failed', {
-                placement: 'membership_page_en',
-                email_domain: email.includes('@') ? email.split('@')[1] : undefined,
-              })
-              alert('Membership could not be verified. Please check webhook payment records.')
-            }
-          }}
-        >
-          <input type="email" name="email" required placeholder="example@domain.com" />
-          <button type="submit">Unlock Membership</button>
-        </form>
+                  if (res.ok) {
+                    trackEvent('membership_unlock_success', { placement: 'membership_page_en' })
+                    window.location.href = '/projeler/ornek-vaka'
+                  } else {
+                    trackEvent('membership_unlock_failed', { placement: 'membership_page_en' })
+                    alert('Membership could not be verified.')
+                  }
+                }}
+              >
+                <div className="form-group" style={{ marginBottom: 12 }}>
+                  <input type="email" name="email" required placeholder="example@domain.com" />
+                </div>
+                <button type="submit" className="btn">Unlock Membership ↗</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
 }
-
