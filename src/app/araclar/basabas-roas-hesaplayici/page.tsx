@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import NavBar from '@/components/landing/NavBar'
+import FeedbackWidget from '@/components/common/FeedbackWidget'
 import { getDictionary } from '@/lib/i18n'
 
 function Field({ label, hint, value, onChange }: { label: string; hint: string; value: number; onChange: (v: number) => void }) {
@@ -148,6 +149,7 @@ function CalculatorContent() {
           </p>
         </section>
       </div>
+      <FeedbackWidget toolName="Başa Baş ROAS Hesaplayıcı" />
     </main>
   )
 }
