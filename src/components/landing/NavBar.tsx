@@ -39,8 +39,11 @@ export default function NavBar({ t }) {
             {t.nav.languageSwitch.enLabel}
           </a>
         </span>
+        <a href={t.basePath === '/' ? '/araclar' : '/en/araclar'} className="nav-cta">
+          {t.nav.cta}
+        </a>
         <OpenCommandPaletteButton className="nav-cmdk" source="navbar">
-          {t.nav.commandCenterLabel}
+          ⌘K
         </OpenCommandPaletteButton>
       </div>
     </header>

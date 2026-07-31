@@ -1,6 +1,5 @@
 // @ts-nocheck
 import TrackLink from '@/components/analytics/TrackLink'
-import OpenCommandPaletteButton from '@/components/navigation/OpenCommandPaletteButton'
 
 function resolveHref(href: string, basePath: string) {
   if (String(href || '').startsWith('#')) {
@@ -18,33 +17,30 @@ export default function HeroPanel({ t }) {
 
       <div className="hero-cta-group" aria-label={t.hero.ctaAriaLabel}>
         <TrackLink
-          href={resolveHref(t.hero.featuredCasesHref || '#projeler', t.basePath)}
+          href={resolveHref(t.hero.primaryCtaHref || '/araclar', t.basePath)}
           className="cta-link cta-primary"
-          eventName="cta_home_featured_cases_click"
-          payload={{ placement: 'hero', cta: 'featured_cases' }}
+          eventName="cta_home_tools_click"
+          payload={{ placement: 'hero', cta: 'tools' }}
         >
-          {t.hero.featuredCases}
+          {t.hero.primaryCta}
         </TrackLink>
         <TrackLink
-          href={t.hero.premiumAccessHref || '/uyelik'}
+          href={resolveHref(t.hero.secondaryCtaHref || '/rehberler', t.basePath)}
           className="cta-link cta-secondary"
-          eventName="cta_home_premium_click"
-          payload={{ placement: 'hero', cta: 'premium' }}
+          eventName="cta_home_guides_click"
+          payload={{ placement: 'hero', cta: 'guides' }}
         >
-          {t.hero.premiumAccess}
+          {t.hero.secondaryCta}
         </TrackLink>
       </div>
 
-      <div className="hero-badges" role="list" aria-label={t.hero.badgeAriaLabel}>
-        <span className="badge">AI & ML</span>
-        <span className="badge">Data Storytelling</span>
-        <span className="badge">Next.js Platform</span>
-        <span className="badge">Digital Garden</span>
-      </div>
+      <div className="hero-trust">{t.hero.trustLine}</div>
 
-      <OpenCommandPaletteButton className="cmd-chip" source="hero-chip">
-        {t.hero.commandCenterLabel} <kbd>⌘</kbd>+<kbd>K</kbd>
-      </OpenCommandPaletteButton>
+      <div className="hero-badges" role="list" aria-label="Uzmanlık etiketleri">
+        {t.hero.badges.map((badge: string, index: number) => (
+          <span key={index} className="badge">{badge}</span>
+        ))}
+      </div>
     </section>
   )
 }
