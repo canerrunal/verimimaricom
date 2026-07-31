@@ -4,11 +4,11 @@ import ProblemSection from '@/components/landing/ProblemSection'
 import ToolsSection from '@/components/landing/ToolsSection'
 import GuidesSection from '@/components/landing/GuidesSection'
 import ProjectsSection from '@/components/landing/ProjectsSection'
-import CaseStudiesSection from '@/components/landing/CaseStudiesSection'
-import FounderSection from '@/components/landing/FounderSection'
+import ProofSection from '@/components/landing/ProofSection'
 import NewsletterSection from '@/components/landing/NewsletterSection'
-import FinalCtaSection from '@/components/landing/FinalCtaSection'
-import CommandPalette from '@/components/navigation/CommandPalette'
+import Footer from '@/components/landing/Footer'
+import UtilityBar from '@/components/landing/UtilityBar'
+import FloatingCursor from '@/components/landing/FloatingCursor'
 import { getDictionary } from '@/lib/i18n'
 
 export default async function HomePageEN() {
@@ -16,17 +16,17 @@ export default async function HomePageEN() {
 
   return (
     <main className="page" aria-label="Data Architect home page" data-locale={t.locale}>
+      <UtilityBar />
       <NavBar t={t} />
       <HeroPanel t={t} />
       <ProblemSection t={t} />
       <ToolsSection t={t} />
       <GuidesSection t={t} />
       <ProjectsSection t={t} />
-      <CaseStudiesSection t={t} />
-      <FounderSection t={t} />
+      <ProofSection t={t} />
       <NewsletterSection t={t} />
-      <FinalCtaSection t={t} />
-      <CommandPalette />
+      <Footer />
+      <FloatingCursor />
     </main>
   )
 }
