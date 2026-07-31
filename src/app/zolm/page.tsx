@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
+import WaitlistForm from '@/components/zolm/WaitlistForm'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
@@ -33,48 +34,15 @@ export default function ZolmPage() {
         </div>
         <div className="card glass">
           <h3>Kâr Odaklı Ölçekleme</h3>
-          <p>Ciroya değil, net katkı payına göre hangi kampanyayı büyüteceğinizi söyler.</p>
+          <p>Ciroya değil, net katkı payına göre hangi kampanyayı büyütmeniz gerektiğini söyler.</p>
+        </div>
+        <div className="card glass">
+          <h3>Pazaryeri & POS Entegrasyonu</h3>
+          <p>Trendyol, Hepsiburada, Shopify ve İyzi verilerinizi tek bir kârlılık kokpitinde birleştirir.</p>
         </div>
       </section>
 
-      <section className="glass" style={{ padding: '2.5rem', borderRadius: '1.25rem', textAlign: 'center', marginTop: '1rem' }}>
-        <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.2rem' }}>Zolm Erken Erişime Katılın</h2>
-        <p style={{ color: 'var(--text-1)', marginBottom: '1.5rem', fontSize: '0.92rem' }}>
-          İlk sürüme katılmak ve kapalı betada ücretsiz denemek için e-postanızı bırakın.
-        </p>
-        <form style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-          <input
-            type="email"
-            placeholder="E-posta adresiniz"
-            required
-            style={{
-              padding: '0.65rem 1rem',
-              border: '1px solid rgba(255,255,255,0.22)',
-              borderRadius: '0.65rem',
-              fontSize: '0.9rem',
-              width: '280px',
-              background: 'rgba(255,255,255,0.08)',
-              color: 'var(--text-0)',
-              outline: 'none',
-            }}
-          />
-          <button
-            type="submit"
-            style={{
-              padding: '0.65rem 1.2rem',
-              background: 'linear-gradient(120deg, rgba(157,123,255,0.5), rgba(105,212,255,0.4))',
-              color: 'var(--text-0)',
-              border: '1px solid rgba(185,180,255,0.5)',
-              borderRadius: '0.65rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontSize: '0.9rem',
-            }}
-          >
-            Bekleme Listesine Katıl →
-          </button>
-        </form>
-      </section>
+      <WaitlistForm />
     </main>
   )
 }
