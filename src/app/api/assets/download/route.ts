@@ -1,4 +1,3 @@
-// @ts-nocheck
 import crypto from 'node:crypto'
 import { NextResponse } from 'next/server'
 import { hasMembership } from '@/lib/entitlements'

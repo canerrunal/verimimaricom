@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getHomeCmsData } from '@/lib/cms'
 
 function normalize(value: string) {

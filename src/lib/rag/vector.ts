@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 const OPENAI_EMBEDDINGS_MODEL = process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small'
 

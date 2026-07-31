@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextResponse } from 'next/server'
 import { createLemonCheckout } from '@/lib/commerce'
 import { getSiteUrl } from '@/lib/seo'

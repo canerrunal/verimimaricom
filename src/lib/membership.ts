@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 export const MEMBER_COOKIE = 'vm_member'
 

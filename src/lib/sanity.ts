@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 const projectId = process.env.SANITY_PROJECT_ID
 const dataset = process.env.SANITY_DATASET || 'production'

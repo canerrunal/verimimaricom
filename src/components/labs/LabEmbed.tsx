@@ -1,10 +1,8 @@
-// @ts-nocheck
-
 export default function LabEmbed({ item }: { item: any }) {
   const isGradio = item.type === 'gradio'
 
   return (
-    <article className="lab-card glass" id={item.id}>
+    <article className="lab-card" id={item.id}>
       <header className="lab-head">
         <h3>{item.title}</h3>
         <p>{item.description}</p>
@@ -20,6 +18,7 @@ export default function LabEmbed({ item }: { item: any }) {
 
       <div className="lab-frame-wrap" aria-label={`${item.title} embed`}>
         {isGradio ? (
+          // @ts-expect-error -- gradio-app is a custom web component
           <gradio-app src={item.src} />
         ) : (
           <iframe

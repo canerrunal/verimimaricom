@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 function normalizeQuestion(question: string) {
   return String(question || '').trim()

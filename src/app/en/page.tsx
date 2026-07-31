@@ -1,44 +1,32 @@
-// @ts-nocheck
 import NavBar from '@/components/landing/NavBar'
 import HeroPanel from '@/components/landing/HeroPanel'
-import BentoGrid from '@/components/landing/BentoGrid'
-import PersonaQuickPaths from '@/components/landing/PersonaQuickPaths'
-import CommandPalette from '@/components/navigation/CommandPalette'
-import { getHomeCmsData, getKnowledgeGraphData } from '@/lib/cms'
-import KnowledgeGraph from '@/components/garden/KnowledgeGraph'
+import ProblemSection from '@/components/landing/ProblemSection'
+import ToolsSection from '@/components/landing/ToolsSection'
+import GuidesSection from '@/components/landing/GuidesSection'
+import ProjectsSection from '@/components/landing/ProjectsSection'
+import ProofSection from '@/components/landing/ProofSection'
+import NewsletterSection from '@/components/landing/NewsletterSection'
+import Footer from '@/components/landing/Footer'
+import UtilityBar from '@/components/landing/UtilityBar'
+import FloatingCursor from '@/components/landing/FloatingCursor'
 import { getDictionary } from '@/lib/i18n'
 
 export default async function HomePageEN() {
-  const cms = await getHomeCmsData()
-  const graph = await getKnowledgeGraphData()
   const t = getDictionary('en')
 
   return (
     <main className="page" aria-label="Data Architect home page" data-locale={t.locale}>
+      <UtilityBar />
       <NavBar t={t} />
       <HeroPanel t={t} />
-      <PersonaQuickPaths t={t} />
-      <BentoGrid cms={cms} t={t} />
-
-      <section
-        id="knowledge-graph"
-        className="garden-panel glass"
-        aria-label={t.knowledgeGraph.sectionAriaLabel}
-      >
-        <div className="garden-head">
-          <span className="eyebrow">{t.knowledgeGraph.eyebrow}</span>
-          <h2>{t.knowledgeGraph.title}</h2>
-          <p>{t.knowledgeGraph.description}</p>
-          <div className="maturity-legend" aria-label={t.knowledgeGraph.maturityAriaLabel}>
-            <span className="maturity-chip seed">Seed</span>
-            <span className="maturity-chip growing">Growing</span>
-            <span className="maturity-chip evergreen">Evergreen</span>
-          </div>
-        </div>
-        <KnowledgeGraph graph={graph} />
-      </section>
-      <CommandPalette />
+      <ProblemSection t={t} />
+      <ToolsSection t={t} />
+      <GuidesSection t={t} />
+      <ProjectsSection t={t} />
+      <ProofSection t={t} />
+      <NewsletterSection t={t} />
+      <Footer />
+      <FloatingCursor />
     </main>
   )
 }
-
