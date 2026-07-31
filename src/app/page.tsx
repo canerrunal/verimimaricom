@@ -1,4 +1,3 @@
-// @ts-nocheck
 import NavBar from '@/components/landing/NavBar'
 import HeroPanel from '@/components/landing/HeroPanel'
 import BentoGrid from '@/components/landing/BentoGrid'

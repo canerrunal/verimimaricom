@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { MetadataRoute } from 'next'
 import { getSiteUrl } from '@/lib/seo'
 
@@ -9,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/studio/', '/api/', '/uyelik/', '/preview/', '/draft/', '/_internal/'],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 export const fallbackBlogPosts = [
   {
     slug: 'claude-fable-5-vercel-ai-gateway',
@@ -67,4 +65,21 @@ export const fallbackBlogPosts = [
 
 export function getFallbackBlogPost(slug: string) {
   return fallbackBlogPosts.find((post) => post.slug === slug)
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  const post = getFallbackBlogPost(slug)
+  if (!post) return null
+
+  const content = (post.sections || [])
+    .map(
+      (sec) =>
+        `<section><h2>${sec.title}</h2><p>${sec.body}</p></section>`
+    )
+    .join('')
+
+  return {
+    ...post,
+    content,
+  }
 }

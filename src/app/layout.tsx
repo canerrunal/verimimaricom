@@ -1,4 +1,3 @@
-// @ts-nocheck
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -20,24 +19,17 @@ export const metadata: Metadata = {
     template: '%s | Veri Mimarı',
   },
   description:
-    'Yapay Zeka, Veri Bilimi, Web Geliştirme ve Dijital Pazarlama odağında modern kişisel marka platformu.',
+    'E-ticaret verisini daha kârlı kararlara dönüştüren ücretsiz araçlar, rehberler ve ürünler.',
   keywords: [
     'Veri Mimarı',
     'Caner Ünal',
-    'Yapay Zeka',
-    'Veri Bilimi',
-    'Veri Analitiği',
-    'Web Developer',
-    'Dijital Pazarlama',
     'E-ticaret',
+    'Başa Baş ROAS',
+    'Reklam Analitiği',
+    'Kârlılık',
+    'Veri Analitiği',
+    'Yapay Zeka',
   ],
-  alternates: {
-    canonical: '/',
-    languages: {
-      'tr-TR': '/',
-      'en-US': '/en',
-    },
-  },
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
@@ -73,7 +65,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = getGlobalJsonLd()
 
   return (

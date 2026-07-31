@@ -1,6 +1,4 @@
-// @ts-nocheck
-
-export function getSiteUrl() {
+export function getSiteUrl(): string {
   return (process.env.NEXT_PUBLIC_SITE_URL || 'https://verimimari.com').replace(/\/$/, '')
 }
 
@@ -10,7 +8,7 @@ export const brandProfile = {
   role: 'Yapay Zeka ve Veri Bilimi Uzmanı',
   title: 'Web Developer · E-ticaret · Grafik Tasarım · Dijital Pazarlama',
   description:
-    'Caner Ünal için Veri, Yapay Zeka, Web Geliştirme ve Dijital Pazarlama odaklı kişisel marka platformu.',
+    'E-ticaret verisini daha kârlı kararlara dönüştüren ücretsiz araçlar, rehberler ve ürünler.',
   email: 'hello@verimimari.com',
   image: '/og/veri-mimari-og.png',
   sameAs: [
@@ -20,7 +18,7 @@ export const brandProfile = {
   ],
 }
 
-export function getGlobalJsonLd() {
+export function getGlobalJsonLd(): Record<string, unknown>[] {
   const siteUrl = getSiteUrl()
 
   const person = {
@@ -36,13 +34,11 @@ export function getGlobalJsonLd() {
     image: `${siteUrl}${brandProfile.image}`,
     sameAs: brandProfile.sameAs,
     knowsAbout: [
-      'Artificial Intelligence',
-      'Data Science',
+      'E-commerce Intelligence',
       'Data Analytics',
-      'Web Development',
-      'E-commerce',
-      'Digital Marketing',
-      'Graphic Design',
+      'Break-even ROAS',
+      'Profitability',
+      'Artificial Intelligence',
     ],
   }
 
@@ -56,11 +52,9 @@ export function getGlobalJsonLd() {
     areaServed: 'TR',
     availableLanguage: ['tr', 'en'],
     serviceType: [
-      'AI Consulting',
-      'Data Analytics',
-      'Web Development',
-      'E-commerce Solutions',
-      'Digital Marketing',
+      'E-commerce Analytics',
+      'ROAS Calculators',
+      'Growth Strategy',
     ],
   }
 
@@ -82,7 +76,10 @@ export function getGlobalJsonLd() {
   return [person, service, website]
 }
 
-export function getCaseStudyJsonLd(data: any, slug: string) {
+export function getCaseStudyJsonLd(
+  data: { title?: string; excerpt?: string; publishedAt?: string; industry?: string } | null,
+  slug: string
+): Record<string, unknown> {
   const siteUrl = getSiteUrl()
   const url = `${siteUrl}/projeler/${slug}`
 

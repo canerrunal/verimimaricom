@@ -1,20 +1,17 @@
-// @ts-nocheck
-
 export const dictionaries = {
   tr: {
     locale: 'tr',
     basePath: '/',
     nav: {
-      ariaLabel: 'Main navigation',
+      ariaLabel: 'Ana Navigasyon',
       brandAriaLabel: 'Veri Mimarı ana sayfa',
       brandText: 'VERİ MİMARI',
       links: [
-        { href: '#projeler', label: 'Vaka Analizleri' },
-        { href: '#blog', label: 'Yazılar' },
-        { href: '/labs', label: 'Labs' },
-        { href: '#yetkinlik', label: 'Teknoloji Yığını' },
-        { href: '/uyelik', label: 'Premium' },
-        { href: '#iletisim', label: 'İş Birliği' },
+        { href: '/araclar', label: 'Araçlar' },
+        { href: '/rehberler', label: 'Rehberler' },
+        { href: '/vaka-analizleri', label: 'Vaka Analizleri' },
+        { href: '/projeler', label: 'Projeler' },
+        { href: '/hakkinda', label: 'Hakkında' },
       ],
       commandCenterLabel: 'Komuta Merkezi',
       languageSwitch: {
