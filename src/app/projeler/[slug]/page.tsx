@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getCaseStudyBySlug } from '@/lib/cms'
 import MetricsBoard from '@/components/case-study/MetricsBoard'
 import { getCaseStudyJsonLd } from '@/lib/seo'
@@ -17,14 +18,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: data?.title || 'Case Study',
-    description: data?.excerpt || 'Veri hikayeciligi odakli vaka analizi',
+    description: data?.excerpt || 'Veri hikayeciliği odaklı vaka analizi',
     alternates: {
       canonical: `/projeler/${slug}`,
     },
     openGraph: {
       type: 'article',
       title: data?.title || 'Case Study',
-      description: data?.excerpt || 'Veri hikayeciligi odakli vaka analizi',
+      description: data?.excerpt || 'Veri hikayeciliği odaklı vaka analizi',
       url: `/projeler/${slug}`,
     },
   }
@@ -36,86 +37,100 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
   const jsonLd = getCaseStudyJsonLd(data, slug)
 
   return (
-    <main className="page case-study-page" aria-label="Case Study Detay Sayfasi">
+    <main className="page" aria-label="Vaka Analizi Detay Sayfası">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="case-header">
-        <span className="eyebrow">Veri Hikayeciligi . Case Study</span>
-        <h1>{data.title}</h1>
-        <p>{data.excerpt}</p>
+      <section className="section">
+        <div className="wrap">
+          <Link href="/projeler" className="back-link">← Projelere Dön</Link>
+          <span className="eyebrow">VERİ HİKAYECİLİĞİ · VAKA ANALİZİ</span>
+          <h1 style={{ font: '700 clamp(28px,3.5vw,42px)/1.1 "Space Mono"', letterSpacing: '-.09em', margin: '5px 0 22px' }}>
+            {data.title}
+          </h1>
+          <p style={{ color: '#666', maxWidth: 600, fontSize: 12, margin: '0 0 16px' }}>
+            {data.excerpt}
+          </p>
 
-        <div className="case-meta">
-          <span>Musteri: {data.clientName || 'N/A'}</span>
-          <span>Sektor: {data.industry || 'N/A'}</span>
-          <span>Impact Score: {data.impactScore ?? '-'}</span>
-        </div>
+          <div style={{ display: 'flex', gap: 16, fontSize: 10, color: '#999', marginBottom: 40 }}>
+            <span>Müşteri: {data.clientName || 'N/A'}</span>
+            <span>Sektör: {data.industry || 'N/A'}</span>
+            <span>Impact Score: {data.impactScore ?? '-'}</span>
+            {data.repoUrl && <a href={data.repoUrl} className="link">Repo</a>}
+            {data.demoUrl && <a href={data.demoUrl} className="link">Demo</a>}
+          </div>
 
-        <div className="case-links">
-          {data.repoUrl && <a href={data.repoUrl}>Repo</a>}
-          {data.demoUrl && <a href={data.demoUrl}>Demo</a>}
-          <a href="/">Ana Sayfa</a>
-        </div>
-      </header>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+            <div className="tool-sm">
+              <div className="indicator blue"></div>
+              <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+                Problem / Hipotez
+              </h3>
+              <p style={{ fontSize: 10, color: '#777', margin: 0 }}>
+                {data.problemStatement || 'Problem tanımı henüz eklenmedi.'}
+              </p>
+            </div>
 
-      <section className="case-grid" aria-label="Vaka analizi icerik bolumleri">
-        <article className="case-block case-col-6">
-          <h2>Problem / Hipotez</h2>
-          <p>{data.problemStatement || 'Problem tanimi henuz eklenmedi.'}</p>
-        </article>
+            <div className="tool-sm">
+              <div className="indicator green"></div>
+              <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+                Metodoloji
+              </h3>
+              <p style={{ fontSize: 10, color: '#777', margin: 0 }}>
+                {data.methodology || 'Metodoloji henüz eklenmedi.'}
+              </p>
+            </div>
+          </div>
 
-        <article className="case-block case-col-6">
-          <h2>Metodoloji</h2>
-          <p>{data.methodology || 'Metodoloji henuz eklenmedi.'}</p>
-        </article>
+          <div className="tool-sm" style={{ marginBottom: 24 }}>
+            <div className="indicator yellow"></div>
+            <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+              Sonuçlar / Analiz
+            </h3>
+            <p style={{ fontSize: 10, color: '#777', margin: '0 0 16px' }}>
+              {data.outcomeSummary || 'Sonuç özeti henüz eklenmedi.'}
+            </p>
+            <MetricsBoard metrics={data.metrics || []} />
+          </div>
 
-        <article className="case-block case-col-12">
-          <h2>Sonuclar / Analiz</h2>
-          <p>{data.outcomeSummary || 'Sonuc ozeti henuz eklenmedi.'}</p>
-          <MetricsBoard metrics={data.metrics || []} />
-        </article>
+          {data.architectureDiagramMermaid && (
+            <div className="tool-sm" style={{ marginBottom: 24 }}>
+              <div className="indicator blue"></div>
+              <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '36px 0 8px' }}>
+                Sistem Mimarisi Şeması
+              </h3>
+              <MermaidDiagram chart={data.architectureDiagramMermaid} />
+            </div>
+          )}
 
-        <article className="case-block case-col-4">
-          <h2>Sistem Mimarisi Semi (Mermaid)</h2>
-          <p>Bu blok Sanity uzerinde tanimlanan Mermaid diyagramini dinamik olarak render eder.</p>
-          <MermaidDiagram chart={data.architectureDiagramMermaid} />
-        </article>
-
-        <article className="case-col-12">
-          <section className="case-block narrative-flow" aria-label="Vaka hikaye akisi">
-            <h2>Vaka Hikayesi Akisi</h2>
-            <ol>
-              <li>
-                <strong>Problem:</strong> {data.problemStatement || 'Problem tanimi henuz eklenmedi.'}
-              </li>
-              <li>
-                <strong>Metodoloji:</strong> {data.methodology || 'Metodoloji henuz eklenmedi.'}
-              </li>
-              <li>
-                <strong>Sonuc:</strong> {data.outcomeSummary || 'Sonuc ozeti henuz eklenmedi.'}
-              </li>
+          <div className="tool-sm" style={{ marginBottom: 24 }}>
+            <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '0 0 12px' }}>
+              Vaka Hikayesi Akışı
+            </h3>
+            <ol style={{ fontSize: 10, color: '#777', margin: 0, paddingLeft: 16, lineHeight: 2.2 }}>
+              <li><strong>Problem:</strong> {data.problemStatement || '—'}</li>
+              <li><strong>Metodoloji:</strong> {data.methodology || '—'}</li>
+              <li><strong>Sonuç:</strong> {data.outcomeSummary || '—'}</li>
             </ol>
-          </section>
-        </article>
+          </div>
 
-        <article className="case-col-12">
           <PremiumGate
-            title="Premium Analitik Katmani"
-            preview="ROI formulleri, ileri segment analizleri ve ham veri indirme baglantilari uyelik gerektirir."
+            title="Premium Analitik Katmanı"
+            preview="ROI formülleri, ileri segment analizleri ve ham veri indirme bağlantıları üyelik gerektirir."
           >
-            <section className="case-block">
-              <h2>Uyelere Ozel Icerik</h2>
-              <div className="premium-content">
-                <p>
-                  Burada gelismis donusum kohortu, kanal bazli maliyet kirilimi ve premium dashboard
-                  baglantilari gosterilir.
-                </p>
-              </div>
-            </section>
+            <div className="tool-sm">
+              <h3 style={{ font: '700 17px/1.16 "Space Mono"', letterSpacing: '-.07em', margin: '0 0 8px' }}>
+                Üyelere Özel İçerik
+              </h3>
+              <p style={{ fontSize: 10, color: '#777', margin: 0 }}>
+                Burada gelişmiş dönüşüm kohortu, kanal bazlı maliyet kırılımı ve premium dashboard
+                bağlantıları gösterilir.
+              </p>
+            </div>
           </PremiumGate>
-        </article>
+        </div>
       </section>
     </main>
   )
