@@ -10,7 +10,7 @@ function resolveHref(href: string, basePath: string) {
 
 export default function NavBar({ t }) {
   return (
-    <header className="top-nav glass" aria-label={t.nav.ariaLabel}>
+    <header className="top-nav" aria-label={t.nav.ariaLabel}>
       <a href={t.basePath} className="brand" aria-label={t.nav.brandAriaLabel}>
         <span className="dot" />
         <span>{t.nav.brandText}</span>
@@ -21,6 +21,8 @@ export default function NavBar({ t }) {
             {item.label}
           </a>
         ))}
+      </nav>
+      <div className="nav-right">
         <span className="lang-switch" aria-label="Language switcher">
           <a
             href={t.nav.languageSwitch.trHref}
@@ -40,8 +42,7 @@ export default function NavBar({ t }) {
         <OpenCommandPaletteButton className="nav-cmdk" source="navbar">
           {t.nav.commandCenterLabel}
         </OpenCommandPaletteButton>
-      </nav>
+      </div>
     </header>
   )
 }
-

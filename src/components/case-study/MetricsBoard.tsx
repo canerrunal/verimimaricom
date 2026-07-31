@@ -20,7 +20,7 @@ function clampBar(deltaPercent: number) {
 
 export default function MetricsBoard({ metrics = [] }) {
   return (
-    <section className="case-block glass" aria-label="Case study metrics visualization">
+    <section className="case-block" aria-label="Case study metrics visualization">
       <h2>Metrik Görselleştirmesi</h2>
       <p>Öncesi ve sonrası değerleri karşılaştırmalı olarak veri hikayeciliği yaklaşımıyla sunulur.</p>
 

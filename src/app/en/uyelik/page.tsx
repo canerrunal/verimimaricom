@@ -6,7 +6,7 @@ import { trackEvent } from '@/lib/analytics'
 export default function MembershipPageEN() {
   return (
     <main className="page membership-page" aria-label="Membership and digital asset sales page">
-      <section className="membership-card glass">
+      <section className="membership-card">
         <span className="eyebrow">Phase 2 · Digital Assets + Membership</span>
         <h1>Premium Membership and Digital Asset Sales</h1>
         <p>
@@ -22,7 +22,7 @@ export default function MembershipPageEN() {
         </ul>
       </section>
 
-      <section className="membership-card glass">
+      <section className="membership-card">
         <h2>1) Start Membership with Payment</h2>
         <p>Enter your email and continue to checkout flow.</p>
 
@@ -52,7 +52,7 @@ export default function MembershipPageEN() {
         </form>
       </section>
 
-      <section className="membership-card glass">
+      <section className="membership-card">
         <h2>2) Activate Membership (Demo)</h2>
         <p>
           After webhook is received, activate membership with the same email. This step is for demo

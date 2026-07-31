@@ -12,7 +12,7 @@ export default function PersonaQuickPaths({ t }) {
   return (
     <section className="persona-paths" aria-label={t.persona.sectionAriaLabel}>
       {t.persona.cards.map((card: any, index: number) => (
-        <article key={`${card.eventName}-${index}`} className="persona-card glass">
+        <article key={`${card.eventName}-${index}`} className="persona-card">
           <span className="eyebrow">{card.eyebrow}</span>
           <h3>{card.title}</h3>
           <p>{card.description}</p>
@@ -29,4 +29,3 @@ export default function PersonaQuickPaths({ t }) {
     </section>
   )
 }
-

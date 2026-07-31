@@ -5,26 +5,26 @@ import { trackEvent } from '@/lib/analytics'
 
 export default function MembershipPage() {
   return (
-    <main className="page membership-page" aria-label="Üyelik ve dijital varlık satışı sayfası">
-      <section className="membership-card glass">
-        <span className="eyebrow">Phase 2 · Digital Assets + Membership</span>
-        <h1>Premium Üyelik ve Dijital Varlık Satışı</h1>
+    <main className="page membership-page" aria-label="Uyelik ve dijital varlik satisi sayfasi">
+      <section className="membership-card">
+        <span className="eyebrow">Phase 2 . Digital Assets + Membership</span>
+        <h1>Premium Uyelik ve Dijital Varlik Satisi</h1>
         <p>
-          Bu altyapı ile belirli içerikleri kilitleyebilir, Lemon Squeezy checkout üzerinden ödeme
-          alabilir ve üyelik doğrulaması sonrası içeriği açabilirsiniz.
+          Bu altyapi ile belirli icerikleri kilitleyebilir, Lemon Squeezy checkout uzerinden odeme
+          alabilir ve uyelik dogrulamasi sonra icerigi acabilirsiniz.
         </p>
 
         <ul className="feature-list">
-          <li>Kilitli içerik (PremiumGate) desteği</li>
-          <li>Lemon Squeezy checkout yönlendirmesi</li>
-          <li>Webhook ile üyelik hakedişi işleme</li>
-          <li>E-posta ile üyelik aktifleme (unlock)</li>
+          <li>Kilitli icerik (PremiumGate) destegi</li>
+          <li>Lemon Squeezy checkout yonlendirmesi</li>
+          <li>Webhook ile uyelik hakedisi isleme</li>
+          <li>E-posta ile uyelik aktifleme (unlock)</li>
         </ul>
       </section>
 
-      <section className="membership-card glass">
-        <h2>1) Ödeme ile Üyelik Başlat</h2>
-        <p>E-posta girin ve checkout akışına yönlenin.</p>
+      <section className="membership-card">
+        <h2>1) Odeme ile Uyelik Baslat</h2>
+        <p>E-posta girin ve checkout akisina yonlenin.</p>
 
         <form
           className="checkout-form"
@@ -46,17 +46,17 @@ export default function MembershipPage() {
             name="email"
             required
             placeholder="ornek@domain.com"
-            aria-label="Üyelik e-posta"
+            aria-label="Uyelik e-posta"
           />
           <button type="submit">Lemon Checkout</button>
         </form>
       </section>
 
-      <section className="membership-card glass">
-        <h2>2) Üyelik Aktifleştir (Demo)</h2>
+      <section className="membership-card">
+        <h2>2) Uyelik Aktiflesir (Demo)</h2>
         <p>
-          Webhook geldikten sonra aynı e-posta ile üyeliği aktifleştirin. Bu aşama demo amaçlıdır ve
-          production'da gerçek kullanıcı oturumu + DB doğrulamasına taşınmalıdır.
+          Webhook geldikten sonra ayni e-posta ile uyeligi aktiflesirin. Bu asama demo amaclidir ve
+          production'da gercek kullanici oturumu + DB dogrulamasina tasimilmalidir.
         </p>
 
         <form
@@ -82,15 +82,14 @@ export default function MembershipPage() {
                 placement: 'membership_page',
                 email_domain: email.includes('@') ? email.split('@')[1] : undefined,
               })
-              alert('Üyelik doğrulanamadı. Ödeme webhook kaydını kontrol edin.')
+              alert('Uyelik dogrulanamadi. Odeme webhook kaydini kontrol edin.')
             }
           }}
         >
           <input type="email" name="email" required placeholder="ornek@domain.com" />
-          <button type="submit">Üyeliği Aç</button>
+          <button type="submit">Uyeligi Ac</button>
         </form>
       </section>
     </main>
   )
 }
-

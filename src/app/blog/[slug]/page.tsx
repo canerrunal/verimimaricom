@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="case-header glass">
+      <header className="case-header">
         <span className="eyebrow">AI Haberleri · {post.sourceName}</span>
         <h1>{post.title}</h1>
         <p>{post.excerpt}</p>
@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       </header>
 
       <section className="case-grid" aria-label="Blog içerik bölümleri">
-        <article className="case-block glass case-col-8">
+        <article className="case-block case-col-8">
           <h2>Öne Çıkanlar</h2>
           <ul className="article-list">
             {post.highlights.map((highlight) => (
@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </ul>
         </article>
 
-        <article className="case-block glass case-col-4">
+        <article className="case-block case-col-4">
           <h2>Etiketler</h2>
           <div className="skill-cloud">
             {post.tags.map((tag) => (
@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </article>
 
         {post.sections.map((section) => (
-          <article key={section.title} className="case-block glass case-col-6">
+          <article key={section.title} className="case-block case-col-6">
             <h2>{section.title}</h2>
             <p>{section.body}</p>
           </article>

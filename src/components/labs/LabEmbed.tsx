@@ -4,7 +4,7 @@ export default function LabEmbed({ item }: { item: any }) {
   const isGradio = item.type === 'gradio'
 
   return (
-    <article className="lab-card glass" id={item.id}>
+    <article className="lab-card" id={item.id}>
       <header className="lab-head">
         <h3>{item.title}</h3>
         <p>{item.description}</p>

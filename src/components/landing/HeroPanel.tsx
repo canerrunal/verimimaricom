@@ -11,7 +11,7 @@ function resolveHref(href: string, basePath: string) {
 
 export default function HeroPanel({ t }) {
   return (
-    <section className="hero glass" aria-label="Hero panel">
+    <section className="hero" aria-label="Hero panel">
       <span className="eyebrow">{t.hero.eyebrow}</span>
       <h1>{t.hero.title}</h1>
       <p>{t.hero.description}</p>
@@ -48,4 +48,3 @@ export default function HeroPanel({ t }) {
     </section>
   )
 }
-

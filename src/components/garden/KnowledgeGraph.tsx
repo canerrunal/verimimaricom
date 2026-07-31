@@ -6,23 +6,23 @@ import { useMemo, useState } from 'react'
 function groupColor(group: string) {
   switch (group) {
     case 'AI':
-      return '#7ad7ff'
+      return '#2563eb'
     case 'Data':
-      return '#95a7ff'
+      return '#7c3aed'
     case 'Web':
-      return '#9df0d1'
+      return '#059669'
     case 'Growth':
-      return '#ffc48f'
+      return '#d97706'
     default:
-      return '#d8e2ff'
+      return '#52525b'
   }
 }
 
 function maturityColor(maturity: string) {
   const m = String(maturity || '').toLowerCase()
-  if (m === 'evergreen') return '#89f0c7'
-  if (m === 'growing') return '#9fc2ff'
-  return '#ffd694'
+  if (m === 'evergreen') return '#16a34a'
+  if (m === 'growing') return '#2563eb'
+  return '#d97706'
 }
 
 export default function KnowledgeGraph({ graph }) {
@@ -88,7 +88,7 @@ export default function KnowledgeGraph({ graph }) {
 
   return (
     <div className="garden-graph" aria-label="Digital Garden knowledge graph">
-      <div className="garden-filters" aria-label="Bilgi grafiği filtreleri">
+      <div className="garden-filters" aria-label="Bilgi grafigi filtreleri">
         <label>
           Topic
           <select value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)}>
@@ -121,16 +121,7 @@ export default function KnowledgeGraph({ graph }) {
         </label>
       </div>
 
-      <svg viewBox={`0 0 ${layout.width} ${layout.height}`} role="img" aria-label="Blog ve notlar arası ilişki ağı">
-        <defs>
-          <radialGradient id="graphGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(128, 191, 255, 0.22)" />
-            <stop offset="100%" stopColor="rgba(128, 191, 255, 0)" />
-          </radialGradient>
-        </defs>
-
-        <rect x="0" y="0" width={layout.width} height={layout.height} fill="url(#graphGlow)" />
-
+      <svg viewBox={`0 0 ${layout.width} ${layout.height}`} role="img" aria-label="Blog ve notlar arasi iliski agi">
         {layout.lines.map((line: any, idx: number) => {
           const active = activeNode && (line.source === activeNode || line.target === activeNode)
           return (
@@ -140,7 +131,7 @@ export default function KnowledgeGraph({ graph }) {
               y1={line.sourceNode.y}
               x2={line.targetNode.x}
               y2={line.targetNode.y}
-              stroke={active ? 'rgba(145, 212, 255, 0.95)' : 'rgba(180, 196, 255, 0.32)'}
+              stroke={active ? '#18181b' : '#d4d4d8'}
               strokeWidth={Math.max(1, Number(line.strength || 0.3) * 2)}
             />
           )
@@ -155,15 +146,15 @@ export default function KnowledgeGraph({ graph }) {
               <circle
                 r={active ? 14 : 10}
                 fill={fill}
-                stroke="rgba(255,255,255,0.5)"
-                strokeWidth="1.2"
+                stroke="white"
+                strokeWidth="1.5"
                 onMouseEnter={() => setActiveNode(node.id)}
                 onMouseLeave={() => setActiveNode(null)}
                 onClick={() => (window.location.href = node.slug ? `/blog/${node.slug}` : '#')}
                 style={{ cursor: 'pointer' }}
               />
-              <circle r={active ? 17 : 13} fill="none" stroke={ring} strokeWidth="1.2" opacity="0.65" />
-              <text x="14" y="4" fill="#dce8ff" fontSize="11" pointerEvents="none">
+              <circle r={active ? 17 : 13} fill="none" stroke={ring} strokeWidth="1.2" opacity="0.5" />
+              <text x="14" y="4" fill="#18181b" fontSize="11" fontFamily="JetBrains Mono, monospace" pointerEvents="none">
                 {node.label}
               </text>
             </g>
@@ -173,4 +164,3 @@ export default function KnowledgeGraph({ graph }) {
     </div>
   )
 }
-

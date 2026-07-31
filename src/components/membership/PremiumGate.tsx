@@ -20,7 +20,7 @@ export default async function PremiumGate({
   }
 
   return (
-    <section className="case-block glass" aria-label="Kilitli içerik kutusu">
+    <section className="case-block" aria-label="Kilitli içerik kutusu">
       <h2>{title}</h2>
       <div className="lock-box">
         <p>{preview}</p>

@@ -161,7 +161,7 @@ export default function CommandPalette() {
 
   return (
     <div className="cmdk-overlay" onClick={() => setOpen(false)}>
-      <section className="cmdk-panel glass" onClick={(e) => e.stopPropagation()} aria-label="Komuta Merkezi">
+      <section className="cmdk-panel" onClick={(e) => e.stopPropagation()} aria-label="Komuta Merkezi">
         <header className="cmdk-head">
           <strong>{config.panelTitle}</strong>
           <span>{config.panelSubtitle}</span>

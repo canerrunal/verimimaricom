@@ -18,7 +18,7 @@ export default function BentoGrid({ cms, t }) {
 
   return (
     <section className="bento-grid" aria-label={t.bento.ariaLabel}>
-      <article id="projeler" className="card glass span-8">
+      <article id="projeler" className="card span-8">
         <h3>{t.bento.projects.title}</h3>
         <p>{t.bento.projects.description}</p>
         <ul className="card-list">
@@ -42,7 +42,7 @@ export default function BentoGrid({ cms, t }) {
         </TrackLink>
       </article>
 
-      <article id="blog" className="card glass span-4">
+      <article id="blog" className="card span-4">
         <h3>{t.bento.blog.title}</h3>
         <p>{t.bento.blog.description}</p>
         <ul className="card-list compact">
@@ -66,7 +66,7 @@ export default function BentoGrid({ cms, t }) {
         </TrackLink>
       </article>
 
-      <article id="yetkinlik" className="card glass span-4">
+      <article id="yetkinlik" className="card span-4">
         <h3>{t.bento.skills.title}</h3>
         <p>{t.bento.skills.description}</p>
         <div className="skill-cloud">
@@ -78,7 +78,7 @@ export default function BentoGrid({ cms, t }) {
         </div>
       </article>
 
-      <article id="lab" className="card glass span-4">
+      <article id="lab" className="card span-4">
         <h3>{t.bento.labs.title}</h3>
         <p>{t.bento.labs.description}</p>
         <TrackLink
@@ -91,12 +91,12 @@ export default function BentoGrid({ cms, t }) {
         </TrackLink>
       </article>
 
-      <article id="kaynak" className="card glass span-4">
+      <article id="kaynak" className="card span-4">
         <h3>{t.bento.resources.title}</h3>
         <p>{t.bento.resources.description}</p>
       </article>
 
-      <article id="iletisim" className="card glass span-8">
+      <article id="iletisim" className="card span-8">
         <h3>{t.bento.contact.title}</h3>
         <p>{t.bento.contact.description}</p>
         <TrackLink
@@ -111,4 +111,3 @@ export default function BentoGrid({ cms, t }) {
     </section>
   )
 }
-

@@ -8,7 +8,7 @@ export default function LabsPageEN() {
     <main className="page labs-page" aria-label="Labs experimentation area">
       <GradioLoader />
 
-      <section className="labs-hero glass">
+      <section className="labs-hero">
         <span className="eyebrow">Phase 3 · Labs</span>
         <h1>Live AI Models and Interactive Experiment Environment</h1>
         <p>

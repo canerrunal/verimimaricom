@@ -23,7 +23,7 @@ export default async function HomePage() {
 
       <section
         id="knowledge-graph"
-        className="garden-panel glass"
+        className="garden-panel"
         aria-label={t.knowledgeGraph.sectionAriaLabel}
       >
         <div className="garden-head">

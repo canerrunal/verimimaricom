@@ -29,7 +29,7 @@ function formatAssistantContent(content: string) {
           <ul>
             {lines
               .slice(1)
-              .map((line, i) => line.replace(/^[-*]\s*/, '').trim())
+              .map((line) => line.replace(/^[-*]\s*/, '').trim())
               .filter(Boolean)
               .map((line, i) => (
                 <li key={`ref-item-${index}-${i}`}>{line}</li>
@@ -83,7 +83,7 @@ export default function VeriBotChat() {
         id: 'welcome',
         role: 'assistant',
         content:
-          'Merhaba, ben VeriBot. Projeler, vaka analizleri ve yetkinlikler hakkında soru sorabilirsiniz.',
+          'Merhaba, ben VeriBot. Projeler, vaka analizleri ve yetkinlikler hakkinda soru sorabilirsiniz.',
       },
     ],
   })
@@ -91,7 +91,7 @@ export default function VeriBotChat() {
   return (
     <div className={`veribot ${open ? 'open' : ''}`} aria-label="VeriBot chat widget">
       <button
-        className="veribot-trigger glass"
+        className="veribot-trigger"
         onClick={() => {
           const nextOpen = !open
           setOpen(nextOpen)
@@ -104,20 +104,20 @@ export default function VeriBotChat() {
       </button>
 
       {open && (
-        <section className="veribot-panel glass">
+        <section className="veribot-panel">
           <header className="veribot-head">
-            <strong>Agentic AI Asistanı</strong>
-            <span>RAG destekli · Proje + Blog + Skill</span>
+            <strong>Agentic AI Asistani</strong>
+            <span>RAG destekli . Proje + Blog + Skill</span>
           </header>
 
           <div className="veribot-stream" role="log" aria-live="polite">
             {messages.length <= 1 && !isLoading && (
               <div className="veribot-empty-state">
-                <strong>Öneri sorular</strong>
+                <strong>Oneri sorular</strong>
                 <ul>
                   <li>Bu sitede hangi vaka analizleri var?</li>
-                  <li>NLP projelerinde hangi teknoloji yığını kullanıldı?</li>
-                  <li>Premium üyelikte hangi içerikler açılıyor?</li>
+                  <li>NLP projelerinde hangi teknoloji yigini kullanildi?</li>
+                  <li>Premium uyelikte hangi icerikler aciliyor?</li>
                 </ul>
               </div>
             )}
@@ -132,7 +132,7 @@ export default function VeriBotChat() {
                       if (!hint) return null
 
                       return (
-                        <div className="veribot-action-hint" aria-label="Önerilen aksiyon">
+                        <div className="veribot-action-hint" aria-label="Onerilen aksiyon">
                           <small>{hint.reason}</small>
                           <button type="button" onClick={() => executeActionHint(hint)}>
                             {hint.label}
@@ -147,11 +147,11 @@ export default function VeriBotChat() {
               </article>
             ))}
 
-            {isLoading && <div className="veribot-status">VeriBot yanıtı hazırlanıyor...</div>}
+            {isLoading && <div className="veribot-status">VeriBot yaniiti hazirlaniyor...</div>}
 
             {error && (
               <div className="veribot-status error">
-                VeriBot şu anda yanıt üretemedi. Lütfen sorunuzu yeniden deneyin.
+                VeriBot su anda yaniit uretemedi. Lutfen sorunuzu yeniden deneyin.
               </div>
             )}
           </div>
@@ -171,10 +171,10 @@ export default function VeriBotChat() {
               name="prompt"
               value={input}
               onChange={handleInputChange}
-              placeholder="Örn: NLP projelerinde hangi teknoloji yığınını kullandın?"
+              placeholder="Orn: NLP projelerinde hangi teknoloji yigini kullandin?"
             />
             <button type="submit" disabled={isLoading || !input.trim()}>
-              {isLoading ? 'Yanıtlanıyor...' : 'Sor'}
+              {isLoading ? 'Yanitlaniyor...' : 'Sor'}
             </button>
           </form>
         </section>
@@ -182,4 +182,3 @@ export default function VeriBotChat() {
     </div>
   )
 }
-
