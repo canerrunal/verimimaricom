@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
+import CollaborationForm from '@/components/contact/CollaborationForm'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'İş Birliği ve İletişim',
+  title: 'İş Birliği ve İletişim | Veri Mimarı',
   description: 'E-ticaret markaları, dijital pazarlama ekipleri ve teknoloji projeleri için iş birliği ve danışmanlık.',
 }
 
@@ -22,9 +23,9 @@ export default function IsBirligiPage() {
 
       <div style={{ display: 'grid', gap: '1rem' }}>
         <section className="glass" style={{ padding: '1.8rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>E-Posta</h2>
+          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>Doğrudan E-Posta</h2>
           <p style={{ color: 'var(--text-1)', margin: 0 }}>
-            Projeleriniz ve sorularınız için:{' '}
+            Sorularınız ve hızlı ulaşım için:{' '}
             <a href="mailto:hello@verimimari.com" style={{ color: 'var(--accent-0)', fontWeight: 600 }}>
               hello@verimimari.com
             </a>
@@ -40,6 +41,8 @@ export default function IsBirligiPage() {
             <li>Ölçülebilir Vaka Analizi ve Veri Hikayeciliği</li>
           </ul>
         </section>
+
+        <CollaborationForm />
       </div>
     </main>
   )
