@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "name": "Veri Mimarı Editorial Data System",
+    "description": "Veri Mimarı'nın sıcak kâğıt, güçlü editoryal tipografi, teknik meta etiketleri, sert konturlar ve flüoresan aksiyon renklerinden oluşan kanonik tasarım kimliği.",
+    "source_references": "https://rehber.finfolis.com/ and https://github.com/radioheavy/polar-turkce-rehber",
+    "created_at": "2026-08-01"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "high-contrast complementary accents on warm neutrals",
+      "primary": { "hex": "#101411", "role": "ink, outlines, dark sections" },
+      "secondary": { "hex": "#F6F4ED", "role": "warm paper background" },
+      "accent": { "hex": "#D6FF63", "role": "primary CTA and emphasis" },
+      "supporting": ["#86E7FF", "#FF815C", "#A99AFF", "#FFD86A", "#5267FF"],
+      "surface": { "background": "#F6F4ED", "card": "#FFFEF9", "elevated": "#FFFEF9" },
+      "contrast_strategy": "near-black outlines with fluorescent accents"
+    },
+    "typography": {
+      "font_families": {
+        "heading": "Inter, ui-sans-serif, system-ui",
+        "body": "Inter, ui-sans-serif, system-ui",
+        "mono": "SFMono-Regular, Consolas, Liberation Mono"
+      },
+      "type_scale": {
+        "display": "clamp(58px, 6.45vw, 82px) / 0.93 / 880",
+        "heading_2": "clamp(42px, 5vw, 60px) / 0.98 / 840",
+        "heading_3": "25px / 1.03 / 820",
+        "body": "16px / 1.6 / 400",
+        "caption": "8-10px / 1.4 / 700 mono uppercase"
+      },
+      "font_style_notes": "Very tight negative display tracking; readable body copy; technical mono only for metadata."
+    },
+    "spacing": {
+      "base_unit": "8px",
+      "scale": "8, 12, 20, 28, 40, 56, 72, 108",
+      "content_density": "spacious",
+      "section_rhythm": "full-width alternating bands with 72-108px vertical padding"
+    },
+    "layout": {
+      "grid_system": "1180px centered shell, two-column hero, three-column content grids",
+      "max_content_width": "1180px",
+      "columns": "12 conceptual columns",
+      "gutter": "20px viewport edge minimum",
+      "breakpoints": "980px navigation/hero, 760px single-column mobile",
+      "alignment_tendency": "strict grid with occasional rotated labels"
+    },
+    "shape": {
+      "border_radius": { "small": "7px", "medium": "14px", "large": "18px", "pill": "999px" },
+      "border_usage": "1-1.5px near-black functional outlines",
+      "divider_style": "single-pixel ink or muted green-gray"
+    },
+    "elevation": {
+      "shadow_style": "hard drop with optional soft ambient layer",
+      "levels": {
+        "low": "3px 3px 0 #101411",
+        "medium": "5px 5px 0 #101411",
+        "high": "7px 7px 0 #101411 plus ambient"
+      },
+      "depth_cues": "hard shadows, overlapping notes, bordered circular field"
+    },
+    "motion": {
+      "easing": "ease",
+      "duration_scale": { "micro": "160ms", "normal": "180ms", "macro": "none" },
+      "entrance_pattern": "none",
+      "philosophy": "minimal functional",
+      "reduced_motion": "all transitions and animations collapse"
+    },
+    "components": {
+      "button_style": "outlined pills; dark primary; lime hero CTA with hard shadow",
+      "input_style": "white field, dark 1px border, lime focus halo",
+      "card_style": "flat grid cells or 14px outlined panels with hard drop shadow",
+      "navigation_pattern": "72px sticky translucent editorial bar",
+      "list_style": "bordered grid cells with mono index",
+      "component_notes": "Interactive calculators retain their behavior; only presentation changes."
+    }
+  },
+  "design_style": {
+    "aesthetic": {
+      "mood": ["confident", "editorial", "technical", "friendly"],
+      "visual_metaphor": "an annotated field guide crossed with a modern data console",
+      "era_influence": "contemporary neo-brutalist editorial web",
+      "genre": "long-form guide and product utility",
+      "personality_traits": ["transparent", "direct", "playful", "evidence-led"]
+    },
+    "visual_language": {
+      "complexity": "moderate",
+      "ornamentation": "subtle accents",
+      "whitespace_usage": "large section rhythm and roomy hero",
+      "visual_weight_distribution": "oversized left copy balanced by a dense right console",
+      "focal_strategy": "single hero message followed by progressive content bands",
+      "contrast_level": "high",
+      "texture_usage": "fine grid, dashed rings, hard shadows"
+    },
+    "interaction_feel": {
+      "feedback_style": "immediate and tactile",
+      "hover_behavior": "small up-left movement with a hard shadow",
+      "transition_personality": "snappy",
+      "microinteraction_density": "low"
+    },
+    "brand_voice_in_ui": {
+      "tone": "clear, accountable and pragmatic",
+      "formality": "professional but conversational",
+      "cta_style": "direct imperative",
+      "empty_state_approach": "explain the next useful action",
+      "error_tone": "plain-language corrective guidance"
+    }
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "subtle-accent",
+      "performance_tier": "lightweight",
+      "fallback_strategy": "flat warm background and static accents",
+      "primary_technology": "CSS only"
+    },
+    "background_effects": {
+      "type": "grid plus radial gradients",
+      "description": "48px technical grid with restrained lime and cyan radial glows",
+      "technology": "CSS gradients",
+      "params": {
+        "color_palette": "lime/cyan on warm paper",
+        "opacity": "3-27%",
+        "blend_mode": "normal"
+      }
+    },
+    "scroll_effects": { "enabled": false, "description": "No scroll-jacking or parallax." },
+    "cursor_effects": { "enabled": false, "description": "Native cursor retained." },
+    "canvas_drawings": { "enabled": false, "description": "No Canvas or WebGL required." },
+    "composite_notes": "All decorative effects are CSS and preserve calculator accessibility and performance."
+  }
+}

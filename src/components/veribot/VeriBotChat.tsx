@@ -82,7 +82,7 @@ export default function VeriBotChat() {
         id: 'welcome',
         role: 'assistant',
         content:
-          'Merhaba, ben VeriBot. Projeler, vaka analizleri ve yetkinlikler hakkinda soru sorabilirsiniz.',
+          'Merhaba, ben VeriBot. Projeler, vaka analizleri ve yetkinlikler hakkında soru sorabilirsiniz.',
       },
     ],
   })
@@ -105,18 +105,18 @@ export default function VeriBotChat() {
       {open && (
         <section className="veribot-panel">
           <header className="veribot-head">
-            <strong>Agentic AI Asistani</strong>
-            <span>RAG destekli . Proje + Blog + Skill</span>
+            <strong>Agentic AI Asistanı</strong>
+            <span>RAG destekli · Proje + Rehber + Araç</span>
           </header>
 
           <div className="veribot-stream" role="log" aria-live="polite">
             {messages.length <= 1 && !isLoading && (
               <div className="veribot-empty-state">
-                <strong>Oneri sorular</strong>
+                <strong>Önerilen sorular</strong>
                 <ul>
                   <li>Bu sitede hangi vaka analizleri var?</li>
-                  <li>NLP projelerinde hangi teknoloji yigini kullanildi?</li>
-                  <li>Premium uyelikte hangi icerikler aciliyor?</li>
+                  <li>NLP projelerinde hangi teknoloji yığını kullanıldı?</li>
+                  <li>Premium üyelikte hangi içerikler açılıyor?</li>
                 </ul>
               </div>
             )}
@@ -146,11 +146,11 @@ export default function VeriBotChat() {
               </article>
             ))}
 
-            {isLoading && <div className="veribot-status">VeriBot yaniiti hazirlaniyor...</div>}
+            {isLoading && <div className="veribot-status">VeriBot yanıtı hazırlanıyor...</div>}
 
             {error && (
               <div className="veribot-status error">
-                VeriBot su anda yaniit uretemedi. Lutfen sorunuzu yeniden deneyin.
+                VeriBot şu anda yanıt üretemedi. Lütfen sorunuzu yeniden deneyin.
               </div>
             )}
           </div>
@@ -170,10 +170,11 @@ export default function VeriBotChat() {
               name="prompt"
               value={input}
               onChange={handleInputChange}
-              placeholder="Orn: NLP projelerinde hangi teknoloji yigini kullandin?"
+              placeholder="Örn: NLP projelerinde hangi teknoloji yığınını kullandın?"
+              aria-label="VeriBot mesajı"
             />
             <button type="submit" disabled={isLoading || !input.trim()}>
-              {isLoading ? 'Yanitlaniyor...' : 'Sor'}
+              {isLoading ? 'Yanıtlanıyor...' : 'Sor'}
             </button>
           </form>
         </section>

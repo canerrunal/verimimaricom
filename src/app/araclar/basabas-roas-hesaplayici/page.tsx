@@ -1,33 +1,26 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, useId, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
 import { getDictionary } from '@/lib/i18n'
 
 function Field({ label, hint, value, onChange }: { label: string; hint: string; value: number; onChange: (v: number) => void }) {
+  const inputId = useId()
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 130px', alignItems: 'center', padding: '0.8rem 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-      <div>
-        <label style={{ fontWeight: 600, fontSize: '0.9rem', display: 'block' }}>{label}</label>
-        <small style={{ color: 'var(--text-1)', fontSize: '0.78rem' }}>{hint}</small>
-      </div>
+    <div className="field">
+      <label htmlFor={inputId}>
+        {label}
+        <small>{hint}</small>
+      </label>
       <input
+        id={inputId}
         type="number"
         value={value}
         onChange={(e) => onChange(Math.max(0, Number(e.target.value) || 0))}
-        style={{
-          padding: '0.55rem 0.65rem',
-          border: '1px solid rgba(255,255,255,0.18)',
-          borderRadius: '0.5rem',
-          textAlign: 'right',
-          fontSize: '0.9rem',
-          fontWeight: 600,
-          background: 'rgba(255,255,255,0.06)',
-          color: 'var(--text-0)',
-          outline: 'none',
-        }}
       />
     </div>
   )
@@ -55,10 +48,10 @@ function CalculatorContent() {
   }, [searchParams])
 
   const comAmount = (sale * commission) / 100
-  const contribution = sale - cost - comAmount - shipping - returns
+  const totalVariableCost = cost + comAmount + shipping + returns
+  const contribution = sale - totalVariableCost
   const breakEvenRoas = contribution > 0 ? sale / contribution : 0
   const breakEvenCpa = contribution > 0 ? contribution : 0
-  const totalVariableCost = cost + comAmount + shipping + returns
   const targetNetProfit = (sale * targetMargin) / 100
   const targetCpa = contribution - targetNetProfit
   const targetRoas = targetCpa > 0 ? sale / targetCpa : 0
@@ -84,73 +77,51 @@ function CalculatorContent() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="wrap hero single">
-        <div>
-          <div className="crumb">ARAÇLAR / KÂRLILIK / 01</div>
-          <h1>Başa Baş ROAS Hesaplayıcı</h1>
-          <p className="intro">Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve operasyon maliyetlerinizi girin.</p>
-          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
-            <button
-              onClick={copyShareUrl}
-              className="card-cta"
-              style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
-            >
-              {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
-            </button>
-          </div>
+      <section className="wrap hero single" style={{ paddingBottom: 20 }}>
+        <a href="/araclar" className="back-link">← Tüm Araçlar</a>
+        <div className="crumb">ARAÇLAR / KÂRLILIK / 01</div>
+        <h1>Başa Baş ROAS Hesaplayıcı</h1>
+        <p className="intro">Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve operasyon maliyetlerinizi girin.</p>
+        <div className="signals" style={{ marginTop: 18 }}>
+          <span className="tag live">CANLI · 2 DK · ÜCRETSİZ</span>
+          <span className="tag">AÇIK HESAPLAMA YÖNTEMİ</span>
+          <span className="tag">VERİLERİNİZ SAKLANMAZ</span>
+          <button onClick={copyShareUrl} className="btn alt" style={{ padding: '6px 10px', fontSize: 9 }}>
+            {copied ? '✓ Bağlantı kopyalandı' : '🔗 Sonuç bağlantısını kopyala'}
+          </button>
         </div>
       </section>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '1rem', alignItems: 'start' }}>
-        {/* Form */}
-        <section className="glass" style={{ padding: '1.5rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 1rem', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-1)' }}>GİRDİLER (TL)</h2>
-          <Field label="Satış Fiyatı" hint="Ürünün müşteriye satış bedeli" value={sale} onChange={setSale} />
-          <Field label="Ürün Maliyeti" hint="Ürünün size geliş maliyeti" value={cost} onChange={setCost} />
-          <Field label="Komisyon Oranı (%)" hint="Pazaryeri veya ödeme kesintisi" value={commission} onChange={setCommission} />
-          <Field label="Kargo + Paketleme" hint="Gidiş kargo ve paketleme maliyeti" value={shipping} onChange={setShipping} />
-          <Field label="Beklenen İade Maliyeti" hint="Ortalama iadeden kaynaklı kayıp" value={returns} onChange={setReturns} />
-          <Field label="Hedef Kâr Oranı (%)" hint="Reklam sonrası hedef net marj" value={targetMargin} onChange={setTargetMargin} />
-        </section>
-
-        {/* Results */}
-        <section className="glass" style={{ padding: '1.5rem', borderRadius: '1.25rem', position: 'sticky', top: '1rem' }}>
-          <small style={{ color: 'var(--text-1)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>SONUÇ / BAŞA BAŞ ROAS</small>
-          <div style={{
-            fontSize: '2.8rem',
-            fontWeight: 700,
-            margin: '0.4rem 0 0.8rem',
-            letterSpacing: '-0.02em',
-            color: breakEvenRoas > 0 ? 'var(--accent-0)' : '#ff6b6b',
-          }}>
-            {breakEvenRoas > 0 ? `${fmt(breakEvenRoas)}x` : '—'}
-          </div>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-1)', marginBottom: '1.2rem', lineHeight: '1.5' }}>
-            {contribution > 0
-              ? `Her sipariş için reklama en fazla ${fmt(contribution)} TL ayırabilirsiniz.`
-              : 'Reklam vermeden önce katkı payı oluşmuyor. Maliyetlerinizi kontrol edin.'}
-          </p>
-
-          <div style={{ display: 'grid', gap: '0.6rem', fontSize: '0.85rem' }}>
-            {[
-              ['Toplam değişken maliyet', `${fmt(totalVariableCost)} TL`, 'var(--text-0)'],
-              ['Reklam öncesi katkı payı', `${fmt(contribution)} TL`, contribution > 0 ? '#4ade80' : '#ff6b6b'],
-              ['Başa baş CPA', `${fmt(breakEvenCpa)} TL`, 'var(--text-0)'],
-              [`Hedef ROAS (${targetMargin}%)`, targetRoas > 0 ? `${fmt(targetRoas)}x` : '—', 'var(--accent-0)'],
-            ].map(([label, val, color], i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '0.55rem' }}>
-                <span style={{ color: 'var(--text-1)' }}>{label}</span>
-                <strong style={{ color: color as string }}>{val}</strong>
-              </div>
-            ))}
+      <section className="wrap" style={{ paddingBottom: 72 }}>
+        <div className="form-layout">
+          <div className="panel" style={{ padding: '6px 22px' }}>
+            <Field label="Satış fiyatı" hint="Ürünün müşteriye satış bedeli" value={sale} onChange={setSale} />
+            <Field label="Ürün maliyeti" hint="Ürünün size geliş maliyeti" value={cost} onChange={setCost} />
+            <Field label="Komisyon oranı (%)" hint="Pazaryeri veya ödeme kesintisi" value={commission} onChange={setCommission} />
+            <Field label="Kargo + paketleme" hint="Gidiş kargo ve paketleme maliyeti" value={shipping} onChange={setShipping} />
+            <Field label="Beklenen iade maliyeti" hint="Ortalama iadeden kaynaklı kayıp" value={returns} onChange={setReturns} />
+            <Field label="Hedef kâr oranı (%)" hint="Reklam sonrası hedef net marj" value={targetMargin} onChange={setTargetMargin} />
           </div>
 
-          <p style={{ marginTop: '1.2rem', fontSize: '0.72rem', color: 'var(--text-1)', lineHeight: '1.4' }}>
-            Bu hesap sabit giderleri ve KDV mahsuplamasını ayrı modellemez. Tüm tutarları aynı KDV yaklaşımıyla girin.
-          </p>
-        </section>
-      </div>
+          <aside className="results">
+            <small>Başa Baş ROAS</small>
+            <span className="big" style={{ color: breakEvenRoas > 0 ? '#fff' : '#f2a29a' }}>
+              {breakEvenRoas > 0 ? `${fmt(breakEvenRoas)}x` : '—'}
+            </span>
+            <p className="lead">
+              {contribution > 0
+                ? `Her sipariş için reklama en fazla ${fmt(contribution)} TL ayırabilirsiniz.`
+                : 'Katkı payı oluşmuyor. Maliyetleri kontrol edin.'}
+            </p>
+            <div className="metric-row"><span>Toplam değişken maliyet</span><b>{fmt(totalVariableCost)} TL</b></div>
+            <div className="metric-row"><span>Reklam öncesi katkı payı</span><b className={contribution > 0 ? 'positive' : 'negative'}>{fmt(contribution)} TL</b></div>
+            <div className="metric-row"><span>Başa baş CPA</span><b>{fmt(breakEvenCpa)} TL</b></div>
+            <div className="metric-row"><span>Hedef ROAS (%{targetMargin})</span><b>{targetRoas > 0 ? `${fmt(targetRoas)}x` : '—'}</b></div>
+            <p className="fine">Bu hesap sabit giderleri ve KDV mahsuplamasını ayrı modellemez. Tüm tutarları aynı KDV yaklaşımıyla girin.</p>
+          </aside>
+        </div>
+      </section>
+      <Footer t={t} />
       <FeedbackWidget toolName="Başa Baş ROAS Hesaplayıcı" />
     </main>
   )
@@ -158,7 +129,7 @@ function CalculatorContent() {
 
 export default function RoasCalculatorPage() {
   return (
-    <Suspense fallback={<div className="page" style={{ padding: '2rem', textAlign: 'center' }}>Yükleniyor...</div>}>
+    <Suspense fallback={<div className="wrap section">Yükleniyor…</div>}>
       <CalculatorContent />
     </Suspense>
   )

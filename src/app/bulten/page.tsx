@@ -2,25 +2,23 @@
 
 import { useState } from 'react'
 import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
 import { getDictionary } from '@/lib/i18n'
 
 const sampleIssues = [
   {
     issue: 'Sayı #24',
     title: 'Başa Baş ROAS Neden Tek Başına Yeterli Değildir?',
-    date: 'İlerlemiş Not',
     topics: ['Katkı Payı', 'Meta Ads', 'Operasyon'],
   },
   {
     issue: 'Sayı #23',
     title: 'Trendyol & Hepsiburada Komisyon Değişikliklerinin Net Marja Etkisi',
-    date: 'İlerlemiş Not',
     topics: ['Pazaryerleri', 'Fiyatlandırma'],
   },
   {
     issue: 'Sayı #22',
     title: 'Claude 3.7 & Vercel AI Gateway İle E-Ticaret Otomasyonları',
-    date: 'İlerlemiş Not',
     topics: ['Yapay Zeka', 'Prompt Mühendisliği'],
   },
 ]
@@ -39,76 +37,60 @@ export default function BultenPage() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="wrap hero single">
-        <div>
-          <div className="crumb">VERİ MİMARİ NOTLARI / HAFTALIK</div>
+      <section className="wrap" style={{ paddingTop: 72 }}>
+        <div className="newsletter" style={{ margin: 0 }}>
+          <span className="eyebrow">VERİ MİMARİ NOTLARI / HAFTALIK</span>
           <h1>Her hafta, daha iyi bir e-ticaret kararı.</h1>
-          <p className="intro">Yeni araçlar, önemli gelişmeler ve uygulanabilir veri notları. Gereksiz gündem yok.</p>
+          <p>Yeni araçlar, önemli gelişmeler ve uygulanabilir veri notları. Gereksiz gündem yok.</p>
 
           {!subscribed ? (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1.2rem' }}>
+            <form onSubmit={handleSubmit} className="mail">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="E-posta adresiniz"
                 required
-                style={{
-                  padding: '0.65rem 1rem',
-                  border: '1px solid rgba(255,255,255,0.22)',
-                  borderRadius: '0.65rem',
-                  fontSize: '0.9rem',
-                  width: '280px',
-                  background: 'rgba(255,255,255,0.08)',
-                  color: 'var(--text-0)',
-                  outline: 'none',
-                }}
+                aria-label="Bülten e-posta"
               />
-              <button
-                type="submit"
-                className="cta-link cta-primary"
-                style={{
-                  padding: '0.65rem 1.2rem',
-                  borderRadius: '0.65rem',
-                  border: '1px solid rgba(185,221,255,0.55)',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  color: 'var(--text-0)',
-                }}
-              >
-                Abone Ol →
-              </button>
+              <button type="submit" className="btn">Abone Ol</button>
             </form>
           ) : (
-            <div style={{ background: 'rgba(74,222,128,0.15)', border: '1px solid #4ade80', padding: '1rem', borderRadius: '0.75rem', color: '#4ade80', fontWeight: 600, marginTop: '1.2rem' }}>
-              ✓ <strong>{email}</strong> adresinizle Veri Mimarı Notları bültenine başarıyla katıldınız!
+            <div className="callout" style={{ margin: '22px auto 0', maxWidth: 470, textAlign: 'left', fontSize: 10 }}>
+              ✓ <strong>{email}</strong> adresiniz Veri Mimarı Notları bültenine eklendi. İlk sayı bu hafta içinde geliyor.
             </div>
           )}
 
-          <p style={{ marginTop: '1rem', fontSize: '0.78rem', color: 'var(--text-1)' }}>
+          <span style={{ fontSize: 9, color: 'var(--muted)', marginTop: 14, display: 'block' }}>
             Spam yok. İstediğiniz zaman tek tıkla ayrılabilirsiniz.
-          </p>
+          </span>
         </div>
       </section>
 
-      {/* Past Editions Preview */}
-      <h2 style={{ margin: '2rem 0 1rem', fontSize: '1.2rem' }}>Geçmiş Bülten Sayılarından Örnek Konular</h2>
-      <section className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
-        {sampleIssues.map((issue, idx) => (
-          <div key={idx} className="card glass">
-            <span className="maturity-chip seed">{issue.issue}</span>
-            <h3 style={{ marginTop: '0.6rem' }}>{issue.title}</h3>
-            <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.8rem', flexWrap: 'wrap' }}>
-              {issue.topics.map((tp, i) => (
-                <span key={i} style={{ fontSize: '0.72rem', background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.5rem', borderRadius: '0.4rem', color: 'var(--text-1)' }}>
-                  #{tp}
-                </span>
-              ))}
-            </div>
+      <section className="wrap section">
+        <div className="head">
+          <div>
+            <span className="eyebrow">/ ARŞİV</span>
+            <h2>Geçmiş Sayılardan Örnek Konular</h2>
           </div>
-        ))}
+        </div>
+        <div className="grid">
+          {sampleIssues.map((issue) => (
+            <div key={issue.issue} className="card">
+              <span className="tag">{issue.issue}</span>
+              <h2>{issue.title}</h2>
+              <div style={{ display: 'flex', gap: '0.4rem', marginTop: 'auto', paddingTop: 14, flexWrap: 'wrap' }}>
+                {issue.topics.map((tp) => (
+                  <span key={tp} className="tag" style={{ fontSize: 8 }}>
+                    #{tp}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
+      <Footer t={t} />
     </main>
   )
 }

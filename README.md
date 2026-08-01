@@ -23,31 +23,31 @@ npm run dev
 
 ## Environment Variables
 
-| Değişken | Açıklama |
-|----------|----------|
-| `NEXT_PUBLIC_SITE_URL` | Site URL |
-| `SANITY_PROJECT_ID` | Sanity proje ID |
-| `SANITY_DATASET` | Sanity dataset |
-| `SANITY_API_TOKEN` | Sanity API token |
-| `OPENAI_API_KEY` | OpenAI API key |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key |
+| Değişken                        | Açıklama                  |
+| ------------------------------- | ------------------------- |
+| `NEXT_PUBLIC_SITE_URL`          | Site URL                  |
+| `SANITY_PROJECT_ID`             | Sanity proje ID           |
+| `SANITY_DATASET`                | Sanity dataset            |
+| `SANITY_API_TOKEN`              | Sanity API token          |
+| `OPENAI_API_KEY`                | OpenAI API key            |
+| `NEXT_PUBLIC_SUPABASE_URL`      | Supabase URL              |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key         |
+| `SUPABASE_SERVICE_ROLE_KEY`     | Supabase service role key |
 
 ## Scriptler
 
-| Script | Açıklama |
-|--------|----------|
-| `npm run dev` | Geliştirme sunucusu |
-| `npm run build` | Production build |
-| `npm run lint` | ESLint kontrolü |
-| `npm run lint:fix` | ESLint düzeltme |
-| `npm run typecheck` | TypeScript kontrolü |
-| `npm run format` | Prettier formatlama |
-| `npm run format:check` | Format kontrolü |
-| `npm run test` | Vitest testleri |
-| `npm run test:watch` | Test watch modu |
-| `npm run smoke:test` | Smoke testleri |
+| Script                 | Açıklama            |
+| ---------------------- | ------------------- |
+| `npm run dev`          | Geliştirme sunucusu |
+| `npm run build`        | Production build    |
+| `npm run lint`         | ESLint kontrolü     |
+| `npm run lint:fix`     | ESLint düzeltme     |
+| `npm run typecheck`    | TypeScript kontrolü |
+| `npm run format`       | Prettier formatlama |
+| `npm run format:check` | Format kontrolü     |
+| `npm run test`         | Vitest testleri     |
+| `npm run test:watch`   | Test watch modu     |
+| `npm run smoke:test`   | Smoke testleri      |
 
 ## Mimari
 
@@ -87,6 +87,7 @@ Test dosyaları `src/**/*.test.ts` ve `src/**/*.test.tsx` formatındadır.
 Proje Vercel üzerinden deploy edilmektedir. CI/CD pipeline'ı `.github/workflows/quality-gates.yml` dosyasında tanımlıdır.
 
 Her push'ta ve PR'da şu kontroller çalışır:
+
 1. Format kontrolü
 2. Lint
 3. Type check
@@ -96,6 +97,8 @@ Her push'ta ve PR'da şu kontroller çalışır:
 
 ## Dokümanlar
 
+- [Kanonik Tasarım Sistemi](design.md)
+- [Agent Çalışma Kuralları](AGENTS.md)
 - [İçerik ve Marka Rehberi](docs/içerik.md)
 - [Geliştirme Şartnamesi](docs/GELISTIRME-SARTNAMESI.md)
 - [Analitik Olay Sözlüğü](docs/analytics-event-dictionary.md)

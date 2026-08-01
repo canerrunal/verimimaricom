@@ -91,8 +91,8 @@ const fallbackCaseStudy = {
   outcomeSummary:
     'Gelir başına maliyet görünürlüğü arttı, kampanya optimizasyonu için haftalık karar döngüsü hızlandı.',
   impactScore: 87,
-  repoUrl: '#',
-  demoUrl: '#',
+  repoUrl: null,
+  demoUrl: null,
   metrics: [
     {
       metricKey: 'conversion_rate',

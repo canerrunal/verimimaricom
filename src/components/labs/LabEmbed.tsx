@@ -10,7 +10,7 @@ export default function LabEmbed({ item }: { item: any }) {
 
       <div className="lab-tags">
         {(item.tags || []).map((tag: string) => (
-          <span key={`${item.id}-${tag}`} className="badge">
+          <span key={`${item.id}-${tag}`} className="tag">
             {tag}
           </span>
         ))}

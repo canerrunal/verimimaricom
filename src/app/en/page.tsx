@@ -8,7 +8,6 @@ import ProofSection from '@/components/landing/ProofSection'
 import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
 import UtilityBar from '@/components/landing/UtilityBar'
-import FloatingCursor from '@/components/landing/FloatingCursor'
 import { getDictionary } from '@/lib/i18n'
 
 export default async function HomePageEN() {
@@ -26,7 +25,6 @@ export default async function HomePageEN() {
       <ProofSection t={t} />
       <NewsletterSection t={t} />
       <Footer t={t} />
-      <FloatingCursor />
     </main>
   )
 }

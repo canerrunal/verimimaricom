@@ -1,0 +1,6 @@
+reports/
+src/app/rehberler/.page.tsx.swp
+.next/
+.next-codex-ui/
+.next-codex-ui-fix/
+node_modules/

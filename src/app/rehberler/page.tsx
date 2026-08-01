@@ -2,22 +2,29 @@
 
 import { useState } from 'react'
 import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
 import { getDictionary } from '@/lib/i18n'
-import { fallbackBlogPosts } from '@/lib/blog'
+import { guideCategories, guides } from '@/lib/guides'
 
 export default function RehberlerPage() {
   const t = getDictionary('tr')
-  const [activeCategory, setActiveCategory] = useState<string>('Tümü')
-  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [activeCategory, setActiveCategory] = useState('Tümü')
+  const [searchQuery, setSearchQuery] = useState('')
 
-  const categories = ['Tümü', 'E-Ticaret Kârlılığı', 'Dijital Reklam', 'AI & Otomasyon']
-
-  const filteredPosts = fallbackBlogPosts.filter((post) => {
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesSearch
+  const normalizedQuery = searchQuery.trim().toLocaleLowerCase('tr-TR')
+  const filteredPosts = guides.filter((post) => {
+    const searchableText = [post.title, post.excerpt, post.category, post.intent]
+      .join(' ')
+      .toLocaleLowerCase('tr-TR')
+    const matchesCategory = activeCategory === 'Tümü' || post.category === activeCategory
+    const matchesSearch = !normalizedQuery || searchableText.includes(normalizedQuery)
+    return matchesCategory && matchesSearch
   })
+
+  function resetFilters() {
+    setActiveCategory('Tümü')
+    setSearchQuery('')
+  }
 
   return (
     <main className="page">
@@ -25,63 +32,91 @@ export default function RehberlerPage() {
 
       <section className="wrap hero single">
         <div>
-          <div className="crumb">REHBERLER / E-TİCARET ZEKÂSI VE BÜYÜME</div>
-          <h1>Karmaşık metrikleri, uygulanabilir kararlarla okuyun.</h1>
-          <p className="intro">Teorik tanımlar değil; hesaplama yöntemi, örnek senaryo ve atılacak sonraki adım.</p>
+          <div className="crumb">REHBERLER / {guides.length} UYGULANABİLİR REHBER</div>
+          <h1>Metriği öğrenin. Kararı uygulayın.</h1>
+          <p className="intro">
+            Kısa cevap, formül, örnek hesap, karar tablosu ve çalışan araç aynı bilgi sisteminde.
+          </p>
         </div>
       </section>
 
-      {/* Search and Category Filter */}
-      <section style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className="card-cta"
-              style={{
-                background: activeCategory === cat ? 'linear-gradient(120deg, rgba(105,212,255,0.35), rgba(157,123,255,0.35))' : 'rgba(255,255,255,0.06)',
-                borderColor: activeCategory === cat ? 'rgba(185,221,255,0.5)' : 'rgba(255,255,255,0.18)',
-                color: activeCategory === cat ? 'var(--text-0)' : 'var(--text-1)',
-                cursor: 'pointer',
-                fontSize: '0.85rem',
-              }}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Rehber ara (ör. roas, ai, gateway)..."
-          style={{
-            padding: '0.55rem 0.85rem',
-            border: '1px solid rgba(255,255,255,0.18)',
-            borderRadius: '0.65rem',
-            fontSize: '0.85rem',
-            background: 'rgba(255,255,255,0.06)',
-            color: 'var(--text-0)',
-            outline: 'none',
-            minWidth: '240px',
-          }}
-        />
-      </section>
-
-      <section className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
-        {filteredPosts.map((post) => (
-          <a key={post.slug} href={`/rehberler/${post.slug}`} className="card glass" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
-            <span className={`maturity-chip ${post.maturity || 'seed'}`}>
-              {post.maturity === 'growing' ? 'GELİŞEN' : post.maturity === 'evergreen' ? 'TEMEL KAYNAK' : 'TASLAK'}
-            </span>
-            <h3 style={{ marginTop: '0.8rem' }}>{post.title}</h3>
-            <p>{post.excerpt}</p>
-            <span className="card-cta" style={{ marginTop: 'auto' }}>Rehberi Oku →</span>
+      <section className="wrap guide-index">
+        <div className="guide-entry-points" aria-label="Öğrenme yolları">
+          <a href="/rehberler/e-ticaret-karliligi">
+            <span className="eyebrow">ANA ÖĞRENME YOLU</span>
+            <strong>E-Ticaret Kârlılığı</strong>
+            <i>8 rehber + 4 araç →</i>
           </a>
-        ))}
+          <a href="/rehberler/reklam-performansi">
+            <span className="eyebrow">YENİ ÖĞRENME YOLU</span>
+            <strong>Reklam Performansı</strong>
+            <i>6 rehber + karşılaştırma →</i>
+          </a>
+          <a href="/sozluk">
+            <span className="eyebrow">KAVRAM SÖZLÜĞÜ</span>
+            <strong>Metriği 3 dakikada öğren</strong>
+            <i>15 temel kavram →</i>
+          </a>
+        </div>
+        <div className="guide-toolbar">
+          <div className="filters" aria-label="Rehber kategorileri">
+            {guideCategories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveCategory(category)}
+                className={`filter ${activeCategory === category ? 'active' : ''}`}
+                aria-pressed={activeCategory === category}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <label className="guide-search">
+            <span>Rehber ara</span>
+            <input
+              type="search"
+              className="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Örn. ROAS, iade, dashboard"
+            />
+          </label>
+        </div>
+
+        <p className="guide-result-count" aria-live="polite">
+          {filteredPosts.length} rehber gösteriliyor
+        </p>
+
+        {filteredPosts.length > 0 ? (
+          <div className="grid guide-grid">
+            {filteredPosts.map((post) => (
+              <a key={post.slug} href={`/rehberler/${post.slug}`} className="card guide-card">
+                <div className="guide-card-meta">
+                  <span className="tag">
+                    {post.maturity === 'evergreen' ? 'TEMEL KAYNAK' : 'GELİŞEN REHBER'}
+                  </span>
+                  <span>{post.readingTime} DK</span>
+                </div>
+                <span className="eyebrow">{post.category}</span>
+                <h2>{post.title}</h2>
+                <p>{post.excerpt}</p>
+                <span className="link">Rehberi incele</span>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div className="panel guide-empty-state">
+            <h2>Bu aramada sonuç yok.</h2>
+            <p>Farklı bir kelime deneyin veya tüm kategorilere dönün.</p>
+            <button className="btn alt" type="button" onClick={resetFilters}>
+              Filtreleri temizle
+            </button>
+          </div>
+        )}
       </section>
+
+      <Footer t={t} />
     </main>
   )
 }

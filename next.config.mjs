@@ -5,6 +5,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
@@ -29,4 +30,3 @@ const nextConfig = {
 }
 
 export default nextConfig
-

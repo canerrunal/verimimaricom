@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { fallbackBlogPosts } from '@/lib/blog'
+import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
+import { fallbackJournalPosts } from '@/lib/blog'
+import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -11,38 +14,60 @@ export const metadata: Metadata = {
 }
 
 export default function BlogIndexPage() {
+  const t = getDictionary('tr')
+
   return (
     <main className="page" aria-label="Blog yazıları">
-      <section className="section">
-        <div className="wrap">
-          <Link href="/" className="back-link">← Ana Sayfaya Dön</Link>
-          <span className="eyebrow">DİJİTAL BAHÇE</span>
-          <h1 style={{ font: '700 clamp(28px,3.5vw,42px)/1.1 "Space Mono"', letterSpacing: '-.09em', margin: '5px 0 22px' }}>
-            Blog
-          </h1>
-          <p style={{ color: '#666', maxWidth: 500, fontSize: 12, margin: '0 0 40px' }}>
-            AI, veri, web ve ürünleşme notlarının gelişen arşivi.
-          </p>
+      <NavBar t={t} />
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-            {fallbackBlogPosts.map((post) => (
-              <div key={post.slug} className="guide">
-                <div className="guide-top">
-                  <span className={`eyebrow`} style={{ textTransform: 'capitalize' }}>{post.maturity || 'seed'}</span>
-                  <span>{post.publishedAt}</span>
-                </div>
-                <h3 style={{ font: '700 16px/1.14 "Space Mono"', letterSpacing: '-.08em', margin: '43px 0 10px' }}>
-                  <a href={`/blog/${post.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                    {post.title}
-                  </a>
-                </h3>
-                <p style={{ fontSize: 10, color: '#777', margin: 0 }}>{post.excerpt}</p>
-                <a className="link" href={`/blog/${post.slug}`}>Oku</a>
-              </div>
-            ))}
-          </div>
+      <section className="wrap hero single">
+        <div>
+          <Link href="/" className="back-link">
+            ← Ana Sayfaya Dön
+          </Link>
+          <div className="crumb">VERİ MİMARI / DİJİTAL BAHÇE</div>
+          <h1>Blog</h1>
+          <p className="intro">AI, veri, web ve ürünleşme notlarının gelişen arşivi.</p>
         </div>
       </section>
+
+      <section className="wrap" style={{ paddingBottom: 72 }}>
+        <div className="grid">
+          {fallbackJournalPosts.map((post) => (
+            <a
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="card"
+              style={{ textDecoration: 'none' }}
+            >
+              <span className="tag">
+                {post.maturity === 'evergreen'
+                  ? 'EVERGREEN'
+                  : post.maturity === 'growing'
+                    ? 'GELİŞMEKTE'
+                    : 'TASLAK'}
+              </span>
+              <h2>{post.title}</h2>
+              <p>{post.excerpt}</p>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginTop: 'auto',
+                  paddingTop: 14,
+                }}
+              >
+                <span style={{ fontSize: 9, color: 'var(--muted)' }}>{post.publishedAt}</span>
+                <span className="link" style={{ marginTop: 0, paddingTop: 0 }}>
+                  Oku
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+      <Footer t={t} />
     </main>
   )
 }

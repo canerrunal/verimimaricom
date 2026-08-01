@@ -8,7 +8,7 @@ export default function ProblemSection({ t }: { t: any }) {
             <div key={`problem-${idx}`} className="strip-item">
               <small>0{idx + 1}</small>
               <b>{item.title}</b>
-              <p style={{ fontSize: 10, color: '#777', margin: '6px 0 0' }}>{item.description}</p>
+              <p>{item.description}</p>
             </div>
           ))}
         </div>

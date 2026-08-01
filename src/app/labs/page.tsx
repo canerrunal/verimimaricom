@@ -2,33 +2,37 @@ import Link from 'next/link'
 import { labsCatalog } from '@/lib/labs'
 import LabEmbed from '@/components/labs/LabEmbed'
 import GradioLoader from '@/components/labs/GradioLoader'
+import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
+import { getDictionary } from '@/lib/i18n'
 
 export default function LabsPage() {
+  const t = getDictionary('tr')
+
   return (
     <main className="page" aria-label="Labs deney alanı">
       <GradioLoader />
+      <NavBar t={t} />
 
-      <section className="section">
-        <div className="wrap">
+      <section className="wrap hero single">
           <Link href="/" className="back-link">← Ana Sayfaya Dön</Link>
           <span className="eyebrow">LABS</span>
-          <h1 style={{ font: '700 clamp(28px,3.5vw,42px)/1.1 "Space Mono"', letterSpacing: '-.09em', margin: '5px 0 22px' }}>
+          <h1>
             Canlı AI Modelleri ve İnteraktif Deney Ortamı
           </h1>
-          <p style={{ color: '#666', maxWidth: 500, fontSize: 12, margin: '0 0 40px' }}>
-            Hugging Face (Gradio) ve Streamlit deneylerini doğrudan platform içine gömerek, portföyü
-            statik sunumdan canlı bir laboratuara dönüştürür.
+          <p className="intro">
+            Hugging Face (Gradio) ve Streamlit deneylerini doğrudan platform içine gömerek, portföyü statik sunumdan canlı bir laboratuvara dönüştürür.
           </p>
+      </section>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-            {labsCatalog.map((item) => (
-              <div key={item.id} className="tool-sm">
-                <LabEmbed item={item} />
-              </div>
+      <section className="wrap" style={{ paddingBottom: 72 }}>
+          <div className="lab-grid">
+            {labsCatalog.map((item: any) => (
+              <LabEmbed key={item.id} item={item} />
             ))}
           </div>
-        </div>
       </section>
+      <Footer t={t} />
     </main>
   )
 }

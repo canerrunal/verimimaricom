@@ -1,11 +1,30 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
   title: 'Gizlilik ve Veri Politikası',
   description: 'Veri Mimarı gizlilik politikası ve ücretsiz hesaplama araçları veri saklamama prensipleri.',
 }
+
+const policies = [
+  {
+    n: '01',
+    title: 'Hesaplama Araçlarında Veri Saklamama Sözü',
+    body: "Veri Mimarı web platformunda yer alan Başa Baş ROAS Hesaplayıcı ve diğer kârlılık araçlarına girdiğiniz maliyet, satış fiyatı veya marj verileri hiçbir sunucuya gönderilmez veya veritabanında saklanmaz. Tüm hesaplamalar doğrudan tarayıcınızda (client-side) anlık olarak çalışır.",
+  },
+  {
+    n: '02',
+    title: 'E-posta Üyeliği',
+    body: 'Bültene kendi rızanızla kaydolduğunuzda e-posta adresiniz yalnızca haftalık Veri Mimarı Notları bültenini iletmek amacıyla kullanılır. İlettiğimiz e-postalardaki abonelikten çıkma bağlantısını kullanarak dilediğiniz an listenin dışına çıkabilirsiniz.',
+  },
+  {
+    n: '03',
+    title: 'Çerezler ve Analitik',
+    body: 'Web sitemizin performansını anlamak ve ziyaretçi deneyimini iyileştirmek için anonimleştirilmiş temel analitik etkinlikleri toplanır. Bu veriler üçüncü şahıslara satılmaz veya kişisel kimlik bilgilerinizle eşleştirilmez.',
+  },
+]
 
 export default function GizlilikPage() {
   const t = getDictionary('tr')
@@ -22,28 +41,16 @@ export default function GizlilikPage() {
         </div>
       </section>
 
-      <div style={{ display: 'grid', gap: '1rem' }}>
-        <section className="glass" style={{ padding: '1.8rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>1. Hesaplama Araçlarında Veri Saklamama Sözü</h2>
-          <p style={{ color: 'var(--text-1)', lineHeight: '1.7', margin: 0 }}>
-            Veri Mimarı web platformunda yer alan Başa Baş ROAS Hesaplayıcı ve diğer kârlılık araçlarına girdiğiniz maliyet, satış fiyatı veya marj verileri hiçbir sunucuya gönderilmez veya veritabanında saklanmaz. Tüm hesaplamalar doğrudan tarayıcınızda (client-side) anlık olarak çalışır.
-          </p>
-        </section>
-
-        <section className="glass" style={{ padding: '1.8rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>2. E-posta Üyeliği</h2>
-          <p style={{ color: 'var(--text-1)', lineHeight: '1.7', margin: 0 }}>
-            Bültene kendi rızanızla kaydolduğunuzda e-posta adresiniz yalnızca haftalık Veri Mimarı Notları bültenini iletmek amacıyla kullanılır. İlettiğimiz e-postalardaki abonelikten çıkma bağlantısını kullanarak dilediğiniz an listenin dışına çıkabilirsiniz.
-          </p>
-        </section>
-
-        <section className="glass" style={{ padding: '1.8rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>3. Çerezler ve Analitik</h2>
-          <p style={{ color: 'var(--text-1)', lineHeight: '1.7', margin: 0 }}>
-            Web sitemizin performansını anlamak ve ziyaretçi deneyimini iyileştirmek için anonimleştirilmiş temel analitik etkinlikleri toplanır. Bu veriler üçüncü şahıslara satılmaz veya kişisel kimlik bilgilerinizle eşleştirilmez.
-          </p>
-        </section>
-      </div>
+      <section className="wrap" style={{ paddingBottom: 72, display: 'grid', gap: 12 }}>
+        {policies.map((p) => (
+          <div key={p.n} className="panel">
+            <span className="eyebrow">{p.n}</span>
+            <h2 style={{ font: "700 17px 'Space Mono'", letterSpacing: '-0.02em', margin: '12px 0 8px' }}>{p.title}</h2>
+            <p style={{ color: 'var(--muted)', lineHeight: 1.65, margin: 0, fontSize: 11 }}>{p.body}</p>
+          </div>
+        ))}
+      </section>
+      <Footer t={t} />
     </main>
   )
 }

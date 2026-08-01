@@ -9,6 +9,7 @@ export const dictionaries = {
       links: [
         { href: '/araclar', label: 'Araçlar' },
         { href: '/rehberler', label: 'Rehberler' },
+        { href: '/sozluk', label: 'Sözlük' },
         { href: '/vaka-analizleri', label: 'Vaka Analizleri' },
         { href: '/projeler', label: 'Projeler' },
         { href: '/hakkinda', label: 'Hakkında' },
@@ -138,6 +139,7 @@ export const dictionaries = {
       links: [
         { href: '/araclar', label: 'Tools' },
         { href: '/rehberler', label: 'Guides' },
+        { href: '/sozluk', label: 'Glossary' },
         { href: '/projeler', label: 'Projects' },
         { href: '/vaka-analizleri', label: 'Case Studies' },
         { href: '/hakkinda', label: 'About' },
@@ -248,4 +250,3 @@ export function getDictionary(locale: string) {
   if (String(locale).toLowerCase() === 'en') return dictionaries.en
   return dictionaries.tr
 }
-

@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { getDictionary } from '@/lib/i18n'
 
 export default function FeedbackWidget({ toolName }: { toolName: string }) {
+  const t = getDictionary('tr')
   const [vote, setVote] = useState<'yes' | 'no' | null>(null)
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -13,75 +15,44 @@ export default function FeedbackWidget({ toolName }: { toolName: string }) {
   }
 
   return (
-    <section className="glass" style={{ padding: '1.5rem', borderRadius: '1.25rem', marginTop: '2rem' }}>
-      {!submitted ? (
-        <div>
-          <h3 style={{ margin: '0 0 0.5rem', fontSize: '1rem' }}>Bu araç faydalı oldu mu?</h3>
-          <p style={{ color: 'var(--text-1)', fontSize: '0.84rem', margin: '0 0 1rem' }}>
-            {toolName} hakkındaki görüşleriniz veya yeni araç önerileriniz platformu geliştirmemize yardımcı olur.
-          </p>
+    <section className="wrap" style={{ paddingBottom: 72 }}>
+      <div className="panel" style={{ maxWidth: 720, margin: '0 auto' }}>
+        {!submitted ? (
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 8 }}>Geri bildirim</div>
+            <h3 style={{ margin: '0 0 6px', font: "700 17px/1.18 'Space Mono'", letterSpacing: '-0.02em' }}>Bu araç faydalı oldu mu?</h3>
+            <p style={{ color: 'var(--muted)', fontSize: 10, margin: '0 0 16px' }}>
+              Görüşleriniz veya yeni araç önerileriniz platformu geliştirmemize yardımcı olur.
+            </p>
 
-          <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1rem' }}>
-            <button
-              onClick={() => setVote('yes')}
-              className="card-cta"
-              style={{
-                background: vote === 'yes' ? 'rgba(74,222,128,0.2)' : 'rgba(255,255,255,0.06)',
-                borderColor: vote === 'yes' ? '#4ade80' : 'rgba(255,255,255,0.2)',
-                color: vote === 'yes' ? '#4ade80' : 'var(--text-0)',
-                cursor: 'pointer',
-              }}
-            >
-              👍 Evet, faydalı
-            </button>
-            <button
-              onClick={() => setVote('no')}
-              className="card-cta"
-              style={{
-                background: vote === 'no' ? 'rgba(255,107,107,0.2)' : 'rgba(255,255,255,0.06)',
-                borderColor: vote === 'no' ? '#ff6b6b' : 'rgba(255,255,255,0.2)',
-                color: vote === 'no' ? '#ff6b6b' : 'var(--text-0)',
-                cursor: 'pointer',
-              }}
-            >
-              👎 Geliştirilmeli
-            </button>
-          </div>
-
-          {vote && (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <input
-                type="text"
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Öneri veya notunuzu yazın..."
-                style={{
-                  flex: 1,
-                  minWidth: '220px',
-                  padding: '0.55rem 0.75rem',
-                  border: '1px solid rgba(255,255,255,0.18)',
-                  borderRadius: '0.5rem',
-                  fontSize: '0.85rem',
-                  background: 'rgba(255,255,255,0.06)',
-                  color: 'var(--text-0)',
-                  outline: 'none',
-                }}
-              />
-              <button
-                type="submit"
-                className="cta-link cta-primary"
-                style={{ padding: '0.55rem 1rem', borderRadius: '0.5rem', border: '1px solid rgba(185,221,255,0.5)', fontSize: '0.85rem', cursor: 'pointer' }}
-              >
-                Gönder
+            <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1rem' }}>
+              <button onClick={() => setVote('yes')} className={`btn alt ${vote === 'yes' ? 'active' : ''}`} style={{ paddingTop: 8, paddingBottom: 8 }}>
+                👍 Evet, faydalı
               </button>
-            </form>
-          )}
-        </div>
-      ) : (
-        <div style={{ color: '#4ade80', fontWeight: 600, fontSize: '0.9rem' }}>
-          ✓ Geri bildiriminiz için teşekkür ederiz!
-        </div>
-      )}
+              <button onClick={() => setVote('no')} className={`btn alt ${vote === 'no' ? 'active' : ''}`} style={{ paddingTop: 8, paddingBottom: 8 }}>
+                👎 Geliştirilmeli
+              </button>
+            </div>
+
+            {vote && (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <input
+                  type="text"
+                  className="search"
+                  style={{ flex: 1, minWidth: 220 }}
+                  value={feedback}
+                  onChange={(e) => setFeedback(e.target.value)}
+                  placeholder="Öneri veya notunuzu yazın…"
+                  aria-label="Geri bildirim notu"
+                />
+                <button type="submit" className="btn">Gönder</button>
+              </form>
+            )}
+          </div>
+        ) : (
+          <div style={{ color: 'var(--green)', fontWeight: 600, fontSize: 10 }}>✓ Geri bildiriminiz için teşekkür ederiz!</div>
+        )}
+      </div>
     </section>
   )
 }

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
 import CollaborationForm from '@/components/contact/CollaborationForm'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'İş Birliği ve İletişim | Veri Mimarı',
+  title: 'İş Birliği ve İletişim',
   description: 'E-ticaret markaları, dijital pazarlama ekipleri ve teknoloji projeleri için iş birliği ve danışmanlık.',
 }
 
@@ -23,29 +24,39 @@ export default function IsBirligiPage() {
         </div>
       </section>
 
-      <div style={{ display: 'grid', gap: '1rem' }}>
-        <section className="glass" style={{ padding: '1.8rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>Doğrudan E-Posta</h2>
-          <p style={{ color: 'var(--text-1)', margin: 0 }}>
-            Sorularınız ve hızlı ulaşım için:{' '}
-            <a href="mailto:hello@verimimari.com" style={{ color: 'var(--accent-0)', fontWeight: 600 }}>
+      <section className="wrap" style={{ paddingBottom: 72 }}>
+        <div className="two-col" style={{ marginBottom: 12 }}>
+          <div className="panel" style={{ display: 'flex', flexDirection: 'column' }}>
+            <span className="eyebrow" style={{ marginBottom: 12 }}>DOĞRUDAN KANAL</span>
+            <h2 style={{ font: "700 22px 'Space Mono'", letterSpacing: '-0.02em', margin: '0 0 8px' }}>Doğrudan E-Posta</h2>
+            <p style={{ color: 'var(--muted)', margin: 0, fontSize: 10 }}>
+              Sorularınız ve hızlı ulaşım için:
+            </p>
+            <a href="mailto:hello@verimimari.com" className="link" style={{ marginTop: 'auto', paddingTop: 14 }}>
               hello@verimimari.com
             </a>
-          </p>
-        </section>
+          </div>
 
-        <section className="glass" style={{ padding: '1.8rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1.1rem' }}>Hangi Alanlarda Destek Sunuyorum?</h2>
-          <ul style={{ color: 'var(--text-1)', lineHeight: '1.8', paddingLeft: '1.2rem', margin: 0 }}>
-            <li>E-ticaret Reklam ve Katkı Payı Modellemesi</li>
-            <li>Özel Hesaplama Araçları ve Landing Page Geliştirme</li>
-            <li>Yapay Zeka Destekli İçerik ve Otomasyon Sistemleri</li>
-            <li>Ölçülebilir Vaka Analizi ve Veri Hikayeciliği</li>
-          </ul>
-        </section>
-
-        <CollaborationForm />
-      </div>
+          <div className="panel">
+            <span className="eyebrow" style={{ marginBottom: 12 }}>DESTEK ALANLARI</span>
+            <h2 style={{ font: "700 22px 'Space Mono'", letterSpacing: '-0.02em', margin: '0 0 12px' }}>Hangi Alanlarda Destek Sunuyorum?</h2>
+            <ul style={{ listStyle: 'none', paddingLeft: 0, margin: 0 }}>
+              {[
+                'E-ticaret Reklam ve Katkı Payı Modellemesi',
+                'Özel Hesaplama Araçları ve Landing Page Geliştirme',
+                'Yapay Zeka Destekli İçerik ve Otomasyon Sistemleri',
+                'Ölçülebilir Vaka Analizi ve Veri Hikayeciliği',
+              ].map((item) => (
+                <li key={item} style={{ padding: '7px 0', borderBottom: '1px solid #eee', fontSize: 10, color: 'var(--ink)' }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+      <CollaborationForm />
+      <Footer t={t} />
     </main>
   )
 }

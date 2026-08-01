@@ -1,7 +1,9 @@
 node_modules
 .next
+.next-*
 out
 .vercel
 *.log
 dist
 *.tsbuildinfo
+.env*

@@ -5,7 +5,7 @@ import VeriBotChat from '@/components/veribot/VeriBotChat'
 import { brandProfile, getGlobalJsonLd, getSiteUrl } from '@/lib/seo'
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   display: 'swap',
   variable: '--font-inter',
 })

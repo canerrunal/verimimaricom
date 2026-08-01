@@ -1,39 +1,32 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, useId, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import NavBar from '@/components/landing/NavBar'
+import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
 import { getDictionary } from '@/lib/i18n'
 
 function Field({ label, hint, value, onChange }: { label: string; hint: string; value: number; onChange: (v: number) => void }) {
+  const inputId = useId()
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 130px', alignItems: 'center', padding: '0.8rem 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-      <div>
-        <label style={{ fontWeight: 600, fontSize: '0.9rem', display: 'block' }}>{label}</label>
-        <small style={{ color: 'var(--text-1)', fontSize: '0.78rem' }}>{hint}</small>
-      </div>
+    <div className="field">
+      <label htmlFor={inputId}>
+        {label}
+        <small>{hint}</small>
+      </label>
       <input
+        id={inputId}
         type="number"
         value={value}
         onChange={(e) => onChange(Math.max(0, Number(e.target.value) || 0))}
-        style={{
-          padding: '0.55rem 0.65rem',
-          border: '1px solid rgba(255,255,255,0.18)',
-          borderRadius: '0.5rem',
-          textAlign: 'right',
-          fontSize: '0.9rem',
-          fontWeight: 600,
-          background: 'rgba(255,255,255,0.06)',
-          color: 'var(--text-0)',
-          outline: 'none',
-        }}
       />
     </div>
   )
 }
 
-function KarMarjiContent() {
+function MarginContent() {
   const t = getDictionary('tr')
   const searchParams = useSearchParams()
 
@@ -42,7 +35,7 @@ function KarMarjiContent() {
   const [commission, setCommission] = useState(18)
   const [shipping, setShipping] = useState(80)
   const [adSpend, setAdSpend] = useState(200)
-  const [fixedOverhead, setFixedOverhead] = useState(5)
+  const [overheadPercent, setOverheadPercent] = useState(5)
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
@@ -51,17 +44,16 @@ function KarMarjiContent() {
     if (searchParams.has('commission')) setCommission(Number(searchParams.get('commission')) || 18)
     if (searchParams.has('shipping')) setShipping(Number(searchParams.get('shipping')) || 80)
     if (searchParams.has('adSpend')) setAdSpend(Number(searchParams.get('adSpend')) || 200)
-    if (searchParams.has('overhead')) setFixedOverhead(Number(searchParams.get('overhead')) || 5)
+    if (searchParams.has('overhead')) setOverheadPercent(Number(searchParams.get('overhead')) || 5)
   }, [searchParams])
 
   const comAmount = (sale * commission) / 100
   const grossProfit = sale - cost
   const grossMargin = sale > 0 ? (grossProfit / sale) * 100 : 0
-
   const contribution = sale - cost - comAmount - shipping
   const contributionMargin = sale > 0 ? (contribution / sale) * 100 : 0
-
-  const overheadAmount = (sale * fixedOverhead) / 100
+  const overheadAmount = (sale * overheadPercent) / 100
+  const totalCuts = comAmount + shipping + adSpend + overheadAmount
   const netProfit = contribution - adSpend - overheadAmount
   const netMargin = sale > 0 ? (netProfit / sale) * 100 : 0
 
@@ -74,7 +66,7 @@ function KarMarjiContent() {
       commission: String(commission),
       shipping: String(shipping),
       adSpend: String(adSpend),
-      overhead: String(fixedOverhead),
+      overhead: String(overheadPercent),
     })
     const url = `${window.location.origin}${window.location.pathname}?${params.toString()}`
     navigator.clipboard.writeText(url)
@@ -86,82 +78,59 @@ function KarMarjiContent() {
     <main className="page">
       <NavBar t={t} />
 
-      <section className="wrap hero single">
-        <div>
-          <div className="crumb">ARAÇLAR / KÂRLILIK / 02</div>
-          <h1>Ürün Kâr Marjı Hesaplayıcı</h1>
-          <p className="intro">Satış fiyatı, ürün maliyeti, pazaryeri komisyonu, kargo ve reklam giderlerinizle net kâr marjınızı ve sipariş başına katkı payınızı anında hesaplayın.</p>
-          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <span className="maturity-chip growing">AÇIK HESAPLAMA YÖNTEMİ · VERİLERİNİZ SAKLANMAZ</span>
-            <button
-              onClick={copyShareUrl}
-              className="card-cta"
-              style={{ border: '1px solid rgba(105,212,255,0.4)', color: 'var(--accent-0)', cursor: 'pointer' }}
-            >
-              {copied ? '✓ Bağlantı Kopyalandı!' : '🔗 Sonuç Bağlantısını Kopyala'}
-            </button>
-          </div>
+      <section className="wrap hero single" style={{ paddingBottom: 20 }}>
+        <a href="/araclar" className="back-link">← Tüm Araçlar</a>
+        <div className="crumb">ARAÇLAR / KÂRLILIK / 02</div>
+        <h1>Ürün Kâr Marjı Hesaplayıcı</h1>
+        <p className="intro">Satış fiyatı, ürün maliyeti, komisyon, kargo ve reklam kesintileriyle sipariş başına net kârınızı ve marjınızı hesaplayın.</p>
+        <div className="signals" style={{ marginTop: 18 }}>
+          <span className="tag live">CANLI · 2 DK · ÜCRETSİZ</span>
+          <span className="tag">AÇIK HESAPLAMA YÖNTEMİ</span>
+          <button onClick={copyShareUrl} className="btn alt" style={{ padding: '6px 10px', fontSize: 9 }}>
+            {copied ? '✓ Bağlantı kopyalandı' : '🔗 Sonuç bağlantısını kopyala'}
+          </button>
         </div>
       </section>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '1rem', alignItems: 'start' }}>
-        {/* Form */}
-        <section className="glass" style={{ padding: '1.5rem', borderRadius: '1.25rem' }}>
-          <h2 style={{ margin: '0 0 1rem', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-1)' }}>GİRDİLER (TL)</h2>
-          <Field label="Satış Fiyatı" hint="Ürünün müşteriye nihai satış bedeli" value={sale} onChange={setSale} />
-          <Field label="Ürün Maliyeti (COGS)" hint="Ürünün ham tedarik veya imalat bedeli" value={cost} onChange={setCost} />
-          <Field label="Komisyon Oranı (%)" hint="Pazaryeri / ödeme kuruluşu kesintisi" value={commission} onChange={setCommission} />
-          <Field label="Kargo + Paketleme" hint="Sipariş başına teslimat gideri" value={shipping} onChange={setShipping} />
-          <Field label="Sipariş Başına Reklam (CPA)" hint="Sipariş kazandıran reklam harcaması" value={adSpend} onChange={setAdSpend} />
-          <Field label="Sabit Gider Payı (%)" hint="Kira, fatura ve genel gider katkısı" value={fixedOverhead} onChange={setFixedOverhead} />
-        </section>
-
-        {/* Results */}
-        <section className="glass" style={{ padding: '1.5rem', borderRadius: '1.25rem', position: 'sticky', top: '1rem' }}>
-          <small style={{ color: 'var(--text-1)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>SONUÇ / NET KÂR MARJI</small>
-          <div style={{
-            fontSize: '2.8rem',
-            fontWeight: 700,
-            margin: '0.4rem 0 0.8rem',
-            letterSpacing: '-0.02em',
-            color: netProfit >= 0 ? '#4ade80' : '#ff6b6b',
-          }}>
-            %{fmt(netMargin)}
-          </div>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-1)', marginBottom: '1.2rem', lineHeight: '1.5' }}>
-            {netProfit >= 0
-              ? `Sipariş başına net kârınız ${fmt(netProfit)} TL.`
-              : `Her satışta sipariş başına ${fmt(Math.abs(netProfit))} TL zarar ediyorsunuz.`}
-          </p>
-
-          <div style={{ display: 'grid', gap: '0.6rem', fontSize: '0.85rem' }}>
-            {[
-              ['Brüt Kâr (COGS Sonrası)', `${fmt(grossProfit)} TL (%${fmt(grossMargin)})`, 'var(--text-0)'],
-              ['Reklam Öncesi Katkı Payı', `${fmt(contribution)} TL (%${fmt(contributionMargin)})`, contribution >= 0 ? 'var(--text-0)' : '#ff6b6b'],
-              ['Toplam Kesinti & Komisyon', `${fmt(comAmount)} TL`, 'var(--text-1)'],
-              ['Sipariş Başına Net Kâr', `${fmt(netProfit)} TL`, netProfit >= 0 ? '#4ade80' : '#ff6b6b'],
-            ].map(([label, val, color], i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '0.55rem' }}>
-                <span style={{ color: 'var(--text-1)' }}>{label}</span>
-                <strong style={{ color: color as string }}>{val}</strong>
-              </div>
-            ))}
+      <section className="wrap" style={{ paddingBottom: 72 }}>
+        <div className="form-layout">
+          <div className="panel" style={{ padding: '6px 22px' }}>
+            <Field label="Satış fiyatı" hint="Nihai satış bedeli" value={sale} onChange={setSale} />
+            <Field label="Ürün maliyeti (COGS)" hint="Geliş / alış maliyeti" value={cost} onChange={setCost} />
+            <Field label="Komisyon oranı (%)" hint="Pazaryeri / ödeme kesintisi" value={commission} onChange={setCommission} />
+            <Field label="Kargo + paketleme" hint="Sipariş başına teslimat gideri" value={shipping} onChange={setShipping} />
+            <Field label="Sipariş başına reklam" hint="Kazandıran reklam harcaması" value={adSpend} onChange={setAdSpend} />
+            <Field label="Sabit gider payı (%)" hint="Kira / genel gider katkısı" value={overheadPercent} onChange={setOverheadPercent} />
           </div>
 
-          <p style={{ marginTop: '1.2rem', fontSize: '0.72rem', color: 'var(--text-1)', lineHeight: '1.4' }}>
-            Katkı payı marjı reklam bütçenizin üst sınırını belirler. Net kâr marjı reklam ve sabit gider mahsubu sonrası kalandır.
-          </p>
-        </section>
-      </div>
+          <aside className="results">
+            <small>Net Kâr Marjı</small>
+            <span className="big" style={{ color: netProfit >= 0 ? '#7fd6ad' : '#f2a29a' }}>
+              %{fmt(netMargin)}
+            </span>
+            <p className="lead">
+              {netProfit >= 0
+                ? `Sipariş başına net kârınız ${fmt(netProfit)} TL.`
+                : `Her satışta ${fmt(Math.abs(netProfit))} TL zarar ediyorsunuz.`}
+            </p>
+            <div className="metric-row"><span>Brüt kâr</span><b>{fmt(grossProfit)} TL (%{fmt(grossMargin)})</b></div>
+            <div className="metric-row"><span>Reklam öncesi katkı payı</span><b>{fmt(contribution)} TL (%{fmt(contributionMargin)})</b></div>
+            <div className="metric-row"><span>Toplam kesinti</span><b>{fmt(totalCuts)} TL</b></div>
+            <div className="metric-row"><span>Net kâr</span><b className={netProfit >= 0 ? 'positive' : 'negative'}>{fmt(netProfit)} TL</b></div>
+            <p className="fine">Katkı payı marjı reklam bütçenizin teorik üst sınırını verir; net marj reklam ve sabit gider mahsubu sonrasıdır.</p>
+          </aside>
+        </div>
+      </section>
+      <Footer t={t} />
       <FeedbackWidget toolName="Ürün Kâr Marjı Hesaplayıcı" />
     </main>
   )
 }
 
-export default function KarMarjiPage() {
+export default function MarginPage() {
   return (
-    <Suspense fallback={<div className="page" style={{ padding: '2rem', textAlign: 'center' }}>Yükleniyor...</div>}>
-      <KarMarjiContent />
+    <Suspense fallback={<div className="wrap section">Yükleniyor…</div>}>
+      <MarginContent />
     </Suspense>
   )
 }
