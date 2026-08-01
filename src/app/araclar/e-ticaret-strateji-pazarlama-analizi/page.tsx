@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AnalyzerClient from './AnalyzerClient'
 
 export const metadata: Metadata = {
-  title: 'E-Ticaret Strateji ve Pazarlama Analizi | Veri Mimarı',
+  title: 'E-Ticaret Strateji ve Pazarlama Analizi',
   description:
     'Ürün kârlılığı, ROAS, CPA, CPC, fiyat ve sabit giderlerinizi birlikte analiz edin; ürün bazında büyütme ve optimizasyon kararlarını görün.',
   alternates: {
