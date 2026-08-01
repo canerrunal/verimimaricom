@@ -2,6 +2,8 @@
 
 E-ticaret verisini daha kârlı kararlara dönüştüren araçlar, rehberler ve ürünlerden oluşan platform.
 
+Güncel sürüm: **Veri Mimarı 0.01** (`v0.0.1`)
+
 ## Teknoloji Yığını
 
 - Next.js 15 (App Router)
@@ -97,6 +99,7 @@ Her push'ta ve PR'da şu kontroller çalışır:
 
 ## Dokümanlar
 
+- [Sürüm Notları](CHANGELOG.md)
 - [Kanonik Tasarım Sistemi](design.md)
 - [Agent Çalışma Kuralları](AGENTS.md)
 - [İçerik ve Marka Rehberi](docs/içerik.md)
