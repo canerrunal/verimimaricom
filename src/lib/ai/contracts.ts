@@ -1,4 +1,3 @@
-
 const ACTION_HINT_TAG = /<ACTION_HINT>([\s\S]*?)<\/ACTION_HINT>/i
 
 const ALLOWED_ACTIONS = new Set(['indir_cv', 'randevu_al', 'proje_bul', 'navigate'])
@@ -60,4 +59,3 @@ export function parseActionHintFromText(content: string) {
 
   return null
 }
-

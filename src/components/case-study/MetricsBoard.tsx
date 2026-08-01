@@ -6,7 +6,13 @@ function formatValue(value: number | null | undefined, unit?: string) {
 }
 
 function safePercent(baseline: number | null | undefined, result: number | null | undefined) {
-  if (baseline === null || baseline === undefined || baseline === 0 || result === null || result === undefined) {
+  if (
+    baseline === null ||
+    baseline === undefined ||
+    baseline === 0 ||
+    result === null ||
+    result === undefined
+  ) {
     return 0
   }
   return ((result - baseline) / Math.abs(baseline)) * 100
@@ -29,14 +35,38 @@ export default function MetricsBoard({ metrics = [] }: { metrics?: any[] }) {
             <div key={`${metric.metricKey || 'metric'}-${index}`} className="metric">
               <small>{metric.metricLabel || metric.metricKey || 'Metrik'}</small>
               <b>{formatValue(metric.resultValue, metric.unit)}</b>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#999', marginTop: 6 }}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: 9,
+                  color: '#999',
+                  marginTop: 6,
+                }}
+              >
                 <span>Baz: {formatValue(metric.baselineValue, metric.unit)}</span>
                 <span style={{ color: isUp ? 'var(--green)' : '#c0392b' }}>
                   {isUp ? '▲' : '▼'} {Math.abs(delta).toFixed(1)}%
                 </span>
               </div>
-              <div style={{ height: 4, background: '#eee', borderRadius: 5, marginTop: 8, overflow: 'hidden' }}>
-                <span style={{ display: 'block', height: '100%', background: isUp ? 'var(--green)' : '#c0392b', width: `${barWidth}%`, borderRadius: 5 }} />
+              <div
+                style={{
+                  height: 4,
+                  background: '#eee',
+                  borderRadius: 5,
+                  marginTop: 8,
+                  overflow: 'hidden',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'block',
+                    height: '100%',
+                    background: isUp ? 'var(--green)' : '#c0392b',
+                    width: `${barWidth}%`,
+                    borderRadius: 5,
+                  }}
+                />
               </div>
               <KpiTrendChart metric={metric} />
             </div>

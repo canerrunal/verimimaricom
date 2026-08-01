@@ -1,4 +1,3 @@
-
 function normalize(text: string) {
   return String(text || '').toLocaleLowerCase('tr-TR')
 }
@@ -28,4 +27,3 @@ export function retrieveCandidates(documents: any[], userQuestion: string) {
     }))
     .filter((doc: any) => doc._score >= 0)
 }
-

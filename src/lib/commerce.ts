@@ -102,4 +102,3 @@ export function verifyLemonSignature(rawBody: string, signature: string) {
 
   return crypto.timingSafeEqual(safeA, safeB)
 }
-

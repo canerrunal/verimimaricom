@@ -17,18 +17,31 @@ export default function WaitlistForm() {
 
   return (
     <section className="wrap" style={{ paddingBottom: 72 }}>
-      <div className="project-hero" style={{ textAlign: 'center', margin: '0 auto', maxWidth: 640 }}>
+      <div
+        className="project-hero"
+        style={{ textAlign: 'center', margin: '0 auto', maxWidth: 640 }}
+      >
         {!submitted ? (
           <div>
             <span className="eyebrow">ERKEN ERİŞİM</span>
-            <h2 style={{ font: "700 clamp(28px, 4vw, 40px)/1.05 'Space Mono'", letterSpacing: '-0.03em', margin: '12px 0 10px' }}>
+            <h2
+              style={{
+                font: "700 clamp(28px, 4vw, 40px)/1.05 'Space Mono'",
+                letterSpacing: '-0.03em',
+                margin: '12px 0 10px',
+              }}
+            >
               Zolm Erken Erişime Katılın
             </h2>
             <p style={{ fontSize: 11, maxWidth: 480, margin: '0 auto 24px', color: '#625e70' }}>
-              İlk sürüme katılmak, kapalı betada ücretsiz denemek ve lansman ayrıcalıklarından yararlanmak için kaydolun.
+              İlk sürüme katılmak, kapalı betada ücretsiz denemek ve lansman ayrıcalıklarından
+              yararlanmak için kaydolun.
             </p>
 
-            <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1rem', maxWidth: 460, margin: '0 auto' }}>
+            <form
+              onSubmit={handleSubmit}
+              style={{ display: 'grid', gap: '1rem', maxWidth: 460, margin: '0 auto' }}
+            >
               <div className="filters" style={{ justifyContent: 'center' }}>
                 {['E-Ticaret Markası', 'Pazarlama Ajansı', 'Bağımsız Girişimci'].map((r) => (
                   <button
@@ -51,7 +64,11 @@ export default function WaitlistForm() {
                   aria-label="Bekleme listesi e-posta adresi"
                   required
                 />
-                <button type="submit" className="btn" style={{ background: 'var(--purple)', borderColor: 'var(--purple)' }}>
+                <button
+                  type="submit"
+                  className="btn"
+                  style={{ background: 'var(--purple)', borderColor: 'var(--purple)' }}
+                >
                   Bekleme Listesine Katıl →
                 </button>
               </div>
@@ -59,12 +76,22 @@ export default function WaitlistForm() {
           </div>
         ) : (
           <div>
-            <span className="tag purple" style={{ background: '#fff' }}>KAYIT BAŞARILI</span>
-            <h2 style={{ font: "700 clamp(28px, 4vw, 40px)/1.05 'Space Mono'", letterSpacing: '-0.03em', margin: '16px 0 10px', color: 'var(--purple)' }}>
+            <span className="tag purple" style={{ background: '#fff' }}>
+              KAYIT BAŞARILI
+            </span>
+            <h2
+              style={{
+                font: "700 clamp(28px, 4vw, 40px)/1.05 'Space Mono'",
+                letterSpacing: '-0.03em',
+                margin: '16px 0 10px',
+                color: 'var(--purple)',
+              }}
+            >
               Sıra Numaranız: #{queueNumber}
             </h2>
             <p style={{ fontSize: 11, maxWidth: 460, margin: '0 auto', color: '#625e70' }}>
-              <strong>{email}</strong> adresinizle <em>{role}</em> kategorisinde Zolm kapalı beta sırasına alındınız. İlk davetiye gönderildiğinde bilgilendirileceksiniz.
+              <strong>{email}</strong> adresinizle <em>{role}</em> kategorisinde Zolm kapalı beta
+              sırasına alındınız. İlk davetiye gönderildiğinde bilgilendirileceksiniz.
             </p>
           </div>
         )}

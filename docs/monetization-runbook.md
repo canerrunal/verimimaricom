@@ -23,6 +23,7 @@ This runbook covers:
   - `processedWebhookEvents`
 
 Operational note:
+
 - Current storage is file-backed for reliability improvements over in-memory mode.
 - Production target remains DB-backed persistence.
 
@@ -35,10 +36,12 @@ Operational note:
 ## Secure Asset Token Flow
 
 ### Issue phase
+
 - Endpoint: `GET /api/assets/download?mode=issue&email=...&asset=...`
 - Validates membership before issuing token.
 
 ### Consume phase
+
 - Endpoint: `GET /api/assets/download?mode=consume&token=...`
 - Verifies signature and expiry.
 - Returns demo response; production should redirect to object storage presigned URL.
@@ -56,4 +59,3 @@ Operational note:
 - [ ] Add webhook retry queue with dead-letter strategy
 - [ ] Replace demo asset consume response with S3/R2 redirect
 - [ ] Add audit log stream for membership grants and token issue events
-

@@ -58,4 +58,3 @@ run().catch((error) => {
   console.error('[rag-eval] failed:', error)
   process.exit(1)
 })
-

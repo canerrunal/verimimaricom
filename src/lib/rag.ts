@@ -38,7 +38,10 @@ export function toContextText(context: any) {
     .join('\n')
 
   const skillText = (context.skillHits || [])
-    .map((s: any) => `- Skill: ${s.name} | category: ${s.category} | trend: ${s.trendScore || '-'} | level: ${s.proficiencyLevel || '-'}`)
+    .map(
+      (s: any) =>
+        `- Skill: ${s.name} | category: ${s.category} | trend: ${s.trendScore || '-'} | level: ${s.proficiencyLevel || '-'}`,
+    )
     .join('\n')
 
   return `
@@ -52,4 +55,3 @@ ${projectText || '-'}
 ${skillText || '-'}
   `.trim()
 }
-

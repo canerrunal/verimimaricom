@@ -1,6 +1,8 @@
-const fs = require("fs");
+const fs = require('fs')
 
-const htmlFiles = fs.readdirSync(".").filter(f => f.endsWith(".html") && !f.startsWith("veri-mimari-premium"));
+const htmlFiles = fs
+  .readdirSync('.')
+  .filter((f) => f.endsWith('.html') && !f.startsWith('veri-mimari-premium'))
 
 const additionalCSS = `
 .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:5px;padding:6px 10px;font:11px "DM Mono";cursor:pointer;color:var(--ink)}
@@ -15,29 +17,30 @@ const additionalCSS = `
 .btn:focus-visible,.nav a:focus-visible,.link:focus-visible,.filter:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 html{scroll-behavior:smooth}
 @media(max-width:760px){.menu-toggle{display:block}.header .btn{display:none}.header{position:relative}}
-`;
+`
 
 for (const file of htmlFiles) {
-  let content = fs.readFileSync(file, "utf8");
-  let changed = false;
+  let content = fs.readFileSync(file, 'utf8')
+  let changed = false
 
   // 1. Inject additional CSS before </style>
-  if (!content.includes(".menu-toggle")) {
-    content = content.replace("</style>", additionalCSS + "</style>");
-    changed = true;
+  if (!content.includes('.menu-toggle')) {
+    content = content.replace('</style>', additionalCSS + '</style>')
+    changed = true
   }
 
   // 2. Add mobile menu toggle button before </header>
-  if (!content.includes("menu-toggle")) {
-    const menuBtn = '<button class="menu-toggle" onclick="this.parentElement.querySelector(\'.nav\').classList.toggle(\'open\')" aria-label="Menü">&#9776; Menü</button>';
-    content = content.replace("</header>", menuBtn + "</header>");
-    changed = true;
+  if (!content.includes('menu-toggle')) {
+    const menuBtn =
+      '<button class="menu-toggle" onclick="this.parentElement.querySelector(\'.nav\').classList.toggle(\'open\')" aria-label="Menü">&#9776; Menü</button>'
+    content = content.replace('</header>', menuBtn + '</header>')
+    changed = true
   }
 
   if (changed) {
-    fs.writeFileSync(file, content, "utf8");
-    console.log("Improved: " + file);
+    fs.writeFileSync(file, content, 'utf8')
+    console.log('Improved: ' + file)
   }
 }
 
-console.log("\nDone.");
+console.log('\nDone.')

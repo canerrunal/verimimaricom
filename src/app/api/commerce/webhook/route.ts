@@ -20,8 +20,9 @@ export async function POST(req: Request) {
   }
 
   const eventName = payload?.meta?.event_name
-  const eventId =
-    String(payload?.meta?.event_id || payload?.meta?.custom_data?.event_id || payload?.data?.id || '').trim()
+  const eventId = String(
+    payload?.meta?.event_id || payload?.meta?.custom_data?.event_id || payload?.data?.id || '',
+  ).trim()
 
   if (eventId) {
     const isNew = await markWebhookProcessed(eventId)
@@ -37,11 +38,12 @@ export async function POST(req: Request) {
 
   if (
     email &&
-    (eventName === 'order_created' || eventName === 'subscription_created' || eventName === 'subscription_payment_success')
+    (eventName === 'order_created' ||
+      eventName === 'subscription_created' ||
+      eventName === 'subscription_payment_success')
   ) {
     await grantMembership(email)
   }
 
   return NextResponse.json({ ok: true })
 }
-

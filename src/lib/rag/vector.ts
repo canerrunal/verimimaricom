@@ -1,4 +1,3 @@
-
 const OPENAI_EMBEDDINGS_MODEL = process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small'
 
 function hasVectorConfig() {
@@ -109,4 +108,3 @@ export async function upsertRagDocumentsToVectorStore(documents: any[]) {
 
   return { ok: true, upserted: items.length }
 }
-

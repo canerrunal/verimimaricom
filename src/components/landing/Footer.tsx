@@ -4,7 +4,10 @@ export default function Footer({ t }: { t: any }) {
   return (
     <footer className="footer">
       <div className="wrap footer-row">
-        <span>© 2026 VERİ MİMARI / {isEnglish ? 'BUILT BY CANER ÜNAL' : 'CANER ÜNAL TARAFINDAN GELİŞTİRİLDİ'}</span>
+        <span>
+          © 2026 VERİ MİMARI /{' '}
+          {isEnglish ? 'BUILT BY CANER ÜNAL' : 'CANER ÜNAL TARAFINDAN GELİŞTİRİLDİ'}
+        </span>
         <span>
           <a href="/gizlilik">{isEnglish ? 'Privacy' : 'Gizlilik'}</a>
           <span style={{ margin: '0 8px' }}>·</span>

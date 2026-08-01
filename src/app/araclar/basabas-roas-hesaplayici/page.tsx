@@ -7,7 +7,17 @@ import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
 import { getDictionary } from '@/lib/i18n'
 
-function Field({ label, hint, value, onChange }: { label: string; hint: string; value: number; onChange: (v: number) => void }) {
+function Field({
+  label,
+  hint,
+  value,
+  onChange,
+}: {
+  label: string
+  hint: string
+  value: number
+  onChange: (v: number) => void
+}) {
   const inputId = useId()
 
   return (
@@ -56,7 +66,8 @@ function CalculatorContent() {
   const targetCpa = contribution - targetNetProfit
   const targetRoas = targetCpa > 0 ? sale / targetCpa : 0
 
-  const fmt = (n: number) => n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+  const fmt = (n: number) =>
+    n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 
   const copyShareUrl = () => {
     const params = new URLSearchParams({
@@ -78,15 +89,24 @@ function CalculatorContent() {
       <NavBar t={t} />
 
       <section className="wrap hero single" style={{ paddingBottom: 20 }}>
-        <a href="/araclar" className="back-link">← Tüm Araçlar</a>
+        <a href="/araclar" className="back-link">
+          ← Tüm Araçlar
+        </a>
         <div className="crumb">ARAÇLAR / KÂRLILIK / 01</div>
         <h1>Başa Baş ROAS Hesaplayıcı</h1>
-        <p className="intro">Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve operasyon maliyetlerinizi girin.</p>
+        <p className="intro">
+          Reklam harcamanızın hangi seviyeden sonra zarar ettirmeye başladığını görmek için ürün ve
+          operasyon maliyetlerinizi girin.
+        </p>
         <div className="signals" style={{ marginTop: 18 }}>
           <span className="tag live">CANLI · 2 DK · ÜCRETSİZ</span>
           <span className="tag">AÇIK HESAPLAMA YÖNTEMİ</span>
           <span className="tag">VERİLERİNİZ SAKLANMAZ</span>
-          <button onClick={copyShareUrl} className="btn alt" style={{ padding: '6px 10px', fontSize: 9 }}>
+          <button
+            onClick={copyShareUrl}
+            className="btn alt"
+            style={{ padding: '6px 10px', fontSize: 9 }}
+          >
             {copied ? '✓ Bağlantı kopyalandı' : '🔗 Sonuç bağlantısını kopyala'}
           </button>
         </div>
@@ -95,12 +115,42 @@ function CalculatorContent() {
       <section className="wrap" style={{ paddingBottom: 72 }}>
         <div className="form-layout">
           <div className="panel" style={{ padding: '6px 22px' }}>
-            <Field label="Satış fiyatı" hint="Ürünün müşteriye satış bedeli" value={sale} onChange={setSale} />
-            <Field label="Ürün maliyeti" hint="Ürünün size geliş maliyeti" value={cost} onChange={setCost} />
-            <Field label="Komisyon oranı (%)" hint="Pazaryeri veya ödeme kesintisi" value={commission} onChange={setCommission} />
-            <Field label="Kargo + paketleme" hint="Gidiş kargo ve paketleme maliyeti" value={shipping} onChange={setShipping} />
-            <Field label="Beklenen iade maliyeti" hint="Ortalama iadeden kaynaklı kayıp" value={returns} onChange={setReturns} />
-            <Field label="Hedef kâr oranı (%)" hint="Reklam sonrası hedef net marj" value={targetMargin} onChange={setTargetMargin} />
+            <Field
+              label="Satış fiyatı"
+              hint="Ürünün müşteriye satış bedeli"
+              value={sale}
+              onChange={setSale}
+            />
+            <Field
+              label="Ürün maliyeti"
+              hint="Ürünün size geliş maliyeti"
+              value={cost}
+              onChange={setCost}
+            />
+            <Field
+              label="Komisyon oranı (%)"
+              hint="Pazaryeri veya ödeme kesintisi"
+              value={commission}
+              onChange={setCommission}
+            />
+            <Field
+              label="Kargo + paketleme"
+              hint="Gidiş kargo ve paketleme maliyeti"
+              value={shipping}
+              onChange={setShipping}
+            />
+            <Field
+              label="Beklenen iade maliyeti"
+              hint="Ortalama iadeden kaynaklı kayıp"
+              value={returns}
+              onChange={setReturns}
+            />
+            <Field
+              label="Hedef kâr oranı (%)"
+              hint="Reklam sonrası hedef net marj"
+              value={targetMargin}
+              onChange={setTargetMargin}
+            />
           </div>
 
           <aside className="results">
@@ -113,11 +163,26 @@ function CalculatorContent() {
                 ? `Her sipariş için reklama en fazla ${fmt(contribution)} TL ayırabilirsiniz.`
                 : 'Katkı payı oluşmuyor. Maliyetleri kontrol edin.'}
             </p>
-            <div className="metric-row"><span>Toplam değişken maliyet</span><b>{fmt(totalVariableCost)} TL</b></div>
-            <div className="metric-row"><span>Reklam öncesi katkı payı</span><b className={contribution > 0 ? 'positive' : 'negative'}>{fmt(contribution)} TL</b></div>
-            <div className="metric-row"><span>Başa baş CPA</span><b>{fmt(breakEvenCpa)} TL</b></div>
-            <div className="metric-row"><span>Hedef ROAS (%{targetMargin})</span><b>{targetRoas > 0 ? `${fmt(targetRoas)}x` : '—'}</b></div>
-            <p className="fine">Bu hesap sabit giderleri ve KDV mahsuplamasını ayrı modellemez. Tüm tutarları aynı KDV yaklaşımıyla girin.</p>
+            <div className="metric-row">
+              <span>Toplam değişken maliyet</span>
+              <b>{fmt(totalVariableCost)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>Reklam öncesi katkı payı</span>
+              <b className={contribution > 0 ? 'positive' : 'negative'}>{fmt(contribution)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>Başa baş CPA</span>
+              <b>{fmt(breakEvenCpa)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>Hedef ROAS (%{targetMargin})</span>
+              <b>{targetRoas > 0 ? `${fmt(targetRoas)}x` : '—'}</b>
+            </div>
+            <p className="fine">
+              Bu hesap sabit giderleri ve KDV mahsuplamasını ayrı modellemez. Tüm tutarları aynı KDV
+              yaklaşımıyla girin.
+            </p>
           </aside>
         </div>
       </section>

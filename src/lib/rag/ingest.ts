@@ -1,7 +1,9 @@
 import { getHomeCmsData } from '@/lib/cms'
 
 function normalize(value: string) {
-  return String(value || '').toLocaleLowerCase('tr-TR').trim()
+  return String(value || '')
+    .toLocaleLowerCase('tr-TR')
+    .trim()
 }
 
 function tokenize(text: string) {
@@ -61,4 +63,3 @@ export async function buildRagCorpus() {
 
   return documents
 }
-

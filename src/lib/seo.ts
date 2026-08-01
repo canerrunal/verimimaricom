@@ -51,11 +51,7 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
     provider: { '@id': `${siteUrl}#person` },
     areaServed: 'TR',
     availableLanguage: ['tr', 'en'],
-    serviceType: [
-      'E-commerce Analytics',
-      'ROAS Calculators',
-      'Growth Strategy',
-    ],
+    serviceType: ['E-commerce Analytics', 'ROAS Calculators', 'Growth Strategy'],
   }
 
   const website = {
@@ -78,7 +74,7 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
 
 export function getCaseStudyJsonLd(
   data: { title?: string; excerpt?: string; publishedAt?: string; industry?: string } | null,
-  slug: string
+  slug: string,
 ): Record<string, unknown> {
   const siteUrl = getSiteUrl()
   const url = `${siteUrl}/projeler/${slug}`
@@ -106,4 +102,3 @@ export function getCaseStudyJsonLd(
     about: ['Data Storytelling', data?.industry || 'Case Study'],
   }
 }
-

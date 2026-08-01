@@ -33,4 +33,3 @@ export default function LabEmbed({ item }: { item: any }) {
     </article>
   )
 }
-

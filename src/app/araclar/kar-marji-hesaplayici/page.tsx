@@ -7,7 +7,17 @@ import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
 import { getDictionary } from '@/lib/i18n'
 
-function Field({ label, hint, value, onChange }: { label: string; hint: string; value: number; onChange: (v: number) => void }) {
+function Field({
+  label,
+  hint,
+  value,
+  onChange,
+}: {
+  label: string
+  hint: string
+  value: number
+  onChange: (v: number) => void
+}) {
   const inputId = useId()
 
   return (
@@ -57,7 +67,8 @@ function MarginContent() {
   const netProfit = contribution - adSpend - overheadAmount
   const netMargin = sale > 0 ? (netProfit / sale) * 100 : 0
 
-  const fmt = (n: number) => n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+  const fmt = (n: number) =>
+    n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 
   const copyShareUrl = () => {
     const params = new URLSearchParams({
@@ -79,14 +90,23 @@ function MarginContent() {
       <NavBar t={t} />
 
       <section className="wrap hero single" style={{ paddingBottom: 20 }}>
-        <a href="/araclar" className="back-link">← Tüm Araçlar</a>
+        <a href="/araclar" className="back-link">
+          ← Tüm Araçlar
+        </a>
         <div className="crumb">ARAÇLAR / KÂRLILIK / 02</div>
         <h1>Ürün Kâr Marjı Hesaplayıcı</h1>
-        <p className="intro">Satış fiyatı, ürün maliyeti, komisyon, kargo ve reklam kesintileriyle sipariş başına net kârınızı ve marjınızı hesaplayın.</p>
+        <p className="intro">
+          Satış fiyatı, ürün maliyeti, komisyon, kargo ve reklam kesintileriyle sipariş başına net
+          kârınızı ve marjınızı hesaplayın.
+        </p>
         <div className="signals" style={{ marginTop: 18 }}>
           <span className="tag live">CANLI · 2 DK · ÜCRETSİZ</span>
           <span className="tag">AÇIK HESAPLAMA YÖNTEMİ</span>
-          <button onClick={copyShareUrl} className="btn alt" style={{ padding: '6px 10px', fontSize: 9 }}>
+          <button
+            onClick={copyShareUrl}
+            className="btn alt"
+            style={{ padding: '6px 10px', fontSize: 9 }}
+          >
             {copied ? '✓ Bağlantı kopyalandı' : '🔗 Sonuç bağlantısını kopyala'}
           </button>
         </div>
@@ -96,11 +116,36 @@ function MarginContent() {
         <div className="form-layout">
           <div className="panel" style={{ padding: '6px 22px' }}>
             <Field label="Satış fiyatı" hint="Nihai satış bedeli" value={sale} onChange={setSale} />
-            <Field label="Ürün maliyeti (COGS)" hint="Geliş / alış maliyeti" value={cost} onChange={setCost} />
-            <Field label="Komisyon oranı (%)" hint="Pazaryeri / ödeme kesintisi" value={commission} onChange={setCommission} />
-            <Field label="Kargo + paketleme" hint="Sipariş başına teslimat gideri" value={shipping} onChange={setShipping} />
-            <Field label="Sipariş başına reklam" hint="Kazandıran reklam harcaması" value={adSpend} onChange={setAdSpend} />
-            <Field label="Sabit gider payı (%)" hint="Kira / genel gider katkısı" value={overheadPercent} onChange={setOverheadPercent} />
+            <Field
+              label="Ürün maliyeti (COGS)"
+              hint="Geliş / alış maliyeti"
+              value={cost}
+              onChange={setCost}
+            />
+            <Field
+              label="Komisyon oranı (%)"
+              hint="Pazaryeri / ödeme kesintisi"
+              value={commission}
+              onChange={setCommission}
+            />
+            <Field
+              label="Kargo + paketleme"
+              hint="Sipariş başına teslimat gideri"
+              value={shipping}
+              onChange={setShipping}
+            />
+            <Field
+              label="Sipariş başına reklam"
+              hint="Kazandıran reklam harcaması"
+              value={adSpend}
+              onChange={setAdSpend}
+            />
+            <Field
+              label="Sabit gider payı (%)"
+              hint="Kira / genel gider katkısı"
+              value={overheadPercent}
+              onChange={setOverheadPercent}
+            />
           </div>
 
           <aside className="results">
@@ -113,11 +158,30 @@ function MarginContent() {
                 ? `Sipariş başına net kârınız ${fmt(netProfit)} TL.`
                 : `Her satışta ${fmt(Math.abs(netProfit))} TL zarar ediyorsunuz.`}
             </p>
-            <div className="metric-row"><span>Brüt kâr</span><b>{fmt(grossProfit)} TL (%{fmt(grossMargin)})</b></div>
-            <div className="metric-row"><span>Reklam öncesi katkı payı</span><b>{fmt(contribution)} TL (%{fmt(contributionMargin)})</b></div>
-            <div className="metric-row"><span>Toplam kesinti</span><b>{fmt(totalCuts)} TL</b></div>
-            <div className="metric-row"><span>Net kâr</span><b className={netProfit >= 0 ? 'positive' : 'negative'}>{fmt(netProfit)} TL</b></div>
-            <p className="fine">Katkı payı marjı reklam bütçenizin teorik üst sınırını verir; net marj reklam ve sabit gider mahsubu sonrasıdır.</p>
+            <div className="metric-row">
+              <span>Brüt kâr</span>
+              <b>
+                {fmt(grossProfit)} TL (%{fmt(grossMargin)})
+              </b>
+            </div>
+            <div className="metric-row">
+              <span>Reklam öncesi katkı payı</span>
+              <b>
+                {fmt(contribution)} TL (%{fmt(contributionMargin)})
+              </b>
+            </div>
+            <div className="metric-row">
+              <span>Toplam kesinti</span>
+              <b>{fmt(totalCuts)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>Net kâr</span>
+              <b className={netProfit >= 0 ? 'positive' : 'negative'}>{fmt(netProfit)} TL</b>
+            </div>
+            <p className="fine">
+              Katkı payı marjı reklam bütçenizin teorik üst sınırını verir; net marj reklam ve sabit
+              gider mahsubu sonrasıdır.
+            </p>
           </aside>
         </div>
       </section>

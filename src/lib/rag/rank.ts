@@ -1,4 +1,3 @@
-
 function topByKind(items: any[], kind: string, limit: number) {
   return (items || [])
     .filter((x: any) => x.kind === kind)
@@ -21,4 +20,3 @@ export function rankRagContext(candidates: any[]) {
     },
   }
 }
-

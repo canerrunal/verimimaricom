@@ -23,20 +23,33 @@ export default function CollaborationForm() {
     'Genel Danışmanlık',
   ]
 
-  const budgetRanges = [
-    '50.000 TL - 100.000 TL',
-    '100.000 TL - 250.000 TL',
-    '250.000 TL +',
-  ]
+  const budgetRanges = ['50.000 TL - 100.000 TL', '100.000 TL - 250.000 TL', '250.000 TL +']
 
   if (submitted) {
     return (
       <section className="wrap" style={{ paddingBottom: 72 }}>
         <div className="panel" style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
           <span className="tag live">TALEBİNİZ ALINDI</span>
-          <h2 style={{ font: "700 26px 'Space Mono'", letterSpacing: '-0.02em', margin: '16px 0 8px' }}>Teşekkürler, {name}!</h2>
-          <p style={{ color: 'var(--muted)', fontSize: 10, maxWidth: 460, margin: '0 auto', lineHeight: 1.65 }}>
-            {projectType} konusundaki iş birliği talebiniz iletildi. En kısa sürede {email} adresi üzerinden sizinle iletişime geçeceğim.
+          <h2
+            style={{
+              font: "700 26px 'Space Mono'",
+              letterSpacing: '-0.02em',
+              margin: '16px 0 8px',
+            }}
+          >
+            Teşekkürler, {name}!
+          </h2>
+          <p
+            style={{
+              color: 'var(--muted)',
+              fontSize: 10,
+              maxWidth: 460,
+              margin: '0 auto',
+              lineHeight: 1.65,
+            }}
+          >
+            {projectType} konusundaki iş birliği talebiniz iletildi. En kısa sürede {email} adresi
+            üzerinden sizinle iletişime geçeceğim.
           </p>
         </div>
       </section>
@@ -47,14 +60,21 @@ export default function CollaborationForm() {
     <section className="wrap" style={{ paddingBottom: 72 }}>
       <div className="panel" style={{ maxWidth: 680 }}>
         <span className="eyebrow">PROJE BAŞVURUSU</span>
-        <h2 style={{ font: "700 26px 'Space Mono'", letterSpacing: '-0.02em', margin: '8px 0 6px' }}>İş Birliği Talep Formu</h2>
+        <h2
+          style={{ font: "700 26px 'Space Mono'", letterSpacing: '-0.02em', margin: '8px 0 6px' }}
+        >
+          İş Birliği Talep Formu
+        </h2>
         <p style={{ color: 'var(--muted)', fontSize: 10, margin: '0 0 22px' }}>
-          Projeniz, hedefleriniz ve bütçe beklentiniz hakkında kısa bilgi verin; 24 saat içinde dönüş yapayım.
+          Projeniz, hedefleriniz ve bütçe beklentiniz hakkında kısa bilgi verin; 24 saat içinde
+          dönüş yapayım.
         </p>
 
         <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.2rem' }}>
           <div>
-            <div className="eyebrow" style={{ marginBottom: 8 }}>PROJE KAPSAMI</div>
+            <div className="eyebrow" style={{ marginBottom: 8 }}>
+              PROJE KAPSAMI
+            </div>
             <div className="filters">
               {projectTypes.map((pt) => (
                 <button
@@ -70,7 +90,9 @@ export default function CollaborationForm() {
           </div>
 
           <div>
-            <div className="eyebrow" style={{ marginBottom: 8 }}>TAHMİNİ BÜTÇE</div>
+            <div className="eyebrow" style={{ marginBottom: 8 }}>
+              TAHMİNİ BÜTÇE
+            </div>
             <div className="filters">
               {budgetRanges.map((b) => (
                 <button
@@ -88,11 +110,25 @@ export default function CollaborationForm() {
           <div className="two-col">
             <div className="form-group">
               <label htmlFor="collaboration-name">Ad Soyad *</label>
-              <input id="collaboration-name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Caner Yılmaz" required />
+              <input
+                id="collaboration-name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Caner Yılmaz"
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="collaboration-email">E-Posta *</label>
-              <input id="collaboration-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="caner@marka.com" required />
+              <input
+                id="collaboration-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="caner@marka.com"
+                required
+              />
             </div>
           </div>
 

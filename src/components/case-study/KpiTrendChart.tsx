@@ -1,4 +1,3 @@
-
 function normalizeSeries(metric: any) {
   if (Array.isArray(metric?.trendPoints) && metric.trendPoints.length > 1) {
     return metric.trendPoints
@@ -41,7 +40,15 @@ export default function KpiTrendChart({ metric }: { metric: any }) {
           const x = series.length === 1 ? 10 : (index / (series.length - 1)) * 100
           const y = 100 - ((item.value - min) / range) * 100
 
-          return <circle key={`${item.label}-${index}`} cx={x} cy={y} r="2.3" className="kpi-trend-dot" />
+          return (
+            <circle
+              key={`${item.label}-${index}`}
+              cx={x}
+              cy={y}
+              r="2.3"
+              className="kpi-trend-dot"
+            />
+          )
         })}
       </svg>
 
@@ -56,4 +63,3 @@ export default function KpiTrendChart({ metric }: { metric: any }) {
     </div>
   )
 }
-

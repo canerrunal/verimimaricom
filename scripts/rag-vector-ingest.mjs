@@ -21,4 +21,3 @@ main().catch((error) => {
   console.error('[rag-vector-ingest] failed:', error)
   process.exit(1)
 })
-

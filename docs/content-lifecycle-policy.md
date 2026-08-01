@@ -21,11 +21,13 @@ This policy defines how Digital Garden content moves across maturity levels and 
 ## Promotion Signals
 
 ### Seed -> Growing
+
 - At least one revision after initial publish
 - Backlink count >= 1
 - Includes practical takeaway or implementation detail
 
 ### Growing -> Evergreen
+
 - Backlink count >= 3
 - Updated within last 120 days or explicitly reviewed
 - Contains clear scope, constraints, and references
@@ -47,4 +49,3 @@ This policy defines how Digital Garden content moves across maturity levels and 
 - Primary owner: Content/Platform maintainer
 - Review cadence: Weekly batch
 - Emergency correction SLA: 48 hours
-

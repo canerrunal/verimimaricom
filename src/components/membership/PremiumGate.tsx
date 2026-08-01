@@ -19,8 +19,14 @@ export default async function PremiumGate({
   }
 
   return (
-    <section className="tool-sm" style={{ maxWidth: 500, margin: '40px auto' }} aria-label="Kilitli içerik">
-      <span className="tag yellow" style={{ marginBottom: 16 }}>PREMIUM İÇERİK</span>
+    <section
+      className="tool-sm"
+      style={{ maxWidth: 500, margin: '40px auto' }}
+      aria-label="Kilitli içerik"
+    >
+      <span className="tag yellow" style={{ marginBottom: 16 }}>
+        PREMIUM İÇERİK
+      </span>
       <h3 style={{ marginTop: 0 }}>{title}</h3>
       <p style={{ marginBottom: 16 }}>{preview}</p>
       <Link className="btn" href="/uyelik">

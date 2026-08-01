@@ -108,9 +108,19 @@ export const dictionaries = {
     },
     problem: {
       cards: [
-        { title: 'Yanlış ROAS Hedefi', description: 'Katkı payını hesaba katmadan verilen reklam kararları kâr erimesine yol açar.' },
-        { title: 'Gizli Maliyetler', description: 'Kargo, iade ve komisyon maliyetlerinin ürün bazında izlenememesi.' },
-        { title: 'Verisiz Kararlar', description: 'Sezgisel pazarlama harcamaları ve ölçülemeyen kampanya sonuçları.' },
+        {
+          title: 'Yanlış ROAS Hedefi',
+          description:
+            'Katkı payını hesaba katmadan verilen reklam kararları kâr erimesine yol açar.',
+        },
+        {
+          title: 'Gizli Maliyetler',
+          description: 'Kargo, iade ve komisyon maliyetlerinin ürün bazında izlenememesi.',
+        },
+        {
+          title: 'Verisiz Kararlar',
+          description: 'Sezgisel pazarlama harcamaları ve ölçülemeyen kampanya sonuçları.',
+        },
       ],
     },
     knowledgeGraph: {
@@ -127,9 +137,21 @@ export const dictionaries = {
     basePath: '/en',
     problem: {
       cards: [
-        { title: 'Wrong ROAS Target', description: 'Ad spend decisions made without accounting for contribution margin lead to profit erosion.' },
-        { title: 'Hidden Overhead', description: 'Unmonitored shipping, return, and marketplace commission costs at the SKU level.' },
-        { title: 'Intuition-Based Spend', description: 'Unmeasured marketing expenditure driven by guesswork instead of hard metrics.' },
+        {
+          title: 'Wrong ROAS Target',
+          description:
+            'Ad spend decisions made without accounting for contribution margin lead to profit erosion.',
+        },
+        {
+          title: 'Hidden Overhead',
+          description:
+            'Unmonitored shipping, return, and marketplace commission costs at the SKU level.',
+        },
+        {
+          title: 'Intuition-Based Spend',
+          description:
+            'Unmeasured marketing expenditure driven by guesswork instead of hard metrics.',
+        },
       ],
     },
     nav: {
@@ -171,8 +193,7 @@ export const dictionaries = {
         {
           eyebrow: 'Recruiter Path',
           title: 'Evaluate the technical profile in 60 seconds',
-          description:
-            'Quickly review skill summaries, case depth, and working approach.',
+          description: 'Quickly review skill summaries, case depth, and working approach.',
           href: '#yetkinlik',
           cta: 'View Technical Summary',
           eventName: 'persona_recruiter_path_click',
@@ -180,8 +201,7 @@ export const dictionaries = {
         {
           eyebrow: 'Business Path',
           title: 'Explore solutions with business impact',
-          description:
-            'Access conversion-focused case studies, metric outcomes, and premium flow.',
+          description: 'Access conversion-focused case studies, metric outcomes, and premium flow.',
           href: '#projeler',
           cta: 'View Business Impact',
           eventName: 'persona_business_path_click',

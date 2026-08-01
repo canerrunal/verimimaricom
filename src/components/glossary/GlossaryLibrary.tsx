@@ -10,7 +10,9 @@ export default function GlossaryLibrary() {
 
   const filteredTerms = glossaryTerms.filter((item) => {
     const matchesCategory = activeCategory === 'Tümü' || item.category === activeCategory
-    const searchable = `${item.term} ${item.english} ${item.shortDefinition}`.toLocaleLowerCase('tr-TR')
+    const searchable = `${item.term} ${item.english} ${item.shortDefinition}`.toLocaleLowerCase(
+      'tr-TR',
+    )
     return matchesCategory && (!normalizedQuery || searchable.includes(normalizedQuery))
   })
 
@@ -55,7 +57,9 @@ export default function GlossaryLibrary() {
         </label>
       </div>
 
-      <p className="guide-result-count" aria-live="polite">{filteredTerms.length} kavram gösteriliyor</p>
+      <p className="guide-result-count" aria-live="polite">
+        {filteredTerms.length} kavram gösteriliyor
+      </p>
 
       {filteredTerms.length ? (
         <div className="glossary-grid">
@@ -76,7 +80,9 @@ export default function GlossaryLibrary() {
         <div className="panel guide-empty-state" role="status">
           <h2>Bu aramada kavram bulunamadı.</h2>
           <p>Farklı bir kelime deneyin veya bütün kategorilere dönün.</p>
-          <button className="btn alt" type="button" onClick={resetFilters}>Filtreleri temizle</button>
+          <button className="btn alt" type="button" onClick={resetFilters}>
+            Filtreleri temizle
+          </button>
         </div>
       )}
     </section>

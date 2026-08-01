@@ -1,12 +1,12 @@
 ---
-title: "Veri Mimarı İçerik ve Marka Rehberi"
+title: 'Veri Mimarı İçerik ve Marka Rehberi'
 description: "Veri Mimarı'nın web sitesi, sosyal medya, SEO, araçlar, vaka analizleri ve ürün iletişimi için ana içerik dokümanı."
-version: "1.0"
-status: "living-document"
-owner: "Caner Ünal"
-brand: "Veri Mimarı"
-last_updated: "2026-07-31"
-recommended_path: "docs/içerik.md"
+version: '1.0'
+status: 'living-document'
+owner: 'Caner Ünal'
+brand: 'Veri Mimarı'
+last_updated: '2026-07-31'
+recommended_path: 'docs/içerik.md'
 ---
 
 # Veri Mimarı İçerik ve Marka Rehberi
@@ -765,17 +765,17 @@ Sağ taraftaki ana CTA:
 
 ## 9.3 Mevcut sayfaların yeniden konumlandırılması
 
-| Mevcut alan | Yeni konum |
-|---|---|
-| Recruiter Path | `/hakkinda/` içindeki teknik profil |
-| Business Path | Ana sayfadaki “Çözümler ve Araçlar” akışı |
-| Builder Path | `/labs/` veya `/hakkinda/teknik/` |
-| Digital Garden | Kullanıcı tarafında “Rehberler ve Notlar” |
-| Knowledge Graph | İkincil keşif özelliği; ana sayfada öncelikli değil |
-| Teknoloji Yığını | Hakkında veya proje detay sayfaları |
-| Premium | Trafik ve ücretsiz değer oluşana kadar navigasyondan kaldır |
-| Vaka Analizleri | Gerçek/demonstrasyon etiketiyle yeniden yapılandır |
-| VeriBot | Belirli görevleri çözen araç biçiminde yeniden tanımla |
+| Mevcut alan      | Yeni konum                                                  |
+| ---------------- | ----------------------------------------------------------- |
+| Recruiter Path   | `/hakkinda/` içindeki teknik profil                         |
+| Business Path    | Ana sayfadaki “Çözümler ve Araçlar” akışı                   |
+| Builder Path     | `/labs/` veya `/hakkinda/teknik/`                           |
+| Digital Garden   | Kullanıcı tarafında “Rehberler ve Notlar”                   |
+| Knowledge Graph  | İkincil keşif özelliği; ana sayfada öncelikli değil         |
+| Teknoloji Yığını | Hakkında veya proje detay sayfaları                         |
+| Premium          | Trafik ve ücretsiz değer oluşana kadar navigasyondan kaldır |
+| Vaka Analizleri  | Gerçek/demonstrasyon etiketiyle yeniden yapılandır          |
+| VeriBot          | Belirli görevleri çözen araç biçiminde yeniden tanımla      |
 
 ---
 
@@ -1199,22 +1199,22 @@ Her uzun rehber aşağıdaki yapıyı izlemelidir.
 
 ```yaml
 ---
-title: "Başabaş ROAS Nasıl Hesaplanır?"
-slug: "basabas-roas-nasil-hesaplanir"
-description: "E-ticarette başabaş ROAS formülünü, maliyet kalemlerini ve örnek hesaplamayı adım adım öğrenin."
-category: "e-ticaret-karliligi"
-content_type: "guide"
-maturity: "growing"
-author: "Caner Ünal"
-published_at: "YYYY-MM-DD"
-updated_at: "YYYY-MM-DD"
-review_due_at: "YYYY-MM-DD"
-primary_keyword: "başabaş roas"
+title: 'Başabaş ROAS Nasıl Hesaplanır?'
+slug: 'basabas-roas-nasil-hesaplanir'
+description: 'E-ticarette başabaş ROAS formülünü, maliyet kalemlerini ve örnek hesaplamayı adım adım öğrenin.'
+category: 'e-ticaret-karliligi'
+content_type: 'guide'
+maturity: 'growing'
+author: 'Caner Ünal'
+published_at: 'YYYY-MM-DD'
+updated_at: 'YYYY-MM-DD'
+review_due_at: 'YYYY-MM-DD'
+primary_keyword: 'başabaş roas'
 secondary_keywords:
-  - "roas hesaplama"
-  - "başabaş roas hesaplama"
-  - "e-ticaret roas"
-related_tool: "/araclar/basabas-roas-hesaplayici/"
+  - 'roas hesaplama'
+  - 'başabaş roas hesaplama'
+  - 'e-ticaret roas'
+related_tool: '/araclar/basabas-roas-hesaplayici/'
 is_demo: false
 ---
 ```
@@ -1779,20 +1779,20 @@ Haftalık:
 
 Amaç çok içerik üretmek değil; bir ana fikri farklı kanallarda kaliteli biçimde dağıtmaktır.
 
-| Hafta | Ana çıktı | SEO/Rehber | Instagram | Ürün CTA |
-|---|---|---|---|---|
-| 1 | Yeni konumlandırma ve ana sayfa | Veri Mimarı nedir? | Marka dönüşümü ve neden | Araçlar yakında |
-| 2 | Başabaş ROAS aracının beta sürümü | Başabaş ROAS nedir? | ROAS yüksekken zarar | Beta kullanımı |
-| 3 | Araç iyileştirmeleri | Başabaş ROAS örnek hesaplama | 1.000 TL satış örneği | Hesapla |
-| 4 | Kâr marjı hesaplayıcı taslağı | Ürün kâr marjı rehberi | Ciro ve kâr farkı | Bekleme listesi |
-| 5 | Kâr marjı aracı | İade oranı hesabı | İade maliyetinin görünmeyen etkisi | Aracı kullan |
-| 6 | İlk demo vaka | Demo ve gerçek vaka farkı | Dashboard incelemesi | Vakayı oku |
-| 7 | Pazaryeri komisyon aracı | Trendyol maliyet kalemleri | Komisyon sonrası kâr | Aracı kullan |
-| 8 | Zolm proje sayfası | Zolm neden geliştiriliyor? | Build in public | Zolm'u keşfet |
-| 9 | AI iş akışı demosu | Yorum sınıflandırma rehberi | AI iş akışı videosu | Şablonu al |
-| 10 | Araçlar ana sayfası v2 | ROAS ve MER karşılaştırması | Hangi metriği kullanmalı? | Araçları gör |
-| 11 | İlk kullanıcı geri bildirim raporu | Araçtan öğrenilenler | Kullanıcı soruları | Geri bildirim ver |
-| 12 | 90 günlük değerlendirme | En çok okunan rehber güncellemesi | Ne öğrendim? | Bültene katıl |
+| Hafta | Ana çıktı                          | SEO/Rehber                        | Instagram                          | Ürün CTA          |
+| ----- | ---------------------------------- | --------------------------------- | ---------------------------------- | ----------------- |
+| 1     | Yeni konumlandırma ve ana sayfa    | Veri Mimarı nedir?                | Marka dönüşümü ve neden            | Araçlar yakında   |
+| 2     | Başabaş ROAS aracının beta sürümü  | Başabaş ROAS nedir?               | ROAS yüksekken zarar               | Beta kullanımı    |
+| 3     | Araç iyileştirmeleri               | Başabaş ROAS örnek hesaplama      | 1.000 TL satış örneği              | Hesapla           |
+| 4     | Kâr marjı hesaplayıcı taslağı      | Ürün kâr marjı rehberi            | Ciro ve kâr farkı                  | Bekleme listesi   |
+| 5     | Kâr marjı aracı                    | İade oranı hesabı                 | İade maliyetinin görünmeyen etkisi | Aracı kullan      |
+| 6     | İlk demo vaka                      | Demo ve gerçek vaka farkı         | Dashboard incelemesi               | Vakayı oku        |
+| 7     | Pazaryeri komisyon aracı           | Trendyol maliyet kalemleri        | Komisyon sonrası kâr               | Aracı kullan      |
+| 8     | Zolm proje sayfası                 | Zolm neden geliştiriliyor?        | Build in public                    | Zolm'u keşfet     |
+| 9     | AI iş akışı demosu                 | Yorum sınıflandırma rehberi       | AI iş akışı videosu                | Şablonu al        |
+| 10    | Araçlar ana sayfası v2             | ROAS ve MER karşılaştırması       | Hangi metriği kullanmalı?          | Araçları gör      |
+| 11    | İlk kullanıcı geri bildirim raporu | Araçtan öğrenilenler              | Kullanıcı soruları                 | Geri bildirim ver |
+| 12    | 90 günlük değerlendirme            | En çok okunan rehber güncellemesi | Ne öğrendim?                       | Bültene katıl     |
 
 ---
 
@@ -1860,6 +1860,7 @@ Türkçe karşılıklar:
 ## Kullanıcının sorusu
 
 ## Arama niyeti
+
 - Bilgi
 - Karşılaştırma
 - Hesaplama

@@ -44,7 +44,9 @@ export async function GET(req: Request) {
   const mode = url.searchParams.get('mode') || 'issue'
 
   if (mode === 'issue') {
-    const email = String(url.searchParams.get('email') || '').trim().toLowerCase()
+    const email = String(url.searchParams.get('email') || '')
+      .trim()
+      .toLowerCase()
     const asset = String(url.searchParams.get('asset') || '').trim() || 'premium-pack.zip'
 
     if (!email) {
@@ -87,4 +89,3 @@ export async function GET(req: Request) {
 
   return NextResponse.json({ ok: false, error: 'invalid-mode' }, { status: 400 })
 }
-

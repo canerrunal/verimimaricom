@@ -23,7 +23,10 @@ describe('demo vaka veri modeli', () => {
         const result = scenarioMetrics(scenario)
         expect(result.roas).toBeCloseTo(4.2, 4)
         expect(result.preAdContribution).toBeCloseTo(scenario.netRevenue - result.preAdCosts, 2)
-        expect(result.postAdContribution).toBeCloseTo(result.preAdContribution - scenario.adSpend, 2)
+        expect(result.postAdContribution).toBeCloseTo(
+          result.preAdContribution - scenario.adSpend,
+          2,
+        )
       }
     }
   })

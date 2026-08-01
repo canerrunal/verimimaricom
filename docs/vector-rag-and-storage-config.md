@@ -3,6 +3,7 @@
 ## 1) Vector RAG (Supabase pgvector style)
 
 Implemented modules:
+
 - Retriever integration: [`rag.ts`](zolm-main/brand-site/next/src/lib/rag.ts)
 - Vector client: [`vector.ts`](zolm-main/brand-site/next/src/lib/rag/vector.ts)
 - Ingestion command: [`rag-vector-ingest.mjs`](zolm-main/brand-site/next/scripts/rag-vector-ingest.mjs)
@@ -17,6 +18,7 @@ Implemented modules:
 ### Expected Supabase objects
 
 Table:
+
 - `rag_documents`
   - `id` (text, primary key)
   - `kind` (text)
@@ -27,19 +29,23 @@ Table:
   - `embedding` (vector)
 
 RPC function:
+
 - `match_rag_documents(query_embedding vector, match_count int, match_threshold float)`
 
 ### Ingestion
 
 Run:
+
 - `npm run rag:vector:ingest`
 
 Fallback behavior:
+
 - If vector config is missing or unavailable, system falls back to local retrieval modules.
 
 ## 2) Secure Object Storage Redirect (S3/R2 compatible)
 
 Implemented modules:
+
 - Presign helper: [`storage.ts`](zolm-main/brand-site/next/src/lib/storage.ts)
 - Download route: [`assets/download`](zolm-main/brand-site/next/src/app/api/assets/download/route.ts)
 
@@ -59,5 +65,5 @@ Implemented modules:
 4. Return `302` redirect to storage object
 
 If storage config missing:
-- API returns `503 storage-config-missing`
 
+- API returns `503 storage-config-missing`

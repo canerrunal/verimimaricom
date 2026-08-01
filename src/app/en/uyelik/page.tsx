@@ -13,13 +13,14 @@ export default function MembershipPageEN() {
     <main className="page" aria-label="Membership">
       <NavBar t={t} />
       <section className="wrap hero single">
-        <Link href="/en" className="back-link">← Back to Home</Link>
+        <Link href="/en" className="back-link">
+          ← Back to Home
+        </Link>
         <span className="eyebrow">MEMBERSHIP</span>
-        <h1>
-          Premium Membership and Digital Asset Sales
-        </h1>
+        <h1>Premium Membership and Digital Asset Sales</h1>
         <p className="intro">
-          With this infrastructure, you can lock selected content, accept payments via Lemon Squeezy checkout, and unlock content after membership verification.
+          With this infrastructure, you can lock selected content, accept payments via Lemon Squeezy
+          checkout, and unlock content after membership verification.
         </p>
       </section>
 
@@ -32,25 +33,39 @@ export default function MembershipPageEN() {
           <div className="tool-sm">
             <div className="indicator blue"></div>
             <h3>1) Start with Payment</h3>
-            <p style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}>
+            <p
+              style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}
+            >
               Enter your email and continue to checkout flow.
             </p>
             <form
               action="/api/commerce/checkout"
               method="GET"
-              onSubmit={() => trackEvent('membership_checkout_start', { placement: 'membership_page_en' })}
+              onSubmit={() =>
+                trackEvent('membership_checkout_start', { placement: 'membership_page_en' })
+              }
             >
               <div className="form-group" style={{ marginBottom: 12 }}>
-                <input type="email" name="email" required placeholder="example@domain.com" aria-label="Membership email" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="example@domain.com"
+                  aria-label="Membership email"
+                />
               </div>
-              <button type="submit" className="btn">Lemon Checkout ↗</button>
+              <button type="submit" className="btn">
+                Lemon Checkout ↗
+              </button>
             </form>
           </div>
 
           <div className="tool-sm">
             <div className="indicator green"></div>
             <h3>2) Activate Membership (Demo)</h3>
-            <p style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}>
+            <p
+              style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}
+            >
               After webhook is received, activate membership with the same email.
             </p>
             <form
@@ -73,9 +88,17 @@ export default function MembershipPageEN() {
               }}
             >
               <div className="form-group" style={{ marginBottom: 12 }}>
-                <input type="email" name="email" required placeholder="example@domain.com" aria-label="Membership activation email" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="example@domain.com"
+                  aria-label="Membership activation email"
+                />
               </div>
-              <button type="submit" className="btn">Unlock Membership ↗</button>
+              <button type="submit" className="btn">
+                Unlock Membership ↗
+              </button>
             </form>
           </div>
         </div>

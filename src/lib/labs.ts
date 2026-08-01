@@ -1,4 +1,3 @@
-
 export type LabItem = {
   id: string
   title: string
@@ -33,11 +32,9 @@ export const labsCatalog: LabItem[] = [
   {
     id: 'streamlit-dashboard',
     title: 'Canlı Analitik Dashboard (Streamlit)',
-    description:
-      'Streamlit tabanlı veri analitiği panelini site içinde güvenli iframe ile sunar.',
+    description: 'Streamlit tabanlı veri analitiği panelini site içinde güvenli iframe ile sunar.',
     type: 'streamlit',
     src: 'https://share.streamlit.io/streamlit/demo-self-driving/main/app.py',
     tags: ['Streamlit', 'Analytics', 'Dashboard'],
   },
 ]
-

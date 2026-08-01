@@ -71,7 +71,8 @@ export default function KnowledgeGraph({ graph }: KnowledgeGraphProps) {
     const nodes = rawNodes.filter((node: any) => {
       const topicOk = topicFilter === 'all' || String(node.group || '') === topicFilter
       const maturityOk = maturityFilter === 'all' || String(node.maturity || '') === maturityFilter
-      const recencyOk = recencyFilter === 'all' || String(node.recency || 'archive') === recencyFilter
+      const recencyOk =
+        recencyFilter === 'all' || String(node.recency || 'archive') === recencyFilter
       return topicOk && maturityOk && recencyOk
     })
 
@@ -144,7 +145,11 @@ export default function KnowledgeGraph({ graph }: KnowledgeGraphProps) {
         </label>
       </div>
 
-      <svg viewBox={`0 0 ${layout.width} ${layout.height}`} role="img" aria-label="Blog ve notlar arasi iliski agi">
+      <svg
+        viewBox={`0 0 ${layout.width} ${layout.height}`}
+        role="img"
+        aria-label="Blog ve notlar arasi iliski agi"
+      >
         {layout.lines.map((line: any, idx: number) => {
           const active = activeNode && (line.source === activeNode || line.target === activeNode)
           return (
@@ -176,8 +181,21 @@ export default function KnowledgeGraph({ graph }: KnowledgeGraphProps) {
                 onClick={() => (window.location.href = node.slug ? `/blog/${node.slug}` : '#')}
                 style={{ cursor: 'pointer' }}
               />
-              <circle r={active ? 17 : 13} fill="none" stroke={ring} strokeWidth="1.2" opacity="0.5" />
-              <text x="14" y="4" fill="#18181b" fontSize="11" fontFamily="JetBrains Mono, monospace" pointerEvents="none">
+              <circle
+                r={active ? 17 : 13}
+                fill="none"
+                stroke={ring}
+                strokeWidth="1.2"
+                opacity="0.5"
+              />
+              <text
+                x="14"
+                y="4"
+                fill="#18181b"
+                fontSize="11"
+                fontFamily="JetBrains Mono, monospace"
+                pointerEvents="none"
+              >
                 {node.label}
               </text>
             </g>

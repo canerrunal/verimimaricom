@@ -100,14 +100,34 @@ export const demoCases: DemoCase[] = [
       'Simüle edilmiş ürün maliyet tablosu: SKU maliyeti, komisyon, kargo ve paketleme',
     ],
     diagnosis: [
-      { title: 'Panel metriğini uzlaştır', detail: 'Reklam gelirini net satışla eşleştir; iptal ve iadeyi aynı döneme taşı.' },
-      { title: 'Sipariş ekonomisini kur', detail: 'Ürün, komisyon, ödeme, kargo, paketleme ve iade rezervini siparişe dağıt.' },
-      { title: 'Katkı kaçağını bul', detail: 'ROAS aynıyken reklam sonrası katkıyı ürün ve kampanya kırılımında karşılaştır.' },
+      {
+        title: 'Panel metriğini uzlaştır',
+        detail: 'Reklam gelirini net satışla eşleştir; iptal ve iadeyi aynı döneme taşı.',
+      },
+      {
+        title: 'Sipariş ekonomisini kur',
+        detail: 'Ürün, komisyon, ödeme, kargo, paketleme ve iade rezervini siparişe dağıt.',
+      },
+      {
+        title: 'Katkı kaçağını bul',
+        detail: 'ROAS aynıyken reklam sonrası katkıyı ürün ve kampanya kırılımında karşılaştır.',
+      },
     ],
     decisions: [
-      { title: 'Ürün bazlı eşik', detail: 'Tek mağaza ROAS hedefi yerine her ürün grubu için başabaş ROAS sınırı tanımlandı.' },
-      { title: 'Bütçe karması', detail: 'Düşük katkılı SKU’ların ölçek bütçesi azaltılıp yeterli katkı bırakan ürünlere ağırlık verildi.' },
-      { title: 'Haftalık uzlaştırma', detail: 'Panel geliri, net satış ve iade rezervi aynı karar tablosunda haftalık kontrol edildi.' },
+      {
+        title: 'Ürün bazlı eşik',
+        detail: 'Tek mağaza ROAS hedefi yerine her ürün grubu için başabaş ROAS sınırı tanımlandı.',
+      },
+      {
+        title: 'Bütçe karması',
+        detail:
+          'Düşük katkılı SKU’ların ölçek bütçesi azaltılıp yeterli katkı bırakan ürünlere ağırlık verildi.',
+      },
+      {
+        title: 'Haftalık uzlaştırma',
+        detail:
+          'Panel geliri, net satış ve iade rezervi aynı karar tablosunda haftalık kontrol edildi.',
+      },
     ],
     limitations: [
       'Bu bir kontrollü deney değil; revize senaryonun nedensel etki kanıtı olduğu ileri sürülemez.',
@@ -115,7 +135,10 @@ export const demoCases: DemoCase[] = [
       'Sonuçlar yalnızca verilen varsayımlarla üretilen örnek simülasyon sonuçlarıdır ve başka işletmelere genellenemez.',
     ],
     relatedGuides: [
-      { title: 'ROAS yüksekken kâr neden düşer?', href: '/rehberler/roas-yuksekken-kar-neden-duser' },
+      {
+        title: 'ROAS yüksekken kâr neden düşer?',
+        href: '/rehberler/roas-yuksekken-kar-neden-duser',
+      },
       { title: 'Başabaş ROAS nasıl hesaplanır?', href: '/rehberler/basabas-roas-nasil-hesaplanir' },
       { title: 'Katkı payı nedir?', href: '/rehberler/katki-payi-nedir' },
     ],

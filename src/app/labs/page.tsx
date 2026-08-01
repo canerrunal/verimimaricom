@@ -15,22 +15,23 @@ export default function LabsPage() {
       <NavBar t={t} />
 
       <section className="wrap hero single">
-          <Link href="/" className="back-link">← Ana Sayfaya Dön</Link>
-          <span className="eyebrow">LABS</span>
-          <h1>
-            Canlı AI Modelleri ve İnteraktif Deney Ortamı
-          </h1>
-          <p className="intro">
-            Hugging Face (Gradio) ve Streamlit deneylerini doğrudan platform içine gömerek, portföyü statik sunumdan canlı bir laboratuvara dönüştürür.
-          </p>
+        <Link href="/" className="back-link">
+          ← Ana Sayfaya Dön
+        </Link>
+        <span className="eyebrow">LABS</span>
+        <h1>Canlı AI Modelleri ve İnteraktif Deney Ortamı</h1>
+        <p className="intro">
+          Hugging Face (Gradio) ve Streamlit deneylerini doğrudan platform içine gömerek, portföyü
+          statik sunumdan canlı bir laboratuvara dönüştürür.
+        </p>
       </section>
 
       <section className="wrap" style={{ paddingBottom: 72 }}>
-          <div className="lab-grid">
-            {labsCatalog.map((item: any) => (
-              <LabEmbed key={item.id} item={item} />
-            ))}
-          </div>
+        <div className="lab-grid">
+          {labsCatalog.map((item: any) => (
+            <LabEmbed key={item.id} item={item} />
+          ))}
+        </div>
       </section>
       <Footer t={t} />
     </main>

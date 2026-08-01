@@ -76,12 +76,7 @@ export function createS3PresignedGetUrl(key: string, expiresSeconds = 900) {
     'UNSIGNED-PAYLOAD',
   ].join('\n')
 
-  const stringToSign = [
-    algorithm,
-    amzDate,
-    credentialScope,
-    hashHex(canonicalRequest),
-  ].join('\n')
+  const stringToSign = [algorithm, amzDate, credentialScope, hashHex(canonicalRequest)].join('\n')
 
   const signingKey = deriveSigningKey(cfg.secretAccessKey, dateStamp, cfg.region)
   const signature = crypto.createHmac('sha256', signingKey).update(stringToSign).digest('hex')
@@ -90,4 +85,3 @@ export function createS3PresignedGetUrl(key: string, expiresSeconds = 900) {
 
   return `${endpoint}${canonicalUri}?${canonicalQuery.toString()}`
 }
-

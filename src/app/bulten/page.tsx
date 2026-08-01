@@ -53,11 +53,17 @@ export default function BultenPage() {
                 required
                 aria-label="Bülten e-posta"
               />
-              <button type="submit" className="btn">Abone Ol</button>
+              <button type="submit" className="btn">
+                Abone Ol
+              </button>
             </form>
           ) : (
-            <div className="callout" style={{ margin: '22px auto 0', maxWidth: 470, textAlign: 'left', fontSize: 10 }}>
-              ✓ <strong>{email}</strong> adresiniz Veri Mimarı Notları bültenine eklendi. İlk sayı bu hafta içinde geliyor.
+            <div
+              className="callout"
+              style={{ margin: '22px auto 0', maxWidth: 470, textAlign: 'left', fontSize: 10 }}
+            >
+              ✓ <strong>{email}</strong> adresiniz Veri Mimarı Notları bültenine eklendi. İlk sayı
+              bu hafta içinde geliyor.
             </div>
           )}
 
@@ -79,7 +85,15 @@ export default function BultenPage() {
             <div key={issue.issue} className="card">
               <span className="tag">{issue.issue}</span>
               <h2>{issue.title}</h2>
-              <div style={{ display: 'flex', gap: '0.4rem', marginTop: 'auto', paddingTop: 14, flexWrap: 'wrap' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '0.4rem',
+                  marginTop: 'auto',
+                  paddingTop: 14,
+                  flexWrap: 'wrap',
+                }}
+              >
                 {issue.topics.map((tp) => (
                   <span key={tp} className="tag" style={{ fontSize: 8 }}>
                     #{tp}

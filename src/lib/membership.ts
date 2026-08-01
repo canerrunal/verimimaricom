@@ -1,4 +1,3 @@
-
 export const MEMBER_COOKIE = 'vm_member'
 
 export function hasActiveMembership(cookieStore: any) {
@@ -15,4 +14,3 @@ export function membershipCookieOptions(days = 30) {
     maxAge: 60 * 60 * 24 * days,
   }
 }
-

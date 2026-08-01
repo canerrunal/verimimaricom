@@ -10,28 +10,36 @@ export default function HeroPanel({ t }: { t: any }) {
         titleTop: 'See the data.',
         titleAccent: 'Grow profit.',
         titleBottom: 'Without guesswork.',
-        intro: 'See which decision makes sense across ad spend, product margin, and operating costs.',
+        intro:
+          'See which decision makes sense across ad spend, product margin, and operating costs.',
         introStrong: 'Build on calculation, not assumptions.',
         primary: 'See the result in 2 minutes',
         secondary: 'Explore the methods',
         signals: ['Use without signing up', 'Transparent methodology', 'Your data is never stored'],
         visualKicker: 'THE JOURNEY OF A DECISION',
         consoleLabel: 'Break-even ROAS mini console',
-        notes: [['PROFIT / ROAS', 'on one screen'], ['No estimates', 'real calculation']],
+        notes: [
+          ['PROFIT / ROAS', 'on one screen'],
+          ['No estimates', 'real calculation'],
+        ],
       }
     : {
         crumb: 'TÜRKİYE’DEKİ E-TİCARET EKİPLERİ İÇİN',
         titleTop: 'Veriyi gör.',
         titleAccent: 'Kârı büyüt.',
         titleBottom: 'Kaybolmadan.',
-        intro: 'Reklam maliyetiniz, ürün marjınız ve operasyon giderleriniz üzerinden hangi kararın mantıklı olduğunu görün.',
+        intro:
+          'Reklam maliyetiniz, ürün marjınız ve operasyon giderleriniz üzerinden hangi kararın mantıklı olduğunu görün.',
         introStrong: 'Tahmine değil, hesaplamaya dayanın.',
         primary: '2 dakikada hesabı gör',
         secondary: 'Yöntemleri incele',
         signals: ['Kayıt olmadan kullanın', 'Açık hesaplama yöntemi', 'Verileriniz saklanmaz'],
         visualKicker: 'BİR KARARIN YOLCULUĞU',
         consoleLabel: 'Başa Baş ROAS mini konsol',
-        notes: [['KÂR / ROAS', 'tek ekranda'], ['Tahmin değil', 'gerçek hesap']],
+        notes: [
+          ['KÂR / ROAS', 'tek ekranda'],
+          ['Tahmin değil', 'gerçek hesap'],
+        ],
       }
 
   return (
@@ -61,13 +69,16 @@ export default function HeroPanel({ t }: { t: any }) {
           </div>
           <div className="signals">
             <span className="tag">
-              <i></i>{copy.signals[0]}
+              <i></i>
+              {copy.signals[0]}
             </span>
             <span className="tag">
-              <i></i>{copy.signals[1]}
+              <i></i>
+              {copy.signals[1]}
             </span>
             <span className="tag">
-              <i></i>{copy.signals[2]}
+              <i></i>
+              {copy.signals[2]}
             </span>
           </div>
         </div>
@@ -118,7 +129,13 @@ function ConsoleWidget({ isEnglish }: { isEnglish: boolean }) {
 
   const { contribution, roas } = calc()
   const labels = isEnglish
-    ? ['Sale price', 'Product cost', 'Commission (%)', 'Shipping + packaging', 'Expected return cost']
+    ? [
+        'Sale price',
+        'Product cost',
+        'Commission (%)',
+        'Shipping + packaging',
+        'Expected return cost',
+      ]
     : ['Satış fiyatı', 'Ürün maliyeti', 'Komisyon (%)', 'Kargo + paketleme', 'İade maliyeti']
 
   return (

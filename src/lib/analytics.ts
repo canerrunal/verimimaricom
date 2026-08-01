@@ -15,7 +15,9 @@ export function trackEvent(eventName: string, payload: AnalyticsPayload = {}) {
   const safeEvent = String(eventName || '').trim()
   if (!safeEvent) return
 
-  const props = Object.fromEntries(Object.entries(payload).filter(([, value]) => value !== undefined))
+  const props = Object.fromEntries(
+    Object.entries(payload).filter(([, value]) => value !== undefined),
+  )
 
   try {
     if (typeof window.gtag === 'function') {

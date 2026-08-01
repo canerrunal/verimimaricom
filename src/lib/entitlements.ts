@@ -83,4 +83,3 @@ export async function markWebhookProcessed(eventId: string) {
   await persist()
   return true
 }
-

@@ -65,7 +65,10 @@ async function main() {
   const outputDir = path.resolve('./data/growth')
   await fs.mkdir(outputDir, { recursive: true })
 
-  const outputPath = path.join(outputDir, `weekly-report-${new Date().toISOString().slice(0, 10)}.json`)
+  const outputPath = path.join(
+    outputDir,
+    `weekly-report-${new Date().toISOString().slice(0, 10)}.json`,
+  )
   await fs.writeFile(outputPath, JSON.stringify(report, null, 2), 'utf-8')
 
   console.log(JSON.stringify({ ok: true, outputPath, ...report.kpis }, null, 2))
@@ -75,4 +78,3 @@ main().catch((error) => {
   console.error('[growth-weekly-report] failed:', error)
   process.exit(1)
 })
-

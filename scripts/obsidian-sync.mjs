@@ -13,7 +13,9 @@ function toSlug(input = '') {
 }
 
 function normalizeMaturity(raw = '') {
-  const v = String(raw || '').toLowerCase().trim()
+  const v = String(raw || '')
+    .toLowerCase()
+    .trim()
   if (v === 'growing') return 'growing'
   if (v === 'evergreen') return 'evergreen'
   return 'seed'
@@ -22,9 +24,7 @@ function normalizeMaturity(raw = '') {
 function extractWikiLinks(content = '') {
   const text = String(content || '')
   const matches = [...text.matchAll(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]/g)]
-  return matches
-    .map((m) => String(m[1] || '').trim())
-    .filter(Boolean)
+  return matches.map((m) => String(m[1] || '').trim()).filter(Boolean)
 }
 
 function parseFrontmatter(markdown = '') {
@@ -147,4 +147,3 @@ run().catch((err) => {
   console.error('Obsidian sync başarısız:', err)
   process.exit(1)
 })
-

@@ -13,6 +13,7 @@ CTA, VeriBot ve Membership funnel performansını haftalık takip etmek için mi
 - KPI: Persona Path tıklama dağılımı
 
 Kaynak eventler:
+
 - `cta_home_*`
 - `persona_*_path_click`
 
@@ -23,6 +24,7 @@ Kaynak eventler:
 - KPI: En çok seçilen komutlar (`command_id`)
 
 Kaynak eventler:
+
 - `command_palette_open`
 - `command_palette_select`
 - `command_palette_close`
@@ -34,6 +36,7 @@ Kaynak eventler:
 - KPI: Ortalama prompt uzunluğu
 
 Kaynak eventler:
+
 - `veribot_open`
 - `veribot_submit`
 
@@ -45,6 +48,7 @@ Kaynak eventler:
 - KPI: Success ratio = success / (success + fail)
 
 Kaynak eventler:
+
 - `membership_checkout_start`
 - `membership_unlock_success`
 - `membership_unlock_failed`
@@ -64,11 +68,13 @@ Kaynak eventler:
 - Çıktı: `data/growth/weekly-report-YYYY-MM-DD.json`
 
 Otomasyon KPI çıktıları:
+
 - Command Palette Open -> Select oranı
 - VeriBot Submit/Open oranı
 - Membership Unlock Success oranı
 
 Not:
+
 - Event dosyası yoksa script sıfır veri ile rapor üretir ve uyarı notu ekler.
 - CI veya cron pipeline ile haftalık tetiklenmesi önerilir.
 

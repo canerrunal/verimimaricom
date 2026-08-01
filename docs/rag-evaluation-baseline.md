@@ -23,6 +23,7 @@ Current eval set includes representative prompts for:
 3. Tech-stack intent
 
 Scoring model (baseline):
+
 - pass/fail per prompt based on expected hit-kind presence
 - aggregate percentage score
 
@@ -36,4 +37,3 @@ Scoring model (baseline):
 ## Operational Note
 
 This baseline is intentionally lightweight and deterministic. Vector-store backed retrieval will be introduced in the next step while preserving this script-level regression harness.
-

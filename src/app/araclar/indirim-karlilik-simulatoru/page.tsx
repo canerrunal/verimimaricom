@@ -7,7 +7,17 @@ import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
 import { getDictionary } from '@/lib/i18n'
 
-function Field({ label, hint, value, onChange }: { label: string; hint: string; value: number; onChange: (v: number) => void }) {
+function Field({
+  label,
+  hint,
+  value,
+  onChange,
+}: {
+  label: string
+  hint: string
+  value: number
+  onChange: (v: number) => void
+}) {
   const inputId = useId()
 
   return (
@@ -53,11 +63,15 @@ function IndirimContent() {
   const normalTotalProfit = normalUnitProfit * currentVolume
   const discComAmount = (discountedPrice * commission) / 100
   const discUnitProfit = discountedPrice - cost - discComAmount - shipping
-  const requiredVolume = normalTotalProfit > 0 && discUnitProfit > 0 ? Math.ceil(normalTotalProfit / discUnitProfit) : 0
+  const requiredVolume =
+    normalTotalProfit > 0 && discUnitProfit > 0 ? Math.ceil(normalTotalProfit / discUnitProfit) : 0
   const requiredIncreasePercent =
-    currentVolume > 0 && requiredVolume > 0 ? ((requiredVolume - currentVolume) / currentVolume) * 100 : 0
+    currentVolume > 0 && requiredVolume > 0
+      ? ((requiredVolume - currentVolume) / currentVolume) * 100
+      : 0
 
-  const fmt = (n: number) => n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+  const fmt = (n: number) =>
+    n.toLocaleString('tr-TR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 
   const copyShareUrl = () => {
     const params = new URLSearchParams({
@@ -79,14 +93,23 @@ function IndirimContent() {
       <NavBar t={t} />
 
       <section className="wrap hero single" style={{ paddingBottom: 20 }}>
-        <a href="/araclar" className="back-link">← Tüm Araçlar</a>
+        <a href="/araclar" className="back-link">
+          ← Tüm Araçlar
+        </a>
         <div className="crumb">ARAÇLAR / KÂRLILIK / 03</div>
         <h1>İndirim Kârlılık Simülatörü</h1>
-        <p className="intro">Planladığınız indirim kampanyasının birim kârlılığa etkisini ve toplam kârı korumak için gereken ek satış adedini hesaplayın.</p>
+        <p className="intro">
+          Planladığınız indirim kampanyasının birim kârlılığa etkisini ve toplam kârı korumak için
+          gereken ek satış adedini hesaplayın.
+        </p>
         <div className="signals" style={{ marginTop: 18 }}>
           <span className="tag live">CANLI · 2 DK · ÜCRETSİZ</span>
           <span className="tag">AÇIK HESAPLAMA YÖNTEMİ</span>
-          <button onClick={copyShareUrl} className="btn alt" style={{ padding: '6px 10px', fontSize: 9 }}>
+          <button
+            onClick={copyShareUrl}
+            className="btn alt"
+            style={{ padding: '6px 10px', fontSize: 9 }}
+          >
             {copied ? '✓ Bağlantı kopyalandı' : '🔗 Sonuç bağlantısını kopyala'}
           </button>
         </div>
@@ -95,12 +118,42 @@ function IndirimContent() {
       <section className="wrap" style={{ paddingBottom: 72 }}>
         <div className="form-layout">
           <div className="panel" style={{ padding: '6px 22px' }}>
-            <Field label="Normal satış fiyatı" hint="İndirimsiz liste fiyatı" value={origPrice} onChange={setOrigPrice} />
-            <Field label="Ürün maliyeti (COGS)" hint="Geliş / alış maliyeti" value={cost} onChange={setCost} />
-            <Field label="Komisyon oranı (%)" hint="Pazaryeri / ödeme kesintisi" value={commission} onChange={setCommission} />
-            <Field label="Kargo + paketleme" hint="Sipariş başına teslimat gideri" value={shipping} onChange={setShipping} />
-            <Field label="Uygulanan indirim (%)" hint="Kampanya indirim oranı" value={discountPercent} onChange={setDiscountPercent} />
-            <Field label="Mevcut satış adedi" hint="İndirimsiz aylık hacim" value={currentVolume} onChange={setCurrentVolume} />
+            <Field
+              label="Normal satış fiyatı"
+              hint="İndirimsiz liste fiyatı"
+              value={origPrice}
+              onChange={setOrigPrice}
+            />
+            <Field
+              label="Ürün maliyeti (COGS)"
+              hint="Geliş / alış maliyeti"
+              value={cost}
+              onChange={setCost}
+            />
+            <Field
+              label="Komisyon oranı (%)"
+              hint="Pazaryeri / ödeme kesintisi"
+              value={commission}
+              onChange={setCommission}
+            />
+            <Field
+              label="Kargo + paketleme"
+              hint="Sipariş başına teslimat gideri"
+              value={shipping}
+              onChange={setShipping}
+            />
+            <Field
+              label="Uygulanan indirim (%)"
+              hint="Kampanya indirim oranı"
+              value={discountPercent}
+              onChange={setDiscountPercent}
+            />
+            <Field
+              label="Mevcut satış adedi"
+              hint="İndirimsiz aylık hacim"
+              value={currentVolume}
+              onChange={setCurrentVolume}
+            />
           </div>
 
           <aside className="results">
@@ -113,12 +166,31 @@ function IndirimContent() {
                 ? `Kârınızı korumak için satış adedini ${currentVolume} → ${requiredVolume} adede çıkarmanız gerekir.`
                 : 'İndirimli fiyatta birim kâr yok; hacim artışı tek başına kârı kurtarmaz.'}
             </p>
-            <div className="metric-row"><span>Normal birim kâr</span><b>{fmt(normalUnitProfit)} TL</b></div>
-            <div className="metric-row"><span>İndirimli fiyat</span><b>{fmt(discountedPrice)} TL</b></div>
-            <div className="metric-row"><span>İndirimli birim kâr</span><b className={discUnitProfit >= 0 ? 'positive' : 'negative'}>{fmt(discUnitProfit)} TL</b></div>
-            <div className="metric-row"><span>Mevcut toplam kâr</span><b>{fmt(normalTotalProfit)} TL</b></div>
-            <div className="metric-row"><span>İndirimde gereken adet</span><b>{requiredVolume}</b></div>
-            <p className="fine">Hedef, mevcut toplam kârı indirimli fiyat üzerinden de yakalayabilmek.</p>
+            <div className="metric-row">
+              <span>Normal birim kâr</span>
+              <b>{fmt(normalUnitProfit)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>İndirimli fiyat</span>
+              <b>{fmt(discountedPrice)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>İndirimli birim kâr</span>
+              <b className={discUnitProfit >= 0 ? 'positive' : 'negative'}>
+                {fmt(discUnitProfit)} TL
+              </b>
+            </div>
+            <div className="metric-row">
+              <span>Mevcut toplam kâr</span>
+              <b>{fmt(normalTotalProfit)} TL</b>
+            </div>
+            <div className="metric-row">
+              <span>İndirimde gereken adet</span>
+              <b>{requiredVolume}</b>
+            </div>
+            <p className="fine">
+              Hedef, mevcut toplam kârı indirimli fiyat üzerinden de yakalayabilmek.
+            </p>
           </aside>
         </div>
       </section>

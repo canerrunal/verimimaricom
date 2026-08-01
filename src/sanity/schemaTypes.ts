@@ -24,7 +24,12 @@ const contentBase = defineType({
       initialValue: 'seed',
     }),
     defineField({ name: 'kind', title: 'Kind', type: 'string' }),
-    defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'reference', to: [{ type: 'tag' }] }] }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'tag' }] }],
+    }),
     defineField({
       name: 'relatedContents',
       title: 'Related Contents',
@@ -35,7 +40,12 @@ const contentBase = defineType({
           fields: [
             defineField({ name: 'relationType', title: 'Relation Type', type: 'string' }),
             defineField({ name: 'strength', title: 'Strength', type: 'number' }),
-            defineField({ name: 'target', title: 'Target', type: 'reference', to: [{ type: 'contentBase' }] }),
+            defineField({
+              name: 'target',
+              title: 'Target',
+              type: 'reference',
+              to: [{ type: 'contentBase' }],
+            }),
           ],
         },
       ],
@@ -47,14 +57,24 @@ const tag = defineType({
   name: 'tag',
   title: 'Tag',
   type: 'document',
-  fields: [defineField({ name: 'label', title: 'Label', type: 'string', validation: (r) => r.required() })],
+  fields: [
+    defineField({ name: 'label', title: 'Label', type: 'string', validation: (r) => r.required() }),
+  ],
 })
 
 const blogPost = defineType({
   name: 'blogPost',
   title: 'Blog Post',
   type: 'document',
-  fields: [defineField({ name: 'base', title: 'Base Content', type: 'reference', to: [{ type: 'contentBase' }], validation: (r) => r.required() })],
+  fields: [
+    defineField({
+      name: 'base',
+      title: 'Base Content',
+      type: 'reference',
+      to: [{ type: 'contentBase' }],
+      validation: (r) => r.required(),
+    }),
+  ],
 })
 
 const skill = defineType({
@@ -88,7 +108,13 @@ const caseStudy = defineType({
   title: 'Case Study',
   type: 'document',
   fields: [
-    defineField({ name: 'base', title: 'Base Content', type: 'reference', to: [{ type: 'contentBase' }], validation: (r) => r.required() }),
+    defineField({
+      name: 'base',
+      title: 'Base Content',
+      type: 'reference',
+      to: [{ type: 'contentBase' }],
+      validation: (r) => r.required(),
+    }),
     defineField({ name: 'clientName', title: 'Client Name', type: 'string' }),
     defineField({ name: 'industry', title: 'Industry', type: 'string' }),
     defineField({ name: 'problemStatement', title: 'Problem Statement', type: 'text' }),
@@ -97,10 +123,13 @@ const caseStudy = defineType({
     defineField({ name: 'impactScore', title: 'Impact Score', type: 'number' }),
     defineField({ name: 'repoUrl', title: 'Repo URL', type: 'url' }),
     defineField({ name: 'demoUrl', title: 'Demo URL', type: 'url' }),
-    defineField({ name: 'architectureDiagramMermaid', title: 'Architecture Diagram (Mermaid)', type: 'text' }),
+    defineField({
+      name: 'architectureDiagramMermaid',
+      title: 'Architecture Diagram (Mermaid)',
+      type: 'text',
+    }),
     defineField({ name: 'metrics', title: 'Metrics', type: 'array', of: [{ type: 'caseMetric' }] }),
   ],
 })
 
 export const schemaTypes = [contentBase, tag, blogPost, skill, metric, caseStudy]
-

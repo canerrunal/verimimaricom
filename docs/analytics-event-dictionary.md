@@ -7,6 +7,7 @@ Format:
 `<domain>_<area>_<action>_<result?>`
 
 Örnek:
+
 - `cta_home_featured_cases_click`
 - `veribot_submit`
 - `membership_unlock_success`
@@ -20,6 +21,7 @@ Format:
 ## Event Listesi
 
 ## Home / CTA
+
 - `cta_home_featured_cases_click`
   - payload: `placement`, `cta`, `href`
 - `cta_home_premium_click`
@@ -34,6 +36,7 @@ Format:
   - payload: `placement`, `section`, `href`
 
 ## Persona Paths
+
 - `persona_recruiter_path_click`
   - payload: `placement`, `href`
 - `persona_business_path_click`
@@ -42,6 +45,7 @@ Format:
   - payload: `placement`, `href`
 
 ## Command Palette
+
 - `command_palette_open`
   - payload: `source`
 - `command_palette_close`
@@ -52,6 +56,7 @@ Format:
   - payload: `command_id`, `href`, `source`
 
 ## VeriBot
+
 - `veribot_open`
   - payload: `source`
 - `veribot_close`
@@ -60,6 +65,7 @@ Format:
   - payload: `prompt_length`
 
 ## Membership
+
 - `membership_checkout_start`
   - payload: `placement`, `has_email`, `email_domain`
 - `membership_unlock_success`

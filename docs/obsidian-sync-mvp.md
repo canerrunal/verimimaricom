@@ -7,6 +7,7 @@ Bu doküman [`obsidian-sync.mjs`](zolm-main/brand-site/next/scripts/obsidian-syn
 Obsidian vault içindeki `#public` etiketli notları tarayıp JSON çıktısı üretmek.
 
 Çıktı dosyası varsayılanı:
+
 - `./data/obsidian-sync/public-notes.json`
 
 ## Ortam Değişkenleri

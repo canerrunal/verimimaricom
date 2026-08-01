@@ -13,13 +13,14 @@ export default function MembershipPage() {
     <main className="page" aria-label="Üyelik">
       <NavBar t={t} />
       <section className="wrap hero single">
-        <Link href="/" className="back-link">← Ana Sayfaya Dön</Link>
+        <Link href="/" className="back-link">
+          ← Ana Sayfaya Dön
+        </Link>
         <span className="eyebrow">ÜYELİK</span>
-        <h1>
-          Premium Üyelik ve Dijital Varlık Satışı
-        </h1>
+        <h1>Premium Üyelik ve Dijital Varlık Satışı</h1>
         <p className="intro">
-          Bu altyapı ile belirli içerikleri kilitleyebilir, Lemon Squeezy checkout üzerinden ödeme alabilir ve üyelik doğrulaması sonrası içeriği açabilirsiniz.
+          Bu altyapı ile belirli içerikleri kilitleyebilir, Lemon Squeezy checkout üzerinden ödeme
+          alabilir ve üyelik doğrulaması sonrası içeriği açabilirsiniz.
         </p>
       </section>
 
@@ -35,7 +36,17 @@ export default function MembershipPage() {
             'Webhook ile üyelik hakediş işleme',
             'E-posta ile üyelik aktifleme (unlock)',
           ].map((item) => (
-            <li key={item} style={{ padding: '8px 0', borderBottom: '1px solid #eee', fontSize: 11, color: 'var(--ink)' }}>{item}</li>
+            <li
+              key={item}
+              style={{
+                padding: '8px 0',
+                borderBottom: '1px solid #eee',
+                fontSize: 11,
+                color: 'var(--ink)',
+              }}
+            >
+              {item}
+            </li>
           ))}
         </ul>
 
@@ -43,25 +54,39 @@ export default function MembershipPage() {
           <div className="tool-sm">
             <div className="indicator blue"></div>
             <h3>1) Ödemeyle Başlat</h3>
-            <p style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}>
+            <p
+              style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}
+            >
               E-posta girin ve checkout akışına yönlenin.
             </p>
             <form
               action="/api/commerce/checkout"
               method="GET"
-              onSubmit={() => trackEvent('membership_checkout_start', { placement: 'membership_page' })}
+              onSubmit={() =>
+                trackEvent('membership_checkout_start', { placement: 'membership_page' })
+              }
             >
               <div className="form-group" style={{ marginBottom: 12 }}>
-                <input type="email" name="email" required placeholder="ornek@domain.com" aria-label="Üyelik e-posta" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="ornek@domain.com"
+                  aria-label="Üyelik e-posta"
+                />
               </div>
-              <button type="submit" className="btn">Lemon Checkout ↗</button>
+              <button type="submit" className="btn">
+                Lemon Checkout ↗
+              </button>
             </form>
           </div>
 
           <div className="tool-sm">
             <div className="indicator green"></div>
             <h3>2) Üyeliği Aktifleştir (Demo)</h3>
-            <p style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}>
+            <p
+              style={{ fontSize: 10, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.65 }}
+            >
               Webhook geldikten sonra aynı e-posta ile üyeliği açın.
             </p>
             <form
@@ -84,9 +109,17 @@ export default function MembershipPage() {
               }}
             >
               <div className="form-group" style={{ marginBottom: 12 }}>
-                <input type="email" name="email" required placeholder="ornek@domain.com" aria-label="Üyelik aktivasyon e-postası" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="ornek@domain.com"
+                  aria-label="Üyelik aktivasyon e-postası"
+                />
               </div>
-              <button type="submit" className="btn">Üyeliği Aç ↗</button>
+              <button type="submit" className="btn">
+                Üyeliği Aç ↗
+              </button>
             </form>
           </div>
         </div>

@@ -1,4 +1,3 @@
-
 function normalizeQuestion(question: string) {
   return String(question || '').trim()
 }
@@ -77,4 +76,3 @@ export function executeToolByAction(action: string, question: string) {
   if (!fn) return null
   return fn(question)
 }
-

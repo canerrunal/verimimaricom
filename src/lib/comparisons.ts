@@ -53,8 +53,16 @@ export const metricComparisons: MetricComparison[] = [
       formula: 'Atfedilen reklam geliri ÷ Reklam harcaması',
       numerator: 'Platformun veya analitik sisteminin reklama atfettiği gelir',
       denominator: 'Seçilen kampanya, reklam seti, kreatif veya kanal harcaması',
-      bestFor: ['Kampanya ve kreatif karşılaştırması', 'Teklif ve bütçe optimizasyonu', 'Kanal içi teşhis'],
-      limits: ['Atıf modeline ve pencereye bağımlıdır', 'Kanallar aynı siparişi sahiplenebilir', 'Ürün ve operasyon maliyetlerini göstermez'],
+      bestFor: [
+        'Kampanya ve kreatif karşılaştırması',
+        'Teklif ve bütçe optimizasyonu',
+        'Kanal içi teşhis',
+      ],
+      limits: [
+        'Atıf modeline ve pencereye bağımlıdır',
+        'Kanallar aynı siparişi sahiplenebilir',
+        'Ürün ve operasyon maliyetlerini göstermez',
+      ],
     },
     right: {
       name: 'MER',
@@ -63,8 +71,16 @@ export const metricComparisons: MetricComparison[] = [
       formula: 'Toplam dönem geliri ÷ Toplam pazarlama harcaması',
       numerator: 'Tanımı sabitlenmiş toplam dönem geliri',
       denominator: 'Tüm kanallar; tanıma göre medya veya tam yüklü pazarlama gideri',
-      bestFor: ['Şirket düzeyi bütçe planlama', 'Kanallar arası toplam verimlilik', 'Ölçekleme eğilimini izleme'],
-      limits: ['Kanal veya kreatif teşhisi yapmaz', 'Organik ve tekrar müşteri gelirini de içerebilir', 'Gider kapsamı belgelenmezse karşılaştırılamaz'],
+      bestFor: [
+        'Şirket düzeyi bütçe planlama',
+        'Kanallar arası toplam verimlilik',
+        'Ölçekleme eğilimini izleme',
+      ],
+      limits: [
+        'Kanal veya kreatif teşhisi yapmaz',
+        'Organik ve tekrar müşteri gelirini de içerebilir',
+        'Gider kapsamı belgelenmezse karşılaştırılamaz',
+      ],
     },
     example: {
       period: 'Simüle edilmiş aylık örnek',
@@ -75,11 +91,36 @@ export const metricComparisons: MetricComparison[] = [
       googleSpend: 180_000,
     },
     decisions: [
-      { situation: 'Kreatifleri karşılaştırma', primary: 'ROAS', companion: 'CTR + CVR + katkı', reason: 'Karar birimi reklam veya kreatiftir.' },
-      { situation: 'Aylık toplam bütçeyi değerlendirme', primary: 'MER', companion: 'Katkı marjı + yeni müşteri payı', reason: 'Karar şirket düzeyi toplam harcamadır.' },
-      { situation: 'Platform raporları toplam geliri aşıyor', primary: 'MER', companion: 'Atıf ve incrementality analizi', reason: 'Çifte atfın toplam görünümü bozması önlenir.' },
-      { situation: 'Tek kampanyanın teklifini değiştirme', primary: 'ROAS', companion: 'Başabaş ROAS + CPA', reason: 'Ekonomik eşik kampanya sonucuyla karşılaştırılır.' },
-      { situation: 'Kârlı büyüme kararı', primary: 'İkisi birlikte', companion: 'Reklam sonrası katkı + nakit', reason: 'Verimlilik, kâr ve nakit aynı şey değildir.' },
+      {
+        situation: 'Kreatifleri karşılaştırma',
+        primary: 'ROAS',
+        companion: 'CTR + CVR + katkı',
+        reason: 'Karar birimi reklam veya kreatiftir.',
+      },
+      {
+        situation: 'Aylık toplam bütçeyi değerlendirme',
+        primary: 'MER',
+        companion: 'Katkı marjı + yeni müşteri payı',
+        reason: 'Karar şirket düzeyi toplam harcamadır.',
+      },
+      {
+        situation: 'Platform raporları toplam geliri aşıyor',
+        primary: 'MER',
+        companion: 'Atıf ve incrementality analizi',
+        reason: 'Çifte atfın toplam görünümü bozması önlenir.',
+      },
+      {
+        situation: 'Tek kampanyanın teklifini değiştirme',
+        primary: 'ROAS',
+        companion: 'Başabaş ROAS + CPA',
+        reason: 'Ekonomik eşik kampanya sonucuyla karşılaştırılır.',
+      },
+      {
+        situation: 'Kârlı büyüme kararı',
+        primary: 'İkisi birlikte',
+        companion: 'Reklam sonrası katkı + nakit',
+        reason: 'Verimlilik, kâr ve nakit aynı şey değildir.',
+      },
     ],
     checklist: [
       'ROAS gelirinin atıf modelini ve penceresini yazın.',
@@ -102,8 +143,14 @@ export const metricComparisons: MetricComparison[] = [
     ],
     relatedGuides: [
       { title: 'MER nedir, nasıl hesaplanır?', href: '/rehberler/mer-nedir-nasil-hesaplanir' },
-      { title: 'ROAS yüksekken kâr neden düşebilir?', href: '/rehberler/roas-yuksekken-kar-neden-duser' },
-      { title: 'Haftalık reklam raporu nasıl hazırlanır?', href: '/rehberler/haftalik-reklam-raporu-nasil-hazirlanir' },
+      {
+        title: 'ROAS yüksekken kâr neden düşebilir?',
+        href: '/rehberler/roas-yuksekken-kar-neden-duser',
+      },
+      {
+        title: 'Haftalık reklam raporu nasıl hazırlanır?',
+        href: '/rehberler/haftalik-reklam-raporu-nasil-hazirlanir',
+      },
     ],
     relatedTerms: [
       { title: 'ROAS sözlük maddesi', href: '/sozluk/roas' },
@@ -120,7 +167,8 @@ export function getMetricComparison(slug: string) {
 
 export function comparisonExampleMetrics(item: MetricComparison) {
   const totalSpend = item.example.metaSpend + item.example.googleSpend
-  const attributedRevenue = item.example.metaAttributedRevenue + item.example.googleAttributedRevenue
+  const attributedRevenue =
+    item.example.metaAttributedRevenue + item.example.googleAttributedRevenue
   return {
     totalSpend,
     attributedRevenue,

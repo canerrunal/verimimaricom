@@ -7,7 +7,11 @@ const checks = [
   { name: 'Robots', path: '/robots.txt', expectedStatus: 200 },
   { name: 'Sitemap', path: '/sitemap.xml', expectedStatus: 200 },
   { name: 'VeriBot API (method check)', path: '/api/veribot', expectedStatus: 405 },
-  { name: 'Membership unlock API (method check)', path: '/api/membership/unlock', expectedStatus: 405 },
+  {
+    name: 'Membership unlock API (method check)',
+    path: '/api/membership/unlock',
+    expectedStatus: 405,
+  },
 ]
 
 async function runCheck(check) {
@@ -61,4 +65,3 @@ main().catch((err) => {
   console.error('Smoke test crashed:', err)
   process.exit(1)
 })
-

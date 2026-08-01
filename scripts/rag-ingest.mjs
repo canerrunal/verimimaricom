@@ -18,4 +18,3 @@ main().catch((error) => {
   console.error('[rag-ingest] failed:', error)
   process.exit(1)
 })
-

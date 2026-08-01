@@ -13,7 +13,9 @@ export async function POST(req: Request) {
     body = {}
   }
 
-  const email = String(body?.email || '').trim().toLowerCase()
+  const email = String(body?.email || '')
+    .trim()
+    .toLowerCase()
   if (!email) {
     return NextResponse.json({ ok: false, error: 'email-required' }, { status: 400 })
   }
@@ -27,4 +29,3 @@ export async function POST(req: Request) {
 
   return NextResponse.json({ ok: true })
 }
-

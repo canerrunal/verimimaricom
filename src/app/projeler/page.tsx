@@ -9,7 +9,8 @@ const allProjects = [
   {
     title: 'Zolm — E-Ticaret Reklam Zekâsı',
     category: 'E-Ticaret Zekâsı',
-    description: 'Reklam harcamalarını ürün bazlı katkı payı ve başa baş ROAS ile otomatik eşleştiren akıllı karar platformu.',
+    description:
+      'Reklam harcamalarını ürün bazlı katkı payı ve başa baş ROAS ile otomatik eşleştiren akıllı karar platformu.',
     badge: 'AKTİF PROJE / BEKLEME LİSTESİ',
     href: '/zolm',
     cta: 'Projeyi İncele →',
@@ -18,7 +19,8 @@ const allProjects = [
   {
     title: 'E-Ticaret Kârlılık ve ROAS Altyapısı',
     category: 'E-Ticaret Zekâsı',
-    description: 'Sipariş başı maliyetleri, pazaryeri komisyonlarını ve kargo bedellerini kârlılık kokpitinde birleştiren sistem.',
+    description:
+      'Sipariş başı maliyetleri, pazaryeri komisyonlarını ve kargo bedellerini kârlılık kokpitinde birleştiren sistem.',
     badge: 'CANLI SİSTEM',
     href: '/araclar/basabas-roas-hesaplayici',
     cta: 'Aracı Dene →',
@@ -26,7 +28,8 @@ const allProjects = [
   {
     title: 'Claude & Vercel AI Gateway Entegrasyonu',
     category: 'AI Otomasyon',
-    description: 'Ürün açıklamaları, pazarlama metinleri ve veri özetleri üreten yapay zeka otomasyon boru hattı.',
+    description:
+      'Ürün açıklamaları, pazarlama metinleri ve veri özetleri üreten yapay zeka otomasyon boru hattı.',
     badge: 'GELİŞEN PROJE',
     href: '/blog/claude-fable-5-vercel-ai-gateway',
     cta: 'Mimariyi Oku →',
@@ -34,7 +37,8 @@ const allProjects = [
   {
     title: 'Digital Garden Bilgi Grafiği',
     category: 'Veri Analitiği',
-    description: 'Bloglar ve teknik notlar arası bağlantıları gösteren organik bilgi ağı ve etkileşimli grafik.',
+    description:
+      'Bloglar ve teknik notlar arası bağlantıları gösteren organik bilgi ağı ve etkileşimli grafik.',
     badge: 'CANLI SİSTEM',
     href: '/labs',
     cta: 'Grafiği İncele →',
@@ -67,12 +71,24 @@ export default function ProjelerPage() {
         <div>
           <div className="crumb">PROJELER &amp; ÜRÜNLER / VERİ MİMARI PORTEFÖYÜ</div>
           <h1>E-Ticaret ve Veri Ekosistemi İçin Geliştirilen Ürünler</h1>
-          <p className="intro">Ölçülebilir kârlılık, yapay zeka entegrasyonu ve otomasyon alanında inşa edilen yazılım projeleri.</p>
+          <p className="intro">
+            Ölçülebilir kârlılık, yapay zeka entegrasyonu ve otomasyon alanında inşa edilen yazılım
+            projeleri.
+          </p>
         </div>
       </section>
 
       <section className="wrap" style={{ paddingBottom: 72 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '20px' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '12px',
+            flexWrap: 'wrap',
+            marginBottom: '20px',
+          }}
+        >
           <div className="filters" style={{ marginBottom: 0 }}>
             {categories.map((cat) => (
               <button
@@ -99,7 +115,11 @@ export default function ProjelerPage() {
             <span className="eyebrow">{featured.badge}</span>
             <h2>{featured.title}</h2>
             <p>{featured.description}</p>
-            <a href={featured.href} className="btn" style={{ background: 'var(--purple)', borderColor: 'var(--purple)' }}>
+            <a
+              href={featured.href}
+              className="btn"
+              style={{ background: 'var(--purple)', borderColor: 'var(--purple)' }}
+            >
               {featured.cta}
             </a>
           </div>
@@ -107,7 +127,12 @@ export default function ProjelerPage() {
 
         <div className="grid">
           {others.map((project) => (
-            <a key={project.href} href={project.href} className="card" style={{ textDecoration: 'none' }}>
+            <a
+              key={project.href}
+              href={project.href}
+              className="card"
+              style={{ textDecoration: 'none' }}
+            >
               <span className="tag">{project.badge}</span>
               <h2>{project.title}</h2>
               <p>{project.description}</p>

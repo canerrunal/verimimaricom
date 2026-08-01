@@ -209,15 +209,19 @@ const fallbackKnowledgeGraph = {
 
 function pickGroup(tags: string[] = []) {
   const set = (tags || []).map((x) => String(x || '').toLowerCase())
-  if (set.some((x) => x.includes('ai') || x.includes('yapay zeka') || x.includes('nlp'))) return 'AI'
+  if (set.some((x) => x.includes('ai') || x.includes('yapay zeka') || x.includes('nlp')))
+    return 'AI'
   if (set.some((x) => x.includes('veri') || x.includes('data'))) return 'Data'
   if (set.some((x) => x.includes('web') || x.includes('next'))) return 'Web'
-  if (set.some((x) => x.includes('pazarlama') || x.includes('growth') || x.includes('e-ticaret'))) return 'Growth'
+  if (set.some((x) => x.includes('pazarlama') || x.includes('growth') || x.includes('e-ticaret')))
+    return 'Growth'
   return 'General'
 }
 
 function normalizeMaturity(value: string) {
-  const v = String(value || '').toLowerCase().trim()
+  const v = String(value || '')
+    .toLowerCase()
+    .trim()
   if (v === 'growing') return 'growing'
   if (v === 'evergreen') return 'evergreen'
   return 'seed'

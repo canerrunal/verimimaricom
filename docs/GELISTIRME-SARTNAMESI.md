@@ -1,20 +1,21 @@
 ---
-title: "Veri Mimarı Web Platformu — Yazılım Geliştirme Şartnamesi"
-document_type: "Product Requirements Document + Technical Specification"
-version: "1.0"
-status: "development-ready"
-owner: "Caner Ünal"
-product: "Veri Mimarı"
-repository: "caner8047-coder/verimimaricom"
-production_domain: "verimimari.com"
-prepared_at: "2026-07-31"
-primary_language: "tr-TR"
-secondary_language: "en-US"
-content_source: "docs/içerik.md"
-recommended_path: "docs/GELISTIRME-SARTNAMESI.md"
+title: 'Veri Mimarı Web Platformu — Yazılım Geliştirme Şartnamesi'
+document_type: 'Product Requirements Document + Technical Specification'
+version: '1.0'
+status: 'development-ready'
+owner: 'Caner Ünal'
+product: 'Veri Mimarı'
+repository: 'caner8047-coder/verimimaricom'
+production_domain: 'verimimari.com'
+prepared_at: '2026-07-31'
+primary_language: 'tr-TR'
+secondary_language: 'en-US'
+content_source: 'docs/içerik.md'
+recommended_path: 'docs/GELISTIRME-SARTNAMESI.md'
 ---
 
 # Veri Mimarı Web Platformu
+
 ## Yazılım Geliştirme Şartnamesi
 
 > Bu doküman ürün yöneticisi, yazılım geliştirici, UI/UX tasarımcısı, içerik yöneticisi ve QA ekibi için bağlayıcı geliştirme kaynağıdır.
@@ -472,14 +473,14 @@ Mobil:
 
 Aşağıdaki yönlendirmeler planlanmalıdır:
 
-| Eski rota | Yeni rota | Kod |
-|---|---|---:|
-| `/blog` | `/rehberler` | 301 |
-| `/blog/[slug]` | `/rehberler/[slug]` | 301 |
-| `/uyelik` | `/bulten` veya 410 | Karara bağlı |
-| WordPress `?p=*` | Eşleşen yeni içerik veya `/` | 301 |
-| Eski proje slug'ları | Yeni `/projeler/[slug]` | 301 |
-| Gereksiz demo rotaları | Uygun hedef veya 410 | Karara bağlı |
+| Eski rota              | Yeni rota                    |          Kod |
+| ---------------------- | ---------------------------- | -----------: |
+| `/blog`                | `/rehberler`                 |          301 |
+| `/blog/[slug]`         | `/rehberler/[slug]`          |          301 |
+| `/uyelik`              | `/bulten` veya 410           | Karara bağlı |
+| WordPress `?p=*`       | Eşleşen yeni içerik veya `/` |          301 |
+| Eski proje slug'ları   | Yeni `/projeler/[slug]`      |          301 |
+| Gereksiz demo rotaları | Uygun hedef veya 410         | Karara bağlı |
 
 Yönlendirme tablosu ayrı veri yapısında tutulmalı ve test edilmelidir.
 
@@ -556,12 +557,7 @@ Tüm aktif araçları kategori ve durumlarıyla göstermek.
 ## Durum enum
 
 ```ts
-type ToolStatus =
-  | 'draft'
-  | 'beta'
-  | 'live'
-  | 'maintenance'
-  | 'archived'
+type ToolStatus = 'draft' | 'beta' | 'live' | 'maintenance' | 'archived'
 ```
 
 ## Filtreler
@@ -612,18 +608,18 @@ hesaplamak.
 
 ## 7.3.1 MVP giriş alanları
 
-| Alan | Teknik ad | Tip | Zorunlu | Min | Max |
-|---|---|---|---:|---:|---:|
-| Satış fiyatı | `salePrice` | currency | Evet | 0.01 | 100000000 |
-| Ürün maliyeti | `productCost` | currency | Evet | 0 | 100000000 |
-| Komisyon oranı | `commissionRate` | percent | Hayır | 0 | 100 |
-| Ödeme kesinti oranı | `paymentFeeRate` | percent | Hayır | 0 | 100 |
-| Gidiş kargo | `shippingCost` | currency | Hayır | 0 | 1000000 |
-| Paketleme | `packagingCost` | currency | Hayır | 0 | 1000000 |
-| İade oranı | `returnRate` | percent | Hayır | 0 | 100 |
-| İade başına kayıp | `returnCost` | currency | Hayır | 0 | 1000000 |
-| Diğer değişken gider | `otherVariableCost` | currency | Hayır | 0 | 1000000 |
-| Hedef kâr oranı | `targetMarginRate` | percent | Hayır | 0 | 100 |
+| Alan                 | Teknik ad           | Tip      | Zorunlu |  Min |       Max |
+| -------------------- | ------------------- | -------- | ------: | ---: | --------: |
+| Satış fiyatı         | `salePrice`         | currency |    Evet | 0.01 | 100000000 |
+| Ürün maliyeti        | `productCost`       | currency |    Evet |    0 | 100000000 |
+| Komisyon oranı       | `commissionRate`    | percent  |   Hayır |    0 |       100 |
+| Ödeme kesinti oranı  | `paymentFeeRate`    | percent  |   Hayır |    0 |       100 |
+| Gidiş kargo          | `shippingCost`      | currency |   Hayır |    0 |   1000000 |
+| Paketleme            | `packagingCost`     | currency |   Hayır |    0 |   1000000 |
+| İade oranı           | `returnRate`        | percent  |   Hayır |    0 |       100 |
+| İade başına kayıp    | `returnCost`        | currency |   Hayır |    0 |   1000000 |
+| Diğer değişken gider | `otherVariableCost` | currency |   Hayır |    0 |   1000000 |
+| Hedef kâr oranı      | `targetMarginRate`  | percent  |   Hayır |    0 |       100 |
 
 Varsayılan değerler:
 
@@ -658,23 +654,17 @@ totalVariableCostBeforeAds =
   expectedReturnCost +
   otherVariableCost
 
-contributionBeforeAds =
-  salePrice - totalVariableCostBeforeAds
+contributionBeforeAds = salePrice - totalVariableCostBeforeAds
 
-breakEvenCPA =
-  contributionBeforeAds
+breakEvenCPA = contributionBeforeAds
 
-breakEvenROAS =
-  salePrice / breakEvenCPA
+breakEvenROAS = salePrice / breakEvenCPA
 
-targetProfitPerOrder =
-  salePrice * (targetMarginRate / 100)
+targetProfitPerOrder = salePrice * (targetMarginRate / 100)
 
-targetCPA =
-  contributionBeforeAds - targetProfitPerOrder
+targetCPA = contributionBeforeAds - targetProfitPerOrder
 
-targetROAS =
-  salePrice / targetCPA
+targetROAS = salePrice / targetCPA
 ```
 
 ## 7.3.3 Geçersiz durumlar
@@ -948,13 +938,7 @@ Zolm ve diğer ürünleri portföy kartı değil, problem çözen ürünler olar
 ## Durum enum
 
 ```ts
-type ProjectStatus =
-  | 'idea'
-  | 'prototype'
-  | 'beta'
-  | 'live'
-  | 'paused'
-  | 'archived'
+type ProjectStatus = 'idea' | 'prototype' | 'beta' | 'live' | 'paused' | 'archived'
 ```
 
 ---
@@ -999,11 +983,7 @@ type ProjectStatus =
 ## Vaka türleri
 
 ```ts
-type CaseStudyType =
-  | 'verified_client'
-  | 'anonymized_client'
-  | 'internal_project'
-  | 'demo'
+type CaseStudyType = 'verified_client' | 'anonymized_client' | 'internal_project' | 'demo'
 ```
 
 ## Zorunlu alanlar
@@ -1526,9 +1506,7 @@ export type BreakEvenRoasResult = {
   targetROAS: number
 }
 
-export function calculateBreakEvenRoas(
-  input: BreakEvenRoasInput
-): BreakEvenRoasResult
+export function calculateBreakEvenRoas(input: BreakEvenRoasInput): BreakEvenRoasResult
 ```
 
 ## 9.3 Validation
@@ -1688,15 +1666,15 @@ Her indekslenebilir sayfa:
 
 ## 12.2 Yapılandırılmış veri
 
-| Sayfa | Schema |
-|---|---|
-| Global | Organization, Person, WebSite |
-| Rehber | Article veya BlogPosting |
-| Araç | SoftwareApplication |
-| Proje | SoftwareApplication veya CreativeWork |
-| Breadcrumb | BreadcrumbList |
-| Hakkında | Person |
-| SSS | Yalnızca görünür içerik varsa FAQPage |
+| Sayfa      | Schema                                |
+| ---------- | ------------------------------------- |
+| Global     | Organization, Person, WebSite         |
+| Rehber     | Article veya BlogPosting              |
+| Araç       | SoftwareApplication                   |
+| Proje      | SoftwareApplication veya CreativeWork |
+| Breadcrumb | BreadcrumbList                        |
+| Hakkında   | Person                                |
+| SSS        | Yalnızca görünür içerik varsa FAQPage |
 
 ## 12.3 Sitemap
 
@@ -2733,20 +2711,20 @@ Bir görev “tamamlandı” sayılmak için:
 
 Geliştirme başlamadan ürün sahibi ve teknik lider aşağıdaki kararları netleştirmelidir:
 
-| ID | Karar | Önerilen |
-|---|---|---|
-| D-01 | Tasarım light mı dark mı? | Light ana tema, opsiyonel dark |
-| D-02 | Newsletter provider | Mevcut ihtiyaçlara göre yönetilen servis |
-| D-03 | Analytics provider | Tek ana provider |
-| D-04 | Sanity model migration yaklaşımı | Bağımsız yeni modeller |
-| D-05 | `/blog` redirect | `/rehberler` |
-| D-06 | `/uyelik` davranışı | `noindex`, navigasyondan kaldır |
-| D-07 | VeriBot MVP'de var mı? | Hayır, Labs'e taşı |
-| D-08 | İngilizce site MVP'de var mı? | Kısıtlı/noindex veya sonraki faz |
-| D-09 | ROAS KDV modu | MVP basit, P1 gelişmiş |
-| D-10 | Sonuç saklama | MVP'de hayır |
-| D-11 | Zolm CTA hedefi | Proje sayfası veya bekleme listesi |
-| D-12 | Eski demo vaka | Açık demo etiketiyle tut veya kaldır |
+| ID   | Karar                            | Önerilen                                 |
+| ---- | -------------------------------- | ---------------------------------------- |
+| D-01 | Tasarım light mı dark mı?        | Light ana tema, opsiyonel dark           |
+| D-02 | Newsletter provider              | Mevcut ihtiyaçlara göre yönetilen servis |
+| D-03 | Analytics provider               | Tek ana provider                         |
+| D-04 | Sanity model migration yaklaşımı | Bağımsız yeni modeller                   |
+| D-05 | `/blog` redirect                 | `/rehberler`                             |
+| D-06 | `/uyelik` davranışı              | `noindex`, navigasyondan kaldır          |
+| D-07 | VeriBot MVP'de var mı?           | Hayır, Labs'e taşı                       |
+| D-08 | İngilizce site MVP'de var mı?    | Kısıtlı/noindex veya sonraki faz         |
+| D-09 | ROAS KDV modu                    | MVP basit, P1 gelişmiş                   |
+| D-10 | Sonuç saklama                    | MVP'de hayır                             |
+| D-11 | Zolm CTA hedefi                  | Proje sayfası veya bekleme listesi       |
+| D-12 | Eski demo vaka                   | Açık demo etiketiyle tut veya kaldır     |
 
 Bu kararlar çözümlenmeden ilgili task'a başlanmamalıdır; ancak diğer bağımsız epikler ilerleyebilir.
 

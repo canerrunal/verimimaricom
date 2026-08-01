@@ -11,7 +11,13 @@ type TrackLinkProps = {
   payload?: Record<string, any>
 }
 
-export default function TrackLink({ href, className, children, eventName, payload }: TrackLinkProps) {
+export default function TrackLink({
+  href,
+  className,
+  children,
+  eventName,
+  payload,
+}: TrackLinkProps) {
   return (
     <a
       href={href}
@@ -27,4 +33,3 @@ export default function TrackLink({ href, className, children, eventName, payloa
     </a>
   )
 }
-

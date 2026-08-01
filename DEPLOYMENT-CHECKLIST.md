@@ -61,4 +61,3 @@ Lemon Squeezy panelinde webhook URL:
 - Premium içerik üyelik olmadan kilitli mi?
 - Checkout yönlendirmesi çalışıyor mu?
 - Webhook sonrası unlock akışı çalışıyor mu?
-

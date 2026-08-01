@@ -18,7 +18,8 @@ function formatAssistantContent(content: string) {
       .map((line) => line.trim())
       .filter(Boolean)
 
-    const looksLikeList = lines.length > 1 && lines.every((line) => line.startsWith('- ') || /^\d+\./.test(line))
+    const looksLikeList =
+      lines.length > 1 && lines.every((line) => line.startsWith('- ') || /^\d+\./.test(line))
     const looksLikeReferences = /^kaynaklar:?/i.test(lines[0] || '')
 
     if (looksLikeReferences) {
@@ -48,11 +49,7 @@ function formatAssistantContent(content: string) {
       )
     }
 
-    return (
-      <p key={`p-${index}`}>
-        {lines.join(' ')}
-      </p>
-    )
+    return <p key={`p-${index}`}>{lines.join(' ')}</p>
   })
 }
 

@@ -9,7 +9,11 @@ import { brandProfile, getSiteUrl } from '@/lib/seo'
 
 type PageProps = { params: Promise<{ slug: string }> }
 
-const dateFormatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
+const dateFormatter = new Intl.DateTimeFormat('tr-TR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
 
 export function generateStaticParams() {
   return glossaryTerms.map((item) => ({ slug: item.slug }))
@@ -71,15 +75,22 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
 
   return (
     <main className="page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <NavBar t={t} />
 
       <section className="wrap hero single glossary-detail-hero">
-        <a className="back-link" href="/sozluk">← Tüm kavramlar</a>
+        <a className="back-link" href="/sozluk">
+          ← Tüm kavramlar
+        </a>
         <div className="guide-hero-meta">
           <span className="tag">{item.category}</span>
           <span>{item.english}</span>
-          <span>DOĞRULAMA: {dateFormatter.format(new Date(`${item.reviewedAt}T12:00:00+03:00`))}</span>
+          <span>
+            DOĞRULAMA: {dateFormatter.format(new Date(`${item.reviewedAt}T12:00:00+03:00`))}
+          </span>
         </div>
         <h1>{item.term} nedir?</h1>
         <p className="intro">{item.shortDefinition}</p>
@@ -101,7 +112,9 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
             <span className="eyebrow">30 SANİYELİK TANIM</span>
             <h2>{item.term}</h2>
             <strong>{item.shortDefinition}</strong>
-            {item.explanation.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {item.explanation.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </section>
 
           {item.formula && (
@@ -122,10 +135,14 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
 
           <section id="fark" className="guide-section glossary-confusion">
             <span className="eyebrow">SIK KARIŞTIRILAN KAVRAM</span>
-            <h2>{item.term} ≠ {item.confusedWith.term}</h2>
+            <h2>
+              {item.term} ≠ {item.confusedWith.term}
+            </h2>
             <p>{item.confusedWith.explanation}</p>
             {item.confusedWith.slug && (
-              <a className="link" href={`/sozluk/${item.confusedWith.slug}`}>{item.confusedWith.term} tanımını aç</a>
+              <a className="link" href={`/sozluk/${item.confusedWith.slug}`}>
+                {item.confusedWith.term} tanımını aç
+              </a>
             )}
           </section>
 
@@ -133,11 +150,21 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
             <span className="eyebrow">TANIMDAN UYGULAMAYA</span>
             <h2>{item.relatedGuide.label}</h2>
             <p>Kavramı gerçek bir karar ve hesaplama akışı içinde uygulayın.</p>
-            <TrackLink className="btn hero-primary" href={item.relatedGuide.href} eventName="glossary_guide_click" payload={{ term_slug: item.slug }}>
+            <TrackLink
+              className="btn hero-primary"
+              href={item.relatedGuide.href}
+              eventName="glossary_guide_click"
+              payload={{ term_slug: item.slug }}
+            >
               Rehberi incele ↗
             </TrackLink>
             {item.relatedTool && (
-              <TrackLink className="glossary-secondary-cta" href={item.relatedTool.href} eventName="glossary_tool_click" payload={{ term_slug: item.slug }}>
+              <TrackLink
+                className="glossary-secondary-cta"
+                href={item.relatedTool.href}
+                eventName="glossary_tool_click"
+                payload={{ term_slug: item.slug }}
+              >
                 {item.relatedTool.label} →
               </TrackLink>
             )}
@@ -145,14 +172,22 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
 
           <section id="kaynak" className="guide-sources">
             <h2>Kaynak ve yöntem notu</h2>
-            <p>Tanım {dateFormatter.format(new Date(`${item.reviewedAt}T12:00:00+03:00`))} tarihinde kontrol edildi.</p>
+            <p>
+              Tanım {dateFormatter.format(new Date(`${item.reviewedAt}T12:00:00+03:00`))} tarihinde
+              kontrol edildi.
+            </p>
             <ol>
               <li>
-                <a href={item.source.url} target="_blank" rel="noopener noreferrer">{item.source.name} ↗</a>
+                <a href={item.source.url} target="_blank" rel="noopener noreferrer">
+                  {item.source.name} ↗
+                </a>
                 <span>{item.source.note}</span>
               </li>
             </ol>
-            <p className="guide-disclaimer">Bu sözlük maddesi operasyonel eğitim amacı taşır. Finansal ve muhasebesel sınıflandırmaları şirketinizin uzmanıyla doğrulayın.</p>
+            <p className="guide-disclaimer">
+              Bu sözlük maddesi operasyonel eğitim amacı taşır. Finansal ve muhasebesel
+              sınıflandırmaları şirketinizin uzmanıyla doğrulayın.
+            </p>
           </section>
 
           <section className="guide-related" aria-labelledby="related-terms-title">

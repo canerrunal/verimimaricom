@@ -1,4 +1,3 @@
-
 const projectId = process.env.SANITY_PROJECT_ID
 const dataset = process.env.SANITY_DATASET || 'production'
 const apiVersion = process.env.SANITY_API_VERSION || '2025-01-01'
@@ -32,4 +31,3 @@ export async function sanityFetch(query: string, params: Record<string, string |
   const json = await res.json()
   return json?.result ?? null
 }
-
