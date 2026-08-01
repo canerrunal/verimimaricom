@@ -6,6 +6,15 @@ import { getDictionary } from '@/lib/i18n'
 
 const allTools = [
   {
+    title: 'E-Ticaret Strateji ve Pazarlama Analizi',
+    description: 'Çoklu ürün kârlılığını, reklam sınırlarını, fiyat kararlarını ve 30 günlük uygulama planını tek ekranda analiz edin.',
+    status: 'CANLI',
+    category: 'Strateji',
+    badge: 'CANLI · ÇOKLU ÜRÜN · ÜCRETSİZ',
+    href: '/araclar/e-ticaret-strateji-pazarlama-analizi',
+    cta: 'Portföyü Analiz Et →',
+  },
+  {
     title: 'Başa Baş ROAS Hesaplayıcı',
     description: 'Reklam harcamanızın zarar ettirmeye başladığı kritik ROAS eşiğini maliyetlerinize göre bulun.',
     status: 'CANLI',
@@ -48,7 +57,7 @@ export default function AraclarPage() {
   const [activeCategory, setActiveCategory] = useState<string>('Tümü')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
-  const categories = ['Tümü', 'Kârlılık', 'Reklam', 'Pazaryeri']
+  const categories = ['Tümü', 'Strateji', 'Kârlılık', 'Reklam', 'Pazaryeri']
 
   const filteredTools = allTools.filter((tool) => {
     const matchesCategory = activeCategory === 'Tümü' || tool.category === activeCategory

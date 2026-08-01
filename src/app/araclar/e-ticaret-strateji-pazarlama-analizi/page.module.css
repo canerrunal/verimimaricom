@@ -1,0 +1,1226 @@
+.page {
+  overflow-x: hidden;
+}
+
+.hero {
+  padding-bottom: 74px;
+}
+
+.hero h1 {
+  max-width: 1040px;
+  text-wrap: balance;
+}
+
+.workspace {
+  scroll-margin-top: 72px;
+  padding: 78px 0 108px;
+  border-top: 1px solid var(--ink);
+  background: var(--surface);
+}
+
+.toolbar,
+.resultsHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.toolbar h2,
+.resultsHeading h2 {
+  max-width: 720px;
+  margin: 8px 0 0;
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 850;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.toolbar p {
+  max-width: 600px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.toolbarActions,
+.exportActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.notice {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid var(--ink);
+  background: var(--yellow);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.assumptionPanel {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.3fr) repeat(2, minmax(240px, 1fr));
+  gap: 0;
+  margin-bottom: 28px;
+  border: 1px solid var(--ink);
+  background: var(--cyan);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.assumptionPanel > div {
+  min-width: 0;
+  padding: 22px;
+}
+
+.assumptionPanel > div + div {
+  border-left: 1px solid var(--ink);
+}
+
+.assumptionPanel h2 {
+  margin: 8px 0 6px;
+  font-size: 25px;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.assumptionPanel p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.assumptionPanel .field {
+  height: 100%;
+  padding: 0;
+  border: 0;
+}
+
+.inputLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+.productList {
+  display: grid;
+  min-width: 0;
+  gap: 18px;
+}
+
+.productEditor {
+  border: 1px solid var(--ink);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  overflow: clip;
+}
+
+.productEditor > summary {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 86px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.productEditor > summary::-webkit-details-marker {
+  display: none;
+}
+
+.productEditor > summary::after {
+  grid-column: 3;
+  color: var(--muted);
+  content: '+';
+  font: 800 19px/1 var(--mono);
+}
+
+.productEditor[open] > summary::after {
+  content: '−';
+}
+
+.productEditor[open] > summary {
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper-deep);
+}
+
+.productEditor > summary .decision {
+  grid-column: 3;
+  grid-row: 1;
+  margin-right: 32px;
+}
+
+.productIndex {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--lime);
+  font: 800 10px/1 var(--mono);
+}
+
+.productSummary {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.productSummary strong {
+  overflow: hidden;
+  font-size: 18px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.productSummary small {
+  color: var(--muted);
+  font: 700 9px/1.4 var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.editorBody {
+  padding: 24px;
+}
+
+.nameField {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 18px;
+  border: 1px solid var(--ink);
+  background: var(--lime);
+}
+
+.nameField label {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.nameField input,
+.inputShell input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--line-dark);
+  border-radius: 7px;
+  color: var(--ink);
+  background: white;
+  font: 650 12px/1 var(--mono);
+}
+
+.nameField input {
+  padding: 0 13px;
+}
+
+.nameField input:focus,
+.inputShell input:focus {
+  border-color: var(--ink);
+  outline: 3px solid color-mix(in srgb, var(--lime) 70%, transparent);
+  outline-offset: 1px;
+}
+
+.fieldGroup + .fieldGroup {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.groupHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.groupHeading span {
+  color: var(--blue);
+  font: 800 9px/1 var(--mono);
+}
+
+.groupHeading h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 22px;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 14px;
+  align-items: center;
+  min-width: 0;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.field label {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.field label > span {
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.field label small {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.inputShell {
+  position: relative;
+  min-width: 0;
+}
+
+.inputShell input {
+  padding: 0 46px 0 10px;
+  text-align: right;
+}
+
+.inputShell > span {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  max-width: 38px;
+  overflow: hidden;
+  color: var(--muted);
+  font: 700 8px/1 var(--mono);
+  pointer-events: none;
+  text-overflow: ellipsis;
+  transform: translateY(-50%);
+}
+
+.editorActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ink);
+}
+
+.deleteButton {
+  min-height: 42px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0 18px;
+  color: var(--ink);
+  background: var(--orange);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.deleteButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.addProductButton {
+  min-height: 70px;
+  border: 1px dashed var(--ink);
+  border-radius: 14px;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+  transition: background 160ms ease;
+}
+
+.addProductButton:hover,
+.addProductButton:focus-visible {
+  background: var(--lime);
+}
+
+.liveSummary {
+  top: 94px;
+  padding: 25px;
+}
+
+.liveLabel {
+  display: block;
+  color: var(--lime);
+  font: 750 9px/1 var(--mono);
+  letter-spacing: 0.1em;
+}
+
+.scoreRing {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  align-items: baseline;
+  justify-content: center;
+  margin: 24px auto;
+  padding-top: 45px;
+  border: 1px solid var(--lime);
+  border-radius: 50%;
+  background: var(--dark-2);
+}
+
+.scoreRing strong {
+  color: white;
+  font-size: 48px;
+  font-weight: 880;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.scoreRing span {
+  color: var(--lime);
+  font: 750 9px/1 var(--mono);
+}
+
+.liveSummary > p {
+  color: white;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.liveSummary dl {
+  margin: 22px 0;
+  border-top: 1px solid var(--line-dark);
+}
+
+.liveSummary dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.liveSummary dt {
+  color: var(--line);
+  font-size: 11px;
+}
+
+.liveSummary dd {
+  margin: 0;
+  color: white;
+  font: 750 11px/1.4 var(--mono);
+  text-align: right;
+}
+
+.liveSummary .valuePositive {
+  color: var(--lime);
+}
+
+.liveSummary .valueNegative {
+  color: var(--orange);
+}
+
+.liveSummary > a {
+  width: 100%;
+  margin-bottom: 17px;
+}
+
+.liveSummary > small {
+  display: block;
+  color: var(--line-dark);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.decision {
+  display: inline-flex;
+  width: max-content;
+  min-height: 29px;
+  align-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0 10px;
+  color: var(--ink);
+  font: 800 8px/1 var(--mono);
+  white-space: nowrap;
+}
+
+.decisionScale {
+  background: var(--lime);
+}
+
+.decisionOptimize {
+  background: var(--cyan);
+}
+
+.decisionTest {
+  background: var(--yellow);
+}
+
+.decisionUrgent {
+  background: var(--orange);
+}
+
+.resultsSection {
+  scroll-margin-top: 72px;
+  padding: 108px 0;
+  border-top: 1px solid var(--ink);
+  background: var(--bg);
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 26px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ink);
+  overflow-x: auto;
+}
+
+.tabs button {
+  min-width: max-content;
+  min-height: 42px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0 18px;
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.tabs .activeTab {
+  background: var(--lime);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.tabPanel {
+  min-width: 0;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.metricCard {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  padding: 24px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--surface);
+}
+
+.metricCard > span {
+  font: 750 9px/1.4 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.metricCard strong {
+  margin-top: 30px;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 880;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.metricCard small {
+  margin-top: auto;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.metricCard.positive {
+  background: var(--lime);
+}
+
+.metricCard.negative {
+  background: var(--orange);
+}
+
+.metricCard.accent {
+  background: var(--cyan);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.managerCard,
+.bridgeCard,
+.productAnalysisCard,
+.strategyCard,
+.planCard {
+  border: 1px solid var(--ink);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.managerCard,
+.bridgeCard {
+  padding: 28px;
+}
+
+.managerCard {
+  color: white;
+  background: var(--dark);
+  box-shadow: 5px 5px 0 var(--lime);
+}
+
+.managerCard > span {
+  color: var(--lime);
+}
+
+.managerCard h3,
+.bridgeCard h3,
+.productAnalysisCard h3,
+.strategyCard h3,
+.planCard h3 {
+  margin: 12px 0;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.managerCard > p {
+  color: var(--line);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.summarySignals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 28px;
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark);
+}
+
+.summarySignals > div {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.summarySignals span {
+  color: var(--line-dark);
+  font: 700 8px/1.4 var(--mono);
+  text-transform: uppercase;
+}
+
+.summarySignals strong {
+  font-size: 15px;
+}
+
+.bridgeList {
+  display: grid;
+  margin-top: 22px;
+}
+
+.bridgeList > div {
+  display: grid;
+  grid-template-columns: 125px minmax(50px, 1fr) 110px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.bridgeList span {
+  font-size: 11px;
+}
+
+.bridgeList strong {
+  font: 750 10px/1.4 var(--mono);
+  text-align: right;
+}
+
+.bridgeList progress {
+  width: 100%;
+  height: 9px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--paper-deep);
+  overflow: hidden;
+}
+
+.bridgeList progress::-webkit-progress-bar {
+  background: var(--paper-deep);
+}
+
+.bridgeList progress::-webkit-progress-value {
+  background: var(--blue);
+}
+
+.bridgeList progress::-moz-progress-bar {
+  background: var(--blue);
+}
+
+.bridgeList .bridgeTotal {
+  font-weight: 800;
+}
+
+.bridgeList .bridgeTotal progress::-webkit-progress-value {
+  background: var(--lime);
+}
+
+.bridgeList .bridgeTotal progress::-moz-progress-bar {
+  background: var(--lime);
+}
+
+.tableShell {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--ink);
+  background: var(--surface);
+}
+
+.analysisTable {
+  width: 100%;
+  min-width: 1060px;
+  border-collapse: collapse;
+}
+
+.analysisTable caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.analysisTable th,
+.analysisTable td {
+  padding: 17px 14px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.analysisTable thead th {
+  color: white;
+  background: var(--dark);
+  font: 750 8px/1.4 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.analysisTable tbody th {
+  min-width: 180px;
+}
+
+.analysisTable tbody th strong,
+.analysisTable tbody th small {
+  display: block;
+}
+
+.analysisTable tbody th small,
+.analysisTable td small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.analysisTable tbody tr:hover {
+  background: color-mix(in srgb, var(--lime) 28%, var(--surface));
+}
+
+.analysisTable .tablePositive {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.analysisTable .tableNegative {
+  color: var(--ink);
+  background: var(--orange);
+  font-weight: 800;
+}
+
+.productAnalysisGrid,
+.strategyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.productAnalysisCard {
+  padding: 24px;
+}
+
+.productAnalysisCard header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.productAnalysisCard h3 {
+  margin-bottom: 0;
+}
+
+.productAnalysisCard dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 22px 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.productAnalysisCard dl > div {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 13px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.productAnalysisCard dt {
+  color: var(--muted);
+  font: 700 8px/1.4 var(--mono);
+  text-transform: uppercase;
+}
+
+.productAnalysisCard dd {
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+}
+
+.productAnalysisCard ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.productAnalysisCard li {
+  position: relative;
+  padding-left: 19px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.productAnalysisCard li::before {
+  position: absolute;
+  top: 0.58em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--lime);
+  content: '';
+}
+
+.strategyCard {
+  min-height: 250px;
+  padding: 28px;
+}
+
+.strategyCard:nth-child(1) {
+  background: var(--lime);
+}
+
+.strategyCard:nth-child(2) {
+  background: var(--orange);
+}
+
+.strategyCard:nth-child(3) {
+  background: var(--cyan);
+}
+
+.strategyCard:nth-child(4) {
+  background: var(--yellow);
+}
+
+.strategyCard h3 {
+  margin-top: 42px;
+}
+
+.strategyCard p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.planCard {
+  margin-top: 28px;
+  padding: 30px;
+  color: white;
+  background: var(--dark);
+  box-shadow: 5px 5px 0 var(--lime);
+}
+
+.planCard header > span {
+  color: var(--lime);
+}
+
+.planCard ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 28px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark);
+  list-style: none;
+}
+
+.planCard li {
+  min-height: 230px;
+  padding: 20px;
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.planCard li > span {
+  color: var(--lime);
+  font: 800 9px/1 var(--mono);
+}
+
+.planCard li strong {
+  display: block;
+  margin-top: 34px;
+  font-size: 17px;
+}
+
+.planCard li p {
+  margin: 10px 0 0;
+  color: var(--line);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.methodSection {
+  scroll-margin-top: 72px;
+  padding: 108px 0;
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark);
+}
+
+.methodGrid article {
+  min-height: 220px;
+  padding: 24px;
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.methodGrid span {
+  color: var(--lime);
+  font: 800 9px/1 var(--mono);
+}
+
+.methodGrid h3 {
+  margin: 42px 0 10px;
+  font-size: 22px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.methodGrid p {
+  margin: 0;
+  color: var(--line);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.disclaimer {
+  margin: 28px 0 0;
+  padding: 18px;
+  border: 1px solid var(--lime);
+  color: var(--line);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1120px) {
+  .inputLayout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+
+  .fieldsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .planCard ol,
+  .methodGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .toolbar,
+  .resultsHeading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .toolbarActions,
+  .exportActions {
+    justify-content: flex-start;
+  }
+
+  .assumptionPanel {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .assumptionPanel > div:first-child {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .assumptionPanel > div:nth-child(2) {
+    border-left: 0;
+  }
+
+  .inputLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .liveSummary {
+    position: static;
+  }
+
+  .metricGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-bottom: 56px;
+  }
+
+  .workspace,
+  .resultsSection,
+  .methodSection {
+    padding: 72px 0;
+  }
+
+  .toolbar h2,
+  .resultsHeading h2 {
+    font-size: 40px;
+  }
+
+  .toolbarActions,
+  .exportActions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .toolbarActions :global(.btn),
+  .exportActions :global(.btn) {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .assumptionPanel {
+    grid-template-columns: 1fr;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  .assumptionPanel > div:first-child {
+    grid-column: auto;
+  }
+
+  .assumptionPanel > div + div {
+    border-top: 1px solid var(--ink);
+    border-left: 0;
+  }
+
+  .field {
+    grid-template-columns: minmax(0, 1fr) 135px;
+  }
+
+  .productEditor > summary {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .productEditor > summary .decision {
+    grid-column: 2;
+    grid-row: auto;
+    margin: 6px 0 0;
+  }
+
+  .productEditor > summary::after {
+    position: absolute;
+    right: 16px;
+  }
+
+  .productIndex {
+    width: 38px;
+    height: 38px;
+  }
+
+  .productSummary strong {
+    padding-right: 22px;
+    font-size: 16px;
+  }
+
+  .editorBody {
+    padding: 18px 14px;
+  }
+
+  .nameField {
+    grid-template-columns: 1fr;
+  }
+
+  .metricGrid,
+  .productAnalysisGrid,
+  .strategyGrid,
+  .planCard ol,
+  .methodGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricCard {
+    min-height: 165px;
+  }
+
+  .summarySignals {
+    grid-template-columns: 1fr;
+  }
+
+  .bridgeList > div {
+    grid-template-columns: 90px minmax(30px, 1fr) 88px;
+    gap: 8px;
+  }
+
+  .bridgeList strong {
+    font-size: 8px;
+  }
+
+  .productAnalysisCard header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .productAnalysisCard dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .planCard li {
+    min-height: 190px;
+  }
+
+  .methodGrid article {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 430px) {
+  .toolbarActions,
+  .exportActions {
+    grid-template-columns: 1fr;
+  }
+
+  .field {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .inputShell input {
+    min-height: 46px;
+  }
+
+  .editorActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .editorActions :global(.btn),
+  .deleteButton {
+    width: 100%;
+  }
+
+  .productAnalysisCard dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .page :global(.site-header),
+  .hero,
+  .workspace,
+  .toolbarActions,
+  .exportActions,
+  .tabs,
+  .methodSection,
+  .page :global(.footer) {
+    display: none !important;
+  }
+
+  .resultsSection {
+    padding: 0;
+    background: white;
+  }
+
+  .tabPanel {
+    display: block !important;
+  }
+
+  .metricCard,
+  .managerCard,
+  .bridgeCard,
+  .productAnalysisCard,
+  .strategyCard,
+  .planCard {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+}
