@@ -13,6 +13,7 @@ import {
   type ProductInput,
   type StrategicDecision,
 } from './analysis'
+import { analyzerFaqs } from './faq'
 import styles from './page.module.css'
 
 const STORAGE_KEY = 'veri-mimari:ecommerce-strategy-analyzer:v1'
@@ -1034,6 +1035,29 @@ export default function AnalyzerClient() {
             Bu araç karar desteği sağlayan bir simülasyondur; finansal danışmanlık değildir. KDV,
             vergi, vade, nakit akışı ve kanal özelindeki ek bedelleri ayrıca değerlendirin.
           </p>
+        </div>
+      </section>
+
+      <section className={styles.faqSection} aria-labelledby="faq-title">
+        <div className="wrap">
+          <div className={styles.faqHeading}>
+            <div>
+              <span className="eyebrow">SIK SORULAN SORULAR</span>
+              <h2 id="faq-title">Aracı kullanmadan önce bilinmesi gerekenler.</h2>
+            </div>
+            <p>
+              Hesaplama kapsamını, kullanılan maliyetleri ve verilerin nasıl işlendiğini kısa kısa
+              açıklıyoruz.
+            </p>
+          </div>
+          <div className={styles.faqList}>
+            {analyzerFaqs.map((faq) => (
+              <details key={faq.question}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
