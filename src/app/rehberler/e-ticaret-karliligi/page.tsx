@@ -26,6 +26,12 @@ const guideSlugs = [
 
 const toolCards = [
   {
+    title: 'E-Ticaret Strateji ve Pazarlama Analizi',
+    description:
+      'Çoklu ürün kârlılığını, reklam sınırlarını, fiyat kararlarını ve sabit giderleri aynı portföy görünümünde analiz edin.',
+    href: '/araclar/e-ticaret-strateji-pazarlama-analizi',
+  },
+  {
     title: 'Başabaş ROAS Hesaplayıcı',
     description: 'Reklamda zarar etmeye başladığınız ROAS ve CPA sınırını bulun.',
     href: '/araclar/basabas-roas-hesaplayici',
