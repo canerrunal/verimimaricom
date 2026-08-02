@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: 'Caner Ünal Hakkında',
   description:
     'Veri Mimarı kurucusu Caner Ünal: E-ticaret büyümesi, reklam analitiği ve yapay zeka.',
+  alternates: { canonical: '/hakkinda' },
+  openGraph: {
+    title: 'Caner Ünal Hakkında | Veri Mimarı',
+    description:
+      'E-ticaret, dijital pazarlama, yapay zekâ ve yazılım geliştirmeyi birleştiren Veri Mimarı yaklaşımı.',
+    type: 'profile',
+    url: '/hakkinda',
+  },
 }
 
 const stats = [

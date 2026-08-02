@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: 'İş Birliği ve İletişim',
   description:
     'E-ticaret markaları, dijital pazarlama ekipleri ve teknoloji projeleri için iş birliği ve danışmanlık.',
+  alternates: { canonical: '/is-birligi' },
+  openGraph: {
+    title: 'İş Birliği ve İletişim | Veri Mimarı',
+    description:
+      'E-ticaret büyümesi, kârlılık modellemesi ve yapay zekâ otomasyonu için iletişime geçin.',
+    type: 'website',
+    url: '/is-birligi',
+  },
 }
 
 export default function IsBirligiPage() {

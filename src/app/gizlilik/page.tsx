@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: 'Gizlilik ve Veri Politikası',
   description:
     'Veri Mimarı gizlilik politikası ve ücretsiz hesaplama araçları veri saklamama prensipleri.',
+  alternates: { canonical: '/gizlilik' },
+  openGraph: {
+    title: 'Gizlilik ve Veri Politikası | Veri Mimarı',
+    description:
+      'Veri Mimarı araçlarında hesaplama verilerinin nasıl işlendiğini ve saklanmadığını okuyun.',
+    type: 'website',
+    url: '/gizlilik',
+  },
 }
 
 const policies = [

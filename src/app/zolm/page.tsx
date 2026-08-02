@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: 'Zolm — E-Ticaret Reklam Zekâsı Platformu',
   description:
     'E-ticaret reklamlarınızı ve kârlılığınızı otomatik analiz eden akıllı karar platformu Zolm.',
+  alternates: { canonical: '/zolm' },
+  openGraph: {
+    title: 'Zolm — E-Ticaret Reklam Zekâsı Platformu | Veri Mimarı',
+    description:
+      'Reklam harcamasını ürün bazlı katkı payı ve başa baş ROAS ile eşleştiren akıllı karar platformu.',
+    type: 'website',
+    url: '/zolm',
+  },
 }
 
 const features = [
