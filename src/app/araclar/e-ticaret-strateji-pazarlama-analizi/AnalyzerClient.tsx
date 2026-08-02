@@ -1035,6 +1035,11 @@ export default function AnalyzerClient() {
             Bu araç karar desteği sağlayan bir simülasyondur; finansal danışmanlık değildir. KDV,
             vergi, vade, nakit akışı ve kanal özelindeki ek bedelleri ayrıca değerlendirin.
           </p>
+          <nav className={styles.relatedLinks} aria-label="İlgili kaynaklar">
+            <span className="eyebrow">İLGİLİ KAYNAKLAR</span>
+            <a href="/rehberler/e-ticaret-karliligi">E-ticaret kârlılığı rehberi ↗</a>
+            <a href="/rehberler/reklam-performansi">Reklam performansı ölçüm rehberi ↗</a>
+          </nav>
         </div>
       </section>
 
