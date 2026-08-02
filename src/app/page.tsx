@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
 import HeroPanel from '@/components/landing/HeroPanel'
 import ProblemSection from '@/components/landing/ProblemSection'
@@ -9,6 +10,33 @@ import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
 import UtilityBar from '@/components/landing/UtilityBar'
 import { getDictionary } from '@/lib/i18n'
+
+export const metadata: Metadata = {
+  title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün',
+  description:
+    'E-ticaret verisini daha kârlı kararlara dönüştüren ücretsiz hesaplayıcılar, uygulanabilir rehberler ve veri odaklı ürünler.',
+  keywords: [
+    'e-ticaret analitiği',
+    'e-ticaret kârlılık araçları',
+    'reklam performansı',
+    'ROAS hesaplama',
+    'veri odaklı karar',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün | Veri Mimarı',
+    description:
+      'Kârlılık, reklam ve operasyon verisini tek bir karar sisteminde birleştirin.',
+    type: 'website',
+    url: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün | Veri Mimarı',
+    description:
+      'Ücretsiz araçlar, rehberler ve ürünlerle e-ticaret verisini karara dönüştürün.',
+  },
+}
 
 export default async function HomePage() {
   const t = getDictionary('tr')
