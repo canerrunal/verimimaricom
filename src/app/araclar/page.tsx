@@ -86,6 +86,16 @@ const allTools = [
     href: '/araclar/urun-feed-saglik-kontrolu',
     cta: 'Feed’i Analiz Et →',
   },
+  {
+    title: 'Yapay Zekâ Görünürlük Analizi',
+    description:
+      'Markanızın AI cevaplarındaki görünürlük sinyallerini, rakip payını ve teknik hazırlığını açık yöntemle inceleyin.',
+    status: 'BETA',
+    category: 'Yapay zekâ',
+    badge: 'BETA · TEKNİK ÖN ANALİZ · KANITLI',
+    href: '/araclar/yapay-zeka-gorunurluk-analizi',
+    cta: 'Görünürlüğü Analiz Et →',
+  },
 ]
 
 export default function AraclarPage() {

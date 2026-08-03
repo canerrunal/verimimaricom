@@ -72,6 +72,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      url: `${siteUrl}/araclar/yapay-zeka-gorunurluk-analizi`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/rehberler`,
       lastModified: now,
       changeFrequency: 'weekly',
