@@ -19,6 +19,7 @@ interface TextResponse {
   body: string
   finalUrl: string
   durationMs: number
+  truncated: boolean
 }
 
 export class PreflightError extends Error {
@@ -94,7 +95,7 @@ async function resolvePublicAddress(hostname: string) {
 
 async function fetchText(
   input: string,
-  options: { maxBytes?: number; redirectCount?: number } = {},
+  options: { maxBytes?: number; redirectCount?: number; truncateAtLimit?: boolean } = {},
 ): Promise<TextResponse> {
   const url = validateUrlShape(input)
   const resolved = await resolvePublicAddress(url.hostname)
@@ -134,31 +135,56 @@ async function fetchText(
             return
           }
           const nextUrl = new URL(location, url).toString()
-          fetchText(nextUrl, { maxBytes, redirectCount: redirectCount + 1 }).then(resolve, reject)
+          fetchText(nextUrl, {
+            maxBytes,
+            redirectCount: redirectCount + 1,
+            truncateAtLimit: options.truncateAtLimit,
+          }).then(resolve, reject)
           return
         }
 
         const chunks: Buffer[] = []
         let received = 0
-        response.on('data', (chunk: Buffer) => {
-          received += chunk.length
-          if (received > maxBytes) {
-            request.destroy(
-              new PreflightError('Site yanıtı analiz sınırını aşıyor.', 'too_large', 413),
-            )
-            return
-          }
-          chunks.push(chunk)
-        })
-        response.on('end', () => {
+        let settled = false
+
+        const finish = (truncated: boolean) => {
+          if (settled) return
+          settled = true
           resolve({
             status,
             headers: response.headers,
             body: Buffer.concat(chunks).toString('utf8'),
             finalUrl: url.toString(),
             durationMs: Date.now() - startedAt,
+            truncated,
           })
+        }
+
+        response.on('data', (chunk: Buffer) => {
+          if (settled) return
+          const remaining = maxBytes - received
+          if (chunk.length > remaining) {
+            if (remaining > 0) chunks.push(chunk.subarray(0, remaining))
+            received = maxBytes
+            if (options.truncateAtLimit) {
+              finish(true)
+              response.destroy()
+              return
+            }
+            settled = true
+            const error = new PreflightError(
+              'Site yanıtı analiz sınırını aşıyor.',
+              'too_large',
+              413,
+            )
+            request.destroy(error)
+            reject(error)
+            return
+          }
+          received += chunk.length
+          chunks.push(chunk)
         })
+        response.on('end', () => finish(false))
       },
     )
 
@@ -318,7 +344,7 @@ export async function runPreflight(input: { domain: string }): Promise<Preflight
   const normalized = validateUrlShape(input.domain)
   let homepage: TextResponse
   try {
-    homepage = await fetchText(normalized.toString())
+    homepage = await fetchText(normalized.toString(), { truncateAtLimit: true })
   } catch (error) {
     if (
       normalized.protocol !== 'https:' ||
@@ -327,7 +353,7 @@ export async function runPreflight(input: { domain: string }): Promise<Preflight
       throw error
     }
     normalized.protocol = 'http:'
-    homepage = await fetchText(normalized.toString())
+    homepage = await fetchText(normalized.toString(), { truncateAtLimit: true })
   }
 
   if (homepage.status < 200 || homepage.status >= 400) {
@@ -474,6 +500,11 @@ export async function runPreflight(input: { domain: string }): Promise<Preflight
     checks,
     limitations: [
       'Bu ön analiz yalnızca herkese açık ana sayfa, robots.txt ve kök sitemap.xml sinyallerini kontrol eder.',
+      ...(homepage.truncated
+        ? [
+            'Ana sayfa yanıtı güvenli boyut sınırında kesilerek incelendi; sayfanın sonraki bölümündeki sinyaller görünmeyebilir.',
+          ]
+        : []),
       'JavaScript ile sonradan üretilen içerik bu hızlı kontrolde görünmeyebilir.',
       'Teknik hazırlık puanı, AI cevaplarında görünürlük veya sıralama garantisi değildir.',
     ],
