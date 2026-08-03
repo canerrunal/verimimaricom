@@ -87,12 +87,12 @@ const allTools = [
     cta: 'Feed’i Analiz Et →',
   },
   {
-    title: 'Yapay Zekâ Görünürlük Analizi',
+    title: 'AI Görünürlük ve Teknik Hazırlık Ön Analizi',
     description:
-      'Markanızın AI cevaplarındaki görünürlük sinyallerini, rakip payını ve teknik hazırlığını açık yöntemle inceleyin.',
+      'Ana sayfa teknik sinyalini kontrol edin; OpenAI görünürlüğünü dört markasız soruyla ve ham kaynak kanıtlarıyla örnekleyin.',
     status: 'BETA',
     category: 'Yapay zekâ',
-    badge: 'BETA · TEKNİK ÖN ANALİZ · KANITLI',
+    badge: 'BETA · OPENAI CANLI · 4 SORU',
     href: '/araclar/yapay-zeka-gorunurluk-analizi',
     cta: 'Görünürlüğü Analiz Et →',
   },

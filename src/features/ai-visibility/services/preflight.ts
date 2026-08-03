@@ -340,7 +340,11 @@ async function optionalFetch(url: string) {
   }
 }
 
-export async function runPreflight(input: { domain: string }): Promise<PreflightOutput> {
+export async function runPreflight(input: {
+  domain: string
+  country?: string
+  language?: string
+}): Promise<PreflightOutput> {
   const normalized = validateUrlShape(input.domain)
   let homepage: TextResponse
   try {
@@ -480,8 +484,8 @@ export async function runPreflight(input: { domain: string }): Promise<Preflight
     return total
   }, 0)
 
-  const country = locale?.toLowerCase().startsWith('tr') ? 'Türkiye' : ''
-  const language = locale?.split('-')[0].toLowerCase() || 'tr'
+  const country = locale?.toLowerCase().startsWith('tr') ? 'Türkiye' : input.country || ''
+  const language = locale?.split('-')[0].toLowerCase() || input.language || 'tr'
 
   return {
     ok: true,

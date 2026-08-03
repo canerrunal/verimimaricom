@@ -4,14 +4,14 @@ import { aiVisibilityFaqs } from './faq'
 import { getSiteUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Yapay Zekâ Görünürlük Analizi',
+  title: 'Yapay Zekâ Görünürlük ve Teknik Hazırlık Ön Analizi',
   description:
-    'Markanızın AI cevaplarında anılma, rakip payı, kaynak görünürlüğü ve teknik AI hazırlığını açık yöntemle ölçün.',
+    'Sitenizin teknik sinyallerini kontrol edin; markanızın OpenAI yanıtlarındaki görünürlüğünü dört markasız soruyla, ham kanıt ve kaynaklarla örnekleyin.',
   alternates: { canonical: '/araclar/yapay-zeka-gorunurluk-analizi' },
   openGraph: {
-    title: 'Yapay Zekâ Görünürlük Analizi | Veri Mimarı',
+    title: 'AI Görünürlük ve Teknik Hazırlık Ön Analizi | Veri Mimarı',
     description:
-      'AI görünürlüğünü teknik hazırlıktan ayırın; sağlayıcı, rakip ve kaynak sinyallerini kanıtlarıyla inceleyin.',
+      'Ana sayfa teknik sinyalini canlı OpenAI görünürlük örnekleminden ayırın; yanıtları ve kaynakları kanıtlarıyla inceleyin.',
     type: 'website',
   },
 }
@@ -22,13 +22,13 @@ export default function AiVisibilityAnalysisPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'Yapay Zekâ Görünürlük Analizi',
+      name: 'Yapay Zekâ Görünürlük ve Teknik Hazırlık Ön Analizi',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       url: `${siteUrl}/araclar/yapay-zeka-gorunurluk-analizi`,
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' },
       description:
-        'Markaların AI cevaplarındaki görünürlük sinyallerini ve teknik AI hazırlığını ayrı değerlendiren analiz aracı.',
+        'Ana sayfa teknik sinyallerini ve OpenAI cevaplarındaki marka görünürlüğü örneklemini ayrı değerlendiren beta analiz aracı.',
     },
     {
       '@context': 'https://schema.org',

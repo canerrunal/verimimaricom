@@ -134,6 +134,31 @@ export interface AiVisibilityReport {
   version: string
 }
 
+export interface ProviderAvailability {
+  provider: ProviderId
+  label: string
+  model: string
+  configured: boolean
+}
+
+export interface VisibilityBenchmarkOutput {
+  scanId: string
+  status: 'completed' | 'partial' | 'failed'
+  createdAt: string
+  domain: string
+  profile: BrandProfile
+  promptCount: number
+  plannedRuns: number
+  providerAvailability: ProviderAvailability[]
+  visibility: AiVisibilityReport['visibility']
+  byProvider: ProviderStat[]
+  competitors: CompetitorStat[]
+  sourceGap: SourceGapEntry[]
+  observations: ProviderObservation[]
+  methodologyNote: string
+  version: string
+}
+
 export type PreflightCheckStatus = 'pass' | 'warning' | 'fail' | 'unknown'
 
 export interface PreflightCheck {

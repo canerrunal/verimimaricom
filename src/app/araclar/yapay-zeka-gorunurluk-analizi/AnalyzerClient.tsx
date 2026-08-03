@@ -6,12 +6,22 @@ import Footer from '@/components/landing/Footer'
 import NavBar from '@/components/landing/NavBar'
 import { buildPrompts } from '@/features/ai-visibility/prompts'
 import { sampleVisibilityReport } from '@/features/ai-visibility/sample-report'
-import type { BrandProfile, PreflightOutput } from '@/features/ai-visibility/types'
+import type {
+  BrandProfile,
+  PreflightOutput,
+  ProviderId,
+  VisibilityBenchmarkOutput,
+} from '@/features/ai-visibility/types'
 import { getDictionary } from '@/lib/i18n'
 import { aiVisibilityFaqs } from './faq'
 import styles from './page.module.css'
 
-type View = 'preflight' | 'profile' | 'sample'
+type View = 'preflight' | 'profile' | 'benchmark' | 'sample'
+
+const providerNames: Partial<Record<ProviderId, string>> = {
+  openai: 'OpenAI',
+  perplexity: 'Perplexity',
+}
 
 const initialProfile: BrandProfile = {
   brandName: '',
@@ -34,10 +44,14 @@ function splitList(value: string) {
 }
 
 function scoreLabel(score: number) {
-  if (score >= 80) return 'Yüksek hazırlık'
-  if (score >= 60) return 'İyi temel'
-  if (score >= 40) return 'Kısmi hazırlık'
-  return 'Kritik temel eksikler'
+  if (score >= 80) return 'Güçlü teknik sinyal'
+  if (score >= 60) return 'İyi teknik temel'
+  if (score >= 40) return 'Kısmi teknik temel'
+  return 'Kritik teknik eksikler'
+}
+
+function formatPercent(value: number | null) {
+  return value === null ? '—' : `%${Math.round(value * 10) / 10}`
 }
 
 function downloadJson(filename: string, value: unknown) {
@@ -76,6 +90,7 @@ export default function AnalyzerClient() {
   const t = getDictionary('tr')
   const workspaceRef = useRef<HTMLElement>(null)
   const sampleRef = useRef<HTMLElement>(null)
+  const benchmarkRef = useRef<HTMLElement>(null)
   const [view, setView] = useState<View>('preflight')
   const [domain, setDomain] = useState('')
   const [country, setCountry] = useState('Türkiye')
@@ -85,6 +100,9 @@ export default function AnalyzerClient() {
   const [error, setError] = useState('')
   const [preflight, setPreflight] = useState<PreflightOutput | null>(null)
   const [profile, setProfile] = useState<BrandProfile>(initialProfile)
+  const [benchmark, setBenchmark] = useState<VisibilityBenchmarkOutput | null>(null)
+  const [benchmarkLoading, setBenchmarkLoading] = useState(false)
+  const [benchmarkError, setBenchmarkError] = useState('')
 
   const prompts = useMemo(() => buildPrompts(profile, 4), [profile])
 
@@ -102,6 +120,13 @@ export default function AnalyzerClient() {
     )
   }
 
+  const scrollToBenchmark = () => {
+    window.setTimeout(
+      () => benchmarkRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+      50,
+    )
+  }
+
   const runPreflight = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setLoading(true)
@@ -110,7 +135,7 @@ export default function AnalyzerClient() {
       const response = await fetch('/api/ai-visibility/preflight', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ domain, consent }),
+        body: JSON.stringify({ domain, country, language, consent }),
       })
       const payload = await response.json()
       if (!response.ok) throw new Error(payload.error || 'Ön analiz tamamlanamadı.')
@@ -120,8 +145,8 @@ export default function AnalyzerClient() {
         ...initialProfile,
         brandName: result.suggestedProfile.brandName,
         sector: result.suggestedProfile.sector,
-        country: result.suggestedProfile.country || country,
-        language: result.suggestedProfile.language || language,
+        country,
+        language,
       })
       setView('profile')
       scrollToWorkspace()
@@ -129,6 +154,36 @@ export default function AnalyzerClient() {
       setError(requestError instanceof Error ? requestError.message : 'Ön analiz tamamlanamadı.')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const runBenchmark = async () => {
+    setBenchmarkLoading(true)
+    setBenchmarkError('')
+    try {
+      const response = await fetch('/api/ai-visibility/scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          domain,
+          profile: { ...profile, country, language },
+          providers: ['openai', 'perplexity'],
+          promptCount: 4,
+          repetitions: 1,
+          consent,
+        }),
+      })
+      const payload = await response.json()
+      if (!response.ok) throw new Error(payload.error || 'Canlı benchmark tamamlanamadı.')
+      setBenchmark(payload as VisibilityBenchmarkOutput)
+      setView('benchmark')
+      scrollToBenchmark()
+    } catch (requestError) {
+      setBenchmarkError(
+        requestError instanceof Error ? requestError.message : 'Canlı benchmark tamamlanamadı.',
+      )
+    } finally {
+      setBenchmarkLoading(false)
     }
   }
 
@@ -141,14 +196,16 @@ export default function AnalyzerClient() {
           ← Tüm Araçlar
         </a>
         <div className="crumb">ARAÇLAR / AI GÖRÜNÜRLÜĞÜ / BETA</div>
-        <h1>Yapay Zekâ Görünürlük Analizi</h1>
+        <h1>Yapay Zekâ Görünürlük ve Teknik Hazırlık Ön Analizi</h1>
         <p className="intro">
-          Markanızın AI cevaplarında ne ölçüde anıldığını, hangi rakiplerin öne çıktığını ve
-          sitenizin teknik hazırlığını tek bir opak skora saklamadan inceleyin.
+          Önce sitenizin ölçülebilir teknik sinyallerini kontrol edin. Ardından dört markasız
+          soruyla OpenAI üzerinde canlı bir görünürlük örneklemi çalıştırın; sonuçları ham cevap ve
+          tıklanabilir kaynaklarıyla inceleyin.
         </p>
         <div className={`signals ${styles.signals}`}>
-          <span className="tag purple">BETA · KANITLI METODOLOJİ</span>
-          <span className="tag">TEKNİK ÖN ANALİZ CANLI</span>
+          <span className="tag purple">BETA · OPENAI CANLI</span>
+          <span className="tag">4 MARKASIZ SORU</span>
+          <span className="tag">PERPLEXITY BAĞLANTISI HAZIR</span>
           <span className="tag">LİSTELEME GARANTİSİ DEĞİLDİR</span>
         </div>
       </section>
@@ -163,9 +220,11 @@ export default function AnalyzerClient() {
               taramayla kontrol edilir. Giriş gerektiren sayfalara erişilmez.
             </p>
             <ul>
-              <li>Görünürlük ve teknik hazırlık ayrı değerlendirilir.</li>
+              <li>Ana sayfa teknik sinyali ile AI görünürlüğü ayrı değerlendirilir.</li>
               <li>Her bulgu, kontrol edilen URL ve metinsel durumla gösterilir.</li>
-              <li>AI sağlayıcı benchmarkı gerçek API anahtarları olmadan taklit edilmez.</li>
+              <li>
+                Yalnızca gerçek sağlayıcı yanıtları puana katılır; eksik yüzey taklit edilmez.
+              </li>
             </ul>
           </div>
 
@@ -259,12 +318,12 @@ export default function AnalyzerClient() {
 
           <div className={styles.preflightGrid}>
             <aside className={`results ${styles.readinessPanel}`}>
-              <small>TEKNİK HAZIRLIK / HIZLI ÖRNEKLEM</small>
+              <small>ANA SAYFA TEKNİK SİNYAL PUANI</small>
               <strong>{preflight.technicalReadinessScore}/100</strong>
               <h3>{scoreLabel(preflight.technicalReadinessScore)}</h3>
               <p>
-                Bu puan yalnızca hızlı teknik ön kontroldür; AI cevaplarındaki gerçekleşen
-                görünürlüğü ölçmez.
+                Bu puan ana sayfa, robots.txt ve sitemap üzerindeki hızlı teknik kontroldür; tüm
+                sitenin hazırlığını veya AI cevaplarındaki görünürlüğü temsil etmez.
               </p>
               <dl>
                 <div>
@@ -376,23 +435,258 @@ export default function AnalyzerClient() {
             </div>
             <div className={styles.betaNotice}>
               <div>
-                <b>ÇOKLU SAĞLAYICI TARAMASI HENÜZ KAPALI</b>
+                <b>OPENAI CANLI · PERPLEXITY BAĞLANTISI HAZIR</b>
                 <p>
-                  Canlı AI benchmarkı için sağlayıcı anahtarları, günlük maliyet limiti, kullanıcı
-                  hesabı ve arka plan iş kuyruğu yapılandırılmalıdır.
+                  Dört nötr sorunun yalnızca başarıyla tamamlanan sağlayıcı yanıtları puanlanır.
+                  Perplexity anahtarı yapılandırılmamışsa bu yüzey raporda açıkça “hazır değil”
+                  görünür ve skora katılmaz.
+                </p>
+              </div>
+              <div className={styles.benchmarkActions}>
+                <button
+                  className="btn"
+                  type="button"
+                  disabled={
+                    benchmarkLoading ||
+                    profile.brandName.trim().length < 2 ||
+                    profile.sector.trim().length < 2
+                  }
+                  onClick={runBenchmark}
+                >
+                  {benchmarkLoading ? '4 canlı yanıt taranıyor…' : 'Canlı benchmarkı başlat →'}
+                </button>
+                <button
+                  className={`btn alt ${styles.demoButton}`}
+                  type="button"
+                  onClick={() => {
+                    setView('sample')
+                    scrollToSample()
+                  }}
+                >
+                  Demo raporu gör
+                </button>
+              </div>
+            </div>
+            {benchmarkError && (
+              <p className={styles.benchmarkError} role="alert">
+                {benchmarkError}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {benchmark && view === 'benchmark' && (
+        <section
+          className={styles.benchmarkBand}
+          aria-labelledby="benchmark-title"
+          ref={benchmarkRef}
+        >
+          <div className="wrap">
+            <div className={styles.sampleHeading}>
+              <div>
+                <span className="tag lime">
+                  CANLI SONUÇ · {benchmark.status === 'completed' ? 'TAMAMLANDI' : 'KISMİ'}
+                </span>
+                <h2 id="benchmark-title">AI görünürlük örnekleminiz hazır.</h2>
+                <p>
+                  {benchmark.promptCount} markasız soru · {benchmark.visibility.validRuns}/
+                  {benchmark.plannedRuns} geçerli sağlayıcı yanıtı · {profile.country} ·{' '}
+                  {profile.language === 'tr' ? 'Türkçe' : 'İngilizce'}
                 </p>
               </div>
               <button
-                className="btn"
+                className="btn alt"
                 type="button"
-                onClick={() => {
-                  setView('sample')
-                  scrollToSample()
-                }}
+                onClick={() => downloadJson('veri-mimari-ai-gorunurluk-canli.json', benchmark)}
               >
-                Demo rapor formatını incele →
+                Kanıtları indir ↓
               </button>
             </div>
+
+            <div className={styles.scoreGrid}>
+              <ScoreCard
+                label="AI VISIBILITY INDEX"
+                value={`${benchmark.visibility.index}/100`}
+                note="Anılma, sıra, kaynak ve tutarlılık bileşimi"
+                accent
+              />
+              <ScoreCard
+                label="ANILMA ORANI"
+                value={formatPercent(benchmark.visibility.coverage)}
+                note={`${benchmark.visibility.mentionCount}/${benchmark.visibility.validRuns} geçerli yanıtta marka anıldı`}
+              />
+              <ScoreCard
+                label="GEÇERLİ YANIT"
+                value={`${benchmark.visibility.validRuns}/${benchmark.plannedRuns}`}
+                note="Hata ve yapılandırılmamış sağlayıcılar puan dışı"
+              />
+              <ScoreCard
+                label="SAĞLAYICI TUTARLILIĞI"
+                value={formatPercent(benchmark.visibility.consistency)}
+                note={`%95 anılma aralığı: %${Math.round(benchmark.visibility.wilson95.low)}–%${Math.round(benchmark.visibility.wilson95.high)}`}
+              />
+            </div>
+
+            <div className={styles.reportGrid}>
+              <section className={`panel ${styles.providerPanel}`}>
+                <div className={styles.panelTitle}>
+                  <span>04 / SAĞLAYICI MATRİSİ</span>
+                  <h3>Gerçekten çalışan yüzeyleri görün.</h3>
+                </div>
+                <div className={styles.tableWrap}>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Sağlayıcı</th>
+                        <th>Durum</th>
+                        <th>Geçerli</th>
+                        <th>Anılma</th>
+                        <th>Hedef atıf</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {benchmark.providerAvailability.map((availability) => {
+                        const stat = benchmark.byProvider.find(
+                          (item) => item.provider === availability.provider,
+                        )
+                        return (
+                          <tr key={availability.provider}>
+                            <th>
+                              {availability.label}
+                              <small className={styles.modelName}>{availability.model}</small>
+                            </th>
+                            <td>{availability.configured ? 'CANLI' : 'HAZIR DEĞİL'}</td>
+                            <td>{stat?.total ?? 0}</td>
+                            <td>{stat?.mentioned ?? 0}</td>
+                            <td>{formatPercent(stat?.citationRate ?? null)}</td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className={`panel ${styles.competitorPanel}`}>
+                <div className={styles.panelTitle}>
+                  <span>05 / RAKİP SİNYALİ</span>
+                  <h3>Yanıtlarda kim öne çıktı?</h3>
+                </div>
+                {benchmark.competitors.some((item) => item.mentions > 0) ? (
+                  <ol>
+                    {benchmark.competitors
+                      .filter((item) => item.mentions > 0)
+                      .map((competitor, index) => (
+                        <li key={competitor.name}>
+                          <span>{String(index + 1).padStart(2, '0')}</span>
+                          <div>
+                            <b>{competitor.name}</b>
+                            <small>{competitor.mentions} geçerli yanıtta anıldı</small>
+                          </div>
+                          <strong>%{competitor.shareOfVoice}</strong>
+                        </li>
+                      ))}
+                  </ol>
+                ) : (
+                  <p className={styles.emptyState}>
+                    Girilen rakiplerden hiçbiri geçerli sağlayıcı yanıtlarında tespit edilmedi.
+                  </p>
+                )}
+              </section>
+            </div>
+
+            <section className={`panel ${styles.sourcePanel}`}>
+              <div className={styles.panelTitle}>
+                <span>06 / KAYNAK HARİTASI</span>
+                <h3>Sağlayıcıların dayandığı alan adları.</h3>
+              </div>
+              {benchmark.sourceGap.length ? (
+                <div className={styles.sourceGrid}>
+                  {benchmark.sourceGap.map((source) => (
+                    <article key={source.domain}>
+                      <span>{source.citations} ATIF</span>
+                      <strong>{source.domain}</strong>
+                      <small>
+                        {source.targetPresent
+                          ? 'Marka bu kaynakta desteklendi'
+                          : 'Marka desteği tespit edilmedi'}
+                      </small>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <p className={styles.emptyState}>Geçerli yanıtlarda kaynak bağlantısı dönmedi.</p>
+              )}
+            </section>
+
+            <section className={styles.observationList} aria-labelledby="evidence-title">
+              <div className={styles.panelTitle}>
+                <span>07 / HAM KANIT</span>
+                <h3 id="evidence-title">Her soruyu, yanıtı ve atfı denetleyin.</h3>
+              </div>
+              {benchmark.observations.map((observation, index) => (
+                <details
+                  className={styles.evidencePanel}
+                  key={`${observation.provider}-${observation.promptId}`}
+                >
+                  <summary>
+                    <span>
+                      {String(index + 1).padStart(2, '0')} ·{' '}
+                      {providerNames[observation.provider] || observation.provider} ·{' '}
+                      {observation.status === 'success'
+                        ? observation.mentioned
+                          ? 'MARKA ANILDI'
+                          : 'MARKA ANILMADI'
+                        : observation.status === 'blocked'
+                          ? 'HAZIR DEĞİL'
+                          : 'YANIT HATASI'}
+                    </span>
+                    <b>+</b>
+                  </summary>
+                  <div>
+                    <dl>
+                      <div>
+                        <dt>Model</dt>
+                        <dd>{observation.model}</dd>
+                      </div>
+                      <div>
+                        <dt>Soru</dt>
+                        <dd>{observation.prompt}</dd>
+                      </div>
+                      <div>
+                        <dt>Zaman</dt>
+                        <dd>{new Date(observation.timestamp).toLocaleString('tr-TR')}</dd>
+                      </div>
+                      <div>
+                        <dt>Süre</dt>
+                        <dd>{observation.latencyMs ? `${observation.latencyMs} ms` : '—'}</dd>
+                      </div>
+                    </dl>
+                    <div className={styles.rawEvidence}>
+                      {observation.error ? (
+                        <p className={styles.inlineError}>{observation.error.message}</p>
+                      ) : (
+                        <blockquote>{observation.responseText}</blockquote>
+                      )}
+                      {observation.citations.length > 0 && (
+                        <ol>
+                          {observation.citations.map((citation) => (
+                            <li key={`${citation.ordinal}-${citation.url}`}>
+                              <a href={citation.url} target="_blank" rel="noreferrer">
+                                {citation.title || citation.domain} ↗
+                              </a>
+                            </li>
+                          ))}
+                        </ol>
+                      )}
+                    </div>
+                  </div>
+                </details>
+              ))}
+            </section>
+
+            <p className={styles.methodNote}>{benchmark.methodologyNote}</p>
           </div>
         </section>
       )}
@@ -592,7 +886,7 @@ export default function AnalyzerClient() {
       </section>
 
       <Footer t={t} />
-      <FeedbackWidget toolName="Yapay Zekâ Görünürlük Analizi" />
+      <FeedbackWidget toolName="AI Görünürlük ve Teknik Hazırlık Ön Analizi" />
     </main>
   )
 }

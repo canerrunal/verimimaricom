@@ -10,6 +10,8 @@ export interface ValidationResult<T> {
 
 export interface PreflightInput {
   domain: string
+  country: string
+  language: string
   consent: true
 }
 
@@ -70,7 +72,9 @@ export function parsePreflightInput(value: unknown): ValidationResult<PreflightI
       error: 'Bu siteyi analiz etme yetkiniz olduğunu onaylayın.',
     }
   }
-  return { success: true, data: { domain: domain.data!, consent: true } }
+  const country = cleanString(body.country, 60) || 'Türkiye'
+  const language = cleanString(body.language, 10) || 'tr'
+  return { success: true, data: { domain: domain.data!, country, language, consent: true } }
 }
 
 export function parseBrandProfile(value: unknown): ValidationResult<BrandProfile> {
@@ -96,7 +100,7 @@ export function parseBrandProfile(value: unknown): ValidationResult<BrandProfile
   }
 }
 
-const providerIds: ProviderId[] = ['openai', 'gemini', 'anthropic', 'perplexity', 'xai']
+const providerIds: ProviderId[] = ['openai', 'perplexity']
 
 export function parseScanRequest(value: unknown): ValidationResult<ScanRequestInput> {
   const body = value && typeof value === 'object' ? (value as Record<string, unknown>) : {}
@@ -112,16 +116,16 @@ export function parseScanRequest(value: unknown): ValidationResult<ScanRequestIn
     ? body.providers
         .filter((item): item is ProviderId => providerIds.includes(item as ProviderId))
         .slice(0, 5)
-    : ['openai', 'gemini']
-  const promptCount = Math.min(12, Math.max(4, Number(body.promptCount) || 8))
-  const repetitions = Math.min(3, Math.max(1, Number(body.repetitions) || 1))
+    : ['openai', 'perplexity']
+  const promptCount = 4
+  const repetitions = 1
 
   return {
     success: true,
     data: {
       domain: domain.data!,
       profile: profile.data!,
-      providers: providers.length ? providers : ['openai', 'gemini'],
+      providers: providers.length ? providers : ['openai', 'perplexity'],
       promptCount,
       repetitions,
       consent: true,

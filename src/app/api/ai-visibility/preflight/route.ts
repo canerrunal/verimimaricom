@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server'
 import { parsePreflightInput } from '@/features/ai-visibility/schemas/scan'
+import { checkRateLimit } from '@/features/ai-visibility/security/rate-limit'
 import { PreflightError, runPreflight } from '@/features/ai-visibility/services/preflight'
 
 export const runtime = 'nodejs'
 export const maxDuration = 20
-
-const WINDOW_MS = 15 * 60 * 1000
-const MAX_REQUESTS = 8
-const rateLimits = new Map<string, { count: number; resetAt: number }>()
 
 function clientIp(request: Request) {
   return (
@@ -17,23 +14,16 @@ function clientIp(request: Request) {
   )
 }
 
-function canRun(key: string) {
-  const now = Date.now()
-  const current = rateLimits.get(key)
-  if (!current || current.resetAt <= now) {
-    rateLimits.set(key, { count: 1, resetAt: now + WINDOW_MS })
-    return true
-  }
-  if (current.count >= MAX_REQUESTS) return false
-  current.count += 1
-  return true
-}
-
 export async function POST(request: Request) {
-  if (!canRun(clientIp(request))) {
+  const rate = await checkRateLimit({
+    scope: 'ai-preflight',
+    key: clientIp(request),
+    limit: 30,
+  })
+  if (!rate.allowed) {
     return NextResponse.json(
-      { error: 'Kısa sürede çok fazla ön analiz başlatıldı. Lütfen biraz sonra yeniden deneyin.' },
-      { status: 429 },
+      { error: 'Günlük ücretsiz ön analiz sınırına ulaşıldı. Yarın yeniden deneyin.' },
+      { status: 429, headers: { 'Retry-After': String(rate.retryAfterSeconds) } },
     )
   }
 
@@ -50,7 +40,11 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = await runPreflight({ domain: parsed.data!.domain })
+    const result = await runPreflight({
+      domain: parsed.data!.domain,
+      country: parsed.data!.country,
+      language: parsed.data!.language,
+    })
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, no-store' },
     })

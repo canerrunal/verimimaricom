@@ -447,6 +447,38 @@
   flex: 0 0 auto;
 }
 
+.benchmarkActions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.benchmarkActions button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.demoButton {
+  background: var(--paper);
+}
+
+.benchmarkError {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border: 1px solid var(--ink);
+  background: var(--orange);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.benchmarkBand {
+  scroll-margin-top: 72px;
+  padding: 96px 0 108px;
+  border-top: 1px solid var(--ink);
+  background: var(--lime);
+}
+
 .sampleBand {
   padding: 96px 0 108px;
   border-top: 1px solid var(--ink);
@@ -540,6 +572,13 @@
   font-weight: 800;
 }
 
+.modelName {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font: 650 8px/1.35 var(--mono);
+}
+
 .competitorPanel ol {
   margin: 0;
   padding: 0;
@@ -573,6 +612,58 @@
 .competitorPanel li strong {
   color: var(--blue);
   font-size: 20px;
+}
+
+.emptyState {
+  margin: 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.sourcePanel {
+  margin-top: 24px;
+  padding: 28px;
+}
+
+.sourceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.sourceGrid article {
+  display: grid;
+  min-height: 150px;
+  align-content: end;
+  gap: 8px;
+  padding: 18px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.sourceGrid span {
+  margin-bottom: auto;
+  color: var(--blue);
+  font: 800 8px/1.4 var(--mono);
+}
+
+.sourceGrid strong {
+  overflow-wrap: anywhere;
+  font-size: 16px;
+}
+
+.sourceGrid small {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.observationList {
+  margin-top: 46px;
 }
 
 .actionsPanel {
@@ -639,12 +730,14 @@
   display: none;
 }
 
-.evidencePanel summary span {
+.evidencePanel summary > b,
+.evidencePanel summary > span:last-child {
   color: var(--lime);
   font: 900 20px/1 var(--mono);
 }
 
-.evidencePanel[open] summary span {
+.evidencePanel[open] summary > b,
+.evidencePanel[open] summary > span:last-child {
   transform: rotate(45deg);
 }
 
@@ -691,6 +784,46 @@
   color: var(--line);
   font-size: 13px;
   line-height: 1.7;
+}
+
+.rawEvidence {
+  min-width: 0;
+}
+
+.rawEvidence blockquote {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rawEvidence ol {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding-left: 20px;
+}
+
+.rawEvidence a {
+  color: var(--lime);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.inlineError {
+  margin: 0;
+  padding: 18px;
+  border-left: 5px solid var(--orange);
+  background: var(--dark-2);
+  color: var(--line);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.methodNote {
+  margin: 22px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--ink);
+  font: 700 9px/1.6 var(--mono);
 }
 
 .methodology {
@@ -815,6 +948,10 @@
   .scoreGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .sourceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {
@@ -824,6 +961,7 @@
 
   .inputLayout,
   .preflightResults,
+  .benchmarkBand,
   .sampleBand,
   .faq {
     padding-top: 72px;
@@ -861,6 +999,16 @@
   .betaNotice {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .benchmarkActions {
+    flex-direction: column;
+  }
+
+  .benchmarkActions button,
+  .sourceGrid {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .resultHeading .btn,
@@ -905,7 +1053,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .evidencePanel summary span,
+  .evidencePanel summary > b,
+  .evidencePanel summary > span:last-child,
   .faq summary span {
     transition: none;
   }
