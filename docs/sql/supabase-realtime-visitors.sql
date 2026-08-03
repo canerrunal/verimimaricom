@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS visitor_sessions (
 CREATE OR REPLACE VIEW active_visitors AS
 SELECT COUNT(*) as count
 FROM visitor_sessions
-WHERE last_seen_at > NOW() - INTERVAL '5 minutes';
+WHERE last_seen_at > NOW() - INTERVAL '5 minutes'
+  AND page_path NOT LIKE '/api-rate/%';
 
 -- RLS (Row Level Security)
 ALTER TABLE visitor_sessions ENABLE ROW LEVEL SECURITY;

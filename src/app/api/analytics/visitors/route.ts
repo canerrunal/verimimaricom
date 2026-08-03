@@ -54,6 +54,7 @@ export async function POST(req: Request) {
       .from('visitor_sessions')
       .select('*', { count: 'exact', head: true })
       .gt('last_seen_at', new Date(Date.now() - 5 * 60 * 1000).toISOString())
+      .not('page_path', 'like', '/api-rate/%')
 
     return NextResponse.json({ visitors: count || 0 })
   } catch {
@@ -72,6 +73,7 @@ export async function GET() {
       .from('visitor_sessions')
       .select('*', { count: 'exact', head: true })
       .gt('last_seen_at', new Date(Date.now() - 5 * 60 * 1000).toISOString())
+      .not('page_path', 'like', '/api-rate/%')
 
     return NextResponse.json({ visitors: count || 0 })
   } catch {
