@@ -203,7 +203,7 @@ export default function AnalyzerClient() {
           tıklanabilir kaynaklarıyla inceleyin.
         </p>
         <div className={`signals ${styles.signals}`}>
-          <span className="tag purple">BETA · OPENAI CANLI</span>
+          <span className="tag purple">BETA · CANLI API BENCHMARKI</span>
           <span className="tag">4 MARKASIZ SORU</span>
           <span className="tag">PERPLEXITY BAĞLANTISI HAZIR</span>
           <span className="tag">LİSTELEME GARANTİSİ DEĞİLDİR</span>
@@ -435,7 +435,7 @@ export default function AnalyzerClient() {
             </div>
             <div className={styles.betaNotice}>
               <div>
-                <b>OPENAI CANLI · PERPLEXITY BAĞLANTISI HAZIR</b>
+                <b>OPENAI / PERPLEXITY SAĞLAYICI DURUMU RAPORLANIR</b>
                 <p>
                   Dört nötr sorunun yalnızca başarıyla tamamlanan sağlayıcı yanıtları puanlanır.
                   Perplexity anahtarı yapılandırılmamışsa bu yüzey raporda açıkça “hazır değil”
@@ -486,9 +486,18 @@ export default function AnalyzerClient() {
             <div className={styles.sampleHeading}>
               <div>
                 <span className="tag lime">
-                  CANLI SONUÇ · {benchmark.status === 'completed' ? 'TAMAMLANDI' : 'KISMİ'}
+                  CANLI SONUÇ ·{' '}
+                  {benchmark.status === 'completed'
+                    ? 'TAMAMLANDI'
+                    : benchmark.status === 'partial'
+                      ? 'KISMİ'
+                      : 'GEÇERLİ YANIT YOK'}
                 </span>
-                <h2 id="benchmark-title">AI görünürlük örnekleminiz hazır.</h2>
+                <h2 id="benchmark-title">
+                  {benchmark.status === 'failed'
+                    ? 'Sağlayıcı bağlantısı doğrulanamadı.'
+                    : 'AI görünürlük örnekleminiz hazır.'}
+                </h2>
                 <p>
                   {benchmark.promptCount} markasız soru · {benchmark.visibility.validRuns}/
                   {benchmark.plannedRuns} geçerli sağlayıcı yanıtı · {profile.country} ·{' '}
@@ -507,13 +516,15 @@ export default function AnalyzerClient() {
             <div className={styles.scoreGrid}>
               <ScoreCard
                 label="AI VISIBILITY INDEX"
-                value={`${benchmark.visibility.index}/100`}
+                value={benchmark.visibility.validRuns ? `${benchmark.visibility.index}/100` : '—'}
                 note="Anılma, sıra, kaynak ve tutarlılık bileşimi"
                 accent
               />
               <ScoreCard
                 label="ANILMA ORANI"
-                value={formatPercent(benchmark.visibility.coverage)}
+                value={formatPercent(
+                  benchmark.visibility.validRuns ? benchmark.visibility.coverage : null,
+                )}
                 note={`${benchmark.visibility.mentionCount}/${benchmark.visibility.validRuns} geçerli yanıtta marka anıldı`}
               />
               <ScoreCard
@@ -523,7 +534,9 @@ export default function AnalyzerClient() {
               />
               <ScoreCard
                 label="SAĞLAYICI TUTARLILIĞI"
-                value={formatPercent(benchmark.visibility.consistency)}
+                value={formatPercent(
+                  benchmark.visibility.validRuns ? benchmark.visibility.consistency : null,
+                )}
                 note={`%95 anılma aralığı: %${Math.round(benchmark.visibility.wilson95.low)}–%${Math.round(benchmark.visibility.wilson95.high)}`}
               />
             </div>
@@ -556,7 +569,17 @@ export default function AnalyzerClient() {
                               {availability.label}
                               <small className={styles.modelName}>{availability.model}</small>
                             </th>
-                            <td>{availability.configured ? 'CANLI' : 'HAZIR DEĞİL'}</td>
+                            <td>
+                              {!availability.configured
+                                ? 'HAZIR DEĞİL'
+                                : benchmark.observations.some(
+                                      (item) =>
+                                        item.provider === availability.provider &&
+                                        item.status === 'success',
+                                    )
+                                  ? 'CANLI'
+                                  : 'BAĞLANTI HATASI'}
+                            </td>
                             <td>{stat?.total ?? 0}</td>
                             <td>{stat?.mentioned ?? 0}</td>
                             <td>{formatPercent(stat?.citationRate ?? null)}</td>

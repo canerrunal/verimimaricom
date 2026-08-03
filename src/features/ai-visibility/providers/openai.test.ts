@@ -1,5 +1,10 @@
-import { describe, expect, it } from 'vitest'
-import { readOpenAIResponse } from './openai'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { openAIAdapter, readOpenAIResponse } from './openai'
+
+afterEach(() => {
+  vi.unstubAllEnvs()
+  vi.unstubAllGlobals()
+})
 
 describe('OpenAI response parser', () => {
   it('extracts answer text and clickable web sources', () => {
@@ -31,5 +36,32 @@ describe('OpenAI response parser', () => {
       { url: 'https://example.com/search', title: 'Search source' },
       { url: 'https://example.com/citation', title: 'Citation' },
     ])
+  })
+
+  it('does not expose provider key fragments in authentication errors', async () => {
+    vi.stubEnv('OPENAI_API_KEY', 'sk-secret-value')
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn()
+        .mockResolvedValue(
+          new Response(
+            JSON.stringify({ error: { message: 'Incorrect API key: sk-secret-value' } }),
+            { status: 401 },
+          ),
+        ),
+    )
+
+    await expect(
+      openAIAdapter.run({
+        scanId: 'scan',
+        promptId: 'prompt',
+        prompt: 'Örnek soru',
+        locale: 'tr',
+        maxOutputTokens: 100,
+        repetition: 1,
+        metadata: { profile: '{}', domain: 'https://example.com' },
+      }),
+    ).rejects.toThrow('OpenAI bağlantı anahtarı geçersiz veya yetkisiz.')
   })
 })

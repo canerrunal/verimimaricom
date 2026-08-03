@@ -118,8 +118,11 @@ export const openAIAdapter: ProviderAdapter = {
         errorBody.error && typeof errorBody.error === 'object'
           ? (errorBody.error as Record<string, unknown>)
           : {}
+      const authenticationFailed = response.status === 401 || response.status === 403
       throw new ProviderError(
-        (typeof error.message === 'string' && error.message) || 'OpenAI yanıtı alınamadı.',
+        authenticationFailed
+          ? 'OpenAI bağlantı anahtarı geçersiz veya yetkisiz. Ortam yapılandırmasını güncelleyin.'
+          : (typeof error.message === 'string' && error.message) || 'OpenAI yanıtı alınamadı.',
         `http_${response.status}`,
         response.status === 429 || response.status >= 500,
         'openai',

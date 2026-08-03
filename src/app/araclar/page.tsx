@@ -92,7 +92,7 @@ const allTools = [
       'Ana sayfa teknik sinyalini kontrol edin; OpenAI görünürlüğünü dört markasız soruyla ve ham kaynak kanıtlarıyla örnekleyin.',
     status: 'BETA',
     category: 'Yapay zekâ',
-    badge: 'BETA · OPENAI CANLI · 4 SORU',
+    badge: 'BETA · CANLI API · 4 SORU',
     href: '/araclar/yapay-zeka-gorunurluk-analizi',
     cta: 'Görünürlüğü Analiz Et →',
   },

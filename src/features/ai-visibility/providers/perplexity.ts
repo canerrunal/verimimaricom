@@ -81,10 +81,13 @@ export const perplexityAdapter: ProviderAdapter = {
           ? (errorBody.error as Record<string, unknown>)
           : {}
       const detail = typeof errorBody.detail === 'string' ? errorBody.detail : ''
+      const authenticationFailed = response.status === 401 || response.status === 403
       throw new ProviderError(
-        (typeof error.message === 'string' && error.message) ||
-          detail ||
-          'Perplexity yanıtı alınamadı.',
+        authenticationFailed
+          ? 'Perplexity bağlantı anahtarı geçersiz veya yetkisiz. Ortam yapılandırmasını güncelleyin.'
+          : (typeof error.message === 'string' && error.message) ||
+              detail ||
+              'Perplexity yanıtı alınamadı.',
         `http_${response.status}`,
         response.status === 429 || response.status >= 500,
         'perplexity',
