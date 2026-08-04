@@ -1,83 +1,151 @@
 'use client'
 
-import { useState } from 'react'
-import { getDictionary } from '@/lib/i18n'
+import { useEffect, useId, useRef, useState } from 'react'
+import { trackFeedbackSubmit } from '@/lib/analytics'
 
 export default function FeedbackWidget({ toolName }: { toolName: string }) {
-  const t = getDictionary('tr')
+  const [open, setOpen] = useState(false)
   const [vote, setVote] = useState<'yes' | 'no' | null>(null)
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const panelId = useId()
+  const widgetRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  useEffect(() => {
+    if (!open) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!widgetRef.current?.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('pointerdown', handlePointerDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('pointerdown', handlePointerDown)
+    }
+  }, [open])
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault()
+    if (!vote) return
+
+    trackFeedbackSubmit(toolName, vote, feedback)
     setSubmitted(true)
   }
 
   return (
-    <section className="wrap" style={{ paddingBottom: 72 }}>
-      <div className="panel" style={{ maxWidth: 720, margin: '0 auto' }}>
-        {!submitted ? (
-          <div>
-            <div className="eyebrow" style={{ marginBottom: 8 }}>
-              Geri bildirim
-            </div>
-            <h3
-              style={{
-                margin: '0 0 6px',
-                font: "700 17px/1.18 'Space Mono'",
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Bu araç faydalı oldu mu?
-            </h3>
-            <p style={{ color: 'var(--muted)', fontSize: 10, margin: '0 0 16px' }}>
-              Görüşleriniz veya yeni araç önerileriniz platformu geliştirmemize yardımcı olur.
-            </p>
-
-            <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1rem' }}>
-              <button
-                onClick={() => setVote('yes')}
-                className={`btn alt ${vote === 'yes' ? 'active' : ''}`}
-                style={{ paddingTop: 8, paddingBottom: 8 }}
-              >
-                👍 Evet, faydalı
-              </button>
-              <button
-                onClick={() => setVote('no')}
-                className={`btn alt ${vote === 'no' ? 'active' : ''}`}
-                style={{ paddingTop: 8, paddingBottom: 8 }}
-              >
-                👎 Geliştirilmeli
-              </button>
-            </div>
-
-            {vote && (
-              <form
-                onSubmit={handleSubmit}
-                style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}
-              >
-                <input
-                  type="text"
-                  className="search"
-                  style={{ flex: 1, minWidth: 220 }}
-                  value={feedback}
-                  onChange={(e) => setFeedback(e.target.value)}
-                  placeholder="Öneri veya notunuzu yazın…"
-                  aria-label="Geri bildirim notu"
-                />
-                <button type="submit" className="btn">
-                  Gönder
-                </button>
-              </form>
-            )}
-          </div>
+    <div ref={widgetRef} className={`feedback-widget ${open ? 'is-open' : ''}`}>
+      <button
+        ref={triggerRef}
+        type="button"
+        className="feedback-trigger"
+        aria-label={open ? 'Geri bildirim penceresini kapat' : 'Geri bildirim ver'}
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((current) => !current)}
+      >
+        {open ? (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6.5 6.5 11 11m0-11-11 11" />
+          </svg>
         ) : (
-          <div style={{ color: 'var(--green)', fontWeight: 600, fontSize: 10 }}>
-            ✓ Geri bildiriminiz için teşekkür ederiz!
-          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5.5 4.5h13a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-4.5 3v-3H5.5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z" />
+            <path d="M8 9h8M8 12h5" />
+          </svg>
         )}
-      </div>
-    </section>
+      </button>
+
+      {open && (
+        <aside
+          id={panelId}
+          className="feedback-panel"
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby={`${panelId}-title`}
+        >
+          {!submitted ? (
+            <>
+              <div className="feedback-panel-head">
+                <div>
+                  <span className="eyebrow">Geri bildirim</span>
+                  <h2 id={`${panelId}-title`}>Bu araç faydalı oldu mu?</h2>
+                </div>
+                <button
+                  type="button"
+                  className="feedback-close"
+                  aria-label="Geri bildirim penceresini kapat"
+                  onClick={() => {
+                    setOpen(false)
+                    triggerRef.current?.focus()
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+              <p className="feedback-description">
+                Görüşleriniz veya yeni araç önerileriniz platformu geliştirmemize yardımcı olur.
+              </p>
+
+              <div className="feedback-votes" aria-label="Aracın faydasını değerlendirin">
+                <button
+                  type="button"
+                  onClick={() => setVote('yes')}
+                  className={`btn alt ${vote === 'yes' ? 'is-active' : ''}`}
+                  aria-pressed={vote === 'yes'}
+                >
+                  <span aria-hidden="true">👍</span> Evet, faydalı
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setVote('no')}
+                  className={`btn alt ${vote === 'no' ? 'is-active' : ''}`}
+                  aria-pressed={vote === 'no'}
+                >
+                  <span aria-hidden="true">👎</span> Geliştirilmeli
+                </button>
+              </div>
+
+              {vote && (
+                <form onSubmit={handleSubmit} className="feedback-form">
+                  <label htmlFor={`${panelId}-note`}>Öneri veya notunuz</label>
+                  <input
+                    id={`${panelId}-note`}
+                    type="text"
+                    className="search"
+                    value={feedback}
+                    onChange={(event) => setFeedback(event.target.value)}
+                    placeholder="Kısaca yazın…"
+                  />
+                  <button type="submit" className="btn">
+                    Geri bildirimi gönder
+                  </button>
+                </form>
+              )}
+            </>
+          ) : (
+            <div className="feedback-success" role="status">
+              <span aria-hidden="true">✓</span>
+              <div>
+                <h2 id={`${panelId}-title`}>Teşekkür ederiz!</h2>
+                <p>Geri bildiriminiz bize ulaştı.</p>
+              </div>
+            </div>
+          )}
+        </aside>
+      )}
+    </div>
   )
 }
