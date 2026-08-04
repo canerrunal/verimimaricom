@@ -61,6 +61,7 @@ export async function POST(request: Request) {
   try {
     const result = await runVisibilityBenchmark(parsed.data!, {
       safetyIdentifier: safetyIdentifier(ip),
+      gatewayToken: request.headers.get('x-vercel-oidc-token') || undefined,
     })
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, no-store' },

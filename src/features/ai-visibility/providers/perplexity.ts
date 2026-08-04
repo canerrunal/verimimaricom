@@ -6,17 +6,17 @@ import { buildObservation, type ProviderSource } from './normalize'
 const DEFAULT_MODEL = 'sonar'
 const GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/chat/completions'
 
-function gatewayToken() {
-  return process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
+function gatewayToken(runtimeToken?: string) {
+  return runtimeToken || process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
 }
 
 function directModel() {
   return process.env.PERPLEXITY_VISIBILITY_MODEL || DEFAULT_MODEL
 }
 
-function resolvedModel() {
+function resolvedModel(runtimeToken?: string) {
   const model = directModel()
-  return gatewayToken() ? `perplexity/${model.replace(/^perplexity\//, '')}` : model
+  return gatewayToken(runtimeToken) ? `perplexity/${model.replace(/^perplexity\//, '')}` : model
 }
 
 function readPerplexityResponse(payload: unknown) {
@@ -48,9 +48,11 @@ function readPerplexityResponse(payload: unknown) {
 export const perplexityAdapter: ProviderAdapter = {
   id: 'perplexity',
   model: resolvedModel(),
-  configured: () => Boolean(gatewayToken() || process.env.PERPLEXITY_API_KEY),
+  modelFor: (runtimeToken) => resolvedModel(runtimeToken),
+  configured: (runtimeToken) =>
+    Boolean(gatewayToken(runtimeToken) || process.env.PERPLEXITY_API_KEY),
   async run(request: ProviderRequest): Promise<ProviderResult<ProviderObservation>> {
-    const gatewayApiKey = gatewayToken()
+    const gatewayApiKey = gatewayToken(request.gatewayToken)
     const apiKey = gatewayApiKey || process.env.PERPLEXITY_API_KEY
     if (!apiKey) {
       throw new ProviderError(
@@ -70,7 +72,7 @@ export const perplexityAdapter: ProviderAdapter = {
         headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
         signal: AbortSignal.timeout(45_000),
         body: JSON.stringify({
-          model: resolvedModel(),
+          model: resolvedModel(request.gatewayToken),
           max_tokens: request.maxOutputTokens,
           temperature: 0.1,
           messages: [
@@ -130,7 +132,7 @@ export const perplexityAdapter: ProviderAdapter = {
     const latencyMs = Date.now() - startedAt
     const observation = buildObservation({
       provider: 'perplexity',
-      model: resolvedModel(),
+      model: resolvedModel(request.gatewayToken),
       request,
       profile,
       domain: request.metadata.domain || '',
@@ -141,7 +143,7 @@ export const perplexityAdapter: ProviderAdapter = {
 
     return {
       provider: 'perplexity',
-      model: resolvedModel(),
+      model: resolvedModel(request.gatewayToken),
       status: 'success',
       payload: observation,
       latencyMs,

@@ -6,17 +6,17 @@ import { buildObservation, type ProviderSource } from './normalize'
 const DEFAULT_MODEL = 'gpt-5.6-luna'
 const GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/responses'
 
-function gatewayToken() {
-  return process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
+function gatewayToken(runtimeToken?: string) {
+  return runtimeToken || process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
 }
 
 function directModel() {
   return process.env.OPENAI_VISIBILITY_MODEL || DEFAULT_MODEL
 }
 
-function resolvedModel() {
+function resolvedModel(runtimeToken?: string) {
   const model = directModel()
-  return gatewayToken() ? `openai/${model.replace(/^openai\//, '')}` : model
+  return gatewayToken(runtimeToken) ? `openai/${model.replace(/^openai\//, '')}` : model
 }
 
 function countryCode(country?: string) {
@@ -84,9 +84,10 @@ function readOpenAIResponse(payload: unknown) {
 export const openAIAdapter: ProviderAdapter = {
   id: 'openai',
   model: resolvedModel(),
-  configured: () => Boolean(gatewayToken() || process.env.OPENAI_API_KEY),
+  modelFor: (runtimeToken) => resolvedModel(runtimeToken),
+  configured: (runtimeToken) => Boolean(gatewayToken(runtimeToken) || process.env.OPENAI_API_KEY),
   async run(request: ProviderRequest): Promise<ProviderResult<ProviderObservation>> {
-    const gatewayApiKey = gatewayToken()
+    const gatewayApiKey = gatewayToken(request.gatewayToken)
     const apiKey = gatewayApiKey || process.env.OPENAI_API_KEY
     if (!apiKey) {
       throw new ProviderError(
@@ -108,7 +109,7 @@ export const openAIAdapter: ProviderAdapter = {
         headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
         signal: AbortSignal.timeout(45_000),
         body: JSON.stringify({
-          model: resolvedModel(),
+          model: resolvedModel(request.gatewayToken),
           store: false,
           reasoning: { effort: 'low' },
           text: { verbosity: 'low' },
@@ -156,7 +157,7 @@ export const openAIAdapter: ProviderAdapter = {
     const latencyMs = Date.now() - startedAt
     const observation = buildObservation({
       provider: 'openai',
-      model: resolvedModel(),
+      model: resolvedModel(request.gatewayToken),
       request,
       profile,
       domain,
@@ -167,7 +168,7 @@ export const openAIAdapter: ProviderAdapter = {
 
     return {
       provider: 'openai',
-      model: resolvedModel(),
+      model: resolvedModel(request.gatewayToken),
       status: 'success',
       payload: observation,
       latencyMs,

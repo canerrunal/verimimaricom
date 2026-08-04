@@ -7,6 +7,7 @@ function makeAdapter(provider: ProviderObservation['provider']): ProviderAdapter
   return {
     id: provider,
     model: `${provider}-demo`,
+    modelFor: () => `${provider}-demo`,
     configured: () => process.env.NODE_ENV !== 'production',
     async run(request: ProviderRequest): Promise<ProviderResult<ProviderObservation>> {
       const profile: BrandProfile = JSON.parse(request.metadata.profile ?? '{}')

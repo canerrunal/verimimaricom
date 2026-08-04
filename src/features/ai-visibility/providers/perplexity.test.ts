@@ -46,7 +46,6 @@ describe('Perplexity response parser', () => {
   })
 
   it('uses Sonar through Vercel AI Gateway when OIDC is available', async () => {
-    vi.stubEnv('VERCEL_OIDC_TOKEN', 'oidc-test-token')
     const fetchMock = vi.fn().mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -66,6 +65,7 @@ describe('Perplexity response parser', () => {
       country: 'Türkiye',
       maxOutputTokens: 100,
       repetition: 1,
+      gatewayToken: 'oidc-test-token',
       metadata: {
         profile: JSON.stringify({
           brandName: 'Veri Mimarı',

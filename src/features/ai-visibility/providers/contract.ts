@@ -9,6 +9,7 @@ export interface ProviderRequest {
   maxOutputTokens: number
   repetition: number
   metadata: Record<string, string>
+  gatewayToken?: string
 }
 
 export interface ProviderHealth {
@@ -33,7 +34,8 @@ export interface ProviderResult<T = unknown> {
 export interface ProviderAdapter {
   readonly id: ProviderId
   readonly model: string
-  configured(): boolean
+  modelFor(gatewayToken?: string): string
+  configured(gatewayToken?: string): boolean
   run(request: ProviderRequest): Promise<ProviderResult<ProviderObservation>>
 }
 

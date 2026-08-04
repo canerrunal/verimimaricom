@@ -62,7 +62,7 @@ async function runWithConcurrency<T>(tasks: Array<() => Promise<T>>, limit: numb
 
 export async function runVisibilityBenchmark(
   input: ScanInput,
-  context: { safetyIdentifier: string },
+  context: { safetyIdentifier: string; gatewayToken?: string },
 ): Promise<VisibilityBenchmarkOutput> {
   const scanId = randomUUID()
   const prompts = buildPrompts(input.profile, Math.min(input.promptCount, 4))
@@ -75,8 +75,8 @@ export async function runVisibilityBenchmark(
     return {
       provider,
       label: providerLabels[provider] || provider,
-      model: adapter.model,
-      configured: adapter.configured(),
+      model: adapter.modelFor(context.gatewayToken),
+      configured: adapter.configured(context.gatewayToken),
     }
   })
 
@@ -91,16 +91,17 @@ export async function runVisibilityBenchmark(
         country: input.profile.country,
         maxOutputTokens: 900,
         repetition: 1,
+        gatewayToken: context.gatewayToken,
         metadata: {
           profile: JSON.stringify(input.profile),
           domain: input.domain,
           safetyIdentifier: context.safetyIdentifier,
         },
       }
-      if (!adapter.configured()) {
+      if (!adapter.configured(context.gatewayToken)) {
         return failedObservation(
           provider,
-          adapter.model,
+          adapter.modelFor(context.gatewayToken),
           request,
           new ProviderError('Sağlayıcı henüz yapılandırılmadı.', 'not_configured', false, provider),
         )
@@ -108,7 +109,7 @@ export async function runVisibilityBenchmark(
       try {
         return (await adapter.run(request)).payload
       } catch (error) {
-        return failedObservation(provider, adapter.model, request, error)
+        return failedObservation(provider, adapter.modelFor(context.gatewayToken), request, error)
       }
     })
   })

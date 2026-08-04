@@ -66,7 +66,6 @@ describe('OpenAI response parser', () => {
   })
 
   it('prefers Vercel AI Gateway OIDC and the creator-prefixed model', async () => {
-    vi.stubEnv('VERCEL_OIDC_TOKEN', 'oidc-test-token')
     const fetchMock = vi.fn().mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -90,6 +89,7 @@ describe('OpenAI response parser', () => {
       country: 'Türkiye',
       maxOutputTokens: 100,
       repetition: 1,
+      gatewayToken: 'oidc-test-token',
       metadata: {
         profile: JSON.stringify({
           brandName: 'Veri Mimarı',
