@@ -78,6 +78,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      url: `${siteUrl}/araclar/iade-nedeni-yorum-sinyali`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/rehberler`,
       lastModified: now,
       changeFrequency: 'weekly',
@@ -94,6 +100,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/rehberler/ai-otomasyon`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
+    },
+    {
+      url: `${siteUrl}/rehberler/musteri-ekonomisi`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
+    },
+    {
+      url: `${siteUrl}/rehberler/donusum-optimizasyonu`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
+    },
+    {
+      url: `${siteUrl}/rehberler/pazaryerleri`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
+    },
+    {
+      url: `${siteUrl}/rehberler/veri-raporlama`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
+    },
+    {
+      url: `${siteUrl}/rehberler/saas-teknoloji`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
     },
     {
       url: `${siteUrl}/sozluk`,
