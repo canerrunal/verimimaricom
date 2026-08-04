@@ -2,12 +2,17 @@ export const aiVisibilityFaqs = [
   {
     question: 'AI görünürlük analizi neyi ölçer?',
     answer:
-      'Beta sürüm, dört markasız sorunun OpenAI API yanıtlarında markanın anılma, sıra ve kaynak gösterilme sinyallerini örnekler. Perplexity yalnızca üretim anahtarı yapılandırıldığında aynı sözleşmeyle çalışır. Ana sayfa teknik sinyali bu sonuçtan ayrı gösterilir.',
+      'Beta sürüm, dört markasız soruya ücretsiz ChatGPT ve Perplexity web oturumlarında aldığınız ve manuel olarak yapıştırdığınız yanıtlarda markanın anılma, sıra ve kaynak gösterilme sinyallerini örnekler. Ana sayfa teknik sinyali bu sonuçtan ayrı gösterilir.',
   },
   {
     question: 'Bu sonuç ChatGPT veya Gemini uygulamasında herkesin gördüğü sonucu temsil eder mi?',
     answer:
-      'Hayır. API tabanlı benchmark; konum, zaman, model sürümü, kullanıcı bağlamı ve arama moduna göre değişebilen tüketici uygulaması yanıtlarının tamamını temsil etmez.',
+      'Hayır. Manuel benchmark yalnızca sizin yapıştırdığınız yanıtlara dayanır. Sonuçlar konum, zaman, model sürümü, kullanıcı bağlamı ve arama moduna göre değişebilir.',
+  },
+  {
+    question: 'Bu araç ücretli AI API çağrısı yapar mı?',
+    answer:
+      'Hayır. Teknik ön analiz Veri Mimarı sunucusunda çalışır; AI görünürlük hesabı ise ücretsiz web oturumlarından sizin getirdiğiniz yanıtlarla tarayıcınızda yapılır. OpenAI, Perplexity veya başka bir sağlayıcı API’sine ücretli istek gönderilmez.',
   },
   {
     question: 'Ön analiz sırasında hangi veriler kontrol edilir?',

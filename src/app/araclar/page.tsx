@@ -89,10 +89,10 @@ const allTools = [
   {
     title: 'AI Görünürlük ve Teknik Hazırlık Ön Analizi',
     description:
-      'Ana sayfa teknik sinyalini kontrol edin; OpenAI görünürlüğünü dört markasız soruyla ve ham kaynak kanıtlarıyla örnekleyin.',
+      'Ana sayfa teknik sinyalini kontrol edin; ücretsiz AI web yanıtlarını manuel kanıtla ve API maliyeti olmadan örnekleyin.',
     status: 'BETA',
     category: 'Yapay zekâ',
-    badge: 'BETA · CANLI API · 4 SORU',
+    badge: 'BETA · 0 TL · API YOK',
     href: '/araclar/yapay-zeka-gorunurluk-analizi',
     cta: 'Görünürlüğü Analiz Et →',
   },

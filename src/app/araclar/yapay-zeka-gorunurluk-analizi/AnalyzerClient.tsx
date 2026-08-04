@@ -4,6 +4,12 @@ import { FormEvent, useMemo, useRef, useState } from 'react'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
 import Footer from '@/components/landing/Footer'
 import NavBar from '@/components/landing/NavBar'
+import {
+  buildManualBenchmark,
+  manualEvidenceKey,
+  manualProviders,
+  type ManualProvider,
+} from '@/features/ai-visibility/manual-benchmark'
 import { buildPrompts } from '@/features/ai-visibility/prompts'
 import { sampleVisibilityReport } from '@/features/ai-visibility/sample-report'
 import type {
@@ -16,11 +22,21 @@ import { getDictionary } from '@/lib/i18n'
 import { aiVisibilityFaqs } from './faq'
 import styles from './page.module.css'
 
-type View = 'preflight' | 'profile' | 'benchmark' | 'sample'
+type View = 'preflight' | 'profile' | 'manual-input' | 'benchmark' | 'sample'
+
+interface ManualEntryState {
+  responseText: string
+  sourcesText: string
+}
 
 const providerNames: Partial<Record<ProviderId, string>> = {
-  openai: 'OpenAI',
+  openai: 'ChatGPT',
   perplexity: 'Perplexity',
+}
+
+const providerLinks: Record<ManualProvider, string> = {
+  openai: 'https://chatgpt.com/',
+  perplexity: 'https://www.perplexity.ai/',
 }
 
 const initialProfile: BrandProfile = {
@@ -89,6 +105,7 @@ function ScoreCard({
 export default function AnalyzerClient() {
   const t = getDictionary('tr')
   const workspaceRef = useRef<HTMLElement>(null)
+  const manualRef = useRef<HTMLElement>(null)
   const sampleRef = useRef<HTMLElement>(null)
   const benchmarkRef = useRef<HTMLElement>(null)
   const [view, setView] = useState<View>('preflight')
@@ -101,8 +118,8 @@ export default function AnalyzerClient() {
   const [preflight, setPreflight] = useState<PreflightOutput | null>(null)
   const [profile, setProfile] = useState<BrandProfile>(initialProfile)
   const [benchmark, setBenchmark] = useState<VisibilityBenchmarkOutput | null>(null)
-  const [benchmarkLoading, setBenchmarkLoading] = useState(false)
-  const [benchmarkError, setBenchmarkError] = useState('')
+  const [manualEntries, setManualEntries] = useState<Record<string, ManualEntryState>>({})
+  const [copiedPrompt, setCopiedPrompt] = useState('')
 
   const prompts = useMemo(() => buildPrompts(profile, 4), [profile])
 
@@ -116,6 +133,13 @@ export default function AnalyzerClient() {
   const scrollToSample = () => {
     window.setTimeout(
       () => sampleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+      50,
+    )
+  }
+
+  const scrollToManual = () => {
+    window.setTimeout(
+      () => manualRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
       50,
     )
   }
@@ -157,34 +181,50 @@ export default function AnalyzerClient() {
     }
   }
 
-  const runBenchmark = async () => {
-    setBenchmarkLoading(true)
-    setBenchmarkError('')
+  const updateManualEntry = (
+    provider: ManualProvider,
+    promptId: string,
+    field: keyof ManualEntryState,
+    value: string,
+  ) => {
+    const key = manualEvidenceKey(provider, promptId)
+    setManualEntries((current) => ({
+      ...current,
+      [key]: { responseText: '', sourcesText: '', ...current[key], [field]: value },
+    }))
+  }
+
+  const copyPrompt = async (evidenceKey: string, text: string) => {
     try {
-      const response = await fetch('/api/ai-visibility/scan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          domain,
-          profile: { ...profile, country, language },
-          providers: ['openai', 'perplexity'],
-          promptCount: 4,
-          repetitions: 1,
-          consent,
-        }),
-      })
-      const payload = await response.json()
-      if (!response.ok) throw new Error(payload.error || 'Canlı benchmark tamamlanamadı.')
-      setBenchmark(payload as VisibilityBenchmarkOutput)
-      setView('benchmark')
-      scrollToBenchmark()
-    } catch (requestError) {
-      setBenchmarkError(
-        requestError instanceof Error ? requestError.message : 'Canlı benchmark tamamlanamadı.',
-      )
-    } finally {
-      setBenchmarkLoading(false)
+      await navigator.clipboard.writeText(text)
+      setCopiedPrompt(evidenceKey)
+      window.setTimeout(() => setCopiedPrompt(''), 1600)
+    } catch {
+      setCopiedPrompt('')
     }
+  }
+
+  const manualCompletedCount = Object.values(manualEntries).filter(
+    (entry) => entry.responseText.trim().length > 0,
+  ).length
+
+  const compileManualBenchmark = () => {
+    const result = buildManualBenchmark({
+      domain,
+      profile: { ...profile, country, language },
+      prompts,
+      evidence: manualProviders.flatMap((provider) =>
+        prompts.map((prompt) => ({
+          provider,
+          promptId: prompt.id,
+          responseText: manualEntries[manualEvidenceKey(provider, prompt.id)]?.responseText || '',
+          sourcesText: manualEntries[manualEvidenceKey(provider, prompt.id)]?.sourcesText || '',
+        })),
+      ),
+    })
+    setBenchmark(result)
+    setView('benchmark')
+    scrollToBenchmark()
   }
 
   return (
@@ -198,14 +238,14 @@ export default function AnalyzerClient() {
         <div className="crumb">ARAÇLAR / AI GÖRÜNÜRLÜĞÜ / BETA</div>
         <h1>Yapay Zekâ Görünürlük ve Teknik Hazırlık Ön Analizi</h1>
         <p className="intro">
-          Önce sitenizin ölçülebilir teknik sinyallerini kontrol edin. Ardından dört markasız
-          soruyla OpenAI üzerinde canlı bir görünürlük örneklemi çalıştırın; sonuçları ham cevap ve
-          tıklanabilir kaynaklarıyla inceleyin.
+          Sitenizin ölçülebilir teknik sinyallerini kontrol edin. Dört markasız soruyu ücretsiz
+          ChatGPT ve Perplexity oturumlarında çalıştırıp yanıtları yapıştırın; görünürlük özetini
+          tarayıcınızda, API ücreti olmadan hesaplayın.
         </p>
         <div className={`signals ${styles.signals}`}>
-          <span className="tag purple">BETA · CANLI API BENCHMARKI</span>
+          <span className="tag purple">BETA · 0 TL · API YOK</span>
           <span className="tag">4 MARKASIZ SORU</span>
-          <span className="tag">PERPLEXITY BAĞLANTISI HAZIR</span>
+          <span className="tag">MANUEL GERÇEK YANIT KANITI</span>
           <span className="tag">LİSTELEME GARANTİSİ DEĞİLDİR</span>
         </div>
       </section>
@@ -222,9 +262,7 @@ export default function AnalyzerClient() {
             <ul>
               <li>Ana sayfa teknik sinyali ile AI görünürlüğü ayrı değerlendirilir.</li>
               <li>Her bulgu, kontrol edilen URL ve metinsel durumla gösterilir.</li>
-              <li>
-                Yalnızca gerçek sağlayıcı yanıtları puana katılır; eksik yüzey taklit edilmez.
-              </li>
+              <li>AI yanıtlarını siz getirirsiniz; araç ücretli sağlayıcı çağrısı yapmaz.</li>
             </ul>
           </div>
 
@@ -293,7 +331,7 @@ export default function AnalyzerClient() {
               {loading ? 'Ön analiz yapılıyor…' : 'Ücretsiz ön analizi başlat →'}
             </button>
             <p className={styles.formNote}>
-              Kredi kartı veya üyelik gerekmez. Ön analiz sonucu kalıcı olarak saklanmaz.
+              Kredi kartı gerekmez. Ön analiz sonucu kalıcı olarak saklanmaz.
             </p>
           </form>
         </div>
@@ -363,10 +401,10 @@ export default function AnalyzerClient() {
           <div className={`panel ${styles.profilePanel}`}>
             <div className={styles.profileIntro}>
               <span className="eyebrow">03 / MARKA PROFİLİ</span>
-              <h2>Taramadan önce marka bağlamını siz doğrulayın.</h2>
+              <h2>Manuel ölçümden önce marka bağlamını doğrulayın.</h2>
               <p>
-                Yanlış marka veya kategori tespiti pahalı ve yanıltıcı sağlayıcı çağrılarına
-                dönüşmemeli.
+                Marka, kategori ve rakip adları yalnızca yapıştırdığınız yanıtlardaki metinsel
+                sinyalleri sınıflandırmak için kullanılır.
               </p>
             </div>
             <div className={styles.profileFields}>
@@ -435,25 +473,26 @@ export default function AnalyzerClient() {
             </div>
             <div className={styles.betaNotice}>
               <div>
-                <b>OPENAI / PERPLEXITY SAĞLAYICI DURUMU RAPORLANIR</b>
+                <b>0 TL / API YOK / YANITI SİZ GETİRİN</b>
                 <p>
-                  Dört nötr sorunun yalnızca başarıyla tamamlanan sağlayıcı yanıtları puanlanır.
-                  Perplexity anahtarı yapılandırılmamışsa bu yüzey raporda açıkça “hazır değil”
-                  görünür ve skora katılmaz.
+                  Soruları ücretsiz ChatGPT veya Perplexity web oturumunda çalıştırın. Yanıtları
+                  buraya yapıştırın; yalnızca doldurulan kanıtlar puanlanır ve hiçbir ücretli API
+                  çağrısı yapılmaz.
                 </p>
               </div>
               <div className={styles.benchmarkActions}>
                 <button
                   className="btn"
                   type="button"
-                  disabled={
-                    benchmarkLoading ||
-                    profile.brandName.trim().length < 2 ||
-                    profile.sector.trim().length < 2
-                  }
-                  onClick={runBenchmark}
+                  disabled={profile.brandName.trim().length < 2 || profile.sector.trim().length < 2}
+                  onClick={() => {
+                    setManualEntries({})
+                    setBenchmark(null)
+                    setView('manual-input')
+                    scrollToManual()
+                  }}
                 >
-                  {benchmarkLoading ? '4 canlı yanıt taranıyor…' : 'Canlı benchmarkı başlat →'}
+                  Ücretsiz manuel benchmarkı aç →
                 </button>
                 <button
                   className={`btn alt ${styles.demoButton}`}
@@ -467,11 +506,130 @@ export default function AnalyzerClient() {
                 </button>
               </div>
             </div>
-            {benchmarkError && (
-              <p className={styles.benchmarkError} role="alert">
-                {benchmarkError}
-              </p>
-            )}
+          </div>
+        </section>
+      )}
+
+      {preflight && view === 'manual-input' && (
+        <section
+          className={styles.manualBand}
+          aria-labelledby="manual-benchmark-title"
+          ref={manualRef}
+        >
+          <div className="wrap">
+            <div className={styles.sampleHeading}>
+              <div>
+                <span className="tag lime">0 TL · MANUEL KANIT · API YOK</span>
+                <h2 id="manual-benchmark-title">Gerçek yanıtı ücretsiz oturumdan getirin.</h2>
+                <p>
+                  Soruyu kopyalayın, sağlayıcının ücretsiz web arayüzünde çalıştırın ve yanıtı
+                  buraya yapıştırın. Kaynak bağlantıları varsa ayrı alana ekleyin.
+                </p>
+              </div>
+              <div className={styles.manualProgress} aria-live="polite">
+                <strong>
+                  {manualCompletedCount}/{prompts.length * manualProviders.length}
+                </strong>
+                <span>DOLDURULAN YANIT</span>
+              </div>
+            </div>
+
+            <ol className={styles.manualSteps}>
+              <li>
+                <span>01</span> Soruyu kopyala
+              </li>
+              <li>
+                <span>02</span> Ücretsiz oturumda sor
+              </li>
+              <li>
+                <span>03</span> Yanıtı ve varsa kaynakları yapıştır
+              </li>
+            </ol>
+
+            <div className={styles.manualProviders}>
+              {manualProviders.map((provider) => (
+                <section className={`panel ${styles.manualProvider}`} key={provider}>
+                  <div className={styles.manualProviderHead}>
+                    <div>
+                      <span>SAĞLAYICI / ÜCRETSİZ WEB</span>
+                      <h3>{providerNames[provider]}</h3>
+                    </div>
+                    <a href={providerLinks[provider]} target="_blank" rel="noreferrer">
+                      Ücretsiz oturumu aç ↗
+                    </a>
+                  </div>
+
+                  <div className={styles.manualPromptList}>
+                    {prompts.map((prompt, index) => {
+                      const key = manualEvidenceKey(provider, prompt.id)
+                      const entry = manualEntries[key] || { responseText: '', sourcesText: '' }
+                      return (
+                        <article className={styles.manualPrompt} key={key}>
+                          <div className={styles.manualPromptHead}>
+                            <span>SORU {String(index + 1).padStart(2, '0')}</span>
+                            <button type="button" onClick={() => copyPrompt(key, prompt.text)}>
+                              {copiedPrompt === key ? 'KOPYALANDI ✓' : 'SORUYU KOPYALA'}
+                            </button>
+                          </div>
+                          <p>{prompt.text}</p>
+                          <div className={styles.field}>
+                            <label htmlFor={`${provider}-${prompt.id}-response`}>AI yanıtı</label>
+                            <textarea
+                              id={`${provider}-${prompt.id}-response`}
+                              rows={6}
+                              value={entry.responseText}
+                              onChange={(event) =>
+                                updateManualEntry(
+                                  provider,
+                                  prompt.id,
+                                  'responseText',
+                                  event.target.value,
+                                )
+                              }
+                              placeholder="Sağlayıcının yanıtını değiştirmeden buraya yapıştırın."
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label htmlFor={`${provider}-${prompt.id}-sources`}>
+                              Kaynak bağlantıları <small>(isteğe bağlı)</small>
+                            </label>
+                            <textarea
+                              id={`${provider}-${prompt.id}-sources`}
+                              rows={2}
+                              value={entry.sourcesText}
+                              onChange={(event) =>
+                                updateManualEntry(
+                                  provider,
+                                  prompt.id,
+                                  'sourcesText',
+                                  event.target.value,
+                                )
+                              }
+                              placeholder="Her satıra bir https:// bağlantısı"
+                            />
+                          </div>
+                        </article>
+                      )
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            <div className={styles.manualSubmit}>
+              <div>
+                <b>Yalnızca doldurulan yanıtlar hesaplanır.</b>
+                <p>Yapıştırdığınız metinler sunucuya gönderilmez ve tarayıcı kapanınca silinir.</p>
+              </div>
+              <button
+                className="btn hero-primary"
+                type="button"
+                disabled={manualCompletedCount === 0}
+                onClick={compileManualBenchmark}
+              >
+                Manuel kanıt raporunu hesapla →
+              </button>
+            </div>
           </div>
         </section>
       )}
@@ -486,38 +644,34 @@ export default function AnalyzerClient() {
             <div className={styles.sampleHeading}>
               <div>
                 <span className="tag lime">
-                  CANLI SONUÇ ·{' '}
+                  MANUEL KANIT ·{' '}
                   {benchmark.status === 'completed'
                     ? 'TAMAMLANDI'
                     : benchmark.status === 'partial'
                       ? 'KISMİ'
                       : 'GEÇERLİ YANIT YOK'}
                 </span>
-                <h2 id="benchmark-title">
-                  {benchmark.status === 'failed'
-                    ? 'Sağlayıcı bağlantısı doğrulanamadı.'
-                    : 'AI görünürlük örnekleminiz hazır.'}
-                </h2>
+                <h2 id="benchmark-title">Yapıştırdığınız yanıtların görünürlük özeti hazır.</h2>
                 <p>
                   {benchmark.promptCount} markasız soru · {benchmark.visibility.validRuns}/
-                  {benchmark.plannedRuns} geçerli sağlayıcı yanıtı · {profile.country} ·{' '}
+                  {benchmark.plannedRuns} doldurulan manuel yanıt · {profile.country} ·{' '}
                   {profile.language === 'tr' ? 'Türkçe' : 'İngilizce'}
                 </p>
               </div>
               <button
                 className="btn alt"
                 type="button"
-                onClick={() => downloadJson('veri-mimari-ai-gorunurluk-canli.json', benchmark)}
+                onClick={() => downloadJson('veri-mimari-ai-gorunurluk-manuel.json', benchmark)}
               >
-                Kanıtları indir ↓
+                Manuel kanıtları indir ↓
               </button>
             </div>
 
             <div className={styles.scoreGrid}>
               <ScoreCard
-                label="AI VISIBILITY INDEX"
+                label="MANUEL AI VISIBILITY"
                 value={benchmark.visibility.validRuns ? `${benchmark.visibility.index}/100` : '—'}
-                note="Anılma, sıra, kaynak ve tutarlılık bileşimi"
+                note="Yapıştırılan yanıtlardaki anılma, sıra, kaynak ve tutarlılık bileşimi"
                 accent
               />
               <ScoreCard
@@ -530,7 +684,7 @@ export default function AnalyzerClient() {
               <ScoreCard
                 label="GEÇERLİ YANIT"
                 value={`${benchmark.visibility.validRuns}/${benchmark.plannedRuns}`}
-                note="Hata ve yapılandırılmamış sağlayıcılar puan dışı"
+                note="Boş bırakılan sağlayıcı ve sorular puan dışı"
               />
               <ScoreCard
                 label="SAĞLAYICI TUTARLILIĞI"
@@ -545,7 +699,7 @@ export default function AnalyzerClient() {
               <section className={`panel ${styles.providerPanel}`}>
                 <div className={styles.panelTitle}>
                   <span>04 / SAĞLAYICI MATRİSİ</span>
-                  <h3>Gerçekten çalışan yüzeyleri görün.</h3>
+                  <h3>Hangi ücretsiz yüzeylerden kanıt girdiniz?</h3>
                 </div>
                 <div className={styles.tableWrap}>
                   <table>
@@ -569,17 +723,7 @@ export default function AnalyzerClient() {
                               {availability.label}
                               <small className={styles.modelName}>{availability.model}</small>
                             </th>
-                            <td>
-                              {!availability.configured
-                                ? 'HAZIR DEĞİL'
-                                : benchmark.observations.some(
-                                      (item) =>
-                                        item.provider === availability.provider &&
-                                        item.status === 'success',
-                                    )
-                                  ? 'CANLI'
-                                  : 'BAĞLANTI HATASI'}
-                            </td>
+                            <td>{availability.configured ? 'MANUEL KANIT VAR' : 'YANIT YOK'}</td>
                             <td>{stat?.total ?? 0}</td>
                             <td>{stat?.mentioned ?? 0}</td>
                             <td>{formatPercent(stat?.citationRate ?? null)}</td>
@@ -622,7 +766,7 @@ export default function AnalyzerClient() {
             <section className={`panel ${styles.sourcePanel}`}>
               <div className={styles.panelTitle}>
                 <span>06 / KAYNAK HARİTASI</span>
-                <h3>Sağlayıcıların dayandığı alan adları.</h3>
+                <h3>Yapıştırdığınız kaynak alan adları.</h3>
               </div>
               {benchmark.sourceGap.length ? (
                 <div className={styles.sourceGrid}>
@@ -646,7 +790,7 @@ export default function AnalyzerClient() {
             <section className={styles.observationList} aria-labelledby="evidence-title">
               <div className={styles.panelTitle}>
                 <span>07 / HAM KANIT</span>
-                <h3 id="evidence-title">Her soruyu, yanıtı ve atfı denetleyin.</h3>
+                <h3 id="evidence-title">Yapıştırılan her soruyu, yanıtı ve atfı denetleyin.</h3>
               </div>
               {benchmark.observations.map((observation, index) => (
                 <details
@@ -678,7 +822,7 @@ export default function AnalyzerClient() {
                         <dd>{observation.prompt}</dd>
                       </div>
                       <div>
-                        <dt>Zaman</dt>
+                        <dt>Rapor zamanı</dt>
                         <dd>{new Date(observation.timestamp).toLocaleString('tr-TR')}</dd>
                       </div>
                       <div>
@@ -863,14 +1007,17 @@ export default function AnalyzerClient() {
       <section className="section-band band-dark">
         <div className={`wrap section ${styles.methodology}`}>
           <div>
-            <span className="eyebrow">AÇIK YÖNTEM / İKİ AYRI EKSEN</span>
-            <h2>Tek bir sihirli skor yok.</h2>
+            <span className="eyebrow">AÇIK YÖNTEM / SIFIR API MALİYETİ</span>
+            <h2>Gerçek yanıt var. Otomatik fatura yok.</h2>
           </div>
           <div className={styles.methodCards}>
             <article>
               <span>01</span>
-              <h3>AI görünürlüğü</h3>
-              <p>Ölçülen cevaplarda anılma, sıra, citation ve sağlayıcı tutarlılığını hesaplar.</p>
+              <h3>Manuel AI görünürlüğü</h3>
+              <p>
+                Ücretsiz web oturumlarından yapıştırdığınız cevaplarda anılma, sıra, kaynak ve
+                sağlayıcı tutarlılığını hesaplar.
+              </p>
             </article>
             <article>
               <span>02</span>
@@ -884,8 +1031,8 @@ export default function AnalyzerClient() {
               <span>03</span>
               <h3>Güven seviyesi</h3>
               <p>
-                Örneklem, sağlayıcı başarısı, tekrar kararlılığı ve citation kapsamını açıkça
-                gösterir.
+                Doldurulan yanıt sayısı ve eklediğiniz kaynak kapsamını açıkça gösterir; boş
+                yüzeyleri sonuç gibi sunmaz.
               </p>
             </article>
           </div>
