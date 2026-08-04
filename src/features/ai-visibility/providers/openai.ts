@@ -7,7 +7,7 @@ const DEFAULT_MODEL = 'gpt-5.6-luna'
 const GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/responses'
 
 function gatewayToken(runtimeToken?: string) {
-  return runtimeToken || process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
+  return process.env.AI_GATEWAY_API_KEY || runtimeToken || process.env.VERCEL_OIDC_TOKEN || ''
 }
 
 function directModel() {

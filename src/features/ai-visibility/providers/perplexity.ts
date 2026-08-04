@@ -7,7 +7,7 @@ const DEFAULT_MODEL = 'sonar'
 const GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/chat/completions'
 
 function gatewayToken(runtimeToken?: string) {
-  return runtimeToken || process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
+  return process.env.AI_GATEWAY_API_KEY || runtimeToken || process.env.VERCEL_OIDC_TOKEN || ''
 }
 
 function directModel() {
