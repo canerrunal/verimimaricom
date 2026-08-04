@@ -4,6 +4,20 @@ import { ProviderError } from './contract'
 import { buildObservation, type ProviderSource } from './normalize'
 
 const DEFAULT_MODEL = 'gpt-5.6-luna'
+const GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/responses'
+
+function gatewayToken() {
+  return process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
+}
+
+function directModel() {
+  return process.env.OPENAI_VISIBILITY_MODEL || DEFAULT_MODEL
+}
+
+function resolvedModel() {
+  const model = directModel()
+  return gatewayToken() ? `openai/${model.replace(/^openai\//, '')}` : model
+}
 
 function countryCode(country?: string) {
   const codes: Record<string, string> = {
@@ -69,10 +83,11 @@ function readOpenAIResponse(payload: unknown) {
 
 export const openAIAdapter: ProviderAdapter = {
   id: 'openai',
-  model: process.env.OPENAI_VISIBILITY_MODEL || DEFAULT_MODEL,
-  configured: () => Boolean(process.env.OPENAI_API_KEY),
+  model: resolvedModel(),
+  configured: () => Boolean(gatewayToken() || process.env.OPENAI_API_KEY),
   async run(request: ProviderRequest): Promise<ProviderResult<ProviderObservation>> {
-    const apiKey = process.env.OPENAI_API_KEY
+    const gatewayApiKey = gatewayToken()
+    const apiKey = gatewayApiKey || process.env.OPENAI_API_KEY
     if (!apiKey) {
       throw new ProviderError(
         'OpenAI sağlayıcı anahtarı yapılandırılmamış.',
@@ -86,29 +101,32 @@ export const openAIAdapter: ProviderAdapter = {
     const domain = request.metadata.domain || ''
     const location = countryCode(request.country)
     const startedAt = Date.now()
-    const response = await fetch('https://api.openai.com/v1/responses', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      signal: AbortSignal.timeout(45_000),
-      body: JSON.stringify({
-        model: openAIAdapter.model,
-        store: false,
-        reasoning: { effort: 'low' },
-        text: { verbosity: 'low' },
-        max_output_tokens: request.maxOutputTokens,
-        tools: [
-          {
-            type: 'web_search',
-            ...(location ? { user_location: { type: 'approximate', country: location } } : {}),
-          },
-        ],
-        include: ['web_search_call.action.sources'],
-        safety_identifier: request.metadata.safetyIdentifier,
-        instructions:
-          'Bu bağımsız bir marka görünürlüğü benchmarkıdır. Soruyu web aramasıyla, tarafsız ve kısa yanıtla. En fazla 5 marka öner. Kullanıcının ölçtüğü markayı önceden öne çıkarma. Kaynak yetersizse açıkça söyle.',
-        input: `${request.prompt}\n\nHedef pazar: ${request.country || 'belirtilmedi'}. Yanıt dili: ${request.locale}.`,
-      }),
-    })
+    const response = await fetch(
+      gatewayApiKey ? GATEWAY_URL : 'https://api.openai.com/v1/responses',
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        signal: AbortSignal.timeout(45_000),
+        body: JSON.stringify({
+          model: resolvedModel(),
+          store: false,
+          reasoning: { effort: 'low' },
+          text: { verbosity: 'low' },
+          max_output_tokens: request.maxOutputTokens,
+          tools: [
+            {
+              type: 'web_search',
+              ...(location ? { user_location: { type: 'approximate', country: location } } : {}),
+            },
+          ],
+          include: ['web_search_call.action.sources'],
+          safety_identifier: request.metadata.safetyIdentifier,
+          instructions:
+            'Bu bağımsız bir marka görünürlüğü benchmarkıdır. Soruyu web aramasıyla, tarafsız ve kısa yanıtla. En fazla 5 marka öner. Kullanıcının ölçtüğü markayı önceden öne çıkarma. Kaynak yetersizse açıkça söyle.',
+          input: `${request.prompt}\n\nHedef pazar: ${request.country || 'belirtilmedi'}. Yanıt dili: ${request.locale}.`,
+        }),
+      },
+    )
 
     const payload = (await response.json()) as unknown
     if (!response.ok) {
@@ -121,7 +139,9 @@ export const openAIAdapter: ProviderAdapter = {
       const authenticationFailed = response.status === 401 || response.status === 403
       throw new ProviderError(
         authenticationFailed
-          ? 'OpenAI bağlantı anahtarı geçersiz veya yetkisiz. Ortam yapılandırmasını güncelleyin.'
+          ? gatewayApiKey
+            ? 'Vercel AI Gateway kimlik doğrulaması başarısız. OIDC veya Gateway ayarlarını kontrol edin.'
+            : 'OpenAI bağlantı anahtarı geçersiz veya yetkisiz. Ortam yapılandırmasını güncelleyin.'
           : (typeof error.message === 'string' && error.message) || 'OpenAI yanıtı alınamadı.',
         `http_${response.status}`,
         response.status === 429 || response.status >= 500,
@@ -136,7 +156,7 @@ export const openAIAdapter: ProviderAdapter = {
     const latencyMs = Date.now() - startedAt
     const observation = buildObservation({
       provider: 'openai',
-      model: openAIAdapter.model,
+      model: resolvedModel(),
       request,
       profile,
       domain,
@@ -147,7 +167,7 @@ export const openAIAdapter: ProviderAdapter = {
 
     return {
       provider: 'openai',
-      model: openAIAdapter.model,
+      model: resolvedModel(),
       status: 'success',
       payload: observation,
       latencyMs,

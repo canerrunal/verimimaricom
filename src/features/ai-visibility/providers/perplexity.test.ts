@@ -44,4 +44,50 @@ describe('Perplexity response parser', () => {
       }),
     ).rejects.toThrow('Perplexity bağlantı anahtarı geçersiz veya yetkisiz.')
   })
+
+  it('uses Sonar through Vercel AI Gateway when OIDC is available', async () => {
+    vi.stubEnv('VERCEL_OIDC_TOKEN', 'oidc-test-token')
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          choices: [{ message: { content: 'Veri Mimarı değerlendirilebilir.' } }],
+          citations: ['https://verimimari.com/'],
+        }),
+        { status: 200 },
+      ),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    const result = await perplexityAdapter.run({
+      scanId: 'scan',
+      promptId: 'prompt',
+      prompt: 'Örnek soru',
+      locale: 'tr',
+      country: 'Türkiye',
+      maxOutputTokens: 100,
+      repetition: 1,
+      metadata: {
+        profile: JSON.stringify({
+          brandName: 'Veri Mimarı',
+          aliases: [],
+          sector: 'veri analitiği',
+          products: [],
+          country: 'Türkiye',
+          language: 'tr',
+          targetAudience: '',
+          competitors: [],
+          exclusions: [],
+        }),
+        domain: 'https://verimimari.com',
+      },
+    })
+    const requestBody = JSON.parse(String(fetchMock.mock.calls[0][1]?.body))
+
+    expect(String(fetchMock.mock.calls[0][0])).toBe(
+      'https://ai-gateway.vercel.sh/v1/chat/completions',
+    )
+    expect(requestBody.model).toBe('perplexity/sonar')
+    expect(requestBody.web_search_options).toBeUndefined()
+    expect(result.payload.citations).toHaveLength(1)
+  })
 })

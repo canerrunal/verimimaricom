@@ -4,6 +4,20 @@ import { ProviderError } from './contract'
 import { buildObservation, type ProviderSource } from './normalize'
 
 const DEFAULT_MODEL = 'sonar'
+const GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/chat/completions'
+
+function gatewayToken() {
+  return process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || ''
+}
+
+function directModel() {
+  return process.env.PERPLEXITY_VISIBILITY_MODEL || DEFAULT_MODEL
+}
+
+function resolvedModel() {
+  const model = directModel()
+  return gatewayToken() ? `perplexity/${model.replace(/^perplexity\//, '')}` : model
+}
 
 function readPerplexityResponse(payload: unknown) {
   const body = payload && typeof payload === 'object' ? (payload as Record<string, unknown>) : {}
@@ -33,10 +47,11 @@ function readPerplexityResponse(payload: unknown) {
 
 export const perplexityAdapter: ProviderAdapter = {
   id: 'perplexity',
-  model: process.env.PERPLEXITY_VISIBILITY_MODEL || DEFAULT_MODEL,
-  configured: () => Boolean(process.env.PERPLEXITY_API_KEY),
+  model: resolvedModel(),
+  configured: () => Boolean(gatewayToken() || process.env.PERPLEXITY_API_KEY),
   async run(request: ProviderRequest): Promise<ProviderResult<ProviderObservation>> {
-    const apiKey = process.env.PERPLEXITY_API_KEY
+    const gatewayApiKey = gatewayToken()
+    const apiKey = gatewayApiKey || process.env.PERPLEXITY_API_KEY
     if (!apiKey) {
       throw new ProviderError(
         'Perplexity sağlayıcı anahtarı yapılandırılmamış.',
@@ -48,29 +63,36 @@ export const perplexityAdapter: ProviderAdapter = {
 
     const profile = JSON.parse(request.metadata.profile || '{}') as BrandProfile
     const startedAt = Date.now()
-    const response = await fetch('https://api.perplexity.ai/v1/sonar', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      signal: AbortSignal.timeout(45_000),
-      body: JSON.stringify({
-        model: perplexityAdapter.model,
-        max_tokens: request.maxOutputTokens,
-        temperature: 0.1,
-        messages: [
-          {
-            role: 'system',
-            content:
-              'Yalnızca arama sonuçlarına dayan. Ölçülen markayı önceden öne çıkarma. Sonuç yetersizse tahmin yürütmeden bunu söyle. En fazla 5 marka öner.',
-          },
-          {
-            role: 'user',
-            content: `${request.prompt}\n\nHedef pazar: ${request.country || 'belirtilmedi'}. Yanıt dili: ${request.locale}.`,
-          },
-        ],
-        web_search_options: { search_mode: 'web' },
-        language_preference: request.locale,
-      }),
-    })
+    const response = await fetch(
+      gatewayApiKey ? GATEWAY_URL : 'https://api.perplexity.ai/v1/sonar',
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        signal: AbortSignal.timeout(45_000),
+        body: JSON.stringify({
+          model: resolvedModel(),
+          max_tokens: request.maxOutputTokens,
+          temperature: 0.1,
+          messages: [
+            {
+              role: 'system',
+              content:
+                'Yalnızca arama sonuçlarına dayan. Ölçülen markayı önceden öne çıkarma. Sonuç yetersizse tahmin yürütmeden bunu söyle. En fazla 5 marka öner.',
+            },
+            {
+              role: 'user',
+              content: `${request.prompt}\n\nHedef pazar: ${request.country || 'belirtilmedi'}. Yanıt dili: ${request.locale}.`,
+            },
+          ],
+          ...(gatewayApiKey
+            ? {}
+            : {
+                web_search_options: { search_mode: 'web' },
+                language_preference: request.locale,
+              }),
+        }),
+      },
+    )
 
     const payload = (await response.json()) as unknown
     if (!response.ok) {
@@ -84,7 +106,9 @@ export const perplexityAdapter: ProviderAdapter = {
       const authenticationFailed = response.status === 401 || response.status === 403
       throw new ProviderError(
         authenticationFailed
-          ? 'Perplexity bağlantı anahtarı geçersiz veya yetkisiz. Ortam yapılandırmasını güncelleyin.'
+          ? gatewayApiKey
+            ? 'Vercel AI Gateway kimlik doğrulaması başarısız. OIDC veya Gateway ayarlarını kontrol edin.'
+            : 'Perplexity bağlantı anahtarı geçersiz veya yetkisiz. Ortam yapılandırmasını güncelleyin.'
           : (typeof error.message === 'string' && error.message) ||
               detail ||
               'Perplexity yanıtı alınamadı.',
@@ -106,7 +130,7 @@ export const perplexityAdapter: ProviderAdapter = {
     const latencyMs = Date.now() - startedAt
     const observation = buildObservation({
       provider: 'perplexity',
-      model: perplexityAdapter.model,
+      model: resolvedModel(),
       request,
       profile,
       domain: request.metadata.domain || '',
@@ -117,7 +141,7 @@ export const perplexityAdapter: ProviderAdapter = {
 
     return {
       provider: 'perplexity',
-      model: perplexityAdapter.model,
+      model: resolvedModel(),
       status: 'success',
       payload: observation,
       latencyMs,

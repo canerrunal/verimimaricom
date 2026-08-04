@@ -31,9 +31,18 @@ export async function POST(request: Request) {
   }
 
   const ip = clientIp(request)
+  const globalDailyLimit = Math.max(
+    1,
+    Math.min(100, Number(process.env.AI_VISIBILITY_DAILY_SCAN_CAP) || 10),
+  )
   const [visitorRate, globalRate] = await Promise.all([
     checkRateLimit({ scope: 'ai-scan-visitor', key: ip, limit: 2, strict: true }),
-    checkRateLimit({ scope: 'ai-scan-global', key: 'global', limit: 40, strict: true }),
+    checkRateLimit({
+      scope: 'ai-scan-global',
+      key: 'global',
+      limit: globalDailyLimit,
+      strict: true,
+    }),
   ])
   if (!visitorRate.persistent || !globalRate.persistent) {
     return NextResponse.json(
