@@ -39,6 +39,30 @@ const providerLinks: Record<ManualProvider, string> = {
   perplexity: 'https://www.perplexity.ai/',
 }
 
+const journeySteps = [
+  { id: 1, label: 'Teknik zemini tara', meta: 'ANA SAYFA + ROBOTS + SITEMAP' },
+  { id: 2, label: 'Ölçüm planını kur', meta: 'MARKA + KATEGORİ + RAKİPLER' },
+  { id: 3, label: 'Gerçek kanıtı işle', meta: '4 SORU × 2 ÜCRETSİZ YÜZEY' },
+] as const
+
+const technicalDimensionDefinitions = [
+  {
+    label: 'Erişilebilirlik',
+    detail: 'Sayfa, robots ve sitemap',
+    checkIds: ['reachability', 'robots', 'sitemap'],
+  },
+  {
+    label: 'Sayfa açıklığı',
+    detail: 'Title, açıklama, H1 ve canonical',
+    checkIds: ['title', 'description', 'h1', 'canonical'],
+  },
+  {
+    label: 'Varlık sinyali',
+    detail: 'Marka ve ürün yapılandırılmış verisi',
+    checkIds: ['organization-schema', 'product-schema'],
+  },
+] as const
+
 const initialProfile: BrandProfile = {
   brandName: '',
   aliases: [],
@@ -64,6 +88,23 @@ function scoreLabel(score: number) {
   if (score >= 60) return 'İyi teknik temel'
   if (score >= 40) return 'Kısmi teknik temel'
   return 'Kritik teknik eksikler'
+}
+
+function recommendationForCheck(checkId: string) {
+  const recommendations: Record<string, string> = {
+    reachability: 'Sunucu yanıtını ve ana alan adı yönlendirmelerini kontrol edin.',
+    robots: 'robots.txt içinde genel taramayı engelleyen kuralları kaldırın.',
+    sitemap: 'Güncel URL’leri içeren kök sitemap.xml dosyasını yayınlayın.',
+    title: 'Kategori ve marka bağlamını anlatan benzersiz bir sayfa başlığı ekleyin.',
+    description: 'Ana faydayı özetleyen açıklayıcı bir meta description ekleyin.',
+    h1: 'Sayfanın ana konusunu açıkça söyleyen tek bir H1 kullanın.',
+    canonical: 'Ana sayfanın tercih edilen adresini canonical etiketiyle belirtin.',
+    'organization-schema': 'Marka adı ve resmi URL’yi içeren Organization JSON-LD ekleyin.',
+    'product-schema':
+      'Ürün sitesiyseniz Product JSON-LD alanlarını görünür ürün verisiyle eşleyin.',
+  }
+
+  return recommendations[checkId] || 'Bu sinyali teknik ekip veya içerik sahibiyle doğrulayın.'
 }
 
 function formatPercent(value: number | null) {
@@ -120,8 +161,37 @@ export default function AnalyzerClient() {
   const [benchmark, setBenchmark] = useState<VisibilityBenchmarkOutput | null>(null)
   const [manualEntries, setManualEntries] = useState<Record<string, ManualEntryState>>({})
   const [copiedPrompt, setCopiedPrompt] = useState('')
+  const [activeProvider, setActiveProvider] = useState<ManualProvider>('openai')
 
   const prompts = useMemo(() => buildPrompts(profile, 4), [profile])
+  const journeyStep = benchmark || view === 'manual-input' ? 3 : preflight ? 2 : 1
+  const priorityFindings = preflight?.checks.filter((check) => check.status !== 'pass') || []
+  const technicalDimensions = useMemo(
+    () =>
+      preflight
+        ? technicalDimensionDefinitions.map((dimension) => {
+            const checks = preflight.checks.filter((check) =>
+              dimension.checkIds.includes(check.id as never),
+            )
+            const passed = checks.filter((check) => check.status === 'pass').length
+            return { ...dimension, passed, total: checks.length }
+          })
+        : [],
+    [preflight],
+  )
+  const providerCompletedCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        manualProviders.map((provider) => [
+          provider,
+          prompts.filter(
+            (prompt) =>
+              manualEntries[manualEvidenceKey(provider, prompt.id)]?.responseText.trim().length > 0,
+          ).length,
+        ]),
+      ) as Record<ManualProvider, number>,
+    [manualEntries, prompts],
+  )
 
   const scrollToWorkspace = () => {
     window.setTimeout(
@@ -231,23 +301,101 @@ export default function AnalyzerClient() {
     <main className={`${styles.page} page`}>
       <NavBar t={t} />
 
-      <section className={`wrap hero single ${styles.hero}`}>
-        <a href="/araclar" className="back-link">
-          ← Tüm Araçlar
-        </a>
-        <div className="crumb">ARAÇLAR / AI GÖRÜNÜRLÜĞÜ / BETA</div>
-        <h1>Yapay Zekâ Görünürlük ve Teknik Hazırlık Ön Analizi</h1>
-        <p className="intro">
-          Sitenizin ölçülebilir teknik sinyallerini kontrol edin. Dört markasız soruyu ücretsiz
-          ChatGPT ve Perplexity oturumlarında çalıştırıp yanıtları yapıştırın; görünürlük özetini
-          tarayıcınızda, API ücreti olmadan hesaplayın.
-        </p>
-        <div className={`signals ${styles.signals}`}>
-          <span className="tag purple">BETA · 0 TL · API YOK</span>
-          <span className="tag">4 MARKASIZ SORU</span>
-          <span className="tag">MANUEL GERÇEK YANIT KANITI</span>
-          <span className="tag">LİSTELEME GARANTİSİ DEĞİLDİR</span>
+      <section className={`hero-shell ${styles.heroShell}`}>
+        <div className={`wrap ${styles.heroLayout}`}>
+          <div className={styles.heroCopy}>
+            <a href="/araclar" className="back-link">
+              ← Tüm Araçlar
+            </a>
+            <div className="crumb">ARAÇLAR / AI GÖRÜNÜRLÜĞÜ / BETA</div>
+            <h1>
+              Yapay zekâ sizi öneriyor mu? <span>Kanıtla ölçün.</span>
+            </h1>
+            <p className="intro">
+              Teknik hazırlığınızı tarayın; dört gerçek kullanıcı sorusunda ChatGPT ve
+              Perplexity’nin markanızı nasıl gördüğünü yanıt, sıra ve kaynak kanıtıyla ölçün.
+            </p>
+            <div className={styles.heroActions}>
+              <a className="btn hero-primary" href="#analysis-title">
+                Ücretsiz analizi başlat ↓
+              </a>
+              <button
+                className={`btn alt ${styles.heroDemoButton}`}
+                type="button"
+                onClick={() => {
+                  setView('sample')
+                  scrollToSample()
+                }}
+              >
+                Örnek raporu incele →
+              </button>
+            </div>
+            <div className={`signals ${styles.signals}`}>
+              <span className="tag purple">BETA · 0 TL · API YOK</span>
+              <span className="tag">8 KANIT HÜCRESİ</span>
+              <span className="tag">VERİ TARAYICIDA KALIR</span>
+            </div>
+          </div>
+
+          <aside className={`results ${styles.heroConsole}`} aria-label="Analiz kapsamı özeti">
+            <div className={styles.heroConsoleHead}>
+              <span>VM / VISIBILITY LAB</span>
+              <b>CANLI SİSTEM</b>
+            </div>
+            <div className={styles.heroConsoleScore}>
+              <small>ÖLÇÜM MİMARİSİ</small>
+              <strong>3</strong>
+              <span>KATMAN</span>
+            </div>
+            <div className={styles.heroConsoleRows}>
+              <div>
+                <span>01</span>
+                <div>
+                  <b>Teknik zemin</b>
+                  <small>9 doğrulanabilir site sinyali</small>
+                </div>
+                <em>CANLI</em>
+              </div>
+              <div>
+                <span>02</span>
+                <div>
+                  <b>Soru matrisi</b>
+                  <small>Keşif, güven, kıyas ve karar</small>
+                </div>
+                <em>4 × 2</em>
+              </div>
+              <div>
+                <span>03</span>
+                <div>
+                  <b>Kanıt raporu</b>
+                  <small>Anılma, sıra, kaynak ve rakip payı</small>
+                </div>
+                <em>JSON</em>
+              </div>
+            </div>
+            <div className={styles.heroConsoleOutput}>
+              <span>ÇIKTI</span>
+              <b>Skor + kaynak haritası + öncelik listesi</b>
+            </div>
+          </aside>
         </div>
+      </section>
+
+      <section className={styles.journeyBand} aria-label="Analiz adımları">
+        <ol className={`wrap ${styles.journeyRail}`}>
+          {journeySteps.map((step) => (
+            <li
+              className={`${styles.journeyStep} ${journeyStep > step.id ? styles.journeyComplete : ''} ${journeyStep === step.id ? styles.journeyActive : ''}`}
+              key={step.id}
+            >
+              <span>{journeyStep > step.id ? '✓' : String(step.id).padStart(2, '0')}</span>
+              <div>
+                <b>{step.label}</b>
+                <small>{step.meta}</small>
+              </div>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className={styles.inputBand} ref={workspaceRef} aria-labelledby="analysis-title">
@@ -354,6 +502,24 @@ export default function AnalyzerClient() {
             </button>
           </div>
 
+          <div className={styles.dimensionGrid} aria-label="Teknik sinyal boyutları">
+            {technicalDimensions.map((dimension, index) => (
+              <article key={dimension.label}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <b>{dimension.label}</b>
+                  <small>{dimension.detail}</small>
+                </div>
+                <strong>
+                  {dimension.passed}/{dimension.total}
+                </strong>
+                <progress value={dimension.passed} max={dimension.total || 1}>
+                  {dimension.passed}/{dimension.total}
+                </progress>
+              </article>
+            ))}
+          </div>
+
           <div className={styles.preflightGrid}>
             <aside className={`results ${styles.readinessPanel}`}>
               <small>ANA SAYFA TEKNİK SİNYAL PUANI</small>
@@ -398,6 +564,30 @@ export default function AnalyzerClient() {
             </div>
           </div>
 
+          {priorityFindings.length > 0 && (
+            <section className={styles.priorityPanel} aria-labelledby="priority-title">
+              <div className={styles.priorityHead}>
+                <div>
+                  <span className="eyebrow">ÖNCELİKLİ İYİLEŞTİRMELER</span>
+                  <h3 id="priority-title">Skoru yükseltecek ilk teknik işler.</h3>
+                </div>
+                <strong>{priorityFindings.length} AÇIK BULGU</strong>
+              </div>
+              <ol>
+                {priorityFindings.slice(0, 3).map((finding, index) => (
+                  <li key={finding.id}>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <div>
+                      <b>{finding.label}</b>
+                      <p>{recommendationForCheck(finding.id)}</p>
+                    </div>
+                    <small>{finding.status === 'fail' ? 'KRİTİK' : 'İNCELE'}</small>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
           <div className={`panel ${styles.profilePanel}`}>
             <div className={styles.profileIntro}>
               <span className="eyebrow">03 / MARKA PROFİLİ</span>
@@ -407,69 +597,121 @@ export default function AnalyzerClient() {
                 sinyalleri sınıflandırmak için kullanılır.
               </p>
             </div>
-            <div className={styles.profileFields}>
-              <div className={styles.field}>
-                <label htmlFor="brand-name">Marka adı</label>
-                <input
-                  id="brand-name"
-                  value={profile.brandName}
-                  onChange={(event) => setProfile({ ...profile, brandName: event.target.value })}
-                />
+            <div className={styles.profileWorkspace}>
+              <div>
+                <div className={styles.profileFields}>
+                  <div className={styles.field}>
+                    <label htmlFor="brand-name">Marka adı</label>
+                    <input
+                      id="brand-name"
+                      value={profile.brandName}
+                      onChange={(event) =>
+                        setProfile({ ...profile, brandName: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className={styles.field}>
+                    <label htmlFor="brand-sector">Sektör / kategori</label>
+                    <input
+                      id="brand-sector"
+                      value={profile.sector}
+                      onChange={(event) => setProfile({ ...profile, sector: event.target.value })}
+                      placeholder="Örn. doğal kozmetik"
+                    />
+                  </div>
+                  <div className={styles.field}>
+                    <label htmlFor="brand-products">Ürün veya hizmetler</label>
+                    <input
+                      id="brand-products"
+                      value={profile.products.join(', ')}
+                      onChange={(event) =>
+                        setProfile({ ...profile, products: splitList(event.target.value) })
+                      }
+                      placeholder="Virgülle ayırın"
+                    />
+                  </div>
+                  <div className={styles.field}>
+                    <label htmlFor="brand-competitors">Bilinen rakipler</label>
+                    <input
+                      id="brand-competitors"
+                      value={profile.competitors.join(', ')}
+                      onChange={(event) =>
+                        setProfile({ ...profile, competitors: splitList(event.target.value) })
+                      }
+                      placeholder="Virgülle ayırın"
+                    />
+                  </div>
+                  <div className={styles.field}>
+                    <label htmlFor="brand-audience">Hedef kitle</label>
+                    <input
+                      id="brand-audience"
+                      value={profile.targetAudience}
+                      onChange={(event) =>
+                        setProfile({ ...profile, targetAudience: event.target.value })
+                      }
+                      placeholder="Örn. Türkiye'deki KOBİ sahipleri"
+                    />
+                  </div>
+                </div>
+                <div className={styles.promptPreview}>
+                  <span>MARKASIZ SORU MATRİSİ</span>
+                  {profile.sector.trim().length >= 2 ? (
+                    <ol>
+                      {prompts.map((prompt, index) => (
+                        <li key={prompt.id}>
+                          <span>{['KEŞİF', 'GÜVEN', 'KIYAS', 'KARAR'][index]}</span>
+                          {prompt.text}
+                        </li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <p>Kategori alanını doldurduğunuzda dört niyet için soru matrisi oluşur.</p>
+                  )}
+                </div>
               </div>
-              <div className={styles.field}>
-                <label htmlFor="brand-sector">Sektör / kategori</label>
-                <input
-                  id="brand-sector"
-                  value={profile.sector}
-                  onChange={(event) => setProfile({ ...profile, sector: event.target.value })}
-                  placeholder="Örn. doğal kozmetik"
-                />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="brand-products">Ürün veya hizmetler</label>
-                <input
-                  id="brand-products"
-                  value={profile.products.join(', ')}
-                  onChange={(event) =>
-                    setProfile({ ...profile, products: splitList(event.target.value) })
-                  }
-                  placeholder="Virgülle ayırın"
-                />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="brand-competitors">Bilinen rakipler</label>
-                <input
-                  id="brand-competitors"
-                  value={profile.competitors.join(', ')}
-                  onChange={(event) =>
-                    setProfile({ ...profile, competitors: splitList(event.target.value) })
-                  }
-                  placeholder="Virgülle ayırın"
-                />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="brand-audience">Hedef kitle</label>
-                <input
-                  id="brand-audience"
-                  value={profile.targetAudience}
-                  onChange={(event) =>
-                    setProfile({ ...profile, targetAudience: event.target.value })
-                  }
-                  placeholder="Örn. Türkiye'deki KOBİ sahipleri"
-                />
-              </div>
-            </div>
-            <div className={styles.promptPreview}>
-              <span>ÖRNEK MARKASIZ SORU SETİ</span>
-              {profile.sector.trim().length >= 2 ? (
-                <ol>
-                  {prompts.map((prompt) => (
-                    <li key={prompt.id}>{prompt.text}</li>
-                  ))}
-                </ol>
-              ) : (
-                <p>Kategori alanını doldurduğunuzda markasız örnek sorular burada oluşur.</p>
-              )}
+
+              <aside className={styles.measurementPlan} aria-label="Ölçüm planı">
+                <div className={styles.measurementPlanHead}>
+                  <span>VM / ÖLÇÜM PLANI</span>
+                  <b>{profile.sector.trim().length >= 2 ? 'HAZIR' : 'BEKLİYOR'}</b>
+                </div>
+                <div className={styles.measurementMetrics}>
+                  <div>
+                    <strong>4</strong>
+                    <span>KULLANICI NİYETİ</span>
+                  </div>
+                  <div>
+                    <strong>2</strong>
+                    <span>ÜCRETSİZ YÜZEY</span>
+                  </div>
+                  <div>
+                    <strong>8</strong>
+                    <span>KANIT HÜCRESİ</span>
+                  </div>
+                </div>
+                <dl>
+                  <div>
+                    <dt>HEDEF MARKA</dt>
+                    <dd>{profile.brandName || '—'}</dd>
+                  </div>
+                  <div>
+                    <dt>KATEGORİ</dt>
+                    <dd>{profile.sector || 'Kategori bekleniyor'}</dd>
+                  </div>
+                  <div>
+                    <dt>RAKİP SETİ</dt>
+                    <dd>
+                      {profile.competitors.length
+                        ? `${profile.competitors.length} marka`
+                        : 'İsteğe bağlı'}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>VERİ AKIŞI</dt>
+                    <dd>Yalnızca bu tarayıcı</dd>
+                  </div>
+                </dl>
+              </aside>
             </div>
             <div className={styles.betaNotice}>
               <div>
@@ -488,6 +730,7 @@ export default function AnalyzerClient() {
                   onClick={() => {
                     setManualEntries({})
                     setBenchmark(null)
+                    setActiveProvider('openai')
                     setView('manual-input')
                     scrollToManual()
                   }}
@@ -546,12 +789,42 @@ export default function AnalyzerClient() {
               </li>
             </ol>
 
+            <div className={styles.providerTabs} role="tablist" aria-label="Kanıt sağlayıcısı">
+              {manualProviders.map((provider, index) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeProvider === provider}
+                  aria-controls={`manual-provider-${provider}`}
+                  className={activeProvider === provider ? styles.providerTabActive : ''}
+                  onClick={() => setActiveProvider(provider)}
+                  key={provider}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <b>{providerNames[provider]}</b>
+                    <small>ÜCRETSİZ WEB OTURUMU</small>
+                  </div>
+                  <strong>
+                    {providerCompletedCounts[provider]}/{prompts.length}
+                  </strong>
+                </button>
+              ))}
+            </div>
+
             <div className={styles.manualProviders}>
-              {manualProviders.map((provider) => (
-                <section className={`panel ${styles.manualProvider}`} key={provider}>
+              {[activeProvider].map((provider) => (
+                <section
+                  className={`panel ${styles.manualProvider}`}
+                  id={`manual-provider-${provider}`}
+                  role="tabpanel"
+                  key={provider}
+                >
                   <div className={styles.manualProviderHead}>
                     <div>
-                      <span>SAĞLAYICI / ÜCRETSİZ WEB</span>
+                      <span>
+                        AKTİF YÜZEY · {providerCompletedCounts[provider]}/{prompts.length} KANIT
+                      </span>
                       <h3>{providerNames[provider]}</h3>
                     </div>
                     <a href={providerLinks[provider]} target="_blank" rel="noreferrer">
@@ -566,7 +839,10 @@ export default function AnalyzerClient() {
                       return (
                         <article className={styles.manualPrompt} key={key}>
                           <div className={styles.manualPromptHead}>
-                            <span>SORU {String(index + 1).padStart(2, '0')}</span>
+                            <span>
+                              SORU {String(index + 1).padStart(2, '0')} ·{' '}
+                              {['KEŞİF', 'GÜVEN', 'KIYAS', 'KARAR'][index]}
+                            </span>
                             <button type="button" onClick={() => copyPrompt(key, prompt.text)}>
                               {copiedPrompt === key ? 'KOPYALANDI ✓' : 'SORUYU KOPYALA'}
                             </button>
