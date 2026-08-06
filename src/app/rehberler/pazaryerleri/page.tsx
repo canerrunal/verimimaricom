@@ -6,22 +6,204 @@ import { researchGuides } from '@/lib/research-guides'
 import { glossaryTerms } from '@/lib/glossary'
 import { brandProfile, getSiteUrl } from '@/lib/seo'
 
-export const metadata: Metadata = { title: 'Türkiye Pazaryerlerinde Kârlı Satış Rehberi', description: 'Komisyon, kargo, reklam, kampanya ve iade maliyetlerini kanal bazında ölçerek pazaryerlerinde kârlı satış sistemini kurun.', alternates: { canonical: '/rehberler/pazaryerleri' } }
+export const metadata: Metadata = {
+  title: 'Türkiye Pazaryerlerinde Kârlı Satış Rehberi',
+  description:
+    'Komisyon, kargo, reklam, kampanya ve iade maliyetlerini kanal bazında ölçerek pazaryerlerinde kârlı satış sistemini kurun.',
+  alternates: { canonical: '/rehberler/pazaryerleri' },
+}
 const termSlugs = ['katki-payi', 'iade-orani', 'ortalama-sepet-tutari', 'donusum-orani']
 const toolCards = [
-  { title: 'Pazaryeri Komisyon Hesaplayıcı', description: 'Komisyon, kargo, ödeme ve reklam kesintileri sonrası sipariş katkısını bulun.', href: '/araclar/pazaryeri-komisyon-hesaplayici' },
-  { title: 'Pazaryeri Reklam Kârlılık Hesaplayıcı', description: 'Pazaryeri reklam gelirini komisyon ve ürün ekonomisiyle birlikte değerlendirin.', href: '/araclar/pazaryeri-reklam-karlilik-hesaplayici' },
+  {
+    title: 'Pazaryeri Komisyon Hesaplayıcı',
+    description: 'Komisyon, kargo, ödeme ve reklam kesintileri sonrası sipariş katkısını bulun.',
+    href: '/araclar/pazaryeri-komisyon-hesaplayici',
+  },
+  {
+    title: 'Pazaryeri Reklam Kârlılık Hesaplayıcı',
+    description: 'Pazaryeri reklam gelirini komisyon ve ürün ekonomisiyle birlikte değerlendirin.',
+    href: '/araclar/pazaryeri-reklam-karlilik-hesaplayici',
+  },
 ]
 
 export default function MarketplacePillarPage() {
-  const t = getDictionary('tr'); const siteUrl = getSiteUrl()
+  const t = getDictionary('tr')
+  const siteUrl = getSiteUrl()
   const guide = researchGuides.find((item) => item.slug === 'pazaryeri-dijital-raf-performansi')
-  const clusterTerms = termSlugs.map((slug) => glossaryTerms.find((term) => term.slug === slug)).filter(Boolean)
-  const jsonLd = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Türkiye Pazaryerlerinde Kârlı Satış Rehberi', description: metadata.description, url: `${siteUrl}/rehberler/pazaryerleri`, inLanguage: 'tr-TR', author: { '@type': 'Person', name: brandProfile.name, url: siteUrl }, hasPart: guide ? [{ '@type': 'Article', name: guide.title, url: `${siteUrl}/rehberler/${guide.slug}` }] : [] }
-  return <main className="page"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><NavBar t={t} />
-    <section className="hero-shell marketplace-pillar-hero"><div className="wrap hero"><div className="hero-copy"><div className="crumb"><i aria-hidden="true" /> PAZARYERLERİ / ANA ÖĞRENME YOLU</div><h1>Komisyonu değil, <span className="accent">kanal katkısını</span> yönetin.</h1><p className="intro">Pazaryeri satışını yalnız ciro ve mağaza puanıyla değil; komisyon, kargo, reklam, kampanya ve iade sonrası katkıyla okuyun.</p><div className="actions-row"><a className="btn hero-primary" href="#ogrenme-yolu">Kanal yoluna başla ↘</a><a className="hero-link" href="/araclar/pazaryeri-komisyon-hesaplayici">Komisyonu hesapla</a></div><div className="signals"><span className="tag"><i />1 uygulama rehberi</span><span className="tag"><i />2 çalışan hesaplayıcı</span><span className="tag"><i />Kanal bazlı katkı</span></div></div><div className="marketplace-console" aria-label="Pazaryeri kanal katkısı"><div className="marketplace-console-head"><span className="eyebrow">KANAL KONSOLU</span><i>NET KATKI</i></div><div className="marketplace-console-flow"><div><small>01 / SATIŞ</small><strong>Net gelir</strong><p>İndirim ve iptal kapsamı tanımlı.</p></div><div><small>02 / KESİNTİ</small><strong>Komisyon</strong><p>Hizmet, ödeme ve platform kesintileri.</p></div><div><small>03 / OPERASYON</small><strong>Kargo · İade</strong><p>Gidiş, ters lojistik ve değer kaybı.</p></div><div><small>04 / KARAR</small><strong>Katkı</strong><p>Kanal ölçeklenmeden önce kalan sonuç.</p></div></div></div></div></section>
-    <section className="section-band band-dark marketplace-principle"><div className="wrap section"><span className="eyebrow">60 SANİYELİK ÇERÇEVE</span><h2>Aynı ürün farklı kanalda aynı kârı üretmez.</h2><p>Komisyon oranı tek başına kanal kararı değildir. Kampanya indirimi, kargo sübvansiyonu, reklam kesintisi, iade ve stok maliyetini aynı sipariş satırında birleştirin. Dinamik oranları yayınlamadan önce resmî satıcı panelinizden doğrulayın.</p></div></section>
-    <section id="ogrenme-yolu" className="section-band band-paper"><div className="wrap section"><div className="head"><div><span className="eyebrow">ADIM ADIM / 1 REHBER</span><h2>Pazaryeri kârlılık yolu.</h2></div><p>Önce kesintileri ve maliyet kapsamını sabitleyin; sonra kanal ve kampanya kararını karşılaştırın.</p></div><div className="profitability-path marketplace-path">{guide && <a href={`/rehberler/${guide.slug}`}><span>01</span><div><small>{guide.category} · {guide.readingTime} DK</small><h3>{guide.title}</h3><p>{guide.excerpt}</p></div><i>Rehberi aç →</i></a>}</div></div></section>
-    <section className="section-band band-cyan"><div className="wrap section"><div className="head"><div><span className="eyebrow">HESAPLAMA KATMANI</span><h2>Kanalı kendi siparişinizle ölçün.</h2></div><p>Komisyon ve reklam oranını gerçek kargo, iade ve ürün maliyetiyle birleştirin.</p></div><div className="grid profitability-tools">{toolCards.map((tool, index) => <a key={tool.href} className="card" href={tool.href}><span className="eyebrow">0{index + 1} · ÜCRETSİZ ARAÇ</span><h3>{tool.title}</h3><p>{tool.description}</p><span className="link">Aracı aç</span></a>)}</div></div></section>
-    <section className="section-band band-surface"><div className="wrap section"><div className="head"><div><span className="eyebrow">KAVRAM HARİTASI</span><h2>Aynı kanal dilini kurun.</h2></div><p>Katkı, iade, sepet ve dönüşümü kanal bazında aynı tanımla izleyin.</p></div><div className="pillar-term-grid">{clusterTerms.map((term) => term && <a key={term.slug} href={`/sozluk/${term.slug}`}><span>{term.english}</span><strong>{term.term}</strong><i>Tanımı aç →</i></a>)}</div><a className="btn alt pillar-all-terms" href="/sozluk">Tüm kavramları gör →</a></div></section><Footer t={t} /></main>
+  const clusterTerms = termSlugs
+    .map((slug) => glossaryTerms.find((term) => term.slug === slug))
+    .filter(Boolean)
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Türkiye Pazaryerlerinde Kârlı Satış Rehberi',
+    description: metadata.description,
+    url: `${siteUrl}/rehberler/pazaryerleri`,
+    inLanguage: 'tr-TR',
+    author: { '@type': 'Person', name: brandProfile.name, url: siteUrl },
+    hasPart: guide
+      ? [{ '@type': 'Article', name: guide.title, url: `${siteUrl}/rehberler/${guide.slug}` }]
+      : [],
+  }
+  return (
+    <main className="page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <NavBar t={t} />
+      <section className="hero-shell marketplace-pillar-hero">
+        <div className="wrap hero">
+          <div className="hero-copy">
+            <div className="crumb">
+              <i aria-hidden="true" /> PAZARYERLERİ / ANA ÖĞRENME YOLU
+            </div>
+            <h1>
+              Komisyonu değil, <span className="accent">kanal katkısını</span> yönetin.
+            </h1>
+            <p className="intro">
+              Pazaryeri satışını yalnız ciro ve mağaza puanıyla değil; komisyon, kargo, reklam,
+              kampanya ve iade sonrası katkıyla okuyun.
+            </p>
+            <div className="actions-row">
+              <a className="btn hero-primary" href="#ogrenme-yolu">
+                Kanal yoluna başla ↘
+              </a>
+              <a className="hero-link" href="/araclar/pazaryeri-komisyon-hesaplayici">
+                Komisyonu hesapla
+              </a>
+            </div>
+            <div className="signals">
+              <span className="tag">
+                <i />1 uygulama rehberi
+              </span>
+              <span className="tag">
+                <i />2 çalışan hesaplayıcı
+              </span>
+              <span className="tag">
+                <i />
+                Kanal bazlı katkı
+              </span>
+            </div>
+          </div>
+          <div className="marketplace-console" aria-label="Pazaryeri kanal katkısı">
+            <div className="marketplace-console-head">
+              <span className="eyebrow">KANAL KONSOLU</span>
+              <i>NET KATKI</i>
+            </div>
+            <div className="marketplace-console-flow">
+              <div>
+                <small>01 / SATIŞ</small>
+                <strong>Net gelir</strong>
+                <p>İndirim ve iptal kapsamı tanımlı.</p>
+              </div>
+              <div>
+                <small>02 / KESİNTİ</small>
+                <strong>Komisyon</strong>
+                <p>Hizmet, ödeme ve platform kesintileri.</p>
+              </div>
+              <div>
+                <small>03 / OPERASYON</small>
+                <strong>Kargo · İade</strong>
+                <p>Gidiş, ters lojistik ve değer kaybı.</p>
+              </div>
+              <div>
+                <small>04 / KARAR</small>
+                <strong>Katkı</strong>
+                <p>Kanal ölçeklenmeden önce kalan sonuç.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section-band band-dark marketplace-principle">
+        <div className="wrap section">
+          <span className="eyebrow">60 SANİYELİK ÇERÇEVE</span>
+          <h2>Aynı ürün farklı kanalda aynı kârı üretmez.</h2>
+          <p>
+            Komisyon oranı tek başına kanal kararı değildir. Kampanya indirimi, kargo sübvansiyonu,
+            reklam kesintisi, iade ve stok maliyetini aynı sipariş satırında birleştirin. Dinamik
+            oranları yayınlamadan önce resmî satıcı panelinizden doğrulayın.
+          </p>
+        </div>
+      </section>
+      <section id="ogrenme-yolu" className="section-band band-paper">
+        <div className="wrap section">
+          <div className="head">
+            <div>
+              <span className="eyebrow">ADIM ADIM / 1 REHBER</span>
+              <h2>Pazaryeri kârlılık yolu.</h2>
+            </div>
+            <p>
+              Önce kesintileri ve maliyet kapsamını sabitleyin; sonra kanal ve kampanya kararını
+              karşılaştırın.
+            </p>
+          </div>
+          <div className="profitability-path marketplace-path">
+            {guide && (
+              <a href={`/rehberler/${guide.slug}`}>
+                <span>01</span>
+                <div>
+                  <small>
+                    {guide.category} · {guide.readingTime} DK
+                  </small>
+                  <h3>{guide.title}</h3>
+                  <p>{guide.excerpt}</p>
+                </div>
+                <i>Rehberi aç →</i>
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+      <section className="section-band band-cyan">
+        <div className="wrap section">
+          <div className="head">
+            <div>
+              <span className="eyebrow">HESAPLAMA KATMANI</span>
+              <h2>Kanalı kendi siparişinizle ölçün.</h2>
+            </div>
+            <p>Komisyon ve reklam oranını gerçek kargo, iade ve ürün maliyetiyle birleştirin.</p>
+          </div>
+          <div className="grid profitability-tools">
+            {toolCards.map((tool, index) => (
+              <a key={tool.href} className="card" href={tool.href}>
+                <span className="eyebrow">0{index + 1} · ÜCRETSİZ ARAÇ</span>
+                <h3>{tool.title}</h3>
+                <p>{tool.description}</p>
+                <span className="link">Aracı aç</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section-band band-surface">
+        <div className="wrap section">
+          <div className="head">
+            <div>
+              <span className="eyebrow">KAVRAM HARİTASI</span>
+              <h2>Aynı kanal dilini kurun.</h2>
+            </div>
+            <p>Katkı, iade, sepet ve dönüşümü kanal bazında aynı tanımla izleyin.</p>
+          </div>
+          <div className="pillar-term-grid">
+            {clusterTerms.map(
+              (term) =>
+                term && (
+                  <a key={term.slug} href={`/sozluk/${term.slug}`}>
+                    <span>{term.english}</span>
+                    <strong>{term.term}</strong>
+                    <i>Tanımı aç →</i>
+                  </a>
+                ),
+            )}
+          </div>
+          <a className="btn alt pillar-all-terms" href="/sozluk">
+            Tüm kavramları gör →
+          </a>
+        </div>
+      </section>
+      <Footer t={t} />
+    </main>
+  )
 }

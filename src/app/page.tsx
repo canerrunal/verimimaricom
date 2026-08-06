@@ -25,16 +25,14 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: {
     title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün | Veri Mimarı',
-    description:
-      'Kârlılık, reklam ve operasyon verisini tek bir karar sisteminde birleştirin.',
+    description: 'Kârlılık, reklam ve operasyon verisini tek bir karar sisteminde birleştirin.',
     type: 'website',
     url: '/',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün | Veri Mimarı',
-    description:
-      'Ücretsiz araçlar, rehberler ve ürünlerle e-ticaret verisini karara dönüştürün.',
+    description: 'Ücretsiz araçlar, rehberler ve ürünlerle e-ticaret verisini karara dönüştürün.',
   },
 }
 

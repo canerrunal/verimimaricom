@@ -7,8 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/projeler' },
   openGraph: {
     title: 'Veri ve E-Ticaret Analitiği Projeleri | Veri Mimarı',
-    description:
-      'Çalışan sistemleri, deneyleri ve veri odaklı ürün projelerini yakından görün.',
+    description: 'Çalışan sistemleri, deneyleri ve veri odaklı ürün projelerini yakından görün.',
     type: 'website',
   },
 }
