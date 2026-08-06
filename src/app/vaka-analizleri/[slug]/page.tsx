@@ -80,7 +80,7 @@ export default async function DemoCasePage({ params }: PageProps) {
     inLanguage: 'tr-TR',
     url: `${siteUrl}/vaka-analizleri/${item.slug}`,
     author: { '@type': 'Person', name: brandProfile.name, url: siteUrl },
-    isBasedOn: 'Simüle edilmiş sipariş, reklam ve ürün maliyeti veri setleri',
+    isBasedOn: item.dataSources,
     about: ['ROAS', 'E-ticaret kârlılığı', 'Reklam sonrası katkı'],
   }
   const breadcrumbLd = {
@@ -164,21 +164,12 @@ export default async function DemoCasePage({ params }: PageProps) {
             <div className="case-body">
               <section id="senaryo" className="case-copy-section">
                 <span className="eyebrow">01 / SENARYO</span>
-                <h2>ROAS değişmeden kârlılık değişebilir mi?</h2>
-                <p>
-                  Bu laboratuvarın sorusu budur. Baz senaryoda net satış 1 milyon TL ve reklam
-                  panelindeki ROAS 4,2’dir. Revize senaryoda net satış daha düşük olmasına rağmen
-                  sipariş karmasının değiştiği varsayılır. İki dönemde ROAS sabit tutularak kâr
-                  farkının medya veriminden değil, birim ekonomiden gelebileceği görünür hâle
-                  getirilir.
-                </p>
+                <h2>{item.scenarioQuestion}</h2>
+                <p>{item.scenarioNarrative}</p>
                 <div className="case-answer">
                   <span>60 SANİYELİK CEVAP</span>
-                  <strong>Aynı ROAS, aynı kâr demek değildir.</strong>
-                  <p>
-                    Ürün maliyeti, komisyon, lojistik ve iade yükü değiştiğinde her reklam
-                    lirasından sonra kalan katkı da değişir.
-                  </p>
+                  <strong>{item.answerTitle}</strong>
+                  <p>{item.answerDetail}</p>
                 </div>
               </section>
 

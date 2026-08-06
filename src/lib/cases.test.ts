@@ -21,13 +21,26 @@ describe('demo vaka veri modeli', () => {
     for (const item of demoCases) {
       for (const scenario of [item.baseline, item.revised]) {
         const result = scenarioMetrics(scenario)
-        expect(result.roas).toBeCloseTo(4.2, 4)
+        expect(Number.isFinite(result.roas)).toBe(true)
+        expect(result.roas).toBeGreaterThan(0)
         expect(result.preAdContribution).toBeCloseTo(scenario.netRevenue - result.preAdCosts, 2)
         expect(result.postAdContribution).toBeCloseTo(
           result.preAdContribution - scenario.adSpend,
           2,
         )
       }
+    }
+  })
+
+  it('her vaka kendine özgü senaryo ve öne çıkan metrik taşır', () => {
+    for (const item of demoCases) {
+      expect(item.scenarioQuestion.length).toBeGreaterThan(20)
+      expect(item.scenarioNarrative.length).toBeGreaterThan(80)
+      expect(item.answerTitle).toBeTruthy()
+      expect(item.answerDetail).toBeTruthy()
+      expect(item.featuredMetric.label).toBeTruthy()
+      expect(item.featuredMetric.value).toBeTruthy()
+      expect(item.featuredMetric.detail).toBeTruthy()
     }
   })
 

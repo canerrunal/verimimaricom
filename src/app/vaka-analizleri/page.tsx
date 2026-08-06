@@ -51,10 +51,12 @@ export default function VakaAnalizleriPage() {
 
           <div className="head">
             <div>
-              <span className="eyebrow">AÇIK HESAP / 01</span>
-              <h2>Kârlılık karar laboratuvarı.</h2>
+              <span className="eyebrow">
+                AÇIK HESAP / {String(demoCases.length).padStart(2, '0')}
+              </span>
+              <h2>Türkiye pazaryerleri için karar laboratuvarı.</h2>
             </div>
-            <p>ROAS ile gerçek katkı arasındaki farkı satır satır inceleyin.</p>
+            <p>Reklam, kampanya, iade ve pazaryeri maliyetlerini satır satır karşılaştırın.</p>
           </div>
 
           <div className="case-index-grid">
@@ -96,13 +98,9 @@ export default function VakaAnalizleriPage() {
                     </a>
                   </div>
                   <div className="case-card-signal" aria-label="Vakanın ana bulgusu">
-                    <span>AYNI ROAS</span>
-                    <strong>4,2</strong>
-                    <p>
-                      Farklı ürün karması,
-                      <br />
-                      farklı katkı sonucu.
-                    </p>
+                    <span>{item.featuredMetric.label}</span>
+                    <strong>{item.featuredMetric.value}</strong>
+                    <p>{item.featuredMetric.detail}</p>
                   </div>
                 </article>
               )
