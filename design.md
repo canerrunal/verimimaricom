@@ -209,9 +209,9 @@ Uzun içerikte gövde genişliği yaklaşık `700–760px` tutulur.
 
 ### Marka işareti
 
-- Ana işaret, koyu yüzey üzerindeki kompakt `VM` monogramı ve yükselen lime çatı çizgisidir.
-- Turuncu uç yalnızca monogramın hareket/yön detayını korumak için kullanılır.
-- Header kullanımında işaret masaüstünde `34px`, mobilde `32px` kare yüzeyde gösterilir.
+- Ana işaret, şeffaf zemindeki kompakt koyu `VM` monogramı ve lime yön kuyruğudur.
+- Monogram kutu, border veya arka plan yüzeyi olmadan kullanılır; lime yalnızca hareket/yön detayını taşır.
+- Header kullanımında işaret masaüstünde `30px`, mobilde `28px` olarak gösterilir.
 - Küçük boyutta okunurluğu korumak için fotoğraf/JPEG kaynak doğrudan küçültülmez; sadeleştirilmiş vektör sürüm kullanılır.
 - Marka işareti dekoratif olduğunda erişilebilir isim, onu kapsayan Veri Mimarı ana sayfa bağlantısında bulunur.
 
@@ -401,7 +401,7 @@ Bağlayıcı sosyal medya kuralları:
 1. Varsayılan gönderi tuvali `1080 × 1350` ve `4:5` oranıdır.
 2. Sıcak kâğıt, koyu mürekkep, Inter + mono rol dağılımı, teknik grid, sert kontur ve sert gölge korunur.
 3. Her görsel tek ana fikir, tek baskın vurgu rengi ve tek öncelikli CTA taşır.
-4. Güncel koyu kareli VM monogramı kullanılır; eski lime daire içindeki `V` işareti kullanılmaz.
+4. Güncel şeffaf zeminli VM monogramı kullanılır; eski lime daire içindeki `V` işareti kullanılmaz.
 5. Sayısal iddialar kaynak ve tarih taşır; örnek veri açıkça `DEMO VERİ` veya `SİMÜLASYON` olarak işaretlenir.
 6. Sosyal içerik ya öğretir, ya bir kararı kolaylaştırır ya da bir aracı kullandırır.
 7. Sosyal medya için yeni renk, font, logo varyasyonu veya bağımsız alt tema oluşturulamaz.

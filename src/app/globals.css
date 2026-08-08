@@ -3592,35 +3592,25 @@ textarea {
 
 .logo-mark {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   place-items: center;
-  overflow: hidden;
-  border: 1px solid var(--ink);
-  border-radius: 8px;
-  background: var(--dark-2);
+  overflow: visible;
+  flex: 0 0 30px;
 }
 
 .logo-mark svg {
   display: block;
-  width: 27px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
 }
 
 .logo-mark-letter {
-  fill: var(--paper);
-}
-
-.logo-mark-roof {
-  fill: none;
-  stroke: var(--lime);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3.4px;
+  fill: var(--ink);
 }
 
 .logo-mark-tail {
-  fill: var(--orange);
+  fill: var(--lime);
 }
 
 .logo-word {
@@ -4581,13 +4571,14 @@ a.card:hover {
   }
 
   .logo-mark {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
   }
 
   .logo-mark svg {
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
   }
 
   .nav.open {

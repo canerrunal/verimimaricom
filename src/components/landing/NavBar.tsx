@@ -18,7 +18,6 @@ export default function NavBar({ t }: { t: any }) {
         <a href={t.basePath} className="logo" aria-label={t.nav.brandAriaLabel}>
           <span className="logo-mark" aria-hidden="true">
             <svg viewBox="0 0 48 48" focusable="false">
-              <path className="logo-mark-roof" d="M18.5 12 27 3.5 35.5 12" />
               <path className="logo-mark-letter" d="M5 15h7l10 18V12l4-4v34l-4 4z" />
               <path className="logo-mark-letter" d="m28 8 3 3v35l-3-4z" />
               <path

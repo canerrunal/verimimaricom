@@ -50,10 +50,10 @@ Her görselde sıcak kâğıt, mürekkep ve çizgi renklerine ek olarak **en faz
 
 ### Logo
 
-Yalnızca güncel **VM monogramı** kullanılır: koyu yuvarlatılmış kare üzerinde beyaz VM, lime çatı ve küçük turuncu kuyruk. Eski lime daire içindeki `V` işareti kullanılmaz.
+Yalnızca güncel **VM monogramı** kullanılır: şeffaf zeminde koyu VM ve küçük lime yön kuyruğu. Eski lime daire içindeki `V` işareti kullanılmaz.
 
-- Açık zeminde koyu kareli tam işaret
-- Koyu zeminde aynı işaret; etrafında en az işaret genişliğinin yarısı kadar boşluk
+- Açık zeminde şeffaf zeminli koyu tam işaret
+- Koyu zeminde ters renkli sürüm; etrafında en az işaret genişliğinin yarısı kadar boşluk
 - Logo başlıkla yarışmaz; tercihen sol üstte veya alt kimlik şeridinde yer alır
 - Logo yeniden çizilmez, rengi değiştirilmez ve efekt eklenmez
 
@@ -197,7 +197,7 @@ GÖRSEL DİL
 - Başlık ve gövde Inter; teknik meta ve sayaç SF Mono benzeri mono font.
 - Büyük, sıkı ve yüksek ağırlıklı başlık; küçük uppercase mono etiket; 2px koyu kontur; 6–8px sert sağ-alt gölge; ince 48px teknik grid.
 - 12 kolonlu düzen, geniş boşluklar ve tek güçlü odak kullan.
-- Güncel VM logosu: koyu yuvarlatılmış kare üzerinde beyaz VM, lime çatı ve küçük turuncu kuyruk. Logoyu yeniden yorumlama veya eski lime daire V ikonunu kullanma.
+- Güncel VM logosu: şeffaf zeminde koyu VM ve küçük lime yön kuyruğu. Logoyu yeniden yorumlama veya eski lime daire V ikonunu kullanma.
 - Gradient, glassmorphism, serif, stok fotoğraf, rastgele 3D obje, yumuşak SaaS gölgesi ve aşırı dekor kullanma.
 
 GÖREV
@@ -226,7 +226,7 @@ Her tasarım Veri Mimarı sitesinin sosyal uzantısı gibi görünmeli; bağıms
 ## 10. Hızlı prompt — tek görsel
 
 ```text
-Veri Mimarı Editorial Data Cards stilinde 1080×1350 dikey sosyal medya görseli hazırla. Sıcak kâğıt #F6F4ED zemin, #101411 mürekkep, Inter başlık, küçük mono meta, 2px sert kontur, ince 48px teknik grid ve yalnızca lime #D6FF63 vurgu kullan. Büyük başlık: “[BAŞLIK]”. Destek cümlesi: “[AÇIKLAMA]”. Alt bölümde “[CTA]”, verimimari.com ve güncel koyu kare VM monogramı yer alsın. Temiz editoryal veri kartı düzeni kullan; gradient, glassmorphism, stok fotoğraf, 3D obje, yumuşak gölge, serif ve eski V ikonunu kullanma. Düz tasarım çıktısı üret, mockup üretme.
+Veri Mimarı Editorial Data Cards stilinde 1080×1350 dikey sosyal medya görseli hazırla. Sıcak kâğıt #F6F4ED zemin, #101411 mürekkep, Inter başlık, küçük mono meta, 2px sert kontur, ince 48px teknik grid ve yalnızca lime #D6FF63 vurgu kullan. Büyük başlık: “[BAŞLIK]”. Destek cümlesi: “[AÇIKLAMA]”. Alt bölümde “[CTA]”, verimimari.com ve güncel şeffaf zeminli VM monogramı yer alsın. Temiz editoryal veri kartı düzeni kullan; gradient, glassmorphism, stok fotoğraf, 3D obje, yumuşak gölge, serif ve eski V ikonunu kullanma. Düz tasarım çıktısı üret, mockup üretme.
 ```
 
 ## 11. Hazır konu örnekleri

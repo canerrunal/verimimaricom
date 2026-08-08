@@ -67,7 +67,7 @@
     },
     "components": {
       "button_style": "outlined pills; dark primary; lime hero CTA with hard shadow",
-      "brand_mark": "compact VM monogram on a dark rounded-square surface with a lime rising roof and restrained orange tail",
+      "brand_mark": "compact ink VM monogram on a transparent surface with a restrained lime directional tail",
       "input_style": "white field, dark 1px border, lime focus halo",
       "card_style": "flat grid cells or 14px outlined panels with hard drop shadow",
       "navigation_pattern": "72px sticky translucent editorial bar",
@@ -87,7 +87,7 @@
         "dark functional outline",
         "hard bottom-right shadow",
         "single fluorescent accent",
-        "current dark-square VM monogram",
+        "current transparent VM monogram with lime tail",
         "source and date strip"
       ],
       "content_rule": "one promise, one dominant accent, one primary CTA",
