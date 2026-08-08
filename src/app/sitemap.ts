@@ -2,8 +2,10 @@ import type { MetadataRoute } from 'next'
 import { fallbackJournalPosts } from '@/lib/blog'
 import { guides } from '@/lib/guides'
 import { glossaryTerms } from '@/lib/glossary'
-import { demoCases } from '@/lib/cases'
+import { caseAnalyses } from '@/lib/cases'
 import { metricComparisons } from '@/lib/comparisons'
+import { resourceTemplates } from '@/lib/templates'
+import { benchmarkReports } from '@/lib/reports'
 import { getSiteUrl } from '@/lib/seo'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -67,6 +69,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${siteUrl}/araclar/pazaryeri-reklam-karlilik-hesaplayici`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/araclar/ai-alisveris-gorunurluk-denetimi`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.95,
@@ -156,13 +164,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/vaka-analizleri`,
+      url: `${siteUrl}/analizler`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.85,
     },
     {
       url: `${siteUrl}/karsilastirmalar`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.84,
+    },
+    {
+      url: `${siteUrl}/sablonlar`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.86,
+    },
+    {
+      url: `${siteUrl}/raporlar`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.84,
@@ -208,8 +228,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.78,
   }))
 
-  const caseRoutes: MetadataRoute.Sitemap = demoCases.map((item) => ({
-    url: `${siteUrl}/vaka-analizleri/${item.slug}`,
+  const caseRoutes: MetadataRoute.Sitemap = caseAnalyses.map((item) => ({
+    url: `${siteUrl}/analizler/${item.slug}`,
     lastModified: new Date(item.updatedAt),
     changeFrequency: 'monthly',
     priority: 0.82,
@@ -222,11 +242,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.82,
   }))
 
+  const templateRoutes: MetadataRoute.Sitemap = resourceTemplates.map((item) => ({
+    url: `${siteUrl}/sablonlar/${item.slug}`,
+    lastModified: new Date(item.updatedAt),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
+
+  const reportRoutes: MetadataRoute.Sitemap = benchmarkReports.map((item) => ({
+    url: `${siteUrl}/raporlar/${item.slug}`,
+    lastModified: new Date(item.reviewedAt),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
+
   return [
     ...staticRoutes,
     ...guideRoutes,
     ...glossaryRoutes,
     ...comparisonRoutes,
+    ...templateRoutes,
+    ...reportRoutes,
     ...caseRoutes,
     ...blogRoutes,
   ]

@@ -7,7 +7,7 @@ import { metricComparisons } from '@/lib/comparisons'
 export const metadata: Metadata = {
   title: 'E-Ticaret Metrik Karşılaştırmaları',
   description:
-    'ROAS, MER ve diğer e-ticaret metriklerini kapsam, formül, kullanım alanı ve sınırlamalarıyla karşılaştırın.',
+    'ROAS, MER, CPA, CAC, dönüşüm ve kârlılık metriklerini kapsam, formül, kullanım alanı ve sınırlamalarıyla karşılaştırın.',
   alternates: { canonical: '/karsilastirmalar' },
 }
 

@@ -79,7 +79,7 @@ export default function VeriBotChat() {
         id: 'welcome',
         role: 'assistant',
         content:
-          'Merhaba, ben VeriBot. Projeler, vaka analizleri ve yetkinlikler hakkında soru sorabilirsiniz.',
+          'Merhaba, ben VeriBot. Projeler, analizler ve yetkinlikler hakkında soru sorabilirsiniz.',
       },
     ],
   })
@@ -111,7 +111,7 @@ export default function VeriBotChat() {
               <div className="veribot-empty-state">
                 <strong>Önerilen sorular</strong>
                 <ul>
-                  <li>Bu sitede hangi vaka analizleri var?</li>
+                  <li>Bu sitede hangi analizler var?</li>
                   <li>NLP projelerinde hangi teknoloji yığını kullanıldı?</li>
                   <li>Premium üyelikte hangi içerikler açılıyor?</li>
                 </ul>

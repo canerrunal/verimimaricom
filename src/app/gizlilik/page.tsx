@@ -6,12 +6,12 @@ import { getDictionary } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'Gizlilik ve Veri Politikası',
   description:
-    'Veri Mimarı gizlilik politikası ve ücretsiz hesaplama araçları veri saklamama prensipleri.',
+    'Veri Mimarı hesaplama araçları, iletişim formları ve geri bildirim kayıtlarının nasıl işlendiğini açıklar.',
   alternates: { canonical: '/gizlilik' },
   openGraph: {
     title: 'Gizlilik ve Veri Politikası | Veri Mimarı',
     description:
-      'Veri Mimarı araçlarında hesaplama verilerinin nasıl işlendiğini ve saklanmadığını okuyun.',
+      'Hesaplama verilerinin, iletişim taleplerinin ve geri bildirimlerin nasıl işlendiğini okuyun.',
     type: 'website',
     url: '/gizlilik',
   },
@@ -33,6 +33,11 @@ const policies = [
     title: 'Çerezler ve Analitik',
     body: 'Web sitemizin performansını anlamak ve ziyaretçi deneyimini iyileştirmek için anonimleştirilmiş temel analitik etkinlikleri toplanır. Bu veriler üçüncü şahıslara satılmaz veya kişisel kimlik bilgilerinizle eşleştirilmez.',
   },
+  {
+    n: '04',
+    title: 'İletişim ve Geri Bildirim Kayıtları',
+    body: 'İş birliği formu üzerinden gönderdiğiniz ad, e-posta ve proje bilgileri ile araçlarda isteğinizle paylaştığınız geri bildirimler Supabase üzerinde saklanır. Yeni gönderimler, yanıt verebilmek ve platformu geliştirmek amacıyla Resend üzerinden destek e-posta adresimize bildirilir. Bu bilgiler üçüncü taraflara satılmaz. İşleme amacı tamamlanana kadar tutulur; silme talebinizi verimimaridestek@gmail.com adresine iletebilirsiniz.',
+  },
 ]
 
 export default function GizlilikPage() {
@@ -45,10 +50,10 @@ export default function GizlilikPage() {
       <section className="wrap hero single">
         <div>
           <div className="crumb">POLİTİKA VE GÜVENLİK / GİZLİLİK</div>
-          <h1>Verileriniz saklanmaz, tarayıcınızda işlenir.</h1>
+          <h1>Hesaplama verileriniz cihazınızda kalır.</h1>
           <p className="intro">
-            Hesaplama araçlarına girdiğiniz hiçbir veri sunucularımıza kaydedilmez. Tüm hesaplamalar
-            %100 istemci taraflı çalışır.
+            Maliyet ve hesaplama girdileri sunucularımıza kaydedilmez. Yalnızca kendi isteğinizle
+            gönderdiğiniz iletişim talepleri ve geri bildirimler güvenli biçimde saklanır.
           </p>
         </div>
       </section>

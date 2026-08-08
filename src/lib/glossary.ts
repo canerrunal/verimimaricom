@@ -2,7 +2,7 @@ export type GlossaryTerm = {
   slug: string
   term: string
   english: string
-  category: 'Kârlılık' | 'Reklam' | 'Müşteri' | 'Dönüşüm'
+  category: 'Kârlılık' | 'Reklam' | 'Müşteri' | 'Dönüşüm' | 'Veri'
   shortDefinition: string
   explanation: string[]
   formula?: string
@@ -49,6 +49,18 @@ const shopifyReturns = {
   name: 'Shopify — Ecommerce returns management',
   url: 'https://www.shopify.com/blog/ecommerce-returns-management',
   note: 'İadelerin gelir, lojistik ve marj üzerindeki operasyonel etkilerini açıklar.',
+}
+
+const googleMerchantListing = {
+  name: 'Google Search Central — Merchant listing structured data',
+  url: 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing',
+  note: 'Product ve Offer verisinde fiyat, stok, teslimat ve iade bilgisinin doğrulanmasını açıklar.',
+}
+
+const openAiProductFeed = {
+  name: 'OpenAI Developers — Agentic Commerce product feed products schema',
+  url: 'https://developers.openai.com/commerce/specs/file-upload/products',
+  note: 'Ürün feed’i için item_id, başlık, açıklama, fiyat, bulunabilirlik ve satıcı alanlarını tanımlar.',
 }
 
 export const glossaryTerms: GlossaryTerm[] = [
@@ -452,9 +464,78 @@ export const glossaryTerms: GlossaryTerm[] = [
     source: googleEcommerce,
     reviewedAt: '2026-08-01',
   },
+  {
+    slug: 'urun-veri-sozlesmesi',
+    term: 'Ürün Veri Sözleşmesi',
+    english: 'Product Data Contract',
+    category: 'Veri',
+    shortDefinition:
+      'Ürün alanlarının anlamını, sahibini, kaynağını, formatını ve güncelleme SLA’sını ortaklaştıran veri anlaşmasıdır.',
+    explanation: [
+      'Ürün veri sözleşmesi; SKU/item_id, ebeveyn-varyant ilişkisi, başlık, açıklama, görsel, fiyat, stok, teslimat ve iade alanlarının ekipler arasında aynı anlamla kullanılmasını sağlar.',
+      'Amaç yalnızca bir feed dosyası üretmek değildir. Ürün sayfası, structured data, merchant feed, reklam kataloğu ve checkout aynı ticari gerçeği taşımalı; farklar otomatik kontrol edilmelidir.',
+    ],
+    example:
+      'AYK-001 ürününün sayfa, feed ve checkout kimliği aynıysa; fiyatın para birimi, stok güncelleme zamanı ve varyant ilişkisi de sözleşmede tanımlı olmalıdır.',
+    confusedWith: {
+      term: 'Ürün feed’i',
+      explanation:
+        'Feed bir hedef sisteme veri taşıyan çıktıdır; veri sözleşmesi ise alanların anlamını, sahipliğini ve kalite kurallarını tanımlar.',
+    },
+    relatedGuide: {
+      label: 'Ürün veri sözleşmesi nasıl kurulur?',
+      href: '/rehberler/urun-veri-sozlesmesi-katalog-yonetimi',
+    },
+    relatedTool: {
+      label: 'AI Merchant Feed Alan Sözlüğü',
+      href: '/sablonlar/ai-merchant-feed-alan-sozlugu',
+    },
+    source: googleMerchantListing,
+    reviewedAt: '2026-08-02',
+  },
+  {
+    slug: 'katalog-paritesi',
+    term: 'Katalog Paritesi',
+    english: 'Catalog Parity',
+    category: 'Veri',
+    shortDefinition:
+      'Aynı ürün kimliği için sayfa, feed, reklam kataloğu ve checkout alanlarının birbiriyle eşleşme düzeyidir.',
+    explanation: [
+      'Katalog paritesi, alanların yalnızca dolu olmasına değil; değerlerin aynı ticari durumu, aynı varyantı ve kabul edilebilir güncellik penceresini göstermesine bakar.',
+      'Genel parite oranı yararlı bir özet olabilir; fiyat ve stok için kritik hata oranı ile son başarılı güncelleme yaşı ayrıca izlenmelidir. Yüksek ortalama, tek bir stok veya fiyat hatasının etkisini gizlememelidir.',
+    ],
+    formula: 'Parite oranı = Eşleşen doğrulama alanı ÷ Toplam doğrulama alanı × 100',
+    formulaNote:
+      'Alan kapsamını ve eşleşme toleransını (ör. fiyat para birimi, stok SLA’sı, varyant kimliği) rapor başlığında belirtin.',
+    example:
+      '10 doğrulama alanının 9’u eşleşiyorsa parite %90’dır; ancak eşleşmeyen alan stok ise ürün yayın kapısı yine başarısız sayılabilir.',
+    confusedWith: {
+      term: 'Ürün Veri Sözleşmesi',
+      slug: 'urun-veri-sozlesmesi',
+      explanation:
+        'Parite ölçülen sonuçtur; veri sözleşmesi ise bu sonucu ve alan sahipliğini üreten kurallar bütünüdür.',
+    },
+    relatedGuide: {
+      label: 'Ürün veri sözleşmesi nasıl kurulur?',
+      href: '/rehberler/urun-veri-sozlesmesi-katalog-yonetimi',
+    },
+    relatedTool: {
+      label: 'AI Alışveriş Görünürlük Denetimi',
+      href: '/araclar/ai-alisveris-gorunurluk-denetimi',
+    },
+    source: openAiProductFeed,
+    reviewedAt: '2026-08-02',
+  },
 ]
 
-export const glossaryCategories = ['Tümü', 'Kârlılık', 'Reklam', 'Müşteri', 'Dönüşüm'] as const
+export const glossaryCategories = [
+  'Tümü',
+  'Kârlılık',
+  'Reklam',
+  'Müşteri',
+  'Dönüşüm',
+  'Veri',
+] as const
 
 export function getGlossaryTerm(slug: string) {
   return glossaryTerms.find((item) => item.slug === slug)

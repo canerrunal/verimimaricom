@@ -8,12 +8,40 @@ export default function CollaborationForm() {
   const [projectType, setProjectType] = useState('E-Ticaret Kârlılık Modellemesi')
   const [budget, setBudget] = useState('50.000 TL - 100.000 TL')
   const [message, setMessage] = useState('')
+  const [website, setWebsite] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!name || !email) return
-    setSubmitted(true)
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    if (!name || !email || submitting) return
+
+    setSubmitting(true)
+    setSubmitError('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          projectType,
+          budget,
+          message,
+          website,
+          pagePath: window.location.pathname,
+        }),
+      })
+
+      if (!response.ok) throw new Error('contact-submit-failed')
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Talebiniz şu anda iletilemedi. Lütfen biraz sonra yeniden deneyin.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const projectTypes = [
@@ -70,7 +98,19 @@ export default function CollaborationForm() {
           dönüş yapayım.
         </p>
 
-        <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.2rem' }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'grid', gap: '1.2rem' }}
+          aria-busy={submitting}
+        >
+          <input
+            type="hidden"
+            name="website"
+            value={website}
+            onChange={(event) => setWebsite(event.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
           <div>
             <div className="eyebrow" style={{ marginBottom: 8 }}>
               PROJE KAPSAMI
@@ -116,6 +156,7 @@ export default function CollaborationForm() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Caner Yılmaz"
+                autoComplete="name"
                 required
               />
             </div>
@@ -127,6 +168,7 @@ export default function CollaborationForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="caner@marka.com"
+                autoComplete="email"
                 required
               />
             </div>
@@ -143,9 +185,19 @@ export default function CollaborationForm() {
             />
           </div>
 
-          <button type="submit" className="btn" style={{ justifySelf: 'start' }}>
-            Talebi Gönder →
+          <button
+            type="submit"
+            className="btn"
+            style={{ justifySelf: 'start' }}
+            disabled={submitting}
+          >
+            {submitting ? 'Talep gönderiliyor…' : 'Talebi Gönder →'}
           </button>
+          {submitError && (
+            <p className="submission-error" role="alert">
+              {submitError}
+            </p>
+          )}
         </form>
       </div>
     </section>

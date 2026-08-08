@@ -51,11 +51,11 @@ export default function IsBirligiPage() {
               Sorularınız ve hızlı ulaşım için:
             </p>
             <a
-              href="mailto:hello@verimimari.com"
+              href="mailto:verimimaridestek@gmail.com"
               className="link"
               style={{ marginTop: 'auto', paddingTop: 14 }}
             >
-              hello@verimimari.com
+              verimimaridestek@gmail.com
             </a>
           </div>
 
@@ -77,7 +77,7 @@ export default function IsBirligiPage() {
                 'E-ticaret Reklam ve Katkı Payı Modellemesi',
                 'Özel Hesaplama Araçları ve Landing Page Geliştirme',
                 'Yapay Zeka Destekli İçerik ve Otomasyon Sistemleri',
-                'Ölçülebilir Vaka Analizi ve Veri Hikayeciliği',
+                'Ölçülebilir Proje Analizi ve Veri Hikayeciliği',
               ].map((item) => (
                 <li
                   key={item}

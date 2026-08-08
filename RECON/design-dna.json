@@ -67,11 +67,40 @@
     },
     "components": {
       "button_style": "outlined pills; dark primary; lime hero CTA with hard shadow",
+      "brand_mark": "compact VM monogram on a dark rounded-square surface with a lime rising roof and restrained orange tail",
       "input_style": "white field, dark 1px border, lime focus halo",
       "card_style": "flat grid cells or 14px outlined panels with hard drop shadow",
       "navigation_pattern": "72px sticky translucent editorial bar",
       "list_style": "bordered grid cells with mono index",
       "component_notes": "Interactive calculators retain their behavior; only presentation changes."
+    },
+    "social_media": {
+      "canonical_reference": "docs/sosyal-medya-tasarim-sistemi.md",
+      "system_name": "Veri Mimarı Editorial Data Cards",
+      "primary_canvas": "1080x1350 / 4:5",
+      "safe_margin": "64px",
+      "grid": "12 conceptual columns, 8px spacing unit, optional 48px technical background grid",
+      "signature_elements": [
+        "warm paper field",
+        "oversized Inter headline",
+        "mono eyebrow and slide index",
+        "dark functional outline",
+        "hard bottom-right shadow",
+        "single fluorescent accent",
+        "current dark-square VM monogram",
+        "source and date strip"
+      ],
+      "content_rule": "one promise, one dominant accent, one primary CTA",
+      "data_rule": "source and date numerical claims; label examples as DEMO VERİ or SİMÜLASYON",
+      "forbidden": [
+        "independent campaign themes",
+        "gradient-heavy SaaS styling",
+        "glassmorphism",
+        "serif typography",
+        "soft ambient-only shadows",
+        "stock 3D decoration",
+        "old lime-circle V mark"
+      ]
     }
   },
   "design_style": {

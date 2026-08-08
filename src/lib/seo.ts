@@ -83,7 +83,7 @@ export function getCaseStudyJsonLd(
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: data?.title || 'Case Study',
-    description: data?.excerpt || 'Vaka analizi içeriği',
+    description: data?.excerpt || 'Proje analizi içeriği',
     datePublished: data?.publishedAt || undefined,
     author: {
       '@type': 'Person',

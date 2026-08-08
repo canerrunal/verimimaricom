@@ -12,6 +12,24 @@ const dhlTrends = {
   note: '29 ülkede alışverişçi ve işletme tarafını karşılaştıran teslimat, iade ve AI araştırması.',
 }
 
+const euShippingDelivery = {
+  name: 'Your Europe — Shipping and delivery',
+  url: 'https://europa.eu/youreurope/citizens/consumers/shopping/shipping-delivery/index_en.htm',
+  note: 'Sınır ötesi teslimat seçeneği, ücret, süre, hasar sorumluluğu ve teslim edilmeme durumunda tüketici bilgilendirmesini açıklar; son kontrol 29.04.2026.',
+}
+
+const euEcommerceRules = {
+  name: 'European Commission — E-commerce rules in the EU',
+  url: 'https://digital-strategy.ec.europa.eu/en/policies/e-commerce-rules-eu',
+  note: 'Çapraz sınır e-ticaretinde fiyat, kargo, teslimat süresi, cayma ve geo-blocking şeffaflığı için resmî çerçeveyi özetler.',
+}
+
+const euCustoms2026 = {
+  name: 'European Commission — 2026 low-value import guidance',
+  url: 'https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en',
+  note: 'AB dışından düşük değerli ithalatta 1.07.2026 sonrası geçici gümrük uygulaması ve 1.11.2026 ürün tanımlayıcısı hazırlığı için resmî rehber; ülke ve ürün kapsamı ayrıca doğrulanmalıdır.',
+}
+
 const openAiCommerce = {
   name: 'OpenAI — Powering Product Discovery in ChatGPT',
   url: 'https://openai.com/index/powering-product-discovery-in-chatgpt/',
@@ -34,6 +52,18 @@ const googleMerchantProductData = {
   name: 'Google Merchant Center — Product data specification',
   url: 'https://support.google.com/merchants/answer/7052112?hl=en',
   note: 'Kimlik, başlık, açıklama, bağlantı, görsel, fiyat, stok ve varyant alanlarının güncel resmî gereksinimleri.',
+}
+
+const googleAiFeatures = {
+  name: 'Google Search Central — AI features and your website',
+  url: 'https://developers.google.com/search/docs/appearance/ai-features',
+  note: 'AI Overviews ve AI Mode için ek teknik gereksinim veya özel AI dosyası olmadığını; indekslenebilirlik, metinsel içerik, iç bağlantı ve görünür verilerle eşleşen structured data temelini açıklar.',
+}
+
+const googleMerchantListing = {
+  name: 'Google Search Central — Merchant listing structured data',
+  url: 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing',
+  note: 'Product ve Offer verisinde fiyat, para birimi, stok, teslimat ve iade bilgisinin kullanımını; doğrulama ve izleme adımlarını açıklar.',
 }
 
 const openAiProductFeed = {
@@ -660,11 +690,11 @@ export const researchGuides: Guide[] = [
     intent: 'Hazırlık ve denetim',
     readingTime: 12,
     publishedAt: '2026-08-01',
-    updatedAt: '2026-08-01',
-    reviewedAt: '2026-08-01',
+    updatedAt: '2026-08-02',
+    reviewedAt: '2026-08-02',
     reviewDueAt: '2026-09-15',
     shortAnswer:
-      'AI alışveriş hazırlığının ilk işi yeni bir chatbot değil, makine tarafından anlaşılabilen ve güncel kalan ürün verisidir. Kalıcı SKU kimliği, doğru varyant, fiyat, stok, görsel, teslimat ve iade bilgisi tek doğruluk kaynağından beslenmelidir. ACP veya UCP entegrasyonu bu temel kurulduktan sonra değerlendirilmelidir.',
+      'AI alışveriş hazırlığının ilk işi yeni bir chatbot veya “AI için özel SEO etiketi” değil; indekslenebilir ürün sayfaları, görünür içerikle eşleşen Product/Offer verisi ve güncel merchant feed’idir. Kalıcı SKU, doğru varyant, fiyat, stok, teslimat ve iade bilgisi tek doğruluk kaynağından beslenmeli; ACP veya UCP entegrasyonu bu temel kurulduktan sonra değerlendirilmelidir.',
     whyItMatters: [
       'Ürün kataloğu artık yalnızca mağaza sayfası değil, farklı keşif yüzeylerine dağıtılan bir veri ürünüdür.',
       'Fiyat, stok ve varyant uyuşmazlığı insan müşteride de alışveriş ajanında da güven kaybı yaratır.',
@@ -673,23 +703,26 @@ export const researchGuides: Guide[] = [
     definition:
       'AI commerce readiness, bir ürünün doğru tanımlanması, güncel bulunabilirlik ve fiyatla sunulması, teslimat/iade koşullarının anlaşılması ve sonuçların ölçülebilmesi için gereken veri ve operasyon hazırlığıdır.',
     formula:
-      'Hazırlık skoru = Zorunlu alan × %30 + doğruluk × %30 + güncellik × %20 + operasyon × %10 + ölçüm × %10',
+      'Hazırlık skoru = bulunabilirlik × %20 + ürün verisi × %30 + ticari senkronizasyon × %30 + güven/ölçüm × %20',
     formulaNote:
-      'Bu ağırlıklar Veri Mimarı başlangıç modelidir; resmî bir OpenAI veya Google uygunluk puanı değildir. Kritik fiyat ve stok hataları toplam skordan bağımsız engelleyici kabul edilmelidir.',
+      'Bu ağırlıklar Veri Mimarı başlangıç modelidir; resmî bir OpenAI veya Google uygunluk puanı değildir. İndeksleme, tarayıcı erişimi, Product/Offer doğrulaması ile fiyat ve stok eşleşmesi toplam skordan bağımsız kritik yayın kapılarıdır.',
     inputs: [
-      { label: 'Ürün kimliği', description: 'Kalıcı SKU/GTIN, ebeveyn ürün ve varyant ilişkisi.' },
       {
-        label: 'Ticari gerçeklik',
-        description: 'Sayfa ile eşleşen fiyat, para birimi, stok ve satılabilirlik.',
+        label: 'Bulunabilirlik',
+        description: 'İndekslenebilir URL, tarayıcı erişimi, iç bağlantı ve sitemap.',
       },
       {
-        label: 'Karar içeriği',
-        description: 'Başlık, nitelik, görsel, ölçü, malzeme ve uyumluluk.',
+        label: 'Ürün verisi',
+        description: 'Product/Offer, kalıcı SKU/GTIN, varyant ve karar verdiren içerik.',
       },
-      { label: 'Operasyon', description: 'Teslimat, iade, satıcı ve sipariş durumu bilgisi.' },
       {
-        label: 'Ölçüm',
-        description: 'Kaynak etiketi, sipariş kimliği, iptal ve iade geri beslemesi.',
+        label: 'Ticari senkronizasyon',
+        description:
+          'Sayfa, structured data, feed ve checkout arasında fiyat, stok ve politika eşleşmesi.',
+      },
+      {
+        label: 'Güven ve ölçüm',
+        description: 'Marka/politika kimliği, platform teşhisi ve sipariş-iade geri beslemesi.',
       },
     ],
     example: {
@@ -726,6 +759,7 @@ export const researchGuides: Guide[] = [
       'Ülke uygunluğunu doğrulamadan canlı entegrasyon vaadi vermek.',
       'Ürün sayfasını tek doğruluk kaynağı sanıp feed farklarını izlememek.',
       'Yalnız alan doluluğuna bakıp fiyat ve stok doğruluğunu atlamak.',
+      'llms.txt veya özel “AI schema” dosyasını Google AI görünürlüğü için zorunlu sanmak.',
       'Tam katalog güncellemesini seyrek ve hatasızmış gibi kabul etmek.',
       'AI trafiğini sipariş, iptal ve iade sonucuna bağlamamak.',
     ],
@@ -734,14 +768,15 @@ export const researchGuides: Guide[] = [
       'Zorunlu alan, fiyat ve stok eşleşme oranını günlük ölçün.',
       'Tam katalog ile gün içi artımlı güncelleme sorumluluğunu ayırın.',
       'Teslimat, iade ve satıcı bilgisini yapılandırılmış tutun.',
+      'Product/Offer verisinin görünür sayfa içeriğiyle eşleştiğini doğrulayın.',
       'Ülke, merchant ve ödeme uygunluğunu resmî kaynaklardan doğrulayın.',
     ],
     tool: {
-      title: 'Ürün Feed Sağlık Kontrolü',
+      title: 'AI Alışveriş Görünürlük Denetimi',
       description:
-        'CSV ürün verinizde kritik alan, kimlik, fiyat, stok, URL ve içerik sorunlarını tarayıcıda görün.',
-      href: '/araclar/urun-feed-saglik-kontrolu',
-      cta: 'Feed’i ücretsiz analiz et',
+        'Bulunabilirlik, ürün verisi, ticari senkronizasyon ve ölçüm hazırlığınızı 100 puanlık açık yöntemle değerlendirin.',
+      href: '/araclar/ai-alisveris-gorunurluk-denetimi',
+      cta: 'AI görünürlüğünü denetle',
     },
     relatedGuides: [
       'e-ticaret-dashboard-metrikleri',
@@ -764,8 +799,21 @@ export const researchGuides: Guide[] = [
         answer:
           'Kalıcı ürün kimliği, fiyat/stok doğruluğu, varyant bütünlüğü ve güvenilir tam/artımlı katalog güncelleme hattı.',
       },
+      {
+        question: 'Google AI görünürlüğü için llms.txt veya özel bir AI schema gerekli mi?',
+        answer:
+          'Google’ın resmî rehberine göre AI Overviews ve AI Mode için özel bir AI dosyası veya schema gerekmiyor. İndekslenebilirlik, yararlı metinsel içerik, iç bağlantılar ve görünür içerikle eşleşen structured data temel olmaya devam ediyor. Platforma özel merchant feed’leri ayrı bir ticari veri hattıdır.',
+      },
     ],
-    sources: [openAiCommerce, openAiProductFeed, googleMerchantProductData, googleUcp, dhlTrends],
+    sources: [
+      googleAiFeatures,
+      googleMerchantListing,
+      openAiCommerce,
+      openAiProductFeed,
+      googleMerchantProductData,
+      googleUcp,
+      dhlTrends,
+    ],
     disclaimer:
       'Protokol ve ülke uygunluğu hızla değişebilir. Entegrasyon öncesinde güncel resmî dokümantasyonu, sözleşmeleri ve ödeme koşullarını doğrulayın.',
   },
@@ -1178,5 +1226,299 @@ export const researchGuides: Guide[] = [
     sources: [dhlTrends, ministryEcommerce],
     disclaimer:
       'Küresel araştırma oranları Türkiye için doğrudan benchmark değildir. Deney sonuçlarını kendi trafik, kategori, bölge ve katkı verinizle doğrulayın.',
+  },
+  {
+    slug: 'e-ihracat-yerellestirme-teslimat-guveni',
+    title: 'E-İhracatta Yerelleştirme ve Teslimat Güveni Nasıl Kurulur?',
+    excerpt:
+      'Yeni bir ülkeye reklam açmadan önce fiyat, dil, teslimat, iade, gümrük ve müşteri desteğini tek güven teklifinde doğrulayın.',
+    category: 'Pazaryeri & Operasyon',
+    contentType: 'Uygulama rehberi',
+    maturity: 'growing',
+    audience: 'E-ihracat kurucuları, büyüme, operasyon, müşteri deneyimi ve hukuk ekipleri',
+    intent: 'Pazar açılışı ve risk kontrolü',
+    readingTime: 10,
+    publishedAt: '2026-08-02',
+    updatedAt: '2026-08-02',
+    reviewedAt: '2026-08-02',
+    reviewDueAt: '2026-09-15',
+    shortAnswer:
+      'E-ihracat yerelleştirme yalnızca dili çevirmek değildir. Hedef ülkede müşterinin gördüğü fiyatın hangi para biriminde ve vergi kapsamıyla sunulduğu, teslimatın kaç günde ve hangi taşıyıcıyla geldiği, iade/cayma sürecinin nasıl işlediği, gümrük maliyetinin kimin sorumluluğunda olduğu ve destek kanalının ne kadar hızlı yanıt verdiği tek bir güven teklifidir. Reklamı bu temel yüzeyler doğrulandıktan sonra ölçekleyin.',
+    whyItMatters: [
+      'DHL’nin 2026 araştırmasında alışverişçilerin %67’si teslimat teklifi nedeniyle sepet terk etti; %70’i teslimat/iade sağlayıcısına güvenmiyorsa markadan alışveriş yapmayacağını bildirdi.',
+      'AB resmî rehberleri sınır ötesi satışta teslimat seçenekleri, ücret ve süre bilgisinin satın alma öncesi açık olmasını vurguluyor.',
+      'AB dışından gönderimde gümrük ve ürün tanımlayıcısı hazırlığı fiyat, teslimat vaadi ve operasyon akışını doğrudan etkileyebilir.',
+      'Yerel para birimi göstermek tek başına yerelleştirme değildir; checkout, iade ve destek de aynı ülke sözleşmesini taşımalıdır.',
+    ],
+    definition:
+      'E-ihracat güven sistemi; ülke bazlı teklif, ödeme, teslimat, gümrük, iade ve müşteri hizmetleri verisini aynı ürün ve sipariş kimliği altında doğrulayan operasyon katmanıdır. Başarı, ülkeye açılan trafik değil; beklenen ve gerçekleşen teslimat, net katkı, iade ve destek sonuçlarının birlikte sürdürülebilmesidir.',
+    formula:
+      'Ülke başı katkı = Net tahsilat − ürün − ödeme − gidiş lojistiği − gümrük/vergiler − iade rezervi − destek − edinme maliyeti',
+    formulaNote:
+      'Vergi, gümrük, IOSS veya yerel yükümlülükler ülkeye, ürün sınıfına ve satış modeline göre değişir. Formülde “gümrük/vergiler” kalemini sıfır varsaymayın; sorumlu tarafı ve checkout gösterimini ülke bazında doğrulayın.',
+    inputs: [
+      {
+        label: 'Ülke teklifi',
+        description:
+          'Dil, para birimi, vergi dahil/hariç gösterim, stok ve teslim edilebilir SKU kapsamı.',
+      },
+      {
+        label: 'Teslimat sözleşmesi',
+        description: 'Taşıyıcı, fiyat, tahmini süre, gecikme iletişimi ve takip numarası üretimi.',
+      },
+      {
+        label: 'Gümrük ve ürün kimliği',
+        description:
+          'Ürün sınıfı, menşe, gerekli tanımlayıcılar, beyan sahibi ve beklenmeyen maliyet sorumluluğu.',
+      },
+      {
+        label: 'İade ve cayma akışı',
+        description:
+          'İade adresi, ters kargo, süre, geri ödeme yöntemi, hasar ve yeniden satış kararı.',
+      },
+      {
+        label: 'Yerel destek',
+        description: 'Dil, saat dilimi, yanıt SLA’sı, teslimat takibi ve WISMO temasının kaydı.',
+      },
+    ],
+    example: {
+      title: 'Yeni bir AB ülkesine reklam açmadan önce',
+      intro:
+        'Aynı ürün fiyatını göstermek yerine ülke teklifini güven kapılarıyla değerlendirelim.',
+      rows: [
+        { label: 'Ürün fiyatı', value: 'Yerel para biriminde', note: 'Vergi kapsamı açık' },
+        {
+          label: 'Teslimat teklifi',
+          value: 'Ücret + tahmini tarih',
+          note: 'Checkout öncesi görünür',
+        },
+        {
+          label: 'Gümrük sorumluluğu',
+          value: 'Satıcı / taşıyıcı / müşteri',
+          note: 'Siparişten önce açık',
+        },
+        { label: 'İade yolu', value: 'Adres + süre + maliyet', note: 'Yerel dilde erişilebilir' },
+        { label: 'Destek SLA’sı', value: 'İlk yanıt süresi', note: 'Teslimat takibi dahil' },
+        { label: 'Yayın kapısı', value: '5/5 doğrulama', note: 'Eksikse reklam ölçeklenmez' },
+      ],
+      result:
+        'Ülke sayfası ve checkout bu beş güven alanını taşımıyorsa trafik satın almak erken olabilir. Önce küçük bir doğrulama kohortu, sonra teslimat/iade olgunlaştığında bütçe artışı uygulanmalıdır.',
+    },
+    decisions: [
+      {
+        signal: 'Tıklama var, checkout başlangıcı düşük',
+        meaning: 'Fiyat, vergi, teslimat veya ödeme beklentisi reklamdan sonra bozuluyor olabilir.',
+        action:
+          'Ülke landing sayfası ile checkout toplam fiyatını ve teslimat teklifini karşılaştırın.',
+      },
+      {
+        signal: 'Checkout var, sipariş düşük',
+        meaning: 'Gümrük sürprizi, ödeme reddi veya teslimat süresi güveni zedeliyor olabilir.',
+        action: 'Ödeme reddi, ülke kodu, taşıyıcı ve terk adımını ayrı izleyin.',
+      },
+      {
+        signal: 'Sipariş var, iade ve destek yüksek',
+        meaning: 'Ürün beklentisi, yerelleştirme veya teslimat vaadi doğru kurulmamış olabilir.',
+        action: 'İade nedenini SKU, çeviri, ölçü, taşıyıcı ve vaat alanlarına ayırın.',
+      },
+      {
+        signal: 'Ciro artıyor, ülke katkısı negatif',
+        meaning: 'Lojistik, gümrük, ödeme ve edinme maliyeti satış gelirini eritiyor.',
+        action: 'Ülke bazlı başabaş CAC ve minimum sipariş katkısı kapısı belirleyin.',
+      },
+    ],
+    mistakes: [
+      'Ürün sayfasını yalnız makine çevirisiyle yerelleştirip checkout ve iade metnini çevirmemek.',
+      'Vergi/gümrük sorumluluğunu siparişten sonra müşteriye açıklamak.',
+      'Teslimat süresini tek ortalama gün olarak yazıp ülke veya bölge farkını gizlemek.',
+      'Yerel para birimi gösterimini gerçek tahsilat ve ödeme yöntemleriyle karıştırmak.',
+      'İade adresi, ters kargo ve geri ödeme süresini destek ekibine bırakmak.',
+      'Küresel teslimat oranlarını Türkiye’den açılan her ülke için hedef kabul etmek.',
+    ],
+    checklist: [
+      'Ülke sayfası ve checkout aynı para birimi, vergi ve toplam fiyat tanımını taşıyor.',
+      'Teslimat ücreti, tahmini tarih, taşıyıcı ve takip akışı satın alma öncesi görünür.',
+      'Gümrük/vergiler ve sorumlu taraf ürün ve sipariş akışında açıkça yazıyor.',
+      'İade/cayma süresi, adresi, maliyeti ve geri ödeme yöntemi hedef dilde erişilebilir.',
+      'Yerel ödeme yöntemi, para birimi ve başarısız ödeme nedeni izleniyor.',
+      'İade, destek ve teslimat sonuçları ülke/SKU/kampanya kimliğiyle bağlanıyor.',
+      'Ülke başı katkı pozitif olmadan reklam bütçesi ölçeklenmiyor.',
+    ],
+    tool: {
+      title: 'İndirim Kârlılık Simülatörü',
+      description:
+        'Ülke teklifindeki fiyat, lojistik ve iade varsayımlarının katkı eşiğini senaryolaştırın.',
+      href: '/araclar/indirim-karlilik-simulatoru',
+      cta: 'Ülke teklifini simüle et',
+    },
+    relatedGuides: [
+      'teslimat-iade-donusum-kontrol-listesi',
+      'ai-alisveris-ajanlarina-hazirlik',
+      'e-ticaret-karlilik-isletim-sistemi',
+    ],
+    faqs: [
+      {
+        question: 'Yerel para birimi göstermek yeterli mi?',
+        answer:
+          'Hayır. Para birimi; vergi kapsamı, ödeme sağlayıcısı, teslimat ücreti, iade geri ödemesi ve muhasebe uzlaştırmasıyla birlikte ele alınmalıdır.',
+      },
+      {
+        question: 'AB teslimat ve iade kuralları Türkiye’den satışta otomatik uygulanır mı?',
+        answer:
+          'Hedef ülkeye, satış modeline ve tüketiciye yöneltilen ticari faaliyete göre yükümlülükler değişebilir. Resmî ülke rehberlerini ve hukuk/vergı danışmanınızı kontrol etmeden tek bir AB kuralını tüm pazarlara uygulamayın.',
+      },
+      {
+        question: 'İlk ülke kampanyası ne zaman ölçeklenmeli?',
+        answer:
+          'Checkout, teslimat, iade ve destek akışı küçük bir doğrulama kohortunda çalışıp ülke başı katkı ve iade penceresi ölçüldükten sonra.',
+      },
+    ],
+    sources: [dhlTrends, euShippingDelivery, euEcommerceRules, euCustoms2026],
+    disclaimer:
+      'Bu rehber operasyonel karar desteğidir; hukuk, vergi veya gümrük danışmanlığı değildir. Hedef ülke, ürün sınıfı, satış modeli ve güncel mevzuat için yerel uzman doğrulaması gerekir.',
+  },
+  {
+    slug: 'urun-veri-sozlesmesi-katalog-yonetimi',
+    title: 'Ürün Veri Sözleşmesi Nasıl Kurulur? SKU, Varyant, Fiyat ve Stok Paritesi',
+    excerpt:
+      'Mağaza, structured data, merchant feed, reklam ve checkout arasında aynı ürünü konuşmak için uygulanabilir bir katalog veri sözleşmesi kurun.',
+    category: 'Veri ve Raporlama',
+    contentType: 'Uygulama rehberi',
+    maturity: 'growing',
+    audience: 'E-ticaret, ürün, veri, pazarlama ve mühendislik ekipleri',
+    intent: 'Veri mimarisi ve operasyon standardı',
+    readingTime: 11,
+    publishedAt: '2026-08-02',
+    updatedAt: '2026-08-02',
+    reviewedAt: '2026-08-02',
+    reviewDueAt: '2026-09-15',
+    shortAnswer:
+      'Ürün veri sözleşmesi; SKU/item_id, ebeveyn-varyant ilişkisi, başlık, açıklama, görsel, fiyat, stok, teslimat ve iade alanlarının anlamını, sahibi olan sistemi, güncelleme SLA’sını ve hata davranışını yazılı hale getirir. Amaç tek bir CSV üretmek değil; ürün sayfası, Product/Offer structured data, merchant feed, reklam kataloğu ve checkout arasında aynı ürünü ve ticari durumu taşıyan doğrulanabilir bir kimlik zinciri kurmaktır.',
+    whyItMatters: [
+      'Aynı SKU farklı sistemlerde farklı isim veya fiyatla yaşarsa pazarlama raporu ile sipariş sonucu birbirinden kopar.',
+      'Varyant ilişkisi ve stok durumu bozulduğunda görünürlük artışı yanlış ürün, yanlış beden veya stok dışı teklif üretebilir.',
+      'Alan sahibi ve güncelleme SLA’sı tanımlanmayan feed hataları ekipler arasında bekleyen manuel işlere dönüşür.',
+      'AI keşif yüzeyleri ve klasik reklam katalogları değişse bile kalıcı ürün kimliği ve veri paritesi yatırımı korunur.',
+    ],
+    definition:
+      'Ürün veri sözleşmesi, katalogdaki her alan için tanım, kaynak sistem, format, izin verilen değer, sahip, güncelleme sıklığı, doğrulama kuralı ve hata durumunu belirleyen ekipler arası veri anlaşmasıdır. Ticari gerçeklik ile içerik gerçekliğini aynı ürün kimliğinde birleştirir.',
+    formula:
+      'Parite oranı = aynı SKU için eşleşen alan sayısı / doğrulanması gereken alan sayısı × 100',
+    formulaNote:
+      'Parite oranı bir platform kabul veya sıralama garantisi değildir. Fiyat ve stok gibi kritik alanlar için genel ortalama yerine kritik hata oranı ve son başarılı güncelleme yaşı da ayrı izlenmelidir.',
+    inputs: [
+      {
+        label: 'Kimlik modeli',
+        description: 'SKU/item_id, GTIN, ebeveyn ürün, varyant ve ülke/kanal anahtarları.',
+      },
+      {
+        label: 'İçerik sözleşmesi',
+        description: 'Başlık, açıklama, görsel, ölçü, materyal, uyumluluk ve dil kuralları.',
+      },
+      {
+        label: 'Ticari sözleşme',
+        description: 'Fiyat, para birimi, stok, teslimat, iade ve satıcı/politika alanları.',
+      },
+      {
+        label: 'Kalite kapıları',
+        description:
+          'Zorunlu alan, format, güncellik, sayfa/feed/checkout eşleşmesi ve hata sahibi.',
+      },
+    ],
+    example: {
+      title: 'Tek ürün için beş yüzey parite kontrolü',
+      intro:
+        'Aşağıdaki örnekte yüksek alan doluluğu, ticari parite bozulduğu için yayın kapısını geçmiyor.',
+      rows: [
+        { label: 'Kalıcı kimlik', value: 'AYK-001 / 42 / siyah', note: 'Sayfa-feed-checkout aynı' },
+        { label: 'Başlık ve görsel', value: '%100', note: 'Görünür içerikle eşleşiyor' },
+        { label: 'Fiyat ve para birimi', value: 'Feed ≠ checkout', note: 'Kritik hata' },
+        { label: 'Stok güncelliği', value: '26 saat', note: 'SLA: 2 saat' },
+        { label: 'Varyant ilişkisi', value: 'Kopuk', note: 'Beden seçimi güvenilmez' },
+      ],
+      result:
+        'İçerik tamam olsa da fiyat, stok ve varyant kapıları geçilmeden reklam veya AI ticaret yüzeyi açılmamalı; önce kaynak sistem ve güncelleme hattı düzeltilmelidir.',
+    },
+    decisions: [
+      {
+        signal: 'Alan doluluğu yüksek, parite düşük',
+        meaning: 'Katalog dolu görünür ama yüzeyler farklı ticari gerçeklik taşır.',
+        action: 'Önce fiyat, stok, varyant ve checkout eşleşmesini kritik yayın kapısı yapın.',
+      },
+      {
+        signal: 'Aynı SKU birden fazla kimlikle akıyor',
+        meaning: 'Atıf, stok ve iade analizi ürünler arasında bölünür.',
+        action: 'Kalıcı item_id belirleyip kanal kimliklerini eşleme tablosunda tutun.',
+      },
+      {
+        signal: 'Feed güncellemesi başarısız ama alarm yok',
+        meaning: 'Eski fiyat/stok bilgisi sessizce yayınlanmaya devam eder.',
+        action: 'Son başarılı güncelleme yaşı, hata oranı ve sahip SLA’sı için alarm kurun.',
+      },
+      {
+        signal: 'İçerik ekipleri ve veri ekibi farklı tanım kullanıyor',
+        meaning: '“Stokta”, “teslimat süresi” veya “varyant” gibi alanlar raporda tutarsızlaşır.',
+        action: 'Alan sözlüğünü örnek değer, sahip ve kabul kriteriyle yayınlayın.',
+      },
+    ],
+    mistakes: [
+      'Kanal bazında yeni SKU üretip kalıcı ürün kimliğini kaybetmek.',
+      'Zorunlu alanları yalnız dolu/boş kontrolüyle ölçmek; anlam, format ve güncelliği test etmemek.',
+      'Fiyat ve stok paritesini günlük ortalamayla gizleyip kritik anlık hataları izlememek.',
+      'Varyant ebeveynini yalnız görsel bir grup sanıp sipariş ve iade kimliğiyle bağlamamak.',
+      'Ürün sayfasını güncelleyip structured data, feed ve reklam kataloğunu geride bırakmak.',
+      'Hata kuyruğunda sahip ve son tarih bulunmadan tüm sorunları “teknik” etiketiyle bekletmek.',
+    ],
+    checklist: [
+      'Her ürün ve varyant için kalıcı SKU/item_id ve ebeveyn ilişkisi tanımlı.',
+      'Alan sözlüğünde tanım, örnek değer, sahip, kaynak sistem ve güncelleme SLA’sı var.',
+      'Sayfa, structured data, feed, reklam kataloğu ve checkout paritesi ölçülüyor.',
+      'Fiyat, stok, para birimi ve teslimat için kritik yayın kapıları tanımlı.',
+      'Son başarılı güncelleme yaşı ve hata oranı için alarm/eskalasyon akışı çalışıyor.',
+      'Ülke ve kanal farkları ana kimliği bozmadan eşleme tablosunda tutuluyor.',
+      'İade, sipariş ve reklam sonuçları aynı ürün/ülke/kampanya kimliğiyle geri besleniyor.',
+    ],
+    tool: {
+      title: 'AI Merchant Feed Alan Sözlüğü',
+      description:
+        'Google ve OpenAI ürün alanlarını, kaynak sistem ve sahiplik bilgisiyle tek sözleşmede eşleyin.',
+      href: '/sablonlar/ai-merchant-feed-alan-sozlugu',
+      cta: 'Alan sözlüğünü aç',
+    },
+    relatedGuides: [
+      'ai-alisveris-ajanlarina-hazirlik',
+      'e-ticaret-dashboard-metrikleri',
+      'pazaryeri-dijital-raf-performansi',
+    ],
+    faqs: [
+      {
+        question: 'Ürün veri sözleşmesi sadece teknik ekip işi mi?',
+        answer:
+          'Hayır. Ürün, operasyon, pazarlama, müşteri hizmetleri ve finans ekipleri alanların anlamını ve karar etkisini birlikte belirlemelidir; teknik ekip hattı uygular.',
+      },
+      {
+        question: 'Parite oranı kaç olursa yeterlidir?',
+        answer:
+          'Evrensel eşik yoktur. Kritik fiyat/stok alanlarında hedef, ortalamadan önce sıfıra yakın kritik hata ve tanımlı güncelleme SLA’sıdır. Kategori ve kanal bazında kendi toleransınızı yazılı hale getirin.',
+      },
+      {
+        question: 'Merchant feed ile ürün sayfası aynı veri kaynağından mı gelmeli?',
+        answer:
+          'Tek fiziksel sistem zorunlu değildir; fakat sahiplik, kimlik ve güncelleme kuralları ortak olmalı, iki yüzey arasındaki farklar otomatik doğrulanmalıdır.',
+      },
+      {
+        question: 'Bu sözleşme AI görünürlüğünü garanti eder mi?',
+        answer:
+          'Hayır. Veri paritesi yalnızca sağlam bir ön koşuldur. İndeksleme, platform uygunluğu, ülke/merchant kapsamı ve gerçek sipariş deneyimi ayrıca doğrulanmalıdır.',
+      },
+    ],
+    sources: [
+      googleMerchantProductData,
+      googleMerchantListing,
+      openAiProductFeed,
+      googleAiFeatures,
+    ],
+    disclaimer:
+      'Bu rehber veri ve operasyon standardı için karar desteğidir; platform kabulü, sıralama veya ticari sonuç garantisi değildir. Güncel alan ve ülke gereksinimlerini ilgili resmî dokümantasyondan doğrulayın.',
   },
 ]

@@ -1,7 +1,7 @@
 ---
 title: 'Küresel İçerik Fırsatları — Araştırma Defteri ve Editoryal Yol Haritası'
 owner: 'Veri Mimarı'
-research_date: '2026-08-01'
+research_date: '2026-08-02'
 status: 'active-roadmap'
 audience: 'Kurucu ve içerik/ürün ekibi'
 review_due_at: '2026-09-15'
@@ -22,7 +22,7 @@ Veri Mimarı'nın Türkiye'de en güçlü konumu, genel e-ticaret haberi veya ge
 3. Pazaryerlerinde dijital raf performansı
 4. Teslimat ve iade ekonomisinin dönüşümle birlikte yönetilmesi
 
-Bu dört konu ilk yayın paketi olarak siteye eklendi. İkinci zenginleştirme turunda kampanya kâr savaş odası rehberi ile tarayıcıda çalışan Ürün Feed Sağlık Kontrolü yayınlandı. Üçüncü turda artımsallık ölçümü, yeni müşteri CAC + 90 günlük katkı LTV rehberi ve çalışan kohort ekonomisi hesaplayıcısı eklendi. Dördüncü turda retail media kârlılık rehberi ile atfedilen satışı artımlı katkıya çeviren pazaryeri reklam aracı eklendi. Sonraki 90 günün odağı, aynı konu kümelerini vaka, şablon ve ölçüm içeriğiyle derinleştirmektir.
+Bu dört konu ilk yayın paketi olarak siteye eklendi. İkinci zenginleştirme turunda kampanya kâr savaş odası rehberi ile tarayıcıda çalışan Ürün Feed Sağlık Kontrolü yayınlandı. Üçüncü turda artımsallık ölçümü, yeni müşteri CAC + 90 günlük katkı LTV rehberi ve çalışan kohort ekonomisi hesaplayıcısı eklendi. Dördüncü turda retail media kârlılık rehberi ile atfedilen satışı artımlı katkıya çeviren pazaryeri reklam aracı eklendi. Beşinci turda Google’ın AI özellikleri, Merchant Listing ve OpenAI ürün feed gereksinimleri tek hazırlık modelinde birleştirildi; AI Alışveriş Görünürlük Denetimi eklendi. Altıncı turda denetim çıktısını uygulamaya bağlayan AI Merchant Feed Alan Sözlüğü şablonu eklendi. Yedinci turda ürün sayfası, iade nedeni ve reklam sonrası katkıyı aynı simülasyonda gösteren mini vaka eklendi. Sekizinci turda e-ihracat ülke teklifini, teslimat güvenini, gümrük/iade sorumluluğunu ve ülke başı katkıyı bir araya getiren rehber yayınlandı. Sonraki 90 günün odağı, aynı konu kümelerini vaka, şablon ve ölçüm içeriğiyle derinleştirmektir.
 
 ## Neden şimdi?
 
@@ -58,9 +58,11 @@ Toplam puan bir arama hacmi veya gelir tahmini değildir. Veri Mimarı için edi
 |    7 | Artımsallık ve kâr odaklı reklam ölçümü    |         85 | Yayınlandı          | CAC + katkı LTV aracı        |
 |    8 | Retail media kârlılığı                     |         82 | Rehber + araç canlı | Pazaryeri reklam aracı       |
 |    9 | Yeni müşteri CAC + 90 günlük katkı LTV     |         81 | Rehber + araç canlı | Kohort hesaplayıcı           |
-|   10 | AI ile yorum sınıflandırma ve iade nedeni  |         77 | 90 gün              | Labs demosu                  |
-|   11 | E-ihracat yerelleştirme ve teslimat güveni |         74 | Araştırma kuyruğu   | Kontrol listesi              |
-|   12 | Döngüsel/C2C ticaret ekonomisi             |         67 | İzleme              | Yeni kategori açma yok       |
+|   10 | AI alışveriş görünürlük hazırlığı          |         80 | Araç canlı          | Görünürlük denetimi          |
+|   11 | AI ile yorum sınıflandırma ve iade nedeni  |         77 | Araç canlı          | İade sinyali analiz aracı    |
+|   12 | E-ihracat yerelleştirme ve teslimat güveni |         74 | Rehber canlı        | Ülke güven kontrolü          |
+|   13 | Ürün veri sözleşmesi ve katalog paritesi   |         86 | Rehber canlı        | Alan sözlüğü şablonu         |
+|   14 | Döngüsel/C2C ticaret ekonomisi             |         67 | İzleme              | Yeni kategori açma yok       |
 
 ## Rekabet boşluğu
 
@@ -81,19 +83,25 @@ Veri Mimarı'nın ayrışma sistemi:
 
 ## Yayına eklenen ilk paket
 
-| Rota                                                     | Tek ana vaat                                                      | Birincil aksiyon               |
-| -------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------ |
-| `/rehberler/e-ticaret-karlilik-isletim-sistemi`          | ROAS'ı katkı payı zincirine dönüştürmek                           | Başabaş ROAS hesapla           |
-| `/rehberler/ai-alisveris-ajanlarina-hazirlik`            | Kataloğu AI keşfine hazır veri ürününe çevirmek                   | Veri hattı kapsamını paylaş    |
-| `/rehberler/pazaryeri-dijital-raf-performansi`           | Satışın ön koşullarını 100 puanlık skorla yönetmek                | Kesinti sonrası kârı hesapla   |
-| `/rehberler/teslimat-iade-donusum-kontrol-listesi`       | Teslimat teklifini dönüşüm ve maliyetle birlikte ölçmek           | Teklif kârlılığını test et     |
-| `/rehberler/kampanya-kar-savas-odasi`                    | Kampanyayı bazdan arındırılmış artımlı katkıyla yönetmek          | Kampanya eşiğini hesapla       |
-| `/araclar/urun-feed-saglik-kontrolu`                     | CSV ürün verisindeki kritik kalite sorunlarını sıralamak          | Feed'i tarayıcıda analiz et    |
-| `/rehberler/artimsallik-ve-kar-odakli-reklam-olcumu`     | Atfedilen satışla gerçek ek katkıyı ayırmak                       | Müşteri ekonomisini hesapla    |
-| `/rehberler/yeni-musteri-cac-katki-ltv-nasil-hesaplanir` | CAC'i 90 günlük katkı kohortuna bağlamak                          | Kohort ekonomisini hesapla     |
-| `/araclar/yeni-musteri-cac-katki-ltv-hesaplayici`        | Yeni müşteri ediniminin 90 günde değer üretip üretmediğini görmek | CAC + katkı LTV hesapla        |
-| `/rehberler/retail-media-karliligi-nasil-olculur`        | Sponsorlu satış atfını net artımlı katkıya dönüştürmek            | Retail media katkısını hesapla |
-| `/araclar/pazaryeri-reklam-karlilik-hesaplayici`         | Panel ROAS’ının gerçek ek ekonomik değerini görmek                | Artımlı katkıyı hesapla        |
+| Rota                                                     | Tek ana vaat                                                       | Birincil aksiyon               |
+| -------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------ |
+| `/rehberler/e-ticaret-karlilik-isletim-sistemi`          | ROAS'ı katkı payı zincirine dönüştürmek                            | Başabaş ROAS hesapla           |
+| `/rehberler/ai-alisveris-ajanlarina-hazirlik`            | Kataloğu AI keşfine hazır veri ürününe çevirmek                    | Veri hattı kapsamını paylaş    |
+| `/rehberler/pazaryeri-dijital-raf-performansi`           | Satışın ön koşullarını 100 puanlık skorla yönetmek                 | Kesinti sonrası kârı hesapla   |
+| `/rehberler/teslimat-iade-donusum-kontrol-listesi`       | Teslimat teklifini dönüşüm ve maliyetle birlikte ölçmek            | Teklif kârlılığını test et     |
+| `/rehberler/kampanya-kar-savas-odasi`                    | Kampanyayı bazdan arındırılmış artımlı katkıyla yönetmek           | Kampanya eşiğini hesapla       |
+| `/araclar/urun-feed-saglik-kontrolu`                     | CSV ürün verisindeki kritik kalite sorunlarını sıralamak           | Feed'i tarayıcıda analiz et    |
+| `/rehberler/artimsallik-ve-kar-odakli-reklam-olcumu`     | Atfedilen satışla gerçek ek katkıyı ayırmak                        | Müşteri ekonomisini hesapla    |
+| `/rehberler/yeni-musteri-cac-katki-ltv-nasil-hesaplanir` | CAC'i 90 günlük katkı kohortuna bağlamak                           | Kohort ekonomisini hesapla     |
+| `/araclar/yeni-musteri-cac-katki-ltv-hesaplayici`        | Yeni müşteri ediniminin 90 günde değer üretip üretmediğini görmek  | CAC + katkı LTV hesapla        |
+| `/rehberler/retail-media-karliligi-nasil-olculur`        | Sponsorlu satış atfını net artımlı katkıya dönüştürmek             | Retail media katkısını hesapla |
+| `/araclar/pazaryeri-reklam-karlilik-hesaplayici`         | Panel ROAS’ının gerçek ek ekonomik değerini görmek                 | Artımlı katkıyı hesapla        |
+| `/araclar/ai-alisveris-gorunurluk-denetimi`              | AI keşfi için teknik, ürün, ticaret ve ölçüm hazırlığını puanlamak | Görünürlüğü denetle            |
+| `/sablonlar/ai-merchant-feed-alan-sozlugu`               | Google ve OpenAI alanlarını tek ürün kimliğiyle eşlemek            | Alan sözlüğünü indir           |
+| `/vaka-analizleri/urun-sayfasi-iade-katkisi-demo-vaka`   | Ürün içeriği, iade rezervi ve katkı zincirini görünür kılmak       | Hesap zincirini incele         |
+| `/rehberler/e-ihracat-yerellestirme-teslimat-guveni`     | Ülkeye trafik değil, doğrulanmış teklif ve teslimat güveni taşımak | Ülke teklifini kontrol et      |
+| `/rehberler/urun-veri-sozlesmesi-katalog-yonetimi`       | Katalog kimliği ve ticari pariteyi tek veri sözleşmesinde toplamak | Alan sözlüğünü aç              |
+| `/araclar/iade-nedeni-yorum-sinyali`                     | Yorum ve iade sinyalini sahipli aksiyon kuyruğuna çevirmek         | Sinyalleri analiz et           |
 
 Her rehberde şunlar zorunlu hale getirildi:
 
@@ -116,9 +124,9 @@ Her rehberde şunlar zorunlu hale getirildi:
 |     6 | Yeni müşteri CAC rehberi          | 90 günlük katkı LTV örneği               | Canlı kohort aracı    | Yayınlandı                 |
 |     7 | Pazaryeri komisyon doğrulaması    | Kaynak ve geçerlilik tarihi standardı    | Komisyon hesaplayıcı  | Güncel oran bildirimi      |
 |     8 | Retail media kârlılık rehberi     | Sponsorlu/organik raf ayrımı             | Canlı kârlılık aracı  | Yayınlandı                 |
-|     9 | AI yorum sınıflandırma demosu     | İade nedeni sözlüğü                      | Labs                  | Demo tamamlanması          |
-|    10 | E-ihracat yerelleştirme rehberi   | Ödeme/teslimat güven kontrolü            | İş birliği            | Nitelikli talep            |
-|    11 | Mini vaka: ürün sayfası → iade    | Demo veri etiketiyle                     | Dijital raf + marj    | Vaka → araç geçişi         |
+|     9 | AI alışveriş görünürlük denetimi  | Google AI + Merchant + OpenAI kontrolü   | Canlı denetim aracı   | Yayınlandı                 |
+|    10 | E-ihracat yerelleştirme rehberi   | Ödeme/teslimat güven kontrolü            | Yayındaki rehber      | Yayınlandı                 |
+|    11 | Mini vaka: ürün sayfası → iade    | Demo veri etiketiyle                     | Dijital raf + marj    | Yayınlandı                 |
 |    12 | İçerik performans değerlendirmesi | Kazanan rehber güncellemesi              | Bülten                | Nitelikli araç kullanıcısı |
 
 ## Yeni araç adayları
@@ -165,6 +173,52 @@ Girdi: Atfedilen brüt satış ve sipariş, reklam harcaması, iade kaybı, ür�
 
 Artımlı pay deney veya güvenilir karşı-olgu modelinden gelmiyorsa sonuç açıkça senaryo olarak etiketlenir. Araç platform kabulü veya nedensel ölçüm iddiası taşımaz.
 
+### 5. AI Alışveriş Görünürlük Denetimi
+
+**Durum: 2 Ağustos 2026'da yayın paketine eklendi.**
+
+Girdi: İndekslenebilirlik, Product/Offer, kalıcı ürün kimliği, varyant, merchant feed, fiyat-stok-checkout eşleşmesi, politika ve ölçüm kontrolleri.
+
+Çıktı: 100 puanlık hazırlık skoru, dört kategori skoru, kritik yayın kapıları ve ağırlığa göre sıralanmış ilk altı düzeltme.
+
+Google'ın resmî AI özellikleri rehberi özel AI schema veya makine dosyası gerektirmediğini açıkça belirttiği için araç llms.txt gibi tartışmalı sinyalleri puanlamaz. OpenAI ürün feed gereksinimleri ayrı bir ticari veri hattı olarak değerlendirilir. Sonuç platform uygunluğu, indeksleme veya sıralama garantisi değildir.
+
+### 6. AI Merchant Feed Alan Sözlüğü
+
+**Durum: 2 Ağustos 2026'da şablon kütüphanesine eklendi.**
+
+Girdi: Kaynak sistem alanı, Google Product/Offer karşılığı, OpenAI ürün feed alanı, örnek değer, sahip ve son doğrulama tarihi.
+
+Çıktı: Kalıcı SKU/item_id eşlemesi, zorunlu alan kapsamı, sayfa/structured data/feed/checkout parite kuyruğu ve yayın öncesi sahipli düzeltme listesi.
+
+Google Merchant Listing gereksinimleri Product/Offer, fiyat, stok, kargo ve iade bilgisinin doğrulanmasını; OpenAI ürün feed şeması ise item_id, title, description, url, brand, fiyat, availability ve satıcı/politika alanlarını ister. Şablon bu alanları tek bir platform uygunluk iddiası olarak değil, veri sözleşmesi ve operasyonel kontrol yüzeyi olarak eşler. Ülke, vergi, teslimat ve checkout kapsamı mağazanın kendi doğrulama sorumluluğundadır.
+
+### 7. Ürün Sayfası → İade → Katkı Mini Vaka
+
+**Durum: 2 Ağustos 2026'da yayınlandı.**
+
+Vaka, reklam harcaması ve 4,2 ROAS sabitken ürün sayfasında ölçü, malzeme, kullanım ve teslimat bilgisinin görünür olmasının simüle edilmiş iade rezervini nasıl değiştireceğini gösterir. Sonuç gerçek müşteri başarısı veya nedensel etki iddiası değildir; iade nedeni kodları, kapanmış iade penceresi ve uygun kontrol/deney tasarımı olmadan kesinleştirilmemelidir.
+
+### 8. İade Nedeni ve Yorum Sinyali Analizi
+
+**Durum: 2 Ağustos 2026'da araç olarak yayınlandı.**
+
+Girdi: CSV yorum/iade metni, SKU, açık neden, puan ve ülke alanları.
+
+Çıktı: Ürün uyumu, kalite, teslimat, destek ve beklenti sınıfları; tekrar sıklığına göre öncelik; örnek kanıt; indirilebilir sınıflandırma raporu.
+
+Araç metni sunucuya göndermeden anahtar kelime ve açık neden alanıyla ön sınıflandırır. Bu bir duygu modeli veya nedensel iade tahmini değildir. Operasyon, müşteri hizmetleri ve içerik ekipleri örnekleri doğrulayarak kendi neden sözlüğünü ve SKU/ülke aksiyonlarını oluşturmalıdır.
+
+### 9. Ürün Veri Sözleşmesi ve Katalog Paritesi
+
+**Durum: 2 Ağustos 2026'da rehber olarak yayınlandı.**
+
+Girdi: Kalıcı SKU/item_id, ebeveyn-varyant ilişkisi, içerik alanları, fiyat, stok, teslimat, iade, sahiplik ve güncelleme SLA’sı.
+
+Çıktı: Sayfa, Product/Offer structured data, merchant feed, reklam kataloğu ve checkout arasında parite kontrolü; kritik yayın kapıları; alan sahibi ve hata eskalasyonu.
+
+Rehber, AI ticaret yüzeyleri için yeni bir “özel AI SEO” iddiası kurmak yerine kalıcı ürün kimliği ve ticari veri sözleşmesini merkeze alır. Parite oranı bir platform kabul veya sıralama garantisi değildir; fiyat/stok kritik hata oranı ve son başarılı güncelleme yaşı ayrıca izlenmelidir. Uygulama şablonu olarak AI Merchant Feed Alan Sözlüğü’ne bağlanır.
+
 ## Ölçüm planı
 
 İçeriğin başarısı sayfa görüntülemesiyle değil, karar ve araç davranışıyla ölçülmelidir.
@@ -173,6 +227,7 @@ Birincil sinyaller:
 
 - `guide_tool_cta_click`
 - Rehberden araca geçen kullanıcının `tool_complete` oranı
+- Şablon indirme ve şablon sayfasından ilişkili araca geçiş oranı
 - Kaynak bağlantısı ve içindekiler kullanımı
 - Aynı kullanıcının 30 gün içinde ikinci rehber veya araca dönüşü
 - Güncelleme sonrası organik sorgu kapsamı ve nitelikli tıklama
@@ -184,6 +239,7 @@ Koruma sinyalleri:
 - Kaynaksız sayısal iddia
 - Mobil yatay taşma ve tablo erişilebilirliği
 - Rehber başına tek ana CTA standardı
+- Şablon CSV alanı ile resmi platform dokümantasyonu arasındaki sürüm farkı
 
 ## Bilinçli olarak yapılmayacaklar
 
@@ -226,3 +282,5 @@ Koruma sinyalleri:
 21. [IAB & IAB Europe — Guidelines for Incremental Measurement in Commerce Media](https://www.iab.com/guidelines/guidelines-for-incremental-measurement-in-commerce-media/)
 22. [IAB/MRC — Retail Media Measurement Guidelines](https://www.iab.com/wp-content/uploads/2024/01/IAB_Retail_Media_Measurement_Guidelines_January2024.pdf)
 23. [Amazon Ads — Campaign reporting and measurement](https://advertising.amazon.com/en-ca/measurement-analytics/campaign-reporting)
+24. [Google Search Central — AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+25. [Google Search Central — Merchant listing structured data](https://developers.google.com/search/docs/appearance/structured-data/merchant-listing)

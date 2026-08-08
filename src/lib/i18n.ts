@@ -10,7 +10,7 @@ export const dictionaries = {
         { href: '/araclar', label: 'Araçlar' },
         { href: '/rehberler', label: 'Rehberler' },
         { href: '/sozluk', label: 'Sözlük' },
-        { href: '/vaka-analizleri', label: 'Vaka Analizleri' },
+        { href: '/analizler', label: 'Analizler' },
         { href: '/projeler', label: 'Projeler' },
         { href: '/hakkinda', label: 'Hakkında' },
       ],
@@ -28,7 +28,7 @@ export const dictionaries = {
       description:
         'Caner Ünal; veri bilimi, yapay zeka ve web mühendisliğini birleştirerek case study odaklı, iş etkisi üreten platformlar tasarlar.',
       ctaAriaLabel: 'Öne çıkan aksiyonlar',
-      featuredCases: 'Öne Çıkan Vaka Analizleri',
+      featuredCases: 'Öne Çıkan Analizler',
       featuredCasesHref: '#projeler',
       premiumAccess: 'Premium İçeriklere Eriş',
       premiumAccessHref: '/uyelik',
@@ -42,7 +42,7 @@ export const dictionaries = {
           eyebrow: 'Recruiter Path',
           title: 'Teknik Profili 60 Saniyede Değerlendir',
           description:
-            'Yetkinlik özetleri, vaka analizi derinliği ve çalışma yaklaşımını hızlıca inceleyin.',
+            'Yetkinlik özetleri, analiz derinliği ve çalışma yaklaşımını hızlıca inceleyin.',
           href: '#yetkinlik',
           cta: 'Teknik Özeti Gör',
           eventName: 'persona_recruiter_path_click',
@@ -51,9 +51,9 @@ export const dictionaries = {
           eyebrow: 'Business Path',
           title: 'İş Etkisi Üreten Çözümleri İncele',
           description:
-            'Dönüşüm odaklı vaka analizleri, metrik etkileri ve premium içerik akışına erişin.',
+            'Dönüşüm odaklı analizlere, metrik etkilerine ve premium içerik akışına erişin.',
           href: '#projeler',
-          cta: 'Vaka Etkilerini Gör',
+          cta: 'Analiz Sonuçlarını Gör',
           eventName: 'persona_business_path_click',
         },
         {
@@ -70,9 +70,9 @@ export const dictionaries = {
     bento: {
       ariaLabel: 'Bento modüler ana panel',
       projects: {
-        title: 'Öne Çıkan Dönüşüm Vaka Analizleri',
+        title: 'Öne Çıkan Dönüşüm Analizleri',
         description: 'Gerçek problem, uygulanan çözüm ve ölçülebilir etki sonuçlarını inceleyin.',
-        allCasesCta: 'Tüm Vaka Analizlerini Gör',
+        allCasesCta: 'Tüm Analizleri Gör',
       },
       blog: {
         title: 'Digital Garden Yazıları',
@@ -163,7 +163,7 @@ export const dictionaries = {
         { href: '/rehberler', label: 'Guides' },
         { href: '/sozluk', label: 'Glossary' },
         { href: '/projeler', label: 'Projects' },
-        { href: '/vaka-analizleri', label: 'Case Studies' },
+        { href: '/analizler', label: 'Case Studies' },
         { href: '/hakkinda', label: 'About' },
       ],
       commandCenterLabel: 'Command Center',

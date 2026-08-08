@@ -287,7 +287,7 @@ export default function ReturnSignalAnalyzer() {
           <div>
             <a
               className="btn hero-primary"
-              href="/vaka-analizleri/urun-sayfasi-iade-katkisi-demo-vaka"
+              href="/analizler/urun-sayfasi-iade-katkisi"
             >
               İade katkısı vakasını aç →
             </a>

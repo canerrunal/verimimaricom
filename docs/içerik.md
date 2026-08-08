@@ -62,7 +62,7 @@ Platformun ana çıktıları:
 - Uygulanabilir rehberler
 - Yapay zekâ ve otomasyon iş akışları
 - SaaS ve teknoloji değerlendirmeleri
-- Gerçek veya açıkça etiketlenmiş demo vaka analizleri
+- Kaynağı açıklanan gerçek proje analizleri
 - Caner Ünal tarafından geliştirilen ürünler
 - Zolm ve gelecekteki diğer projelere nitelikli trafik
 
@@ -718,7 +718,7 @@ Bültenin vaadi:
 
 - **Araçlar**
 - **Rehberler**
-- **Vaka Analizleri**
+- **Analizler**
 - **Projeler**
 - **Hakkında**
 
@@ -748,7 +748,7 @@ Sağ taraftaki ana CTA:
 │   ├── pazaryerleri/
 │   ├── yapay-zeka-otomasyon/
 │   └── saas-araclari/
-├── vaka-analizleri/
+├── analizler/
 │   └── [slug]/
 ├── projeler/
 │   ├── zolm/
@@ -774,7 +774,7 @@ Sağ taraftaki ana CTA:
 | Knowledge Graph  | İkincil keşif özelliği; ana sayfada öncelikli değil         |
 | Teknoloji Yığını | Hakkında veya proje detay sayfaları                         |
 | Premium          | Trafik ve ücretsiz değer oluşana kadar navigasyondan kaldır |
-| Vaka Analizleri  | Gerçek/demonstrasyon etiketiyle yeniden yapılandır          |
+| Analizler        | Veri kaynağı ve anonimleştirme notuyla yeniden yapılandır    |
 | VeriBot          | Belirli görevleri çözen araç biçiminde yeniden tanımla      |
 
 ---
@@ -951,7 +951,7 @@ Alt metin:
 
 ---
 
-## 10.8 Vaka analizi bölümü
+## 10.8 Analizler bölümü
 
 **Başlık:**
 
@@ -959,11 +959,11 @@ Alt metin:
 
 **Metin:**
 
-> Problemi, kullanılan yöntemi, varsayımları ve sonucu adım adım açıklayan vaka analizleri.
+> Problemi, kullanılan yöntemi, varsayımları ve sonucu adım adım açıklayan analizler.
 
-Gerçek vaka etiketi:
+Gerçek proje etiketi:
 
-> Doğrulanmış müşteri vakası
+> Gerçek proje · Anonimleştirilmiş veri
 
 Demo vaka etiketi:
 
@@ -971,7 +971,7 @@ Demo vaka etiketi:
 
 CTA:
 
-> Vaka Analizlerini İncele
+> Analizleri İncele
 
 ---
 
@@ -1320,9 +1320,9 @@ Sponsorlu veya affiliate bağlantı varsa açıkça belirtilmelidir.
 
 ---
 
-# 16. Vaka analizi standardı
+# 16. Analiz standardı
 
-## 16.1 Gerçek müşteri vakası
+## 16.1 Gerçek müşteri analizi
 
 Zorunlu bölümler:
 
@@ -1352,7 +1352,7 @@ Demo metrikleri:
 - Varsayım ve formüller açık olmalı.
 - “Örnek sonuç” veya “simülasyon sonucu” etiketi taşımalıdır.
 
-## 16.3 Vaka sonucu anlatımı
+## 16.3 Analiz sonucu anlatımı
 
 **Zayıf:**
 
@@ -1976,13 +1976,13 @@ Her rehberde:
 
 - En az bir ilgili araç
 - En az iki destekleyici rehber
-- Uygunsa bir vaka analizi
+- Uygunsa bir analiz
 - Uygunsa bir proje bağlantısı
 
 Her araç sayfasında:
 
 - Yöntem rehberi
-- Bir örnek vaka
+- Bir örnek analiz
 - İlgili ikinci araç
 - Veri ve gizlilik açıklaması
 
@@ -2286,7 +2286,7 @@ Aşağıdaki içerikler Veri Mimarı'nın ana stratejisine hizmet etmez:
 
 ## Öncelik 2 — Navigasyon
 
-- Vaka Analizleri
+- Analizler
 - Yazılar
 - Labs
 - Teknoloji Yığını
@@ -2296,7 +2296,7 @@ yerine:
 
 - Araçlar
 - Rehberler
-- Vaka Analizleri
+- Analizler
 - Projeler
 - Hakkında
 
@@ -2311,7 +2311,7 @@ Ana sayfada öncelik sırası:
 3. Kullanıcının problemi
 4. Rehberler
 5. Projeler
-6. Vaka analizleri
+6. Analizler
 7. Caner Ünal
 8. Bülten
 
@@ -2326,11 +2326,11 @@ Premium alan:
 - Demo teknik açıklamaları son kullanıcıya gösterilmemeli.
 - Gerekirse `noindex` kullanılmalı.
 
-## Öncelik 5 — Vaka analizi
+## Öncelik 5 — Analizler
 
 - Demo vaka açıkça etiketlenmeli.
 - Metriklerin kaynağı ve varsayımlar eklenmeli.
-- Gerçek müşteri vakasıyla karışması önlenmeli.
+- Gerçek müşteri analizinden açıkça ayrılmalı.
 
 ---
 
@@ -2345,7 +2345,7 @@ Veri Mimarı'nın yeniden yayına alınması için gereken minimum içerik:
 5. Kâr marjı rehberi
 6. Zolm proje sayfası
 7. Caner Ünal hakkında sayfası
-8. Bir demo vaka, doğru etiketle
+8. Bir gerçek proje analizi, anonimleştirme notuyla
 9. Bülten kayıt sayfası
 10. Gizlilik ve araç veri politikası
 

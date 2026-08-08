@@ -87,6 +87,16 @@ const allTools = [
     cta: 'Feed’i Analiz Et →',
   },
   {
+    title: 'AI Alışveriş Görünürlük Denetimi',
+    description:
+      'Ürün sayfası, yapılandırılmış veri, merchant feed, fiyat-stok senkronizasyonu ve ölçüm hazırlığınızı 100 puanla denetleyin.',
+    status: 'CANLI',
+    category: 'Yapay zekâ',
+    badge: 'CANLI · 4–6 DK · ÜCRETSİZ',
+    href: '/araclar/ai-alisveris-gorunurluk-denetimi',
+    cta: 'Görünürlüğü Denetle →',
+  },
+  {
     title: 'AI Görünürlük ve Teknik Hazırlık Ön Analizi',
     description:
       'Ana sayfa teknik sinyalini kontrol edin; ücretsiz AI web yanıtlarını manuel kanıtla ve API maliyeti olmadan örnekleyin.',
@@ -95,6 +105,16 @@ const allTools = [
     badge: 'BETA · 0 TL · API YOK',
     href: '/araclar/yapay-zeka-gorunurluk-analizi',
     cta: 'Görünürlüğü Analiz Et →',
+  },
+  {
+    title: 'İade Nedeni ve Yorum Sinyali Analizi',
+    description:
+      'CSV yorum ve iade kayıtlarını ürün uyumu, kalite, teslimat, destek ve beklenti sınıflarına ayırıp aksiyon sırasına koyun.',
+    status: 'CANLI',
+    category: 'Yapay zekâ',
+    badge: 'CANLI · TARAYICIDA · ÜCRETSİZ',
+    href: '/araclar/iade-nedeni-yorum-sinyali',
+    cta: 'Sinyalleri Analiz Et →',
   },
 ]
 

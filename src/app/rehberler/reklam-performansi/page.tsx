@@ -200,7 +200,7 @@ export default function AdvertisingPerformancePillarPage() {
               <p>Kampanya verimliliği ile toplam pazarlama verimliliğini ayırın.</p>
               <i>Karar tablosunu aç →</i>
             </a>
-            <a href="/vaka-analizleri/roas-yuksek-kar-dusuk-demo-vaka">
+            <a href="/analizler/roas-yuksek-kar-dusuk">
               <span>02 / DEMO VAKA</span>
               <h3>Aynı ROAS, farklı katkı</h3>
               <p>Ürün karması değiştiğinde 4,2 ROAS’ın neden farklı sonuç ürettiğini görün.</p>
@@ -211,6 +211,12 @@ export default function AdvertisingPerformancePillarPage() {
               <h3>E-Ticaret Kârlılığı</h3>
               <p>Reklam metriklerini ürün, sipariş ve şirket ekonomisine bağlayın.</p>
               <i>Kârlılık yoluna geç →</i>
+            </a>
+            <a href="/sablonlar/haftalik-reklam-performans-raporu">
+              <span>04 / ÜCRETSİZ ŞABLON</span>
+              <h3>Haftalık Reklam Raporu</h3>
+              <p>Metrikleri hedef, teşhis, sorumlu ve termin içeren karar tablosuna taşıyın.</p>
+              <i>Şablonu ücretsiz indir →</i>
             </a>
           </div>
         </div>

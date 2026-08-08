@@ -1,0 +1,13 @@
+SKU/item_id;Ürün grup ID;Kaynak alanı;Google alanı;OpenAI alanı;Örnek değer;Zorunluluk;Sahip;Son doğrulama;Durum;Not
+SKU-TR-001;GROUP-TR-001;product.sku;id;item_id;SKU-TR-001;Kritik;PIM Ekibi;2026-08-02;Kontrol edildi;Varyant başına kalıcı kimlik
+SKU-TR-001;GROUP-TR-001;product.name;title;title;Trail Koşu Ayakkabısı Siyah;Kritik;İçerik Ekibi;2026-08-02;Kontrol edildi;Görünen ürün başlığıyla eşleşmeli
+SKU-TR-001;GROUP-TR-001;product.description;description;description;Su geçirmez taban ve destekli tabanlık;Kritik;İçerik Ekibi;2026-08-02;Kontrol edildi;Düz metin ve karar verdiren özellikler
+SKU-TR-001;GROUP-TR-001;product.url;url;url;https://example.com/urun/SKU-TR-001;Kritik;Web Ekibi;2026-08-02;Kontrol edildi;HTTP 200 ve girişsiz erişim
+SKU-TR-001;GROUP-TR-001;product.brand;brand;brand;Örnek Marka;Zorunlu;PIM Ekibi;2026-08-02;Kontrol edildi;Marka kimliği sabit olmalı
+SKU-TR-001;GROUP-TR-001;offer.price;offers.price;price;2499.90 TRY;Kritik;Ticaret Operasyon;2026-08-02;Kontrol edildi;Sayfa, JSON-LD, feed ve checkout eşleşmesi
+SKU-TR-001;GROUP-TR-001;offer.stock;offers.availability;availability;in_stock;Kritik;Stok Operasyon;2026-08-02;Kontrol edildi;Satılabilirlik anlık veya SLA ile güncel
+SKU-TR-001;GROUP-TR-001;offer.currency;offers.priceCurrency;price;TRY;Kritik;Ticaret Operasyon;2026-08-02;Kontrol edildi;ISO 4217 ve hedef pazarla uyumlu
+SKU-TR-001;GROUP-TR-001;product.image;image;image_url;https://example.com/img/SKU-TR-001.jpg;Zorunlu;İçerik Ekibi;2026-08-02;Kontrol edildi;HTTPS ve ürünle ilişkili görsel
+SKU-TR-001;GROUP-TR-001;commerce.search_eligible;;is_eligible_search;true;Zorunlu;Commerce Platform;2026-08-02;Kontrol edildi;OpenAI feed alanı; özel Google AI dosyası değildir
+SKU-TR-001;GROUP-TR-001;commerce.checkout_eligible;;is_eligible_checkout;false;Koşullu;Commerce Platform;2026-08-02;Bekliyor;Search uygunluğu ve politika URL’leri önce doğrulanmalı
+SKU-TR-001;GROUP-TR-001;policy.returns;hasMerchantReturnPolicy;return_policy;https://example.com/iade;Zorunlu;Hukuk / Operasyon;2026-08-02;Kontrol edildi;Güncel ve erişilebilir iade politikası

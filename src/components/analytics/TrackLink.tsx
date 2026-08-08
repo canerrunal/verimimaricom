@@ -9,6 +9,7 @@ type TrackLinkProps = {
   children: ReactNode
   eventName: string
   payload?: Record<string, any>
+  download?: boolean | string
 }
 
 export default function TrackLink({
@@ -17,11 +18,13 @@ export default function TrackLink({
   children,
   eventName,
   payload,
+  download,
 }: TrackLinkProps) {
   return (
     <a
       href={href}
       className={className}
+      download={download}
       onClick={() => {
         trackEvent(eventName, {
           href,

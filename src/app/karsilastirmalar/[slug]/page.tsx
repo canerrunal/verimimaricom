@@ -2,18 +2,11 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
-import { comparisonExampleMetrics, getMetricComparison, metricComparisons } from '@/lib/comparisons'
+import { getMetricComparison, metricComparisons } from '@/lib/comparisons'
 import { getDictionary } from '@/lib/i18n'
 import { brandProfile, getSiteUrl } from '@/lib/seo'
 
 type PageProps = { params: Promise<{ slug: string }> }
-
-const money = (value: number) =>
-  new Intl.NumberFormat('tr-TR', {
-    style: 'currency',
-    currency: 'TRY',
-    maximumFractionDigits: 0,
-  }).format(value)
 
 export function generateStaticParams() {
   return metricComparisons.map((item) => ({ slug: item.slug }))
@@ -37,7 +30,6 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
 
   const t = getDictionary('tr')
   const siteUrl = getSiteUrl()
-  const example = comparisonExampleMetrics(item)
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -47,7 +39,7 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
     inLanguage: 'tr-TR',
     url: `${siteUrl}/karsilastirmalar/${item.slug}`,
     author: { '@type': 'Person', name: brandProfile.name, url: siteUrl },
-    about: [item.left.name, item.right.name, 'E-ticaret reklam analitiği'],
+    about: [item.left.name, item.right.name, item.category, 'E-ticaret metrikleri'],
   }
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -155,61 +147,38 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
             <section className="comparison-section" aria-labelledby="example-title">
               <div className="comparison-section-head">
                 <span className="eyebrow">02 / ÖRNEK HESAP</span>
-                <h2 id="example-title">Platformlar iyi görünürken toplam sonuç neden farklı?</h2>
-                <p>Tüm değerler öğretici amaçlı simüle edilmiştir.</p>
+                <h2 id="example-title">{item.example.presentation.title}</h2>
+                <p>{item.example.presentation.description}</p>
               </div>
               <div className="comparison-example">
                 <div className="comparison-example-source">
                   <span>{item.example.period}</span>
                   <dl>
-                    <div>
-                      <dt>Toplam net gelir</dt>
-                      <dd>{money(item.example.totalRevenue)}</dd>
-                    </div>
-                    <div>
-                      <dt>Meta atfedilen gelir / harcama</dt>
-                      <dd>
-                        {money(item.example.metaAttributedRevenue)} /{' '}
-                        {money(item.example.metaSpend)}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>Google atfedilen gelir / harcama</dt>
-                      <dd>
-                        {money(item.example.googleAttributedRevenue)} /{' '}
-                        {money(item.example.googleSpend)}
-                      </dd>
-                    </div>
+                    {item.example.presentation.inputs.map((input) => (
+                      <div key={input.label}>
+                        <dt>{input.label}</dt>
+                        <dd>{input.value}</dd>
+                      </div>
+                    ))}
                   </dl>
                 </div>
                 <div className="comparison-example-results">
-                  <div>
-                    <span>META ROAS</span>
-                    <strong>{example.metaRoas.toFixed(2)}</strong>
-                    <small>Platform atfı</small>
-                  </div>
-                  <div>
-                    <span>GOOGLE ROAS</span>
-                    <strong>{example.googleRoas.toFixed(2)}</strong>
-                    <small>Platform atfı</small>
-                  </div>
-                  <div className="comparison-example-mer">
-                    <span>MEDYA MER</span>
-                    <strong>{example.mer.toFixed(2)}</strong>
-                    <small>Toplam gelir ÷ {money(example.totalSpend)}</small>
-                  </div>
+                  {item.example.presentation.results.map((result) => (
+                    <div
+                      className={result.highlight ? 'comparison-example-mer' : undefined}
+                      key={result.label}
+                    >
+                      <span>{result.label}</span>
+                      <strong>{result.value}</strong>
+                      <small>{result.note}</small>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="comparison-overlap">
-                <span>ATIF UYARISI</span>
-                <strong>
-                  Platformların toplam atfedilen geliri, mağaza gelirinden{' '}
-                  {money(example.attributionOverlap)} daha yüksek.
-                </strong>
-                <p>
-                  Aynı sipariş iki platform tarafından sahiplenilmiş olabilir. Bu nedenle platform
-                  ROAS değerleri toplanmaz; toplam görünüm şirket geliriyle uzlaştırılır.
-                </p>
+                <span>{item.example.presentation.insight.label}</span>
+                <strong>{item.example.presentation.insight.title}</strong>
+                <p>{item.example.presentation.insight.body}</p>
               </div>
             </section>
 
@@ -222,7 +191,7 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
                 className="comparison-table-wrap"
                 tabIndex={0}
                 role="region"
-                aria-label="ROAS ve MER karar tablosu"
+                aria-label={`${item.left.name} ve ${item.right.name} karar tablosu`}
               >
                 <table>
                   <thead>

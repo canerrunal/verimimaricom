@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { getGlossaryTerm, getRelatedTerms, glossaryTerms } from './glossary'
 
 describe('glossary content graph', () => {
-  it('keeps the first glossary release at 15 unique terms', () => {
-    expect(glossaryTerms).toHaveLength(15)
+  it('keeps the glossary terms unique as the library grows', () => {
+    expect(glossaryTerms).toHaveLength(17)
     expect(new Set(glossaryTerms.map((item) => item.slug)).size).toBe(glossaryTerms.length)
   })
 

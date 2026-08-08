@@ -12,7 +12,7 @@ const blogQuery = `*[_type == "blogPost"] | order(_updatedAt desc)[0...3]{
 
 const projectQuery = `*[_type == "caseStudy"] | order(_updatedAt desc)[0...3]{
   "title": coalesce(base->title, "Untitled Project"),
-  "excerpt": coalesce(outcomeSummary, base->excerpt, "Vaka analizi özeti yakında eklenecek."),
+  "excerpt": coalesce(outcomeSummary, base->excerpt, "Proje analizi özeti yakında eklenecek."),
   "slug": base->slug.current,
   "maturity": coalesce(base->contentMaturity, "growing")
 }`
@@ -79,7 +79,7 @@ const caseStudyBySlugQuery = `*[_type == "caseStudy" && base->slug.current == $s
 
 const fallbackCaseStudy = {
   title: 'E-ticaret Dönüşüm Dashboardu',
-  excerpt: 'Veri hikayeciliği odaklı, karar verdiren analitik vaka analizi.',
+  excerpt: 'Veri hikayeciliği odaklı, karar verdiren proje analizi.',
   body: [],
   publishedAt: null,
   clientName: 'Örnek Marka',

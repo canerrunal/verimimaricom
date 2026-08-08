@@ -5,7 +5,7 @@ export default function ProofSection({ t }: { t: any }) {
         <div className="head">
           <div>
             <span className="eyebrow">
-              {t?.caseStudies?.eyebrow || '/ 04 · VAKA ANALİZLERİ & KURUCU'}
+              {t?.caseStudies?.eyebrow || '/ 04 · ANALİZLER & KURUCU'}
             </span>
             <h2>{t?.caseStudies?.title || 'Şeffaf metotlar.'}</h2>
           </div>
@@ -13,11 +13,11 @@ export default function ProofSection({ t }: { t: any }) {
 
         <div className="grid">
           <div className="card">
-            <span className="eyebrow">VAKA ANALİZİ</span>
+            <span className="eyebrow">PROJE ANALİZİ</span>
             <h3>E-Ticaret Dönüşüm Dashboardu</h3>
             <p>Katkı payı ve reklam analitiği tabanlı karar mekanizması.</p>
-            <a className="link" href="/vaka-analizleri">
-              Vaka Analizlerini Gör
+            <a className="link" href="/analizler">
+              Analizleri Gör
             </a>
           </div>
 

@@ -2,7 +2,7 @@
 
 > Durum: **Kanonik ve bağlayıcı**
 > Sistem adı: **Veri Mimarı Editorial Data System**
-> Son güncelleme: 1 Ağustos 2026
+> Son güncelleme: 2 Ağustos 2026
 
 Bu dosya Veri Mimarı'nın tüm arayüzleri için tek tasarım kaynağıdır. Yeni sayfalar, bileşenler, içerik blokları, araçlar, deneyler ve kampanya yüzeyleri bu sistemin görsel dilini kullanmalıdır.
 
@@ -207,6 +207,14 @@ Uzun içerikte gövde genişliği yaklaşık `700–760px` tutulur.
 - Mobilde bağlantılar menü düğmesi altında tek kolon açılır.
 - Navigasyon metinleri kısa ve görev odaklıdır.
 
+### Marka işareti
+
+- Ana işaret, koyu yüzey üzerindeki kompakt `VM` monogramı ve yükselen lime çatı çizgisidir.
+- Turuncu uç yalnızca monogramın hareket/yön detayını korumak için kullanılır.
+- Header kullanımında işaret masaüstünde `34px`, mobilde `32px` kare yüzeyde gösterilir.
+- Küçük boyutta okunurluğu korumak için fotoğraf/JPEG kaynak doğrudan küçültülmez; sadeleştirilmiş vektör sürüm kullanılır.
+- Marka işareti dekoratif olduğunda erişilebilir isim, onu kapsayan Veri Mimarı ana sayfa bağlantısında bulunur.
+
 ### Butonlar
 
 - Tüm temel butonlar pill formundadır.
@@ -383,3 +391,17 @@ Yeni bir ihtiyaç mevcut kurallarla çözülemiyorsa:
 5. Eski ve yeni sayfalarda tutarlılığı görsel olarak doğrula.
 
 Kullanıcının açık talebi bu sistemle çelişirse kullanıcı talebi önceliklidir. Talep kalıcı bir marka değişikliği ise tasarım sistemi de aynı iş kapsamında güncellenmelidir.
+
+## 16. Sosyal medya yüzeyleri
+
+Sosyal medya, web sitesinden bağımsız bir kampanya teması kullanmaz. Carousel, tek görsel, Story, Reels kapağı ve LinkedIn kartları bu sistemin sosyal uyarlaması olan [`docs/sosyal-medya-tasarim-sistemi.md`](docs/sosyal-medya-tasarim-sistemi.md) belgesine göre hazırlanır.
+
+Bağlayıcı sosyal medya kuralları:
+
+1. Varsayılan gönderi tuvali `1080 × 1350` ve `4:5` oranıdır.
+2. Sıcak kâğıt, koyu mürekkep, Inter + mono rol dağılımı, teknik grid, sert kontur ve sert gölge korunur.
+3. Her görsel tek ana fikir, tek baskın vurgu rengi ve tek öncelikli CTA taşır.
+4. Güncel koyu kareli VM monogramı kullanılır; eski lime daire içindeki `V` işareti kullanılmaz.
+5. Sayısal iddialar kaynak ve tarih taşır; örnek veri açıkça `DEMO VERİ` veya `SİMÜLASYON` olarak işaretlenir.
+6. Sosyal içerik ya öğretir, ya bir kararı kolaylaştırır ya da bir aracı kullandırır.
+7. Sosyal medya için yeni renk, font, logo varyasyonu veya bağımsız alt tema oluşturulamaz.

@@ -8,6 +8,8 @@ export default function FeedbackWidget({ toolName }: { toolName: string }) {
   const [vote, setVote] = useState<'yes' | 'no' | null>(null)
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const panelId = useId()
   const widgetRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -37,12 +39,34 @@ export default function FeedbackWidget({ toolName }: { toolName: string }) {
     }
   }, [open])
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    if (!vote) return
+    if (!vote || submitting) return
 
-    trackFeedbackSubmit(toolName, vote, feedback)
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError('')
+
+    try {
+      const response = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          toolName,
+          vote,
+          comment: feedback,
+          pagePath: window.location.pathname,
+        }),
+      })
+
+      if (!response.ok) throw new Error('feedback-submit-failed')
+
+      trackFeedbackSubmit(toolName, vote, feedback)
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Geri bildiriminiz şu anda kaydedilemedi. Lütfen biraz sonra yeniden deneyin.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -129,9 +153,14 @@ export default function FeedbackWidget({ toolName }: { toolName: string }) {
                     onChange={(event) => setFeedback(event.target.value)}
                     placeholder="Kısaca yazın…"
                   />
-                  <button type="submit" className="btn">
-                    Geri bildirimi gönder
+                  <button type="submit" className="btn" disabled={submitting}>
+                    {submitting ? 'Kaydediliyor…' : 'Geri bildirimi gönder'}
                   </button>
+                  {submitError && (
+                    <p className="submission-error feedback-submit-status" role="alert">
+                      {submitError}
+                    </p>
+                  )}
                 </form>
               )}
             </>

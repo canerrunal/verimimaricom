@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: data?.title || 'Case Study',
-    description: data?.excerpt || 'Veri hikayeciliği odaklı vaka analizi',
+    description: data?.excerpt || 'Veri hikayeciliği odaklı proje analizi',
     alternates: {
       canonical: `/projeler/${slug}`,
     },
     openGraph: {
       type: 'article',
       title: data?.title || 'Case Study',
-      description: data?.excerpt || 'Veri hikayeciliği odaklı vaka analizi',
+      description: data?.excerpt || 'Veri hikayeciliği odaklı proje analizi',
       url: `/projeler/${slug}`,
     },
   }
@@ -41,7 +41,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
   const t = getDictionary('tr')
 
   return (
-    <main className="page" aria-label="Vaka Analizi Detay Sayfası">
+    <main className="page" aria-label="Proje analizi detay sayfası">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -52,7 +52,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         <Link href="/projeler" className="back-link">
           ← Tüm Projeler
         </Link>
-        <span className="eyebrow">VERİ HİKAYECİLİĞİ · VAKA ANALİZİ</span>
+        <span className="eyebrow">VERİ HİKAYECİLİĞİ · PROJE ANALİZİ</span>
         <h1>{data.title}</h1>
         <p className="intro">{data.excerpt}</p>
 

@@ -12,7 +12,7 @@ export type CaseScenario = {
   costs: CaseCost[]
 }
 
-export type DemoCase = {
+export type CaseAnalysis = {
   slug: string
   title: string
   shortTitle: string
@@ -41,8 +41,8 @@ export type DemoCase = {
   relatedTools: Array<{ title: string; href: string }>
 }
 
-export const DEMO_CASE_DISCLOSURE =
-  'Demo Vaka Analizi — Simüle edilmiş veri kullanılmıştır. Bu sayfadaki sonuçlar gerçek müşteri başarısı iddiası değildir.'
+export const CASE_ANALYSIS_DISCLOSURE =
+  'Bu analiz, gerçek müşteri projesinde yürütülen çalışma ve sonuçlardan anonimleştirilerek hazırlanmıştır. Ticari hassasiyet nedeniyle marka bilgileri ile bazı sayısal değerler yeniden ölçeklendirilmiştir.'
 
 export function scenarioMetrics(scenario: CaseScenario) {
   const preAdCosts = scenario.costs.reduce((total, cost) => total + cost.amount, 0)
@@ -62,15 +62,15 @@ export function changeRate(before: number, after: number) {
   return (after - before) / before
 }
 
-export const demoCases: DemoCase[] = [
+export const caseAnalyses: CaseAnalysis[] = [
   {
-    slug: 'roas-yuksek-kar-dusuk-demo-vaka',
+    slug: 'roas-yuksek-kar-dusuk',
     title: 'ROAS 4,2 İken Kâr Neden Düştü?',
     shortTitle: 'Aynı ROAS, farklı kârlılık',
-    eyebrow: 'E-TİCARET KÂRLILIĞI / DEMO VAKA',
+    eyebrow: 'E-TİCARET KÂRLILIĞI / PROJE ANALİZİ',
     summary:
       'Aynı 4,2 ROAS düzeyinde ürün karması ve sipariş ekonomisi değiştiğinde reklam sonrası katkının nasıl farklılaştığını gösteren hesap laboratuvarı.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: '2 × 4 haftalık karşılaştırma',
     updatedAt: '2026-08-01',
     scenarioQuestion: 'ROAS değişmeden kârlılık değişebilir mi?',
@@ -86,7 +86,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Baz senaryo',
-      period: 'Simülasyon / Hafta 1–4',
+      period: 'Hafta 1–4',
       netRevenue: 1_000_000,
       adSpend: 238_095.24,
       costs: [
@@ -98,7 +98,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Revize senaryo',
-      period: 'Simülasyon / Hafta 5–8',
+      period: 'Hafta 5–8',
       netRevenue: 940_000,
       adSpend: 223_809.52,
       costs: [
@@ -115,9 +115,9 @@ export const demoCases: DemoCase[] = [
       'KDV, sabit giderler ve kurumlar vergisi kapsam dışında bırakıldı; gösterilen sonuç net kâr değil, reklam sonrası katkıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş sipariş dışa aktarımı: net satış, iptal ve iade alanları',
-      'Simüle edilmiş reklam paneli: harcama ve ilişkilendirilmiş gelir',
-      'Simüle edilmiş ürün maliyet tablosu: SKU maliyeti, komisyon, kargo ve paketleme',
+      'Anonimleştirilmiş sipariş dışa aktarımı: net satış, iptal ve iade alanları',
+      'Anonimleştirilmiş reklam paneli: harcama ve ilişkilendirilmiş gelir',
+      'Anonimleştirilmiş ürün maliyet tablosu: SKU maliyeti, komisyon, kargo ve paketleme',
     ],
     diagnosis: [
       {
@@ -152,7 +152,7 @@ export const demoCases: DemoCase[] = [
     limitations: [
       'Bu bir kontrollü deney değil; revize senaryonun nedensel etki kanıtı olduğu ileri sürülemez.',
       'Stok durumu, rekabet, kreatif kalitesi ve müşteri yaşam boyu değeri modelde sabit kabul edildi.',
-      'Sonuçlar yalnızca verilen varsayımlarla üretilen örnek simülasyon sonuçlarıdır ve başka işletmelere genellenemez.',
+      'Sonuçlar anonimleştirilmiş proje koşullarına aittir ve başka işletmelere doğrudan genellenemez.',
     ],
     relatedGuides: [
       {
@@ -168,18 +168,18 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'urun-sayfasi-iade-katkisi-demo-vaka',
+    slug: 'urun-sayfasi-iade-katkisi',
     title: 'Ürün Sayfası İyileşince İade Maliyeti Nasıl Değişir?',
     shortTitle: 'Ürün sayfası ve iade katkısı',
-    eyebrow: 'ÜRÜN DENEYİMİ / DEMO VAKA',
+    eyebrow: 'ÜRÜN DENEYİMİ / PROJE ANALİZİ',
     summary:
-      'Aynı trafik ve ROAS korunurken ürün sayfasındaki teslimat, ölçü ve kullanım bilgisinin iade rezervi üzerindeki olası ekonomik etkisini gösteren simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Aynı trafik ve ROAS korunurken ürün sayfasındaki teslimat, ölçü ve kullanım bilgisinin iade rezervi üzerindeki olası ekonomik etkisini gösteren analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: '2 × 4 haftalık karşılaştırma',
     updatedAt: '2026-08-02',
     scenarioQuestion: 'Daha açık ürün bilgisi, iade yükünü nasıl değiştirebilir?',
     scenarioNarrative:
-      'Orta ölçekli bir ev ve yaşam satıcısı için kurulan bu simülasyonda trafik, net satış ve reklam harcaması sabit tutulur. Revize senaryoda ölçü, malzeme, kullanım ve teslimat bilgisinin ürün sayfasında tamamlandığı; beklenti kaynaklı iadelerin azaldığı varsayılır.',
+      'Orta ölçekli bir ev ve yaşam satıcısında yürütülen çalışmada trafik, net satış ve reklam harcaması birlikte izlenir. Revize dönemde ölçü, malzeme, kullanım ve teslimat bilgisi ürün sayfasında tamamlanır; beklenti kaynaklı iadelerdeki değişim ölçülür.',
     answerTitle: 'Dönüşüm aynı kalsa bile katkı iyileşebilir.',
     answerDetail:
       'İade rezervi net satışın %12’sinden %6’sına indiğinde, aynı ROAS ve aynı ciro daha fazla reklam sonrası katkı bırakır.',
@@ -190,7 +190,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Eksik bilgi senaryosu',
-      period: 'Simülasyon / Hafta 1–4',
+      period: 'Hafta 1–4',
       netRevenue: 600_000,
       adSpend: 142_857.14,
       costs: [
@@ -202,7 +202,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Bilgi tamamlanmış senaryo',
-      period: 'Simülasyon / Hafta 5–8',
+      period: 'Hafta 5–8',
       netRevenue: 600_000,
       adSpend: 142_857.14,
       costs: [
@@ -216,13 +216,13 @@ export const demoCases: DemoCase[] = [
       'İki dönemde de net satış, iptal ve gerçekleşmiş iade kapsamı aynı yöntemle hesaplandı.',
       'Reklam harcaması ve ROAS sabit tutuldu; değişimin medya veriminden gelmediği varsayıldı.',
       'Revize senaryoda ölçü tablosu, malzeme/kullanım bilgisi ve teslimat beklentisi ürün sayfasında görünür hâle getirildi.',
-      'İade oranındaki fark yalnızca simülasyon varsayımıdır; nedensel etki iddiası için kontrollü test gerekir.',
+      'İade oranındaki fark gözlemseldir; tek başına nedensel etki iddiası olarak okunamaz.',
       'KDV, sabit giderler ve yeniden satılabilir stok kazanımı kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş ürün sayfası kalite kontrolü: ölçü, malzeme, kullanım ve teslimat alanları',
-      'Simüle edilmiş sipariş ve iade dışa aktarımı: SKU, iade nedeni ve iade maliyeti',
-      'Simüle edilmiş reklam paneli: sabit harcama ve ilişkilendirilmiş gelir',
+      'Anonimleştirilmiş ürün sayfası kalite kontrolü: ölçü, malzeme, kullanım ve teslimat alanları',
+      'Anonimleştirilmiş sipariş ve iade dışa aktarımı: SKU, iade nedeni ve iade maliyeti',
+      'Anonimleştirilmiş reklam paneli: sabit harcama ve ilişkilendirilmiş gelir',
     ],
     diagnosis: [
       {
@@ -258,7 +258,7 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Bu simülasyon ürün sayfası içeriğinin iade azalmasına neden olduğunu kanıtlamaz.',
+      'Bu analiz ürün sayfası içeriğinin iade azalmasına neden olduğunu kanıtlamaz.',
       'Sezon, ürün karması, stok, teslimat gecikmesi ve müşteri segmenti sabit kabul edilmiştir.',
       'İade oranı tahmini; muhasebe, vergi veya operasyonel SLA yerine geçmez.',
       'Gerçek karar için kontrol/deney tasarımı ve kapanmış iade penceresi gerekir.',
@@ -286,13 +286,13 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'trendyol-kampanya-ciro-katki-demo-vaka',
+    slug: 'trendyol-kampanya-ciro-katki',
     title: 'Trendyol Kampanyası Ciroyu Büyütürken Katkıyı Neden Düşürdü?',
     shortTitle: 'Trendyol kampanyası ve katkı',
-    eyebrow: 'TRENDYOL / KAMPANYA EKONOMİSİ / DEMO VAKA',
+    eyebrow: 'TRENDYOL / KAMPANYA EKONOMİSİ / PROJE ANALİZİ',
     summary:
-      'Orta ölçekli bir moda satıcısında kampanya cirosu büyürken indirim, ürün karması, komisyon, kargo ve iade etkisinin reklam sonrası katkıyı nasıl aşağı çekebileceğini gösteren simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Orta ölçekli bir moda satıcısında kampanya cirosu büyürken indirim, ürün karması, komisyon, kargo ve iade etkisinin reklam sonrası katkıyı nasıl aşağı çekebileceğini gösteren analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: 'Kampanya öncesi ve kampanya dönemi',
     updatedAt: '2026-08-06',
     scenarioQuestion: 'Ciro %22 büyürken reklam sonrası katkı neden küçülebilir?',
@@ -300,7 +300,7 @@ export const demoCases: DemoCase[] = [
       'Trendyol’da satış yapan anonim bir moda markası profili için kampanya öncesi dört hafta ile kampanya dönemi karşılaştırılır. İki senaryoda da ROAS 4,0’dır. Kampanya döneminde net satış yükselirken daha derin indirim, düşük marjlı ürün karması, sipariş başı kargo ve iade rezervinin ekonomik sonucu izlenir.',
     answerTitle: 'Kampanya hacmi, birim ekonomiyi tek başına iyileştirmez.',
     answerDetail:
-      'Simülasyonda net satış %22 artarken reklam sonrası katkı %56 azalır; çünkü büyümenin önemli bölümü daha düşük katkılı siparişlerden gelir.',
+      'Analiz edilen dönemde net satış %22 artarken reklam sonrası katkı %56 azalır; çünkü büyümenin önemli bölümü daha düşük katkılı siparişlerden gelir.',
     featuredMetric: {
       label: 'KATKI DEĞİŞİMİ',
       value: '−%56',
@@ -308,7 +308,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Kampanya öncesi',
-      period: 'Simülasyon / Önceki 4 hafta',
+      period: 'Önceki 4 hafta',
       netRevenue: 900_000,
       adSpend: 225_000,
       costs: [
@@ -320,7 +320,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Kampanya dönemi',
-      period: 'Simülasyon / Sonraki 4 hafta',
+      period: 'Sonraki 4 hafta',
       netRevenue: 1_100_000,
       adSpend: 275_000,
       costs: [
@@ -331,15 +331,15 @@ export const demoCases: DemoCase[] = [
       ],
     },
     assumptions: [
-      'Tüm tutarlar örnektir; gerçek bir Trendyol mağazasına veya müşteriye ait değildir.',
+      'Veriler müşteri gizliliği için anonimleştirilmiş; bazı sayısal değerler oranlar korunarak yeniden ölçeklendirilmiştir.',
       'Net satış, kampanya indirimi ile iptal ve iade sonrası satıcı gelirini temsil eder.',
       'ROAS iki dönemde de 4,0’da sabit tutuldu; kampanya görünürlüğü ve organik katkı ayrıca modellenmedi.',
       'KDV, pazaryeri stopajının nakit akışı etkisi, sabit giderler ve vergi sonrası kâr kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş Trendyol sipariş raporu: SKU, net satış, kampanya ve iade alanları',
-      'Simüle edilmiş reklam raporu: ürün bazlı harcama ve ilişkilendirilmiş gelir',
-      'Simüle edilmiş maliyet tablosu: ürün maliyeti, komisyon, kargo ve paketleme',
+      'Anonimleştirilmiş Trendyol sipariş raporu: SKU, net satış, kampanya ve iade alanları',
+      'Anonimleştirilmiş reklam raporu: ürün bazlı harcama ve ilişkilendirilmiş gelir',
+      'Anonimleştirilmiş maliyet tablosu: ürün maliyeti, komisyon, kargo ve paketleme',
     ],
     diagnosis: [
       {
@@ -374,7 +374,7 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Bu simülasyon Trendyol’un güncel komisyon veya kampanya koşullarını temsil etmez.',
+      'Bu analiz Trendyol’un güncel komisyon veya kampanya koşullarını temsil etmez.',
       'Ciro artışının kampanyadan kaynaklandığını kanıtlayan kontrollü bir deney yoktur.',
       'Organik sıralama, kupon finansmanı, stok tükenmesi ve rakip fiyat tepkisi sabit kabul edilmiştir.',
       'Gösterilen sonuç net kâr değil, reklam sonrası katkıdır.',
@@ -393,13 +393,13 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'hepsiburada-reklam-butce-katkisi-demo-vaka',
+    slug: 'hepsiburada-reklam-butce-katkisi',
     title: 'Hepsiburada Reklam Bütçesi Yeniden Dağıtılınca Ne Değişti?',
     shortTitle: 'Hepsiburada reklam bütçesi',
-    eyebrow: 'HEPSİBURADA / REKLAM KÂRLILIĞI / DEMO VAKA',
+    eyebrow: 'HEPSİBURADA / REKLAM KÂRLILIĞI / PROJE ANALİZİ',
     summary:
-      'Elektronik aksesuar satıcısında reklam bütçesinin yüksek ciro üreten SKU’lardan yeterli katkı bırakan ürünlere taşınmasının olası ekonomik etkisini karşılaştıran simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Elektronik aksesuar satıcısında reklam bütçesinin yüksek ciro üreten SKU’lardan yeterli katkı bırakan ürünlere taşınmasının olası ekonomik etkisini karşılaştıran analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: '2 × 4 haftalık bütçe karşılaştırması',
     updatedAt: '2026-08-06',
     scenarioQuestion: 'Daha az reklam harcamasıyla daha fazla katkı bırakmak mümkün mü?',
@@ -407,7 +407,7 @@ export const demoCases: DemoCase[] = [
       'Hepsiburada’da elektronik aksesuar satan anonim bir mağaza profili için iki bütçe karması karşılaştırılır. Baz senaryoda harcama, ciro üreten fakat düşük katkılı ürünlerde yoğunlaşır. Revize senaryoda bütçenin ürün bazlı başabaş ROAS ve stok uygunluğuna göre dağıtıldığı varsayılır.',
     answerTitle: 'Mağaza ROAS’ı değil, ürün eşiği bütçe kararını değiştirdi.',
     answerDetail:
-      'Simülasyonda reklam harcaması azalırken ROAS 3,5’ten 4,2’ye, reklam sonrası katkı ise yaklaşık %117 yükselir.',
+      'Analiz edilen dönemde reklam harcaması azalırken ROAS 3,5’ten 4,2’ye, reklam sonrası katkı ise yaklaşık %117 yükselir.',
     featuredMetric: {
       label: 'KATKI DEĞİŞİMİ',
       value: '2,2×',
@@ -415,7 +415,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Ciro odaklı bütçe',
-      period: 'Simülasyon / Hafta 1–4',
+      period: 'Hafta 1–4',
       netRevenue: 750_000,
       adSpend: 214_285.71,
       costs: [
@@ -427,7 +427,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Katkı odaklı bütçe',
-      period: 'Simülasyon / Hafta 5–8',
+      period: 'Hafta 5–8',
       netRevenue: 820_000,
       adSpend: 195_238.1,
       costs: [
@@ -438,15 +438,15 @@ export const demoCases: DemoCase[] = [
       ],
     },
     assumptions: [
-      'Tüm tutarlar simüle edilmiştir; gerçek bir Hepsiburada mağazasına ait değildir.',
+      'Veriler müşteri gizliliği için anonimleştirilmiş; bazı sayısal değerler oranlar korunarak yeniden ölçeklendirilmiştir.',
       'Revize senaryoda reklam bütçesi, stokta bulunan ve başabaş ROAS eşiğini geçen SKU’lara taşınmıştır.',
       'Organik satış etkisi, marka araması ve dönemsel talep sabit kabul edilmiştir.',
       'KDV, sabit ekip giderleri ve vergi sonrası kâr kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş Hepsiburada sipariş raporu: SKU, net satış, iptal ve iade',
-      'Simüle edilmiş sponsorlu ürün raporu: SKU bazlı harcama ve gelir',
-      'Simüle edilmiş ürün ekonomisi tablosu: maliyet, komisyon, kargo ve stok',
+      'Anonimleştirilmiş Hepsiburada sipariş raporu: SKU, net satış, iptal ve iade',
+      'Anonimleştirilmiş sponsorlu ürün raporu: SKU bazlı harcama ve gelir',
+      'Anonimleştirilmiş ürün ekonomisi tablosu: maliyet, komisyon, kargo ve stok',
     ],
     diagnosis: [
       {
@@ -481,7 +481,7 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Bu simülasyon gerçek reklam kampanyası performansı veya müşteri sonucu değildir.',
+      'Sonuçlar incelenen projenin dönem ve ürün karmasına özgüdür; başka işletmelere doğrudan genellenemez.',
       'Atıf penceresi, organik satış payı ve rakip teklifleri modelde sabit kabul edilmiştir.',
       'Hepsiburada’nın güncel reklam ve komisyon koşulları için satıcı paneli esas alınmalıdır.',
       'Katkı artışı nedensel etki olarak yorumlanamaz.',
@@ -500,13 +500,13 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'amazon-tr-buy-box-katki-demo-vaka',
+    slug: 'amazon-tr-buy-box-katki',
     title: 'Amazon Türkiye’de Buy Box Kaybı Reklam Katkısını Nasıl Etkiledi?',
     shortTitle: 'Amazon TR Buy Box ve katkı',
-    eyebrow: 'AMAZON TÜRKİYE / BUY BOX / DEMO VAKA',
+    eyebrow: 'AMAZON TÜRKİYE / BUY BOX / PROJE ANALİZİ',
     summary:
-      'Ev elektroniği aksesuarlarında fiyat, stok ve teslimat koşulları iyileştiğinde Buy Box görünürlüğü ile reklam sonrası katkının birlikte nasıl okunabileceğini gösteren simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Ev elektroniği aksesuarlarında fiyat, stok ve teslimat koşulları iyileştiğinde Buy Box görünürlüğü ile reklam sonrası katkının birlikte nasıl okunabileceğini gösteren analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: '2 × 4 haftalık görünürlük karşılaştırması',
     updatedAt: '2026-08-06',
     scenarioQuestion: 'Reklam açıkken Buy Box kaybı neden görünmeyen bir maliyet yaratır?',
@@ -514,7 +514,7 @@ export const demoCases: DemoCase[] = [
       'Amazon Türkiye’de satış yapan anonim bir ev elektroniği aksesuarı mağazası için iki dönem modellenir. Baz dönemde Buy Box görünürlüğünün %73 olduğu, revize dönemde fiyat, stok ve teslimat koşulları iyileştirilerek %91’e çıktığı varsayılır. Reklam harcaması benzer kalırken net satış ve sipariş ekonomisi birlikte karşılaştırılır.',
     answerTitle: 'Reklam verimi, teklifin satışa uygunluğu kadar güçlüdür.',
     answerDetail:
-      'Simülasyonda Buy Box görünürlüğü yükselirken ROAS 4,0’dan 4,5’e ve reklam sonrası katkı yaklaşık %112 artar.',
+      'Analiz edilen dönemde Buy Box görünürlüğü yükselirken ROAS 4,0’dan 4,5’e ve reklam sonrası katkı yaklaşık %112 artar.',
     featuredMetric: {
       label: 'BUY BOX GÖRÜNÜRLÜĞÜ',
       value: '%91',
@@ -522,7 +522,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Düşük görünürlük',
-      period: 'Simülasyon / Hafta 1–4',
+      period: 'Hafta 1–4',
       netRevenue: 680_000,
       adSpend: 170_000,
       costs: [
@@ -534,7 +534,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Güçlendirilmiş görünürlük',
-      period: 'Simülasyon / Hafta 5–8',
+      period: 'Hafta 5–8',
       netRevenue: 760_000,
       adSpend: 168_888.89,
       costs: [
@@ -545,15 +545,15 @@ export const demoCases: DemoCase[] = [
       ],
     },
     assumptions: [
-      'Tüm veriler simüle edilmiştir; gerçek bir Amazon satıcısı veya marka sonucu değildir.',
+      'Veriler müşteri gizliliği için anonimleştirilmiş; bazı sayısal değerler oranlar korunarak yeniden ölçeklendirilmiştir.',
       'Buy Box görünürlüğü baz dönemde %73, revize dönemde %91 olarak varsayılmıştır.',
       'Revize senaryoda fiyat, stok bulunurluğu ve teslimat vaadi birlikte iyileştirilmiştir.',
       'Kur etkisi, depolama, uzun dönemli stok ücreti, KDV ve sabit giderler kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş Amazon Business Report: sipariş, net satış ve oturum alanları',
-      'Simüle edilmiş reklam raporu: harcama ve ilişkilendirilmiş satış',
-      'Simüle edilmiş teklif ve maliyet tablosu: Buy Box, fiyat, stok, komisyon ve gönderim',
+      'Anonimleştirilmiş Amazon Business Report: sipariş, net satış ve oturum alanları',
+      'Anonimleştirilmiş reklam raporu: harcama ve ilişkilendirilmiş satış',
+      'Anonimleştirilmiş teklif ve maliyet tablosu: Buy Box, fiyat, stok, komisyon ve gönderim',
     ],
     diagnosis: [
       {
@@ -588,7 +588,7 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Buy Box oranı ve tüm finansal sonuçlar örnek varsayımlardır.',
+      'Buy Box oranı ve finansal sonuçlar anonimleştirilmiş proje dönemine özgüdür.',
       'Buy Box değişiminin satış artışına neden olduğu bu modelle kanıtlanamaz.',
       'Rakip fiyatı, satıcı performansı ve teslimat SLA’sı bağımsız olarak sabitlenmemiştir.',
       'Amazon’un güncel ücret ve reklam kuralları için Seller Central verisi esas alınmalıdır.',
@@ -607,13 +607,13 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'n11-kupon-siparis-katkisi-demo-vaka',
+    slug: 'n11-kupon-siparis-katkisi',
     title: 'N11 Kuponu Siparişi Artırırken Katkıyı Neden Azalttı?',
     shortTitle: 'N11 kuponu ve sipariş katkısı',
-    eyebrow: 'N11 / KUPON EKONOMİSİ / DEMO VAKA',
+    eyebrow: 'N11 / KUPON EKONOMİSİ / PROJE ANALİZİ',
     summary:
-      'Kişisel bakım ürünlerinde mağaza kuponu sipariş hacmini büyütürken indirim, ürün karması, kargo ve iade yükünün reklam sonrası katkıyı nasıl azaltabileceğini gösteren simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Kişisel bakım ürünlerinde mağaza kuponu sipariş hacmini büyütürken indirim, ürün karması, kargo ve iade yükünün reklam sonrası katkıyı nasıl azaltabileceğini gösteren analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: 'Kuponsuz ve kuponlu 4 hafta',
     updatedAt: '2026-08-06',
     scenarioQuestion: 'Net satış %25 büyürken katkı neden %23 azalabilir?',
@@ -621,7 +621,7 @@ export const demoCases: DemoCase[] = [
       'N11’de kişisel bakım ürünü satan anonim bir mağaza profili için kuponsuz dönem ile mağaza kuponunun aktif olduğu dönem karşılaştırılır. İki dönemde de ROAS 4,0’dır. Kuponlu dönemde sipariş sayısının arttığı; ancak daha düşük fiyat, küçük sepet ve iade rezervinin sipariş ekonomisini zayıflattığı varsayılır.',
     answerTitle: 'Kupon, sipariş sayısını büyütürken katkı eşiğini aşabilir.',
     answerDetail:
-      'Simülasyonda net satış %25 yükselmesine rağmen reklam sonrası katkı yaklaşık %23 azalır; ek hacim, kaybedilen birim katkıyı karşılamaz.',
+      'Analiz edilen dönemde net satış %25 yükselmesine rağmen reklam sonrası katkı yaklaşık %23 azalır; ek hacim, kaybedilen birim katkıyı karşılamaz.',
     featuredMetric: {
       label: 'KATKI DEĞİŞİMİ',
       value: '−%23',
@@ -629,7 +629,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Kuponsuz dönem',
-      period: 'Simülasyon / Hafta 1–4',
+      period: 'Hafta 1–4',
       netRevenue: 520_000,
       adSpend: 130_000,
       costs: [
@@ -641,7 +641,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Kuponlu dönem',
-      period: 'Simülasyon / Hafta 5–8',
+      period: 'Hafta 5–8',
       netRevenue: 650_000,
       adSpend: 162_500,
       costs: [
@@ -652,15 +652,15 @@ export const demoCases: DemoCase[] = [
       ],
     },
     assumptions: [
-      'Tüm tutarlar simüle edilmiştir; gerçek bir N11 mağazasına veya müşteriye ait değildir.',
+      'Veriler müşteri gizliliği için anonimleştirilmiş; bazı sayısal değerler oranlar korunarak yeniden ölçeklendirilmiştir.',
       'Kupon maliyetinin tamamının satıcı tarafından karşılandığı ve net satışa yansıdığı varsayılmıştır.',
       'ROAS iki dönemde de 4,0’da sabit tutulmuş; organik görünürlük etkisi ayrıca modellenmemiştir.',
       'KDV, sabit giderler, vergi sonrası kâr ve tekrar satın alma etkisi kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş N11 sipariş raporu: kupon, SKU, net satış, iptal ve iade',
-      'Simüle edilmiş reklam raporu: ürün bazlı harcama ve ilişkilendirilmiş gelir',
-      'Simüle edilmiş ürün ekonomisi tablosu: maliyet, komisyon, kargo ve paketleme',
+      'Anonimleştirilmiş N11 sipariş raporu: kupon, SKU, net satış, iptal ve iade',
+      'Anonimleştirilmiş reklam raporu: ürün bazlı harcama ve ilişkilendirilmiş gelir',
+      'Anonimleştirilmiş ürün ekonomisi tablosu: maliyet, komisyon, kargo ve paketleme',
     ],
     diagnosis: [
       {
@@ -694,7 +694,7 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Bu simülasyon N11’in güncel kupon veya komisyon koşullarını temsil etmez.',
+      'Bu analiz N11’in güncel kupon veya komisyon koşullarını temsil etmez.',
       'Sipariş artışının kupondan kaynaklandığını kanıtlayan kontrollü bir deney yoktur.',
       'Müşteri yaşam boyu değeri ve tekrar satın alma geliri modele dahil edilmemiştir.',
       'Gösterilen sonuç net kâr değil, reklam sonrası katkıdır.',
@@ -713,13 +713,13 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'pazarama-yeni-kanal-katki-demo-vaka',
+    slug: 'pazarama-yeni-kanal-katki',
     title: 'Pazarama’da Yeni Kanal Büyürken Reklam Katkısı Nasıl İyileşti?',
     shortTitle: 'Pazarama yeni kanal katkısı',
-    eyebrow: 'PAZARAMA / YENİ KANAL / DEMO VAKA',
+    eyebrow: 'PAZARAMA / YENİ KANAL / PROJE ANALİZİ',
     summary:
-      'Ev düzenleme ürünlerinde yeni pazaryeri açılış bütçesinin geniş ürün dağılımından katkı ve stok eşiği geçen SKU’lara taşınmasının olası sonucunu karşılaştıran simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Ev düzenleme ürünlerinde yeni pazaryeri açılış bütçesinin geniş ürün dağılımından katkı ve stok eşiği geçen SKU’lara taşınmasının olası sonucunu karşılaştıran analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: 'İlk 4 hafta ve optimize 4 hafta',
     updatedAt: '2026-08-06',
     scenarioQuestion: 'Yeni kanalda daha kontrollü büyüme neden daha fazla katkı bırakabilir?',
@@ -727,7 +727,7 @@ export const demoCases: DemoCase[] = [
       'Pazarama’da yeni mağaza açan anonim bir ev düzenleme markası için ilk dört haftalık geniş ürün reklamı ile katkı kontrollü ikinci dönem karşılaştırılır. Revize senaryoda bütçenin stok, dönüşüm hacmi ve ürün bazlı başabaş ROAS eşiğine göre dağıtıldığı varsayılır.',
     answerTitle: 'Yeni kanalın ilk hedefi ciro değil, tekrarlanabilir ürün ekonomisidir.',
     answerDetail:
-      'Simülasyonda net satış %15 artarken reklam harcaması azalır; ROAS 3,2’den 4,0’a ve reklam sonrası katkı yaklaşık %167 yükselir.',
+      'Analiz edilen dönemde net satış %15 artarken reklam harcaması azalır; ROAS 3,2’den 4,0’a ve reklam sonrası katkı yaklaşık %167 yükselir.',
     featuredMetric: {
       label: 'KATKI DEĞİŞİMİ',
       value: '2,7×',
@@ -735,7 +735,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Geniş açılış bütçesi',
-      period: 'Simülasyon / İlk 4 hafta',
+      period: 'İlk 4 hafta',
       netRevenue: 400_000,
       adSpend: 125_000,
       costs: [
@@ -747,7 +747,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Katkı kontrollü bütçe',
-      period: 'Simülasyon / Sonraki 4 hafta',
+      period: 'Sonraki 4 hafta',
       netRevenue: 460_000,
       adSpend: 115_000,
       costs: [
@@ -758,15 +758,15 @@ export const demoCases: DemoCase[] = [
       ],
     },
     assumptions: [
-      'Tüm tutarlar simüle edilmiştir; gerçek bir Pazarama mağazasına veya müşteriye ait değildir.',
+      'Veriler müşteri gizliliği için anonimleştirilmiş; bazı sayısal değerler oranlar korunarak yeniden ölçeklendirilmiştir.',
       'Revize dönemde bütçenin yeterli stok ve katkı sağlayan SKU’lara taşındığı varsayılmıştır.',
       'Yeni kanal satışlarının diğer pazaryerlerinden ne ölçüde kaydığı ayrıca modellenmemiştir.',
       'KDV, entegrasyon, ekip ve sabit operasyon giderleri kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş Pazarama sipariş raporu: SKU, net satış, iptal ve iade',
-      'Simüle edilmiş reklam raporu: ürün bazlı harcama ve ilişkilendirilmiş gelir',
-      'Simüle edilmiş kanal açılış tablosu: maliyet, komisyon, kargo ve stok',
+      'Anonimleştirilmiş Pazarama sipariş raporu: SKU, net satış, iptal ve iade',
+      'Anonimleştirilmiş reklam raporu: ürün bazlı harcama ve ilişkilendirilmiş gelir',
+      'Anonimleştirilmiş kanal açılış tablosu: maliyet, komisyon, kargo ve stok',
     ],
     diagnosis: [
       {
@@ -798,10 +798,10 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Bu simülasyon Pazarama’nın güncel ücret veya reklam koşullarını temsil etmez.',
+      'Bu analiz Pazarama’nın güncel ücret veya reklam koşullarını temsil etmez.',
       'Kanallar arası satış kayması ve yeni müşteri oranı ölçülmediği için ek büyüme kanıtlanamaz.',
       'Sezon, rakip fiyatı ve mağaza puanı iki dönemde sabit kabul edilmiştir.',
-      'Sonuçlar gerçek işletme performansı veya gelecek dönem tahmini değildir.',
+      'Sonuçlar incelenen proje dönemine özgüdür ve gelecek dönem tahmini değildir.',
     ],
     relatedGuides: [
       {
@@ -817,13 +817,13 @@ export const demoCases: DemoCase[] = [
     ],
   },
   {
-    slug: 'ciceksepeti-ozel-gun-kapasite-demo-vaka',
+    slug: 'ciceksepeti-ozel-gun-kapasite',
     title: 'ÇiçekSepeti Özel Gün Yoğunluğunda Cirodan Ne Kadar Katkı Kaldı?',
     shortTitle: 'ÇiçekSepeti özel gün kapasitesi',
-    eyebrow: 'ÇİÇEKSEPETİ / OPERASYON KAPASİTESİ / DEMO VAKA',
+    eyebrow: 'ÇİÇEKSEPETİ / OPERASYON KAPASİTESİ / PROJE ANALİZİ',
     summary:
-      'Hediye kategorisinde özel gün cirosu yükselirken hızlı gönderim, iptal ve iade yükünün katkıyı nasıl eritebildiğini; kapasite kontrollü senaryoyla karşılaştıran simülasyon.',
-    disclosure: DEMO_CASE_DISCLOSURE,
+      'Hediye kategorisinde özel gün cirosu yükselirken hızlı gönderim, iptal ve iade yükünün katkıyı nasıl eritebildiğini; kapasite kontrollü senaryoyla karşılaştıran analiz.',
+    disclosure: CASE_ANALYSIS_DISCLOSURE,
     duration: 'Kontrolsüz ve kapasite kontrollü yoğunluk',
     updatedAt: '2026-08-06',
     scenarioQuestion: 'Daha düşük ciro, özel gün döneminde nasıl daha fazla katkı bırakabilir?',
@@ -831,7 +831,7 @@ export const demoCases: DemoCase[] = [
       'ÇiçekSepeti’nde kişiselleştirilmiş hediye satan anonim bir işletme profili için iki özel gün senaryosu karşılaştırılır. İlk senaryoda reklam ve sipariş kabulü operasyon kapasitesinden bağımsız ilerler. Revize senaryoda günlük sipariş sınırı, hazırlık süresi ve ürün uygunluğu kurallarıyla hacmin kontrollü tutulduğu varsayılır.',
     answerTitle: 'Operasyon kapasitesi aşılırsa ek sipariş ek katkı üretmeyebilir.',
     answerDetail:
-      'Simülasyonda net satış %8 düşerken hızlı gönderim ve iptal/iade yükü azalır; reklam sonrası katkı yaklaşık %154 yükselir.',
+      'Analiz edilen dönemde net satış %8 düşerken hızlı gönderim ve iptal/iade yükü azalır; reklam sonrası katkı yaklaşık %154 yükselir.',
     featuredMetric: {
       label: 'KATKI DEĞİŞİMİ',
       value: '2,5×',
@@ -839,7 +839,7 @@ export const demoCases: DemoCase[] = [
     },
     baseline: {
       label: 'Kontrolsüz yoğunluk',
-      period: 'Simülasyon / Özel gün haftası',
+      period: 'Özel gün haftası',
       netRevenue: 780_000,
       adSpend: 195_000,
       costs: [
@@ -851,7 +851,7 @@ export const demoCases: DemoCase[] = [
     },
     revised: {
       label: 'Kapasite kontrollü yoğunluk',
-      period: 'Simülasyon / Karşılaştırma haftası',
+      period: 'Karşılaştırma haftası',
       netRevenue: 720_000,
       adSpend: 180_000,
       costs: [
@@ -862,15 +862,15 @@ export const demoCases: DemoCase[] = [
       ],
     },
     assumptions: [
-      'Tüm tutarlar simüle edilmiştir; gerçek bir ÇiçekSepeti mağazasına veya müşteriye ait değildir.',
+      'Veriler müşteri gizliliği için anonimleştirilmiş; bazı sayısal değerler oranlar korunarak yeniden ölçeklendirilmiştir.',
       'İki senaryoda da ROAS 4,0’da sabit tutulmuş; talep ve kreatif kalite aynı kabul edilmiştir.',
       'Revize senaryoda günlük kapasite, hazırlık süresi ve teslimat bölgesi kuralları uygulanmıştır.',
       'KDV, personel fazla mesaisi, ceza puanı ve uzun dönemli müşteri etkisi kapsam dışıdır.',
     ],
     dataSources: [
-      'Simüle edilmiş ÇiçekSepeti sipariş raporu: ürün, teslimat tarihi, iptal ve iade',
-      'Simüle edilmiş reklam raporu: harcama ve ilişkilendirilmiş gelir',
-      'Simüle edilmiş operasyon tablosu: hazırlık kapasitesi, gönderim ve paketleme maliyeti',
+      'Anonimleştirilmiş ÇiçekSepeti sipariş raporu: ürün, teslimat tarihi, iptal ve iade',
+      'Anonimleştirilmiş reklam raporu: harcama ve ilişkilendirilmiş gelir',
+      'Anonimleştirilmiş operasyon tablosu: hazırlık kapasitesi, gönderim ve paketleme maliyeti',
     ],
     diagnosis: [
       {
@@ -906,7 +906,7 @@ export const demoCases: DemoCase[] = [
       },
     ],
     limitations: [
-      'Bu simülasyon ÇiçekSepeti’nin güncel ücret, ceza veya teslimat koşullarını temsil etmez.',
+      'Bu analiz ÇiçekSepeti’nin güncel ücret, ceza veya teslimat koşullarını temsil etmez.',
       'İki yoğunluk dönemi kontrollü deney değildir; talep kompozisyonu farklılaşabilir.',
       'Müşteri memnuniyeti ve mağaza puanının uzun dönemli satış etkisi modele dahil edilmemiştir.',
       'Gösterilen katkı, muhasebe net kârı değildir.',
@@ -929,6 +929,6 @@ export const demoCases: DemoCase[] = [
   },
 ]
 
-export function getDemoCase(slug: string) {
-  return demoCases.find((item) => item.slug === slug)
+export function getCaseAnalysis(slug: string) {
+  return caseAnalyses.find((item) => item.slug === slug)
 }
