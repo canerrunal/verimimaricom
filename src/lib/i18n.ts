@@ -9,6 +9,7 @@ export const dictionaries = {
       links: [
         { href: '/araclar', label: 'Araçlar' },
         { href: '/rehberler', label: 'Rehberler' },
+        { href: '/duyurular', label: 'Duyurular' },
         { href: '/sozluk', label: 'Sözlük' },
         { href: '/analizler', label: 'Analizler' },
         { href: '/projeler', label: 'Projeler' },
@@ -161,6 +162,7 @@ export const dictionaries = {
       links: [
         { href: '/araclar', label: 'Tools' },
         { href: '/rehberler', label: 'Guides' },
+        { href: '/duyurular', label: 'Announcements' },
         { href: '/sozluk', label: 'Glossary' },
         { href: '/projeler', label: 'Projects' },
         { href: '/analizler', label: 'Case Studies' },

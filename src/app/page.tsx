@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
 import HeroPanel from '@/components/landing/HeroPanel'
+import AnnouncementsSection from '@/components/landing/AnnouncementsSection'
 import ProblemSection from '@/components/landing/ProblemSection'
 import ToolsSection from '@/components/landing/ToolsSection'
 import GuidesSection from '@/components/landing/GuidesSection'
@@ -44,6 +45,7 @@ export default async function HomePage() {
       <UtilityBar />
       <NavBar t={t} />
       <HeroPanel t={t} />
+      <AnnouncementsSection />
       <ProblemSection t={t} />
       <ToolsSection t={t} />
       <GuidesSection t={t} />

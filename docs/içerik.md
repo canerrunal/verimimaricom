@@ -718,6 +718,7 @@ Bültenin vaadi:
 
 - **Araçlar**
 - **Rehberler**
+- **Duyurular**
 - **Analizler**
 - **Projeler**
 - **Hakkında**
@@ -749,6 +750,8 @@ Sağ taraftaki ana CTA:
 │   ├── yapay-zeka-otomasyon/
 │   └── saas-araclari/
 ├── analizler/
+│   └── [slug]/
+├── duyurular/
 │   └── [slug]/
 ├── projeler/
 │   ├── zolm/

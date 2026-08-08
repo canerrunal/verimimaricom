@@ -6,6 +6,7 @@ import { caseAnalyses } from '@/lib/cases'
 import { metricComparisons } from '@/lib/comparisons'
 import { resourceTemplates } from '@/lib/templates'
 import { benchmarkReports } from '@/lib/reports'
+import { announcements } from '@/lib/announcements'
 import { getSiteUrl } from '@/lib/seo'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -170,6 +171,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.85,
     },
     {
+      url: `${siteUrl}/duyurular`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.88,
+    },
+    {
       url: `${siteUrl}/karsilastirmalar`,
       lastModified: now,
       changeFrequency: 'monthly',
@@ -256,6 +263,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
+  const announcementRoutes: MetadataRoute.Sitemap = announcements.map((item) => ({
+    url: `${siteUrl}/duyurular/${item.slug}`,
+    lastModified: new Date(item.updatedAt),
+    changeFrequency: 'weekly',
+    priority: 0.86,
+  }))
+
   return [
     ...staticRoutes,
     ...guideRoutes,
@@ -264,6 +278,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...templateRoutes,
     ...reportRoutes,
     ...caseRoutes,
+    ...announcementRoutes,
     ...blogRoutes,
   ]
 }
