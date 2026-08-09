@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Bugün Kargoda Protokol 51</title>
+  <desc id="desc">Hızlı gönderimin platform hizmet bedeli ve kargo desteğine etkisini gösteren editoryal duyuru görseli.</desc>
+  <rect width="1200" height="760" fill="#f6f4ed"/>
+  <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200M108 0v760M216 0v760M324 0v760M432 0v760M540 0v760M648 0v760M756 0v760M864 0v760M972 0v760M1080 0v760" stroke="#c9ccc3" stroke-width="1" opacity=".45"/>
+  <rect x="54" y="54" width="1092" height="652" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="108" fill="#86e7ff" stroke="#101411" stroke-width="3"/>
+  <text x="86" y="119" fill="#101411" font-family="monospace" font-size="25" font-weight="700" letter-spacing="3">TRENDYOL DUYURULARI / PROTOKOL 51</text>
+  <text x="86" y="270" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">HIZLI GÖNDER</text>
+  <text x="86" y="346" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">DAHA AZ BEDEL</text>
+  <rect x="86" y="392" width="470" height="82" fill="#111612"/>
+  <text x="112" y="445" fill="#d6ff63" font-family="monospace" font-size="29" font-weight="700">10,99 → 4,99 TL + KDV</text>
+  <g transform="translate(750 226)">
+    <rect x="0" y="0" width="284" height="304" fill="#d6ff63" stroke="#101411" stroke-width="3"/>
+    <path d="M32 68h220M32 132h220M32 196h220M32 260h220" stroke="#101411" stroke-width="2" opacity=".7"/>
+    <text x="32" y="48" fill="#101411" font-family="monospace" font-size="18" font-weight="700">MODEL 1</text>
+    <text x="32" y="112" fill="#101411" font-family="Arial, sans-serif" font-size="38" font-weight="800">34,16 TL</text>
+    <text x="32" y="176" fill="#101411" font-family="monospace" font-size="18" font-weight="700">MODEL 2</text>
+    <text x="32" y="240" fill="#101411" font-family="Arial, sans-serif" font-size="38" font-weight="800">68,74 TL</text>
+    <path d="M210 260l42-42" stroke="#5267ff" stroke-width="8"/>
+    <path d="M228 218h24v24" fill="none" stroke="#5267ff" stroke-width="8"/>
+  </g>
+  <text x="86" y="602" fill="#5f655f" font-family="monospace" font-size="20" font-weight="700">BUGÜN KARGODA • 350 TL BAREMİ • ≤ 10 DESİ</text>
+  <text x="86" y="654" fill="#101411" font-family="Arial, sans-serif" font-size="24" font-weight="700">Hız, puan ve kargo maliyeti aynı tabloda buluşuyor.</text>
+</svg>

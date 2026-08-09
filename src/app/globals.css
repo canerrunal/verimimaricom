@@ -8152,6 +8152,11 @@ a.card:hover {
   text-decoration: none;
 }
 
+.announcement-detail-head > .eyebrow {
+  display: block;
+  margin-bottom: 12px;
+}
+
 .announcement-detail-head h1 {
   max-width: 920px;
   margin: 18px 0 20px;
@@ -8236,6 +8241,7 @@ a.card:hover {
   font-size: clamp(28px, 3vw, 44px);
   line-height: 0.9;
   letter-spacing: -0.07em;
+  overflow-wrap: anywhere;
 }
 
 .announcement-stat-grid p {

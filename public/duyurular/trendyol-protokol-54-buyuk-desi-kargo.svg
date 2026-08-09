@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Trendyol Protokol 54 büyük desi kargo</title>
+  <desc id="desc">CEVA Tedarik, CEVA ve Horoz kargo tarifelerindeki artışı gösteren editoryal duyuru görseli.</desc>
+  <rect width="1200" height="760" fill="#f6f4ed"/>
+  <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200M108 0v760M216 0v760M324 0v760M432 0v760M540 0v760M648 0v760M756 0v760M864 0v760M972 0v760M1080 0v760" stroke="#c9ccc3" stroke-width="1" opacity=".45"/>
+  <rect x="54" y="54" width="1092" height="652" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="108" fill="#ffd86a" stroke="#101411" stroke-width="3"/>
+  <text x="86" y="119" fill="#101411" font-family="monospace" font-size="25" font-weight="700" letter-spacing="3">TRENDYOL DUYURULARI / PROTOKOL 54</text>
+  <text x="86" y="270" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">BÜYÜK DESİ</text>
+  <text x="86" y="346" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">BÜYÜK MALİYET</text>
+  <rect x="86" y="392" width="406" height="82" fill="#111612"/>
+  <text x="112" y="445" fill="#ffd86a" font-family="monospace" font-size="30" font-weight="700">500 DESİ / +668 TL</text>
+  <g transform="translate(742 224)">
+    <rect x="0" y="0" width="292" height="306" fill="#86e7ff" stroke="#101411" stroke-width="3"/>
+    <path d="M38 66h216M38 132h216M38 198h216M38 264h216" stroke="#101411" stroke-width="2" opacity=".7"/>
+    <text x="38" y="45" fill="#101411" font-family="monospace" font-size="18" font-weight="700">0–36 DESİ</text>
+    <text x="38" y="111" fill="#101411" font-family="Arial, sans-serif" font-size="34" font-weight="800">CEVA TED.</text>
+    <text x="38" y="177" fill="#101411" font-family="monospace" font-size="18" font-weight="700">37+ DESİ</text>
+    <text x="38" y="243" fill="#101411" font-family="Arial, sans-serif" font-size="34" font-weight="800">HOROZ</text>
+    <path d="M226 258l28-28M240 230h14v14" fill="none" stroke="#ff815c" stroke-width="7"/>
+  </g>
+  <text x="86" y="602" fill="#5f655f" font-family="monospace" font-size="20" font-weight="700">CEVA TEDARİK • CEVA • HOROZ • %100 BAŞARISIZ TESLİMAT</text>
+  <text x="86" y="654" fill="#101411" font-family="Arial, sans-serif" font-size="24" font-weight="700">Desi arttıkça fiyat değil, kararın etkisi büyüyor.</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Trendyol Protokol 53</title>
+  <desc id="desc">Doğrudan cezalar, mikro ihracat iade bedeli ve kargo fiyatlarını gösteren editoryal duyuru görseli.</desc>
+  <rect width="1200" height="760" fill="#f6f4ed"/>
+  <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200M108 0v760M216 0v760M324 0v760M432 0v760M540 0v760M648 0v760M756 0v760M864 0v760M972 0v760M1080 0v760" stroke="#c9ccc3" stroke-width="1" opacity=".45"/>
+  <rect x="54" y="54" width="1092" height="652" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="108" fill="#ff815c" stroke="#101411" stroke-width="3"/>
+  <text x="86" y="119" fill="#101411" font-family="monospace" font-size="25" font-weight="700" letter-spacing="3">TRENDYOL DUYURULARI / PROTOKOL 53</text>
+  <text x="86" y="270" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">HATA</text>
+  <text x="86" y="346" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">ARTIK CEZA</text>
+  <rect x="86" y="392" width="392" height="82" fill="#111612"/>
+  <text x="112" y="445" fill="#ff815c" font-family="monospace" font-size="31" font-weight="700">50 → 1.200 TL</text>
+  <g transform="translate(742 230)">
+    <rect x="0" y="0" width="292" height="298" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+    <path d="M36 76h220M36 142h220M36 208h220" stroke="#c9ccc3" stroke-width="2"/>
+    <text x="36" y="53" fill="#101411" font-family="monospace" font-size="18" font-weight="700">MİKRO İHRACAT İADESİ</text>
+    <text x="36" y="119" fill="#101411" font-family="Arial, sans-serif" font-size="42" font-weight="800">%30–35</text>
+    <text x="36" y="185" fill="#101411" font-family="monospace" font-size="18" font-weight="700">AĞIR KUSUR</text>
+    <text x="36" y="251" fill="#101411" font-family="Arial, sans-serif" font-size="42" font-weight="800">350 TL</text>
+    <circle cx="244" cy="248" r="16" fill="#ff815c" stroke="#101411" stroke-width="3"/>
+  </g>
+  <text x="86" y="602" fill="#5f655f" font-family="monospace" font-size="20" font-weight="700">TEDARİK • DEPO • İADE • KARGO • SEVİYE</text>
+  <text x="86" y="654" fill="#101411" font-family="Arial, sans-serif" font-size="24" font-weight="700">Operasyon kalitesi artık doğrudan finansal sonuç.</text>
+</svg>

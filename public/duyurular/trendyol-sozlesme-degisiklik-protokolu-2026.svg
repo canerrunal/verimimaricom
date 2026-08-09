@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Trendyol sözleşme değişikliği</title>
+  <desc id="desc">İade, ürün güvenliği, performans ve kârlılık başlıklarını gösteren editoryal duyuru görseli.</desc>
+  <rect width="1200" height="760" fill="#f6f4ed"/>
+  <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200M108 0v760M216 0v760M324 0v760M432 0v760M540 0v760M648 0v760M756 0v760M864 0v760M972 0v760M1080 0v760" stroke="#c9ccc3" stroke-width="1" opacity=".45"/>
+  <rect x="54" y="54" width="1092" height="652" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="108" fill="#d6ff63" stroke="#101411" stroke-width="3"/>
+  <text x="86" y="119" fill="#101411" font-family="monospace" font-size="25" font-weight="700" letter-spacing="3">TRENDYOL DUYURULARI / 2026</text>
+  <text x="86" y="270" fill="#101411" font-family="Arial, sans-serif" font-size="76" font-weight="800" letter-spacing="-4">SÖZLEŞME</text>
+  <text x="86" y="346" fill="#101411" font-family="Arial, sans-serif" font-size="76" font-weight="800" letter-spacing="-4">DEĞİŞİKLİĞİ</text>
+  <rect x="86" y="392" width="526" height="82" fill="#111612"/>
+  <text x="112" y="445" fill="#fffef9" font-family="monospace" font-size="29" font-weight="700">OPERASYON KONTROLÜ</text>
+  <g transform="translate(745 236)">
+    <rect x="0" y="0" width="286" height="286" fill="#86e7ff" stroke="#101411" stroke-width="3"/>
+    <path d="M34 58h218M34 112h218M34 166h218M34 220h218M34 58v162M89 58v162M144 58v162M199 58v162" stroke="#101411" stroke-width="2" opacity=".7"/>
+    <path d="M52 197l46-47 38 22 45-74 53 40" fill="none" stroke="#5267ff" stroke-width="9"/>
+    <circle cx="181" cy="98" r="10" fill="#ff815c" stroke="#101411" stroke-width="3"/>
+  </g>
+  <text x="86" y="602" fill="#5f655f" font-family="monospace" font-size="20" font-weight="700">İADE • ÜRÜN GÜVENLİĞİ • HESAP RİSKİ • KÂRLILIK</text>
+  <text x="86" y="654" fill="#101411" font-family="Arial, sans-serif" font-size="24" font-weight="700">Sözleşmeyi okuyun. Paneli kontrol edin. Kararı veriye bağlayın.</text>
+</svg>

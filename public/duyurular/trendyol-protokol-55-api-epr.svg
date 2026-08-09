@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Trendyol Protokol 55 API AI ve EPR</title>
+  <desc id="desc">API, yapay zekâ, KVKK ve mikro ihracat EPR sorumluluklarını gösteren editoryal duyuru görseli.</desc>
+  <rect width="1200" height="760" fill="#f6f4ed"/>
+  <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200M108 0v760M216 0v760M324 0v760M432 0v760M540 0v760M648 0v760M756 0v760M864 0v760M972 0v760M1080 0v760" stroke="#c9ccc3" stroke-width="1" opacity=".45"/>
+  <rect x="54" y="54" width="1092" height="652" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="108" fill="#a99aff" stroke="#101411" stroke-width="3"/>
+  <text x="86" y="119" fill="#101411" font-family="monospace" font-size="25" font-weight="700" letter-spacing="3">TRENDYOL DUYURULARI / PROTOKOL 55</text>
+  <text x="86" y="270" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">OTOMASYON</text>
+  <text x="86" y="346" fill="#101411" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">SORUMLULUK</text>
+  <rect x="86" y="392" width="436" height="82" fill="#111612"/>
+  <text x="112" y="445" fill="#a99aff" font-family="monospace" font-size="30" font-weight="700">API • AI • EPR</text>
+  <g transform="translate(742 228)">
+    <rect x="0" y="0" width="292" height="300" fill="#a99aff" stroke="#101411" stroke-width="3"/>
+    <circle cx="146" cy="92" r="44" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+    <circle cx="70" cy="222" r="34" fill="#86e7ff" stroke="#101411" stroke-width="3"/>
+    <circle cx="222" cy="222" r="34" fill="#ffd86a" stroke="#101411" stroke-width="3"/>
+    <path d="M122 126 90 194M170 126l32 68" stroke="#101411" stroke-width="4"/>
+    <text x="112" y="101" fill="#101411" font-family="monospace" font-size="22" font-weight="700">AI</text>
+    <text x="46" y="230" fill="#101411" font-family="monospace" font-size="17" font-weight="700">API</text>
+    <text x="198" y="230" fill="#101411" font-family="monospace" font-size="17" font-weight="700">EPR</text>
+  </g>
+  <text x="86" y="602" fill="#5f655f" font-family="monospace" font-size="20" font-weight="700">KVKK • TOKEN • MCP • MİKRO İHRACAT</text>
+  <text x="86" y="654" fill="#101411" font-family="Arial, sans-serif" font-size="24" font-weight="700">Otomasyonu kullan. Sorumluluğu haritala.</text>
+</svg>

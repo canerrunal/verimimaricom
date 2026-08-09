@@ -92,10 +92,7 @@ export default async function AnnouncementDetailPage({ params }: PageProps) {
                 <figcaption>{announcement.source}</figcaption>
               </figure>
 
-              <div
-                className="announcement-stat-grid"
-                aria-label="Tarife değişikliği özet metrikleri"
-              >
+              <div className="announcement-stat-grid" aria-label="Duyurunun özet metrikleri">
                 {announcement.stats.map((stat) => (
                   <div key={stat.label}>
                     <span>{stat.label}</span>
@@ -125,14 +122,20 @@ export default async function AnnouncementDetailPage({ params }: PageProps) {
               </div>
 
               <div className="announcement-conclusion">
-                <span className="eyebrow">SONRAKİ ADIM</span>
-                <strong>Tahmin etme. Maliyeti modele ekle. Kârı yeniden hesapla.</strong>
+                <span className="eyebrow">{announcement.nextStep?.eyebrow ?? 'SONRAKİ ADIM'}</span>
+                <strong>
+                  {announcement.nextStep?.title ??
+                    'Tahmin etme. Maliyeti modele ekle. Kârı yeniden hesapla.'}
+                </strong>
                 <p>
-                  Yeni tarifenin ürün, kampanya ve reklam kararlarınızdaki etkisini kendi sipariş
-                  karmınızla ölçün.
+                  {announcement.nextStep?.body ??
+                    'Yeni tarifenin ürün, kampanya ve reklam kararlarınızdaki etkisini kendi sipariş karmınızla ölçün.'}
                 </p>
-                <a className="btn" href="/araclar/kar-marji-hesaplayici">
-                  Kârı yeniden hesapla →
+                <a
+                  className="btn"
+                  href={announcement.nextStep?.ctaHref ?? '/araclar/kar-marji-hesaplayici'}
+                >
+                  {announcement.nextStep?.ctaLabel ?? 'Kârı yeniden hesapla →'}
                 </a>
               </div>
             </div>
