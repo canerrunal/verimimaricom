@@ -24,16 +24,16 @@ export default function HeroPanel({ t }: { t: any }) {
         ],
       }
     : {
-        crumb: 'TÜRKİYE’DEKİ E-TİCARET EKİPLERİ İÇİN',
-        titleTop: 'Veriyi gör.',
-        titleAccent: 'Kârı büyüt.',
-        titleBottom: 'Kaybolmadan.',
+        crumb: 'E-TİCARET İÇİN VERİ, YAPAY ZEKÂ VE BÜYÜME ARAÇLARI',
+        titleTop: 'E-ticaret verisini',
+        titleAccent: 'daha kârlı kararlara',
+        titleBottom: 'dönüştürün.',
         intro:
-          'Reklam maliyetiniz, ürün marjınız ve operasyon giderleriniz üzerinden hangi kararın mantıklı olduğunu görün.',
-        introStrong: 'Tahmine değil, hesaplamaya dayanın.',
-        primary: '2 dakikada hesabı gör',
-        secondary: 'Yöntemleri incele',
-        signals: ['Kayıt olmadan kullanın', 'Açık hesaplama yöntemi', 'Verileriniz saklanmaz'],
+          'Reklam, ürün ve satış verilerinizi anlamanızı kolaylaştıran ücretsiz hesaplayıcılar, yapay zekâ destekli araçlar ve uygulanabilir rehberler.',
+        introStrong: 'Tahmine değil, açık hesaplamaya dayanın.',
+        primary: 'Ücretsiz araçları kullan',
+        secondary: 'Rehberleri incele',
+        signals: ['Caner Ünal tarafından geliştirildi', 'Açık yöntemler', 'Verileriniz saklanmaz'],
         visualKicker: 'BİR KARARIN YOLCULUĞU',
         consoleLabel: 'Başa Baş ROAS mini konsol',
         notes: [

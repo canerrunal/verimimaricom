@@ -21,6 +21,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: `${siteUrl}/en`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
       url: `${siteUrl}/araclar`,
       lastModified: now,
       changeFrequency: 'weekly',
@@ -201,10 +207,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/e-ticaret-danismani`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.92,
+    },
+    {
       url: `${siteUrl}/bulten`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/labs`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.55,
+    },
+    {
+      url: `${siteUrl}/en/labs`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.35,
     },
     {
       url: `${siteUrl}/gizlilik`,

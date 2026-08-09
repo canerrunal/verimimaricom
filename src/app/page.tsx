@@ -13,7 +13,7 @@ import UtilityBar from '@/components/landing/UtilityBar'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün',
+  title: 'E-Ticaret Veri, AI ve Kârlılık Araçları',
   description:
     'E-ticaret verisini daha kârlı kararlara dönüştüren ücretsiz hesaplayıcılar, uygulanabilir rehberler ve veri odaklı ürünler.',
   keywords: [
@@ -21,11 +21,15 @@ export const metadata: Metadata = {
     'e-ticaret kârlılık araçları',
     'reklam performansı',
     'ROAS hesaplama',
-    'veri odaklı karar',
+    'veri odaklı e-ticaret',
+    'e-ticaret veri analizi',
   ],
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    languages: { 'tr-TR': '/', 'en-US': '/en', 'x-default': '/' },
+  },
   openGraph: {
-    title: 'E-Ticaret Verisini Kârlı Kararlara Dönüştürün | Veri Mimarı',
+    title: 'E-Ticaret Veri, AI ve Kârlılık Araçları | Veri Mimarı',
     description: 'Kârlılık, reklam ve operasyon verisini tek bir karar sisteminde birleştirin.',
     type: 'website',
     url: '/',

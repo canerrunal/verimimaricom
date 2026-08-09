@@ -1,4 +1,6 @@
 export default function ProofSection({ t }: { t: any }) {
+  const isEnglish = t?.locale === 'en'
+
   return (
     <section className="section-band band-dark">
       <div className="wrap section">
@@ -27,6 +29,21 @@ export default function ProofSection({ t }: { t: any }) {
             <p>E-ticaret verisini kârlı kararlara dönüştüren sistemler tasarlıyorum.</p>
             <a className="link" href="/hakkinda">
               Profili İncele
+            </a>
+          </div>
+
+          <div className="card">
+            <span className="eyebrow">{isEnglish ? 'CONSULTING' : 'DANIŞMANLIK'}</span>
+            <h3>
+              {isEnglish ? 'E-Commerce and Digital Marketing' : 'E-Ticaret ve Dijital Pazarlama'}
+            </h3>
+            <p>
+              {isEnglish
+                ? 'Connect profitability, ad measurement, and automation in one decision system.'
+                : 'Kârlılık, reklam ölçümü ve otomasyonu tek karar sisteminde birleştirin.'}
+            </p>
+            <a className="link" href="/e-ticaret-danismani">
+              {isEnglish ? 'Review the Consulting Scope' : 'Danışmanlık Kapsamını İncele'}
             </a>
           </div>
         </div>

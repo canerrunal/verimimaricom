@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import VeriBotChat from '@/components/veribot/VeriBotChat'
+import JsonLd from '@/components/common/JsonLd'
 import { brandProfile, getGlobalJsonLd, getSiteUrl } from '@/lib/seo'
 
 const inter = Inter({
@@ -11,11 +12,12 @@ const inter = Inter({
 })
 
 const siteUrl = getSiteUrl()
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Veri Mimarı | Caner Ünal',
+    default: 'Veri Mimarı | E-Ticaret Veri ve Kârlılık Araçları',
     template: '%s | Veri Mimarı',
   },
   description:
@@ -23,6 +25,10 @@ export const metadata: Metadata = {
   keywords: [
     'Veri Mimarı',
     'Caner Ünal',
+    'E-ticaret danışmanı',
+    'E-ticaret uzmanı',
+    'Dijital pazarlama uzmanı',
+    'Dijital pazarlama danışmanlığı',
     'E-ticaret',
     'Başa Baş ROAS',
     'Reklam Analitiği',
@@ -52,6 +58,7 @@ export const metadata: Metadata = {
     description: brandProfile.description,
     images: [brandProfile.image],
   },
+  ...(googleSiteVerification ? { verification: { google: googleSiteVerification } } : {}),
   robots: {
     index: true,
     follow: true,
@@ -76,11 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {jsonLd.map((schema, index) => (
-          <script
-            key={`global-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
+          <JsonLd key={`global-schema-${index}`} id={`global-schema-${index}`} data={schema} />
         ))}
         {children}
         <VeriBotChat />

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
 import HeroPanel from '@/components/landing/HeroPanel'
 import ProblemSection from '@/components/landing/ProblemSection'
@@ -9,6 +10,23 @@ import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
 import UtilityBar from '@/components/landing/UtilityBar'
 import { getDictionary } from '@/lib/i18n'
+
+export const metadata: Metadata = {
+  title: 'E-Commerce Data, AI and Profitability Tools',
+  description:
+    'Turn e-commerce advertising, product and sales data into profitable decisions with free calculators, practical guides and AI tools.',
+  alternates: {
+    canonical: '/en',
+    languages: { 'tr-TR': '/', 'en-US': '/en', 'x-default': '/' },
+  },
+  openGraph: {
+    title: 'E-Commerce Data, AI and Profitability Tools | Veri Mimarı',
+    description: 'Free tools and practical methods for profitable e-commerce decisions.',
+    url: '/en',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
 
 export default async function HomePageEN() {
   const t = getDictionary('en')

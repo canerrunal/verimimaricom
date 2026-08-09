@@ -17,7 +17,7 @@ export default function Footer({ t }: { t: any }) {
           <span style={{ margin: '0 8px' }}>·</span>
           <a href="/karsilastirmalar">{isEnglish ? 'Comparisons' : 'Karşılaştırmalar'}</a>
           <span style={{ margin: '0 8px' }}>·</span>
-          <a href="/is-birligi">{isEnglish ? 'Collaborate' : 'İş Birliği'}</a>
+          <a href="/e-ticaret-danismani">{isEnglish ? 'Consulting' : 'Danışmanlık'}</a>
         </span>
       </div>
     </footer>

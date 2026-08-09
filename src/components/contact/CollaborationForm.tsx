@@ -45,6 +45,8 @@ export default function CollaborationForm() {
   }
 
   const projectTypes = [
+    'E-Ticaret Danışmanlığı',
+    'Dijital Pazarlama Stratejisi',
     'E-Ticaret Kârlılık Modellemesi',
     'Özel Hesaplama Aracı',
     'AI Entegrasyonu & Otomasyon',

@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
+import JsonLd from '@/components/common/JsonLd'
 import { getDictionary } from '@/lib/i18n'
+import { getSiteUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Caner Ünal Hakkında',
+  title: { absolute: 'Caner Ünal | E-Ticaret ve Dijital Pazarlama Uzmanı' },
   description:
-    'Veri Mimarı kurucusu Caner Ünal: E-ticaret büyümesi, reklam analitiği ve yapay zeka.',
+    'Veri Mimarı kurucusu Caner Ünal; e-ticaret kârlılığı, dijital pazarlama analitiği, yapay zekâ ve yazılım sistemleri geliştirir.',
   alternates: { canonical: '/hakkinda' },
   openGraph: {
     title: 'Caner Ünal Hakkında | Veri Mimarı',
@@ -47,15 +49,27 @@ const timeline = [
 
 export default function HakkindaPage() {
   const t = getDictionary('tr')
+  const siteUrl = getSiteUrl()
+  const profileJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${siteUrl}/hakkinda#profilepage`,
+    url: `${siteUrl}/hakkinda`,
+    name: 'Caner Ünal | E-Ticaret ve Dijital Pazarlama Uzmanı',
+    inLanguage: 'tr-TR',
+    mainEntity: { '@id': `${siteUrl}#person` },
+    isPartOf: { '@id': `${siteUrl}#website` },
+  }
 
   return (
     <main className="page">
+      <JsonLd id="profile-page-schema" data={profileJsonLd} />
       <NavBar t={t} />
 
       <section className="wrap hero single">
         <div>
-          <div className="crumb">VERİ MİMARI / KURUCU VE UZMANLIK</div>
-          <h1>Bilgiyi araçlara dönüştürüyorum.</h1>
+          <div className="crumb">CANER ÜNAL / E-TİCARET VE DİJİTAL PAZARLAMA UZMANI</div>
+          <h1>Veriyi araçlara ve kârlı kararlara dönüştürüyorum.</h1>
           <p className="intro">
             E-ticaret, dijital pazarlama, AI ve yazılım geliştirmeyi birleştirerek günlük işlerde
             kullanılabilir sistemler tasarlıyorum.
@@ -188,8 +202,8 @@ export default function HakkindaPage() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: 8 }}>
-            <a href="/is-birligi" className="btn">
-              İş Birliği İletişimi →
+            <a href="/e-ticaret-danismani" className="btn">
+              Danışmanlık Kapsamını İncele →
             </a>
           </div>
         </div>

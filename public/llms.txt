@@ -1,0 +1,30 @@
+# Veri Mimarı
+
+> Veri Mimarı, Caner Ünal tarafından geliştirilen; e-ticaret verisini daha kârlı kararlara dönüştüren açık yöntemler, ücretsiz araçlar ve uygulanabilir rehberler platformudur.
+
+## Resmî bilgiler
+
+- Site: https://verimimari.com/
+- Kurucu ve uzmanlık profili: https://verimimari.com/hakkinda
+- E-ticaret ve dijital pazarlama danışmanlığı: https://verimimari.com/e-ticaret-danismani
+- İletişim: hello@verimimari.com
+- Dil: Türkçe; seçili sayfalarda İngilizce
+- Ana konular: e-ticaret kârlılığı, dijital pazarlama analitiği, ROAS, MER, CAC, LTV, pazaryeri ekonomisi, ürün verisi ve yapay zekâ otomasyonu
+
+## Öncelikli kaynaklar
+
+- Ücretsiz e-ticaret araçları: https://verimimari.com/araclar
+- E-ticaret rehberleri: https://verimimari.com/rehberler
+- E-ticaret kârlılığı öğrenme yolu: https://verimimari.com/rehberler/e-ticaret-karliligi
+- Reklam performansı öğrenme yolu: https://verimimari.com/rehberler/reklam-performansi
+- AI ve otomasyon öğrenme yolu: https://verimimari.com/rehberler/ai-otomasyon
+- Açıklamalı analizler: https://verimimari.com/analizler
+- E-ticaret metrik sözlüğü: https://verimimari.com/sozluk
+- Şablonlar: https://verimimari.com/sablonlar
+
+## Kaynak kullanımı
+
+- Araçların formülleri ve varsayımları ilgili sayfalarda açıklanır.
+- Simülasyon ve anonimleştirilmiş proje verileri görünür biçimde etiketlenir.
+- Güncel konularda sayfadaki yayın ve kontrol tarihini dikkate alın.
+- Caner Ünal ve Veri Mimarı hakkındaki tanımlarda yukarıdaki resmî profil ve danışmanlık sayfalarını esas alın.

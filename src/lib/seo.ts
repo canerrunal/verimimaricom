@@ -5,12 +5,12 @@ export function getSiteUrl(): string {
 export const brandProfile = {
   name: 'Caner Ünal',
   brand: 'Veri Mimarı',
-  role: 'Yapay Zeka ve Veri Bilimi Uzmanı',
-  title: 'Web Developer · E-ticaret · Grafik Tasarım · Dijital Pazarlama',
+  role: 'E-Ticaret ve Dijital Pazarlama Uzmanı',
+  title: 'E-Ticaret Danışmanı · Dijital Pazarlama Uzmanı · Veri ve Yapay Zekâ',
   description:
-    'E-ticaret verisini daha kârlı kararlara dönüştüren ücretsiz araçlar, rehberler ve ürünler.',
+    'E-ticaret kârlılığı, dijital pazarlama analitiği ve yapay zekâ sistemleriyle veriyi uygulanabilir büyüme kararlarına dönüştürür.',
   email: 'hello@verimimari.com',
-  image: '/og/veri-mimari-og.png',
+  image: '/opengraph-image',
   sameAs: [
     'https://www.linkedin.com/in/caner-unal',
     'https://github.com/canerunal',
@@ -26,32 +26,52 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
     '@type': 'Person',
     '@id': `${siteUrl}#person`,
     name: brandProfile.name,
-    alternateName: brandProfile.brand,
     jobTitle: brandProfile.role,
     description: brandProfile.description,
-    url: siteUrl,
+    url: `${siteUrl}/hakkinda`,
     email: brandProfile.email,
-    image: `${siteUrl}${brandProfile.image}`,
     sameAs: brandProfile.sameAs,
     knowsAbout: [
-      'E-commerce Intelligence',
-      'Data Analytics',
-      'Break-even ROAS',
-      'Profitability',
-      'Artificial Intelligence',
+      'E-ticaret danışmanlığı',
+      'Dijital pazarlama stratejisi',
+      'E-ticaret analitiği',
+      'Başa baş ROAS',
+      'Kârlılık ve katkı payı',
+      'Yapay zekâ otomasyonu',
     ],
+    worksFor: { '@id': `${siteUrl}#organization` },
+  }
+
+  const organization = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteUrl}#organization`,
+    name: brandProfile.brand,
+    url: siteUrl,
+    description: brandProfile.description,
+    image: `${siteUrl}${brandProfile.image}`,
+    founder: { '@id': `${siteUrl}#person` },
   }
 
   const service = {
     '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
+    '@type': 'Service',
     '@id': `${siteUrl}#service`,
-    name: 'Veri Mimarı Hizmetleri',
-    url: siteUrl,
+    name: 'E-Ticaret ve Dijital Pazarlama Danışmanlığı',
+    description:
+      'E-ticaret kârlılığı, reklam performansı, ölçüm altyapısı ve yapay zekâ otomasyonu için veri odaklı danışmanlık.',
+    url: `${siteUrl}/e-ticaret-danismani`,
     provider: { '@id': `${siteUrl}#person` },
-    areaServed: 'TR',
-    availableLanguage: ['tr', 'en'],
-    serviceType: ['E-commerce Analytics', 'ROAS Calculators', 'Growth Strategy'],
+    areaServed: {
+      '@type': 'Country',
+      name: 'Türkiye',
+    },
+    availableLanguage: ['tr-TR', 'en-US'],
+    serviceType: [
+      'E-ticaret danışmanlığı',
+      'Dijital pazarlama danışmanlığı',
+      'E-ticaret analitiği',
+    ],
   }
 
   const website = {
@@ -61,15 +81,10 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
     name: `${brandProfile.brand} | ${brandProfile.name}`,
     url: siteUrl,
     inLanguage: ['tr-TR', 'en-US'],
-    publisher: { '@id': `${siteUrl}#person` },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteUrl}/?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
+    publisher: { '@id': `${siteUrl}#organization` },
   }
 
-  return [person, service, website]
+  return [person, organization, service, website]
 }
 
 export function getCaseStudyJsonLd(

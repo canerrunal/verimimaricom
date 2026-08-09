@@ -50,8 +50,8 @@ export default function NavBar({ t }: { t: any }) {
           >
             {mobileMenuOpen ? '✕ Kapat' : '☰ Menü'}
           </button>
-          <a className="nav-secondary" href="/is-birligi">
-            {t.locale === 'en' ? 'Collaborate' : 'İş birliği'} ↗
+          <a className="nav-secondary" href="/e-ticaret-danismani">
+            {t.locale === 'en' ? 'Consulting' : 'Danışmanlık'} ↗
           </a>
           <a href="/araclar" className="btn nav-primary">
             {t.locale === 'en' ? 'Open tools' : 'Araçları aç'} ↗
