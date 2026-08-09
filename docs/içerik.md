@@ -777,7 +777,7 @@ Sağ taraftaki ana CTA:
 | Knowledge Graph  | İkincil keşif özelliği; ana sayfada öncelikli değil         |
 | Teknoloji Yığını | Hakkında veya proje detay sayfaları                         |
 | Premium          | Trafik ve ücretsiz değer oluşana kadar navigasyondan kaldır |
-| Analizler        | Veri kaynağı ve anonimleştirme notuyla yeniden yapılandır    |
+| Analizler        | Veri kaynağı ve anonimleştirme notuyla yeniden yapılandır   |
 | VeriBot          | Belirli görevleri çözen araç biçiminde yeniden tanımla      |
 
 ---

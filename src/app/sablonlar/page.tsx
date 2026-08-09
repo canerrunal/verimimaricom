@@ -20,8 +20,12 @@ export default function TemplatesPage() {
       <section className="hero-shell template-index-hero">
         <div className="wrap hero single">
           <div>
-            <div className="crumb"><i aria-hidden="true" /> ŞABLONLAR / UYGULAMAYA HAZIR</div>
-            <h1>Boş tabloyla değil, <span className="accent">karar sistemiyle</span> başlayın.</h1>
+            <div className="crumb">
+              <i aria-hidden="true" /> ŞABLONLAR / UYGULAMAYA HAZIR
+            </div>
+            <h1>
+              Boş tabloyla değil, <span className="accent">karar sistemiyle</span> başlayın.
+            </h1>
             <p className="intro">
               Excel ve Google Sheets’e aktarılabilen ücretsiz tablolar; alan tanımları, kullanım
               adımları ve kalite kontrol listesiyle birlikte gelir.
@@ -34,19 +38,36 @@ export default function TemplatesPage() {
         <div className="wrap section template-index">
           <div className="template-library-note" role="note">
             <strong>ÜCRETSİZ · KAYIT GEREKTİRMEZ</strong>
-            <span>Şablonlar örnek veri içerir; mağaza veriniz tarayıcıdan Veri Mimarı’na gönderilmez.</span>
+            <span>
+              Şablonlar örnek veri içerir; mağaza veriniz tarayıcıdan Veri Mimarı’na gönderilmez.
+            </span>
           </div>
           <div className="head">
-            <div><span className="eyebrow">KAYNAK KÜTÜPHANESİ / {resourceTemplates.length}</span><h2>Kopyalayın, uyarlayın, karar verin.</h2></div>
+            <div>
+              <span className="eyebrow">KAYNAK KÜTÜPHANESİ / {resourceTemplates.length}</span>
+              <h2>Kopyalayın, uyarlayın, karar verin.</h2>
+            </div>
             <p>Her dosyanın neyi ölçtüğünü ve hangi kararı desteklediğini indirmeden önce görün.</p>
           </div>
           <div className="template-card-grid">
             {resourceTemplates.map((item, index) => (
               <a key={item.slug} href={`/sablonlar/${item.slug}`} className="template-card">
-                <div><span>{String(index + 1).padStart(2, '0')}</span><span className="tag">{item.category}</span></div>
+                <div>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <span className="tag">{item.category}</span>
+                </div>
                 <h2>{item.title}</h2>
                 <p>{item.description}</p>
-                <dl><div><dt>Format</dt><dd>{item.format}</dd></div><div><dt>İçerik</dt><dd>{item.sheets.length} çalışma alanı</dd></div></dl>
+                <dl>
+                  <div>
+                    <dt>Format</dt>
+                    <dd>{item.format}</dd>
+                  </div>
+                  <div>
+                    <dt>İçerik</dt>
+                    <dd>{item.sheets.length} çalışma alanı</dd>
+                  </div>
+                </dl>
                 <strong>Şablonu ve yöntemi aç →</strong>
               </a>
             ))}
