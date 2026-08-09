@@ -8077,6 +8077,67 @@ a.card:hover {
   line-height: 1.55;
 }
 
+.announcement-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.announcement-toolbar .filters {
+  margin-bottom: 0;
+}
+
+.announcement-sort {
+  display: grid;
+  flex: 0 0 190px;
+  gap: 7px;
+}
+
+.announcement-sort span {
+  color: var(--muted);
+  font: 750 9px/1 var(--mono);
+}
+
+.announcement-sort select {
+  min-height: 42px;
+  width: 100%;
+  padding: 0 34px 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--paper);
+  font: 700 11px/1 var(--sans);
+}
+
+.announcement-sort select:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 2px;
+}
+
+.announcement-result-count {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font: 700 10px/1.4 var(--mono);
+  text-transform: uppercase;
+}
+
+.announcement-empty {
+  display: grid;
+  min-height: 180px;
+  place-content: center;
+  gap: 12px;
+  border: 1px solid var(--ink);
+  background: var(--surface);
+  text-align: center;
+}
+
+.announcement-empty p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .announcement-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -8405,6 +8466,16 @@ a.card:hover {
   .announcement-index-head {
     display: grid;
     gap: 14px;
+  }
+
+  .announcement-toolbar {
+    display: grid;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .announcement-sort {
+    width: 100%;
   }
 
   .announcement-card {

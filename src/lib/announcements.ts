@@ -13,6 +13,7 @@ export type AnnouncementSection = {
 
 export type Announcement = {
   slug: string
+  addedOrder: number
   eyebrow: string
   title: string
   excerpt: string
@@ -38,6 +39,7 @@ export type Announcement = {
 export const announcements: Announcement[] = [
   {
     slug: 'trendyol-elektronik-ticaret-aracilik-sozlesmesi-degisiklik-protokolu-2026',
+    addedOrder: 1,
     eyebrow: 'TRENDYOL DUYURULARI / 9 AĞUSTOS 2026',
     title: 'Trendyol sözleşmesi değişti: operasyon artık günlük takip istiyor.',
     excerpt:
@@ -179,6 +181,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'trendyol-bugun-kargoda-platform-hizmet-bedeli-protokol-51',
+    addedOrder: 2,
     eyebrow: 'TRENDYOL DUYURULARI / PROTOKOL 51',
     title: 'Bugün Kargoda artık görünürlük değil, doğrudan kâr kararı.',
     excerpt:
@@ -307,6 +310,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'trendyol-protokol-53-cezalar-mikro-ihracat-kargo-2026',
+    addedOrder: 3,
     eyebrow: 'TRENDYOL DUYURULARI / PROTOKOL 53',
     title: 'Trendyol Protokol 53: operasyon hatası artık doğrudan ceza.',
     excerpt:
@@ -457,6 +461,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'trendyol-protokol-54-ceva-horoz-buyuk-desi-kargo-2026',
+    addedOrder: 4,
     eyebrow: 'TRENDYOL DUYURULARI / PROTOKOL 54',
     title: 'Protokol 54: büyük desili kargo artık marjı sessizce eritiyor.',
     excerpt:
@@ -585,6 +590,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'trendyol-protokol-55-api-ai-mikro-ihracat-epr-2026',
+    addedOrder: 5,
     eyebrow: 'TRENDYOL DUYURULARI / PROTOKOL 55',
     title: 'Protokol 55: otomasyon serbest, sorumluluk sende.',
     excerpt:
@@ -732,6 +738,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'trendyol-protokol-56-komisyon-kadin-kooperatifi-ptt-tex-2026',
+    addedOrder: 6,
     eyebrow: 'TRENDYOL DUYURULARI / PROTOKOL 56',
     title: 'Protokol 56: komisyon dinamikleşiyor, PTT’de 30 desi kritik eşik.',
     excerpt:
@@ -864,6 +871,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'kargo-tarifesi-10-agustos-2026',
+    addedOrder: 0,
     eyebrow: 'KARGO TARİFESİ / 10 AĞUSTOS 2026',
     title: 'Kargo zammını yüzdeyle okumak yetmez.',
     excerpt: 'Hangi deside ne kadar kâr kaybettiğinize bakın.',
@@ -944,4 +952,17 @@ export const announcements: Announcement[] = [
 
 export function getAnnouncement(slug: string) {
   return announcements.find((announcement) => announcement.slug === slug)
+}
+
+export type AnnouncementSortOrder = 'newest' | 'oldest' | 'updated'
+
+export function sortAnnouncements(items: Announcement[], order: AnnouncementSortOrder = 'newest') {
+  return [...items].sort((a, b) => {
+    if (order === 'oldest') return a.addedOrder - b.addedOrder
+    if (order === 'updated') {
+      const updatedDifference = b.updatedAt.localeCompare(a.updatedAt)
+      return updatedDifference || b.addedOrder - a.addedOrder
+    }
+    return b.addedOrder - a.addedOrder
+  })
 }

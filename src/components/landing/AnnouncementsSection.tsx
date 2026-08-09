@@ -1,7 +1,7 @@
-import { announcements } from '@/lib/announcements'
+import { announcements, sortAnnouncements } from '@/lib/announcements'
 
 export default function AnnouncementsSection() {
-  const announcement = announcements[0]
+  const announcement = sortAnnouncements(announcements)[0]
 
   return (
     <section className="section-band announcement-home-section">

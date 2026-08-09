@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
+import AnnouncementsLibrary from '@/components/announcements/AnnouncementsLibrary'
 import { announcements } from '@/lib/announcements'
 import { getDictionary } from '@/lib/i18n'
 
@@ -44,29 +45,7 @@ export default function AnnouncementsPage() {
               okuyun.
             </p>
           </div>
-          <div className="announcement-grid">
-            {announcements.map((announcement) => (
-              <a
-                key={announcement.slug}
-                className="announcement-card"
-                href={`/duyurular/${announcement.slug}`}
-              >
-                <div className="announcement-card-image">
-                  <img src={announcement.image} alt={announcement.imageAlt} />
-                </div>
-                <div className="announcement-card-copy">
-                  <div className="announcement-card-meta">
-                    <span className="tag yellow">{announcement.category}</span>
-                    <span>{announcement.readingTime}</span>
-                  </div>
-                  <span className="eyebrow">{announcement.eyebrow}</span>
-                  <h2>{announcement.title}</h2>
-                  <p>{announcement.excerpt}</p>
-                  <span className="link">Duyuruyu incele →</span>
-                </div>
-              </a>
-            ))}
-          </div>
+          <AnnouncementsLibrary announcements={announcements} />
         </div>
       </section>
 
