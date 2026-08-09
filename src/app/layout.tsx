@@ -12,7 +12,8 @@ const inter = Inter({
 })
 
 const siteUrl = getSiteUrl()
-const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+const googleSiteVerification =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'oTRvAIcqh7XPzyTuXHrgyk1UDwhZwVIdKSEVsEJvC8I'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
