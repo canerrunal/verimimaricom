@@ -30,6 +30,16 @@ export default function TrackLink({
           href,
           ...payload,
         })
+
+        if (download) {
+          trackEvent('download', { href, ...payload })
+        } else if (href.startsWith('tel:')) {
+          trackEvent('phone_click', { href, ...payload })
+        } else if (/wa\.me|whatsapp/i.test(href)) {
+          trackEvent('whatsapp_click', { href, ...payload })
+        } else if (/cal\.com|calendly/i.test(href)) {
+          trackEvent('calendly_booking', { href, ...payload })
+        }
       }}
     >
       {children}

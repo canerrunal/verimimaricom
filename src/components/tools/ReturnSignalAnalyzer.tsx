@@ -4,6 +4,7 @@ import { useState } from 'react'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
+import { trackDownload, trackEvent } from '@/lib/analytics'
 import { getDictionary } from '@/lib/i18n'
 import { analyzeReturnSignals, type ReturnSignalAnalysis } from '@/lib/return-signal'
 
@@ -40,6 +41,7 @@ function downloadReport(analysis: ReturnSignalAnalysis) {
   link.href = URL.createObjectURL(new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8' }))
   link.download = 'veri-mimari-iade-sinyali-raporu.csv'
   link.click()
+  trackDownload(link.download, 'return_signal_analyzer')
   URL.revokeObjectURL(link.href)
 }
 
@@ -52,6 +54,7 @@ export default function ReturnSignalAnalyzer() {
   const runAnalysis = () => {
     try {
       setAnalysis(analyzeReturnSignals(input))
+      trackEvent('tool_calculation', { tool: 'return_signal_analyzer' })
       setError('')
       window.requestAnimationFrame(() =>
         document

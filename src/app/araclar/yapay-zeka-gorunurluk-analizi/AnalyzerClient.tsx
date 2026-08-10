@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useRef, useState } from 'react'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
+import { trackDownload } from '@/lib/analytics'
 import Footer from '@/components/landing/Footer'
 import NavBar from '@/components/landing/NavBar'
 import {
@@ -120,6 +121,7 @@ function downloadJson(filename: string, value: unknown) {
   document.body.appendChild(anchor)
   anchor.click()
   anchor.remove()
+  trackDownload(filename, 'ai_visibility_analyzer')
   URL.revokeObjectURL(url)
 }
 

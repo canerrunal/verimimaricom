@@ -3,6 +3,7 @@ type AnalyticsPayload = Record<string, string | number | boolean | null | undefi
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void
+    dataLayer?: Array<Record<string, unknown>>
     plausible?: (event: string, options?: { props?: AnalyticsPayload }) => void
     posthog?: { capture?: (event: string, props?: AnalyticsPayload) => void }
     umami?: { track?: (event: string, props?: AnalyticsPayload) => void }
@@ -20,6 +21,9 @@ export function trackEvent(eventName: string, payload: AnalyticsPayload = {}) {
   )
 
   try {
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({ event: safeEvent, ...props })
+
     if (typeof window.gtag === 'function') {
       window.gtag('event', safeEvent, props)
     }
@@ -42,6 +46,14 @@ export function trackEvent(eventName: string, payload: AnalyticsPayload = {}) {
 
 export function trackCalculatorCalc(toolName: string, inputs: AnalyticsPayload = {}) {
   trackEvent('calculator_calculate', { tool: toolName, ...inputs })
+  trackEvent('tool_calculation', { tool: toolName, ...inputs })
+}
+
+export function trackDownload(fileName: string, placement?: string) {
+  trackEvent('download', {
+    file_name: fileName,
+    ...(placement ? { placement } : {}),
+  })
 }
 
 export function trackShareCopy(toolName: string, url: string) {

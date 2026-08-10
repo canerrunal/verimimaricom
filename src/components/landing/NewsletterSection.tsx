@@ -1,3 +1,7 @@
+'use client'
+
+import { trackEvent } from '@/lib/analytics'
+
 export default function NewsletterSection({ t }: { t: any }) {
   return (
     <section className="newsletter section-band">
@@ -14,7 +18,11 @@ export default function NewsletterSection({ t }: { t: any }) {
             placeholder={t?.newsletter?.placeholder || 'E-posta adresiniz'}
             aria-label={t?.locale === 'en' ? 'Newsletter email' : 'Bülten e-posta adresi'}
           />
-          <button type="button" className="btn">
+          <button
+            type="button"
+            className="btn"
+            onClick={() => trackEvent('newsletter_signup', { placement: 'newsletter_section' })}
+          >
             Abone Ol
           </button>
         </div>

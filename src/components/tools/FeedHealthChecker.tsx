@@ -4,6 +4,7 @@ import { useState } from 'react'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
+import { trackDownload, trackEvent } from '@/lib/analytics'
 import { getDictionary } from '@/lib/i18n'
 import {
   analyzeProductFeed,
@@ -40,6 +41,7 @@ export default function FeedHealthChecker() {
   const runAnalysis = () => {
     try {
       setAnalysis(analyzeProductFeed(feed))
+      trackEvent('tool_calculation', { tool: 'feed_health_checker' })
       setError('')
       window.requestAnimationFrame(() => {
         document
@@ -74,6 +76,7 @@ export default function FeedHealthChecker() {
     link.href = url
     link.download = 'veri-mimari-feed-saglik-raporu.csv'
     link.click()
+    trackDownload(link.download, 'feed_health_checker')
     URL.revokeObjectURL(url)
   }
 

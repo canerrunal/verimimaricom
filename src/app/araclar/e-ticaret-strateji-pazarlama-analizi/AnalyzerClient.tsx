@@ -4,6 +4,7 @@ import { ChangeEvent, useEffect, useId, useMemo, useRef, useState } from 'react'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
 import FeedbackWidget from '@/components/common/FeedbackWidget'
+import { trackDownload, trackEvent } from '@/lib/analytics'
 import { getDictionary } from '@/lib/i18n'
 import {
   analyzePortfolio,
@@ -113,6 +114,7 @@ function downloadFile(content: string, type: string, filename: string) {
   document.body.appendChild(anchor)
   anchor.click()
   anchor.remove()
+  trackDownload(filename, 'ecommerce_strategy_analyzer')
   URL.revokeObjectURL(url)
 }
 
@@ -405,6 +407,11 @@ export default function AnalyzerClient() {
   }, [hydrated, products, settings])
 
   const analysis = useMemo(() => analyzePortfolio(products, settings), [products, settings])
+
+  useEffect(() => {
+    if (!hydrated) return
+    trackEvent('tool_calculation', { tool: 'ecommerce_strategy_analyzer' })
+  }, [hydrated, products, settings])
 
   const updateProduct = (id: string, patch: Partial<ProductInput>) => {
     setProducts((current) =>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 export default function CollaborationForm() {
   const [name, setName] = useState('')
@@ -36,6 +37,15 @@ export default function CollaborationForm() {
       })
 
       if (!response.ok) throw new Error('contact-submit-failed')
+      trackEvent('contact_form_submit', {
+        form: 'collaboration',
+        project_type: projectType,
+        budget_range: budget,
+      })
+      trackEvent('lead_submit', {
+        lead_type: 'consulting_request',
+        project_type: projectType,
+      })
       setSubmitted(true)
     } catch {
       setSubmitError('Talebiniz şu anda iletilemedi. Lütfen biraz sonra yeniden deneyin.')

@@ -15,7 +15,6 @@ const inter = Inter({
 const siteUrl = getSiteUrl()
 const googleSiteVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'oTRvAIcqh7XPzyTuXHrgyk1UDwhZwVIdKSEVsEJvC8I'
-const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || 'G-3Z5PQ1P4CC'
 const googleTagManagerId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID || 'GTM-MS9W2HR4'
 
 export const metadata: Metadata = {
@@ -104,20 +103,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 title="Google Tag Manager"
               />
             </noscript>
-          </>
-        ) : null}
-        {googleAnalyticsId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${googleAnalyticsId}', { anonymize_ip: true });`}
-            </Script>
           </>
         ) : null}
         {jsonLd.map((schema, index) => (

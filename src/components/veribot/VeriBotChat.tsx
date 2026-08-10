@@ -64,6 +64,12 @@ export default function VeriBotChat() {
       target: hint.target,
     })
 
+    if (hint.action === 'randevu_al' || /cal\.com|calendly/i.test(String(hint.target))) {
+      trackEvent('calendly_booking', { source: 'veribot', target: hint.target })
+    } else if (hint.action === 'indir_cv') {
+      trackEvent('download', { source: 'veribot', target: hint.target })
+    }
+
     if (String(hint.target).startsWith('#')) {
       window.location.hash = hint.target
       return
