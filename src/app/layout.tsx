@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import VeriBotChat from '@/components/veribot/VeriBotChat'
 import JsonLd from '@/components/common/JsonLd'
 import { brandProfile, getGlobalJsonLd, getSiteUrl } from '@/lib/seo'
@@ -14,6 +15,7 @@ const inter = Inter({
 const siteUrl = getSiteUrl()
 const googleSiteVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'oTRvAIcqh7XPzyTuXHrgyk1UDwhZwVIdKSEVsEJvC8I'
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || 'G-3Z5PQ1P4CC'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -83,6 +85,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
       </head>
       <body>
+        {googleAnalyticsId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${googleAnalyticsId}', { anonymize_ip: true });`}
+            </Script>
+          </>
+        ) : null}
         {jsonLd.map((schema, index) => (
           <JsonLd key={`global-schema-${index}`} id={`global-schema-${index}`} data={schema} />
         ))}
