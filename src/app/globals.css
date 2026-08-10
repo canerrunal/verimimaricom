@@ -8039,10 +8039,58 @@ a.card:hover {
   margin-top: auto;
 }
 
+.announcement-head-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.announcement-head-actions p {
+  max-width: 300px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.announcement-all-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  flex: none;
+  padding: 0 16px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 11px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.announcement-all-link:hover,
+.announcement-all-link:focus-visible {
+  transform: translate(-2px, -2px);
+  background: var(--lime);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
 .announcement-feature-image,
 .announcement-card-image {
   overflow: hidden;
   background: var(--paper-deep);
+}
+
+.announcement-feature-image {
+  display: grid;
+  min-height: 390px;
+  padding: 18px;
+  place-items: center;
 }
 
 .announcement-feature-image img,
@@ -8053,6 +8101,93 @@ a.card:hover {
   height: 100%;
   object-fit: cover;
   object-position: top center;
+}
+
+.announcement-feature-image img {
+  object-fit: contain;
+}
+
+.announcement-carousel {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--ink);
+}
+
+.announcement-carousel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.announcement-carousel-head .eyebrow {
+  margin: 0;
+}
+
+.announcement-carousel-count {
+  color: var(--muted);
+  font: 700 10px/1 var(--mono);
+}
+
+.announcement-carousel-track {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 8px;
+  scrollbar-width: thin;
+}
+
+.announcement-carousel-item {
+  display: grid;
+  min-width: 190px;
+  min-height: 76px;
+  flex: 0 0 190px;
+  align-content: start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 7px;
+  color: var(--ink);
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.announcement-carousel-item:hover,
+.announcement-carousel-item:focus-visible {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.announcement-carousel-item:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.announcement-carousel-item.active {
+  background: var(--lime);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.announcement-carousel-index {
+  color: var(--muted);
+  font: 700 9px/1 var(--mono);
+}
+
+.announcement-carousel-title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
 .announcement-index-hero {
@@ -8456,11 +8591,36 @@ a.card:hover {
 
   .announcement-feature-image {
     min-height: 280px;
+    padding: 14px;
   }
 
   .announcement-feature-copy {
     min-height: 330px;
     padding: 22px;
+  }
+
+  .announcement-head-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .announcement-head-actions p {
+    max-width: 100%;
+  }
+
+  .announcement-all-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .announcement-carousel {
+    margin-top: 24px;
+  }
+
+  .announcement-carousel-item {
+    min-width: 174px;
+    flex-basis: 174px;
   }
 
   .announcement-index-head {
