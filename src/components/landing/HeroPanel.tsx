@@ -25,7 +25,7 @@ export default function HeroPanel({ t }: { t: any }) {
       }
     : {
         crumb: 'E-TİCARET İÇİN VERİ, YAPAY ZEKÂ VE BÜYÜME ARAÇLARI',
-        titleTop: 'E-ticaret verilerinizi',
+        titleTop: 'Verilerinizi',
         titleAccent: 'kârlı kararlara',
         titleBottom: 'dönüştürün.',
         intro:

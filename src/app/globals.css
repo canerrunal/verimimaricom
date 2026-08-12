@@ -3790,9 +3790,9 @@ textarea {
   position: absolute;
   z-index: -1;
   right: -8px;
-  bottom: 0.03em;
+  bottom: 0.11em;
   left: -6px;
-  height: 0.24em;
+  height: 0.2em;
   background: var(--lime);
   content: '';
   transform: rotate(-1.2deg);
