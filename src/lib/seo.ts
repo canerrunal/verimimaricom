@@ -5,10 +5,10 @@ export function getSiteUrl(): string {
 export const brandProfile = {
   name: 'Caner Ünal',
   brand: 'Veri Mimarı',
-  role: 'E-Ticaret ve Dijital Pazarlama Uzmanı',
-  title: 'E-Ticaret Danışmanı · Dijital Pazarlama Uzmanı · Veri ve Yapay Zekâ',
+  role: 'E-Ticaret, Yapay Zekâ ve Yazılım Sistemleri Uzmanı',
+  title: 'E-Ticaret · Yapay Zekâ · ERP / CRM / SaaS · Yazılım Geliştirme',
   description:
-    'E-ticaret kârlılığı, dijital pazarlama analitiği ve yapay zekâ sistemleriyle veriyi uygulanabilir büyüme kararlarına dönüştürür.',
+    'E-ticaret, dijital pazarlama, yapay zekâ, ERP, CRM, SaaS, WordPress ve özel yazılım sistemlerini uygulanabilir iş sonuçlarına dönüştürür.',
   email: 'hello@verimimari.com',
   image: '/opengraph-image',
   sameAs: [
@@ -38,6 +38,10 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
       'Başa baş ROAS',
       'Kârlılık ve katkı payı',
       'Yapay zekâ otomasyonu',
+      'ERP, CRM ve SaaS sistemleri',
+      'Web ve özel yazılım geliştirme',
+      'WordPress güvenlik ve performans optimizasyonu',
+      'WordPress site taşıma ve teknik destek',
     ],
     worksFor: { '@id': `${siteUrl}#organization` },
   }

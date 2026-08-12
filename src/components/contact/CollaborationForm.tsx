@@ -58,12 +58,20 @@ export default function CollaborationForm() {
     'E-Ticaret Danışmanlığı',
     'Dijital Pazarlama Stratejisi',
     'E-Ticaret Kârlılık Modellemesi',
+    'WordPress Teknik Destek & Optimizasyon',
+    'ERP, CRM & SaaS Geliştirme',
+    'Web & Özel Yazılım Geliştirme',
     'Özel Hesaplama Aracı',
     'AI Entegrasyonu & Otomasyon',
     'Genel Danışmanlık',
   ]
 
-  const budgetRanges = ['50.000 TL - 100.000 TL', '100.000 TL - 250.000 TL', '250.000 TL +']
+  const budgetRanges = [
+    '25.000 TL’ye kadar',
+    '50.000 TL - 100.000 TL',
+    '100.000 TL - 250.000 TL',
+    '250.000 TL +',
+  ]
 
   if (submitted) {
     return (

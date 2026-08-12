@@ -6,6 +6,7 @@ import ProblemSection from '@/components/landing/ProblemSection'
 import ToolsSection from '@/components/landing/ToolsSection'
 import GuidesSection from '@/components/landing/GuidesSection'
 import ProjectsSection from '@/components/landing/ProjectsSection'
+import FounderExpertiseSection from '@/components/landing/FounderExpertiseSection'
 import ProofSection from '@/components/landing/ProofSection'
 import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
@@ -54,6 +55,7 @@ export default async function HomePage() {
       <ToolsSection t={t} />
       <GuidesSection t={t} />
       <ProjectsSection t={t} />
+      <FounderExpertiseSection />
       <ProofSection t={t} />
       <NewsletterSection t={t} />
       <Footer t={t} />

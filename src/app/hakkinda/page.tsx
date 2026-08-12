@@ -6,14 +6,14 @@ import { getDictionary } from '@/lib/i18n'
 import { getSiteUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Caner Ünal | E-Ticaret ve Dijital Pazarlama Uzmanı' },
+  title: { absolute: 'Caner Ünal | E-Ticaret, Yapay Zekâ ve Yazılım Uzmanı' },
   description:
-    'Veri Mimarı kurucusu Caner Ünal; e-ticaret kârlılığı, dijital pazarlama analitiği, yapay zekâ ve yazılım sistemleri geliştirir.',
+    'Veri Mimarı kurucusu Caner Ünal; e-ticaret, dijital pazarlama, yapay zekâ, ERP, CRM, SaaS, WordPress ve özel yazılım sistemleri geliştirir.',
   alternates: { canonical: '/hakkinda' },
   openGraph: {
     title: 'Caner Ünal Hakkında | Veri Mimarı',
     description:
-      'E-ticaret, dijital pazarlama, yapay zekâ ve yazılım geliştirmeyi birleştiren Veri Mimarı yaklaşımı.',
+      'E-ticaret, dijital pazarlama, yapay zekâ, ERP, CRM, SaaS, WordPress ve yazılım geliştirmeyi birleştiren Veri Mimarı yaklaşımı.',
     type: 'profile',
     url: '/hakkinda',
   },
@@ -55,7 +55,7 @@ export default function HakkindaPage() {
     '@type': 'ProfilePage',
     '@id': `${siteUrl}/hakkinda#profilepage`,
     url: `${siteUrl}/hakkinda`,
-    name: 'Caner Ünal | E-Ticaret ve Dijital Pazarlama Uzmanı',
+    name: 'Caner Ünal | E-Ticaret, Yapay Zekâ ve Yazılım Uzmanı',
     inLanguage: 'tr-TR',
     mainEntity: { '@id': `${siteUrl}#person` },
     isPartOf: { '@id': `${siteUrl}#website` },
@@ -68,11 +68,11 @@ export default function HakkindaPage() {
 
       <section className="wrap hero single">
         <div>
-          <div className="crumb">CANER ÜNAL / E-TİCARET VE DİJİTAL PAZARLAMA UZMANI</div>
+          <div className="crumb">CANER ÜNAL / E-TİCARET · YAPAY ZEKÂ · YAZILIM SİSTEMLERİ</div>
           <h1>Veriyi araçlara ve kârlı kararlara dönüştürüyorum.</h1>
           <p className="intro">
-            E-ticaret, dijital pazarlama, AI ve yazılım geliştirmeyi birleştirerek günlük işlerde
-            kullanılabilir sistemler tasarlıyorum.
+            E-ticaret, dijital pazarlama, AI, ERP, CRM, SaaS, WordPress ve yazılım geliştirmeyi
+            birleştirerek günlük işlerde kullanılabilir sistemler tasarlıyorum.
           </p>
         </div>
       </section>
@@ -182,6 +182,8 @@ export default function HakkindaPage() {
               {[
                 'E-ticaret Kârlılık ve Reklam Analitiği',
                 'Başa Baş ROAS ve Katkı Payı Modellemesi',
+                'WordPress Güvenlik, Hız, Taşıma ve Teknik Operasyonlar',
+                'ERP, CRM ve SaaS Sistem Tasarımı',
                 'Next.js, TypeScript ve Modern Web Mühendisliği',
                 'Yapay Zeka (LLM/RAG) İş Akışı Entegrasyonları',
                 'Veri Hikayeciliği ve Dönüşüm Tasarımı',
