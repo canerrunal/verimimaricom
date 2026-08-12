@@ -812,7 +812,7 @@ Duyuru bandı yalnızca gerçek ve güncel bir yenilik olduğunda gösterilmelid
 
 **H1:**
 
-> E-ticaret verisini daha kârlı kararlara dönüştürün.
+> E-ticaret verilerinizi kârlı kararlara dönüştürün.
 
 **Açıklama:**
 

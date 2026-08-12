@@ -25,8 +25,8 @@ export default function HeroPanel({ t }: { t: any }) {
       }
     : {
         crumb: 'E-TİCARET İÇİN VERİ, YAPAY ZEKÂ VE BÜYÜME ARAÇLARI',
-        titleTop: 'E-ticaret verisini',
-        titleAccent: 'daha kârlı kararlara',
+        titleTop: 'E-ticaret verilerinizi',
+        titleAccent: 'kârlı kararlara',
         titleBottom: 'dönüştürün.',
         intro:
           'Reklam, ürün ve satış verilerinizi anlamanızı kolaylaştıran ücretsiz hesaplayıcılar, yapay zekâ destekli araçlar ve uygulanabilir rehberler.',
