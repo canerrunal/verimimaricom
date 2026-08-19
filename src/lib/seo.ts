@@ -5,17 +5,13 @@ export function getSiteUrl(): string {
 export const brandProfile = {
   name: 'Caner Ünal',
   brand: 'Veri Mimarı',
-  role: 'E-Ticaret, Yapay Zekâ ve Yazılım Sistemleri Uzmanı',
-  title: 'E-Ticaret · Yapay Zekâ · ERP / CRM / SaaS · Yazılım Geliştirme',
+  role: 'E-Ticaret Kârlılığı, Dijital Pazarlama Analitiği ve AI Otomasyonu Uzmanı',
+  title: 'E-Ticaret Kârlılığı · Reklam Analitiği · AI Otomasyonu',
   description:
-    'E-ticaret, dijital pazarlama, yapay zekâ, ERP, CRM, SaaS, WordPress ve özel yazılım sistemlerini uygulanabilir iş sonuçlarına dönüştürür.',
+    'Veri Mimarı kurucusu Caner Ünal; e-ticaret kârlılığı, dijital pazarlama analitiği, reklam ölçümü ve yapay zekâ otomasyonu için çalışan karar sistemleri geliştirir.',
   email: 'hello@verimimari.com',
   image: '/opengraph-image',
-  sameAs: [
-    'https://www.linkedin.com/in/caner-unal',
-    'https://github.com/canerunal',
-    'https://x.com/canerunal',
-  ],
+  sameAs: ['https://github.com/caner8047-coder'],
 }
 
 export function getGlobalJsonLd(): Record<string, unknown>[] {
@@ -26,9 +22,11 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
     '@type': 'Person',
     '@id': `${siteUrl}#person`,
     name: brandProfile.name,
+    alternateName: 'Caner Ünal · Veri Mimarı',
     jobTitle: brandProfile.role,
     description: brandProfile.description,
     url: `${siteUrl}/hakkinda`,
+    image: `${siteUrl}${brandProfile.image}`,
     email: brandProfile.email,
     sameAs: brandProfile.sameAs,
     knowsAbout: [
@@ -38,12 +36,29 @@ export function getGlobalJsonLd(): Record<string, unknown>[] {
       'Başa baş ROAS',
       'Kârlılık ve katkı payı',
       'Yapay zekâ otomasyonu',
-      'ERP, CRM ve SaaS sistemleri',
-      'Web ve özel yazılım geliştirme',
-      'WordPress güvenlik ve performans optimizasyonu',
-      'WordPress site taşıma ve teknik destek',
+      'Müşteri ekonomisi, CAC ve LTV',
+      'Pazaryeri ekonomisi',
+      'Ürün verisi ve raporlama sistemleri',
+      'ERP, CRM, SaaS ve özel yazılım entegrasyonları',
     ],
     worksFor: { '@id': `${siteUrl}#organization` },
+    subjectOf: [
+      {
+        '@type': 'CollectionPage',
+        name: 'Caner Ünal tarafından hazırlanan e-ticaret proje analizleri',
+        url: `${siteUrl}/analizler`,
+      },
+      {
+        '@type': 'CollectionPage',
+        name: 'Caner Ünal tarafından hazırlanan e-ticaret rehberleri',
+        url: `${siteUrl}/rehberler`,
+      },
+      {
+        '@type': 'CollectionPage',
+        name: 'Caner Ünal tarafından geliştirilen e-ticaret araçları',
+        url: `${siteUrl}/araclar`,
+      },
+    ],
   }
 
   const organization = {

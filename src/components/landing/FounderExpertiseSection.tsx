@@ -3,43 +3,29 @@ const expertiseAreas = [
     number: '01',
     title: 'E-ticaret ve dijital pazarlama',
     description:
-      'Kârlılık, reklam performansı, dönüşüm, teknik SEO ve büyüme kararlarını aynı ticari modelde birleştiririm.',
-    scope: 'E-TİCARET · REKLAM · BÜYÜME',
+      'Ürün marjı, komisyon, kargo, iade ve reklam harcamasını aynı birim ekonomisi modelinde birleştiririm.',
+    scope: 'E-TİCARET · KÂRLILIK · BİRİM EKONOMİSİ',
   },
   {
     number: '02',
-    title: 'Yapay zekâ ve otomasyon',
+    title: 'Dijital pazarlama analitiği',
     description:
-      'LLM, RAG ve ajan tabanlı iş akışlarını insan kontrolü, veri güvenliği ve ölçülebilir iş çıktısıyla tasarlarım.',
-    scope: 'AI · LLM / RAG · OTOMASYON',
+      'ROAS, MER, CAC ve LTV metriklerini işletmenin gerçek katkı sonucu ve ölçüm altyapısıyla uzlaştırırım.',
+    scope: 'REKLAM · ÖLÇÜM · MÜŞTERİ EKONOMİSİ',
   },
   {
     number: '03',
-    title: 'ERP, CRM ve SaaS sistemleri',
+    title: 'Yapay zekâ ve otomasyon',
     description:
-      'Dağınık operasyonları veri akışı, entegrasyon ve kullanıcı ihtiyaçları etrafında çalışan dijital ürünlere dönüştürürüm.',
-    scope: 'ERP · CRM · SAAS · ENTEGRASYON',
+      'Raporlama, ürün verisi ve tekrarlanan operasyonları insan kontrolünü koruyan ölçülebilir iş akışlarına dönüştürürüm.',
+    scope: 'AI · VERİ · OPERASYON',
   },
   {
     number: '04',
-    title: 'Yazılım ve web geliştirme',
+    title: 'Sistem ve yazılım geliştirme',
     description:
-      'Modern web uygulamaları, API entegrasyonları ve işletmenin gerçek sürecine uyum sağlayan özel yazılım sistemleri geliştiririm.',
-    scope: 'WEB · API · ÖZEL YAZILIM',
-  },
-  {
-    number: '05',
-    title: 'WordPress mühendisliği',
-    description:
-      'Virüs temizliği, güvenlik, hız, taşıma, hosting, tema geliştirme, teknik SEO, bakım, destek ve danışmanlığı uçtan uca yürütürüm.',
-    scope: 'GÜVENLİK · HIZ · TAŞIMA · DESTEK',
-  },
-  {
-    number: '06',
-    title: 'Veri ve karar sistemleri',
-    description:
-      'Rapor, gösterge paneli ve hesaplama modellerini yalnızca bilgi veren değil, doğru sonraki adımı gösteren sistemler olarak kurarım.',
-    scope: 'ANALİTİK · RAPORLAMA · KARAR',
+      'Karar modelini gerektiğinde API, ERP, CRM, SaaS entegrasyonu veya özel web ürünü olarak uygularım.',
+    scope: 'ERP · CRM · SAAS · WEB · API',
   },
 ]
 
@@ -53,8 +39,8 @@ export default function FounderExpertiseSection() {
             <h2>Tek bir kanal değil. Birbirine bağlı sistemler.</h2>
           </div>
           <p>
-            Ticari hedefi, veriyi ve teknolojiyi aynı masada buluşturan uçtan uca mühendislik ve
-            danışmanlık yaklaşımı.
+            E-ticaret kârlılığını, reklam ölçümünü ve otomasyonu aynı karar sisteminde birleştiren
+            uygulamalı uzmanlık yaklaşımı.
           </p>
         </div>
 
@@ -63,9 +49,9 @@ export default function FounderExpertiseSection() {
             <span className="eyebrow">CANER ÜNAL / VERİ MİMARI KURUCUSU</span>
             <h3>Problemi yalnızca anlatmam. Çalışan sistemi kurarım.</h3>
             <p>
-              E-ticaret, yapay zekâ, ERP, CRM, SaaS, yazılım geliştirme, dijital pazarlama ve
-              WordPress deneyimimi aynı çalışma disiplininde birleştiriyorum. Önce mevcut durumu
-              ölçüyor, doğru mimariyi kuruyor, uyguluyor ve sonucu doğruluyorum.
+              E-ticaret kârlılığı, dijital pazarlama analitiği ve yapay zekâ otomasyonunu aynı
+              çalışma disiplininde birleştiriyorum. Önce mevcut durumu ölçüyor, karar modelini
+              kuruyor, çalışan sisteme dönüştürüyor ve sonucu doğruluyorum.
             </p>
             <div className="founder-expertise-actions">
               <a className="btn hero-primary" href="/e-ticaret-danismani#proje-formu">

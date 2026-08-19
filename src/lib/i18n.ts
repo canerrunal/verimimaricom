@@ -27,7 +27,7 @@ export const dictionaries = {
       eyebrow: 'Veri Mimarı · Strateji + Ürün + Yapay Zeka',
       title: 'Veriyi ölçülebilir büyüme çıktısına dönüştüren dijital ürün ve AI çözümleri',
       description:
-        'Caner Ünal; veri bilimi, yapay zeka ve web mühendisliğini birleştirerek case study odaklı, iş etkisi üreten platformlar tasarlar.',
+        'Caner Ünal; e-ticaret kârlılığı, dijital pazarlama analitiği ve yapay zekâ otomasyonunu çalışan karar sistemlerine dönüştürür.',
       ctaAriaLabel: 'Öne çıkan aksiyonlar',
       featuredCases: 'Öne Çıkan Analizler',
       featuredCasesHref: '#projeler',
@@ -180,7 +180,7 @@ export const dictionaries = {
       eyebrow: 'Data Architect · Strategy + Product + AI',
       title: 'Digital products and AI solutions that turn data into measurable growth outcomes',
       description:
-        'Caner Ünal designs business-impact platforms by combining data science, AI, and web engineering with a case-study-first approach.',
+        'Caner Ünal turns e-commerce profitability, digital marketing analytics, and AI automation into working decision systems.',
       ctaAriaLabel: 'Primary actions',
       featuredCases: 'Featured Case Studies',
       featuredCasesHref: '#projeler',

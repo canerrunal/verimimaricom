@@ -9046,3 +9046,336 @@ a.card:hover {
     padding-top: 48px;
   }
 }
+
+/* ─── Caner Ünal / doğrulanabilir uzmanlık profili ─── */
+.profile-hero .hero {
+  align-items: center;
+}
+
+.profile-hero .hero-copy h1 {
+  max-width: 790px;
+}
+
+.profile-identity-card {
+  min-width: 0;
+  padding: 34px;
+  color: white;
+  background: var(--dark);
+  box-shadow: 7px 7px 0 var(--lime);
+}
+
+.profile-identity-card .eyebrow {
+  color: var(--lime);
+}
+
+.profile-identity-card > strong {
+  display: block;
+  margin: 28px 0 8px;
+  font-size: clamp(42px, 5vw, 62px);
+  font-weight: 850;
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.profile-identity-card > p {
+  margin: 0 0 32px;
+  color: var(--line);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.profile-identity-card dl {
+  display: grid;
+  margin: 0 0 28px;
+  border-top: 1px solid var(--line-dark);
+}
+
+.profile-identity-card dl > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.profile-identity-card dt {
+  color: var(--lime);
+  font: 750 9px/1.5 var(--mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.profile-identity-card dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.profile-identity-card .link {
+  color: white;
+}
+
+.profile-focus-grid,
+.profile-proof-grid,
+.profile-analysis-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-focus-grid .card,
+.profile-proof-grid .card,
+.profile-analysis-grid .card {
+  display: flex;
+  min-height: 360px;
+  flex-direction: column;
+}
+
+.profile-focus-grid .card h3,
+.profile-proof-grid .card h3,
+.profile-analysis-grid .card h3 {
+  margin-top: 56px;
+}
+
+.profile-proof-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.profile-proof-grid a.card,
+.profile-analysis-grid a.card {
+  text-decoration: none;
+}
+
+.profile-proof-grid .link,
+.profile-analysis-grid .link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.profile-method {
+  background: var(--paper-deep);
+}
+
+.profile-method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 44px 0 0;
+  padding: 0;
+  border: 1px solid var(--ink);
+  background: var(--surface);
+  list-style: none;
+}
+
+.profile-method-grid li {
+  min-width: 0;
+  min-height: 310px;
+  padding: 26px;
+  border-right: 1px solid var(--ink);
+}
+
+.profile-method-grid li:last-child {
+  border-right: 0;
+}
+
+.profile-method-grid span {
+  display: block;
+  margin-bottom: 76px;
+  color: var(--blue);
+  font: 850 18px/1 var(--mono);
+}
+
+.profile-method-grid h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 820;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.profile-method-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.profile-analysis-grid .card {
+  min-height: 430px;
+}
+
+.profile-disclosure {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--line-dark);
+}
+
+.profile-disclosure .eyebrow {
+  color: var(--lime);
+}
+
+.profile-disclosure p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--line);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.profile-faq-list {
+  display: grid;
+  max-width: 920px;
+  margin-top: 42px;
+  border-top: 1px solid var(--ink);
+}
+
+.profile-faq-list details {
+  border-bottom: 1px solid var(--ink);
+}
+
+.profile-faq-list summary {
+  padding: 25px 48px 25px 0;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.profile-faq-list summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+
+.profile-faq-list p {
+  max-width: 760px;
+  margin: -5px 0 26px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.profile-final-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: end;
+  margin-top: 72px;
+  padding: 38px;
+  background: var(--dark);
+  box-shadow: 7px 7px 0 var(--lime);
+}
+
+.profile-final-cta .eyebrow {
+  color: var(--lime);
+}
+
+.profile-final-cta h2 {
+  max-width: 740px;
+  margin: 28px 0 14px;
+  color: white;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.profile-final-cta p {
+  max-width: 700px;
+  margin: 0;
+  color: var(--line);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.profile-final-cta .hero-primary {
+  flex-shrink: 0;
+}
+
+@media (max-width: 980px) {
+  .profile-method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profile-method-grid li:nth-child(2) {
+    border-right: 0;
+  }
+
+  .profile-method-grid li:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .profile-final-cta {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .profile-final-cta .hero-primary {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .profile-hero .hero-copy h1 {
+    font-size: clamp(47px, 13vw, 62px);
+  }
+
+  .profile-identity-card {
+    padding: 24px;
+  }
+
+  .profile-identity-card dl > div {
+    grid-template-columns: 92px minmax(0, 1fr);
+  }
+
+  .profile-proof-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profile-focus-grid .card,
+  .profile-proof-grid .card,
+  .profile-analysis-grid .card {
+    min-height: 0;
+  }
+
+  .profile-method-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profile-method-grid li,
+  .profile-method-grid li:nth-child(2) {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .profile-method-grid li:last-child {
+    border-bottom: 0;
+  }
+
+  .profile-method-grid span {
+    margin-bottom: 30px;
+  }
+
+  .profile-disclosure {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .profile-faq-list summary {
+    padding-right: 20px;
+    font-size: 18px;
+  }
+
+  .profile-final-cta {
+    margin-top: 52px;
+    padding: 26px;
+  }
+
+  .profile-final-cta .hero-primary {
+    width: 100%;
+    text-align: center;
+  }
+}

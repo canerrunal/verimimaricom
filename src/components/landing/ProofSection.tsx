@@ -9,7 +9,7 @@ export default function ProofSection({ t }: { t: any }) {
             <span className="eyebrow">
               {t?.caseStudies?.eyebrow || '/ 04 · ANALİZLER & KURUCU'}
             </span>
-            <h2>{t?.caseStudies?.title || 'Şeffaf metotlar.'}</h2>
+            <h2>{t?.caseStudies?.title || 'Kamuya açık çalışma kanıtları.'}</h2>
           </div>
         </div>
 
@@ -26,9 +26,9 @@ export default function ProofSection({ t }: { t: any }) {
           <div className="card">
             <span className="eyebrow">{t?.founder?.eyebrow || 'KURUCU HAKKINDA'}</span>
             <h3>Caner Ünal</h3>
-            <p>E-ticaret verisini kârlı kararlara dönüştüren sistemler tasarlıyorum.</p>
+            <p>Uzmanlık odağı, çalışma yöntemi ve geliştirilen sistemler tek profilde.</p>
             <a className="link" href="/hakkinda">
-              Profili İncele
+              Uzmanlık Profilini İncele
             </a>
           </div>
 
