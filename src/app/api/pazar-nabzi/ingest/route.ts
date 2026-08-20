@@ -41,6 +41,10 @@ function chunks<T>(items: T[], size: number) {
   )
 }
 
+function uniqueBy<T>(items: T[], key: (item: T) => string) {
+  return Array.from(new Map(items.map((item) => [key(item), item])).values())
+}
+
 export async function POST(request: Request) {
   if (!authorized(request)) {
     return NextResponse.json({ ok: false, error: 'unauthorized' }, { status: 401 })
@@ -128,15 +132,18 @@ export async function POST(request: Request) {
     first_seen_at: product.capturedAt || capturedAt,
     last_seen_at: product.capturedAt || capturedAt,
   }))
-  const merchantRows = products
-    .filter((product) => product.merchantId)
-    .map((product) => ({
-      marketplace: 'trendyol',
-      merchant_id: product.merchantId,
-      name: product.sellerName,
-      score: product.sellerScore,
-      last_seen_at: product.capturedAt || capturedAt,
-    }))
+  const merchantRows = uniqueBy(
+    products
+      .filter((product) => product.merchantId)
+      .map((product) => ({
+        marketplace: 'trendyol',
+        merchant_id: product.merchantId,
+        name: product.sellerName,
+        score: product.sellerScore,
+        last_seen_at: product.capturedAt || capturedAt,
+      })),
+    (merchant) => `${merchant.marketplace}:${merchant.merchant_id}`,
+  )
 
   for (const batch of chunks(productRows, 200)) {
     const { error } = await database
