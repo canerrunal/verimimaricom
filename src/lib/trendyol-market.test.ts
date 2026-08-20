@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
+  DEFAULT_MARKET_PROFILES,
+  getMarketProfile,
+  isMarketProfileSlug,
   normalizeMarketProduct,
   selectMarketProducts,
   summarizeMarketProducts,
@@ -48,6 +51,13 @@ const base = {
 } satisfies MarketProduct
 
 describe('Trendyol market contract', () => {
+  it('accepts new safe profile slugs without a release-time allowlist', () => {
+    expect(isMarketProfileSlug('yeni-kategori')).toBe(true)
+    expect(isMarketProfileSlug('../yeni-kategori')).toBe(false)
+    expect(getMarketProfile('hobi').label).toBe('Hobi')
+    expect(DEFAULT_MARKET_PROFILES).toHaveLength(12)
+  })
+
   it('normalizes the public sales signal without claiming exact sales', () => {
     const product = normalizeMarketProduct(
       {

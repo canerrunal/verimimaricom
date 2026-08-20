@@ -6,11 +6,11 @@ import Footer from '@/components/landing/Footer'
 import { getDictionary } from '@/lib/i18n'
 import { getSiteUrl } from '@/lib/seo'
 import {
-  MARKET_PROFILES,
   MARKET_VIEWS,
   formatMarketDate,
   formatMarketMoney,
   getMarketQualities,
+  getMarketProfiles,
   getMarketSnapshot,
   getMarketView,
   selectMarketProducts,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/pazar-nabzi/trendyol' },
   openGraph: {
     title: 'Trendyol Pazar Nabzı | Veri Mimarı',
-    description: '9 kategoride günlük ürün, fiyat, sıralama ve stok sinyalleri.',
+    description: 'Her gün genişleyen kategorilerde ürün, fiyat, sıralama ve stok sinyalleri.',
     url: '/pazar-nabzi/trendyol',
     type: 'website',
   },
@@ -72,9 +72,10 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
   const category = first(params.kategori)
   const view = getMarketView(first(params.gorunum))
   const query = first(params.arama).slice(0, 80)
+  const profiles = await getMarketProfiles()
   const [snapshot, qualities] = await Promise.all([
-    getMarketSnapshot(category),
-    getMarketQualities(),
+    getMarketSnapshot(category, profiles),
+    getMarketQualities(profiles),
   ])
   const filtered = selectMarketProducts(snapshot.products, view, query)
   const products = filtered.slice(0, 40)
@@ -115,8 +116,9 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
             Çok satanı görün. <span className="accent">Fırsat sinyalini</span> ayırın.
           </h1>
           <p className="intro">
-            Dokuz kategoride fiyat, sıralama, stok ve görünür talep sinyallerini aynı ekranda
-            inceleyin. Her metrik kaynağı, zamanı ve sınırıyla birlikte ücretsiz sunulur.
+            Her gün genişleyen kategorilerde fiyat, sıralama, stok ve görünür talep sinyallerini
+            aynı ekranda inceleyin. Her metrik kaynağı, zamanı ve sınırıyla birlikte ücretsiz
+            sunulur.
           </p>
           <div className="actions-row">
             <a className="btn hero-primary" href="#radar">
@@ -128,7 +130,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
           </div>
           <div className="signals market-hero-signals">
             <span className="tag">
-              <i /> {passedProfiles}/9 profil kalite kapısından geçti
+              <i /> {passedProfiles}/{profiles.length} profil kalite kapısından geçti
             </span>
             <span className="tag">
               <i /> {observedProductCount || '1.800'} günlük gözlem
@@ -181,7 +183,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
           <nav className="market-filter-group" aria-label="Kategori seçimi">
             <span>KATEGORİ</span>
             <div>
-              {MARKET_PROFILES.map((profile) => (
+              {profiles.map((profile) => (
                 <a
                   key={profile.slug}
                   href={marketHref(profile.slug, view, query)}
@@ -382,7 +384,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
             <p>Başarısız çalışma canlı verinin üzerine yazılmaz; son geçerli görüntü korunur.</p>
           </div>
           <div className="market-quality-grid">
-            {MARKET_PROFILES.map((profile) => {
+            {profiles.map((profile) => {
               const quality = qualities.find((item) => item.profileSlug === profile.slug)
               return (
                 <a key={profile.slug} href={marketHref(profile.slug, view)}>

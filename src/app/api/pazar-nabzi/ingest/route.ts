@@ -2,11 +2,7 @@ import { timingSafeEqual } from 'node:crypto'
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase'
-import {
-  getMarketProfile,
-  isMarketProfileSlug,
-  normalizeMarketProduct,
-} from '@/lib/trendyol-market'
+import { isMarketProfileSlug, normalizeMarketProduct } from '@/lib/trendyol-market'
 
 export const runtime = 'nodejs'
 
@@ -14,6 +10,7 @@ type IngestPayload = {
   profile?: unknown
   products?: unknown
   quality?: unknown
+  profileMetadata?: unknown
   sourceCommit?: unknown
 }
 
@@ -56,20 +53,33 @@ export async function POST(request: Request) {
   }
 
   const quality = record(body.quality)
-  const profile = getMarketProfile(body.profile)
+  const profileMetadata = record(body.profileMetadata)
+  const profileSlug = body.profile
+  const profileLabel = String(profileMetadata.label || profileSlug)
+    .trim()
+    .slice(0, 80)
+  const profileSourceLabel = String(profileMetadata.sourceLabel || profileLabel)
+    .trim()
+    .slice(0, 160)
+  const profileEnabled = profileMetadata.enabled !== false
   const products = body.products
-    .map((item) => normalizeMarketProduct(item, profile.slug))
+    .map((item) => normalizeMarketProduct(item, profileSlug))
     .filter((item): item is NonNullable<typeof item> => Boolean(item))
   const productCount = Number(quality.productCount || products.length)
   const capturedAt = String(quality.generatedAt || products[0]?.capturedAt || '')
   const observedDate = String(quality.date || products[0]?.observedDate || '')
 
+  if (!profileLabel || !profileSourceLabel) {
+    return NextResponse.json({ ok: false, error: 'invalid-profile-metadata' }, { status: 400 })
+  }
+
   if (
-    quality.status !== 'PASS' ||
-    productCount < 200 ||
-    products.length < 200 ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(observedDate) ||
-    Number.isNaN(new Date(capturedAt).getTime())
+    profileEnabled &&
+    (quality.status !== 'PASS' ||
+      productCount < 200 ||
+      products.length < 200 ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(observedDate) ||
+      Number.isNaN(new Date(capturedAt).getTime()))
   ) {
     return NextResponse.json({ ok: false, error: 'quality-gate-rejected' }, { status: 422 })
   }
@@ -82,12 +92,12 @@ export async function POST(request: Request) {
   const sourceUrl = products[0]?.url || null
   const { error: profileError } = await database.from('market_profiles').upsert(
     {
-      slug: profile.slug,
+      slug: profileSlug,
       marketplace: 'trendyol',
-      label: profile.label,
-      source_label: profile.sourceLabel,
+      label: profileLabel,
+      source_label: profileSourceLabel,
       source_url: sourceUrl,
-      enabled: true,
+      enabled: profileEnabled,
       updated_at: new Date().toISOString(),
     },
     { onConflict: 'slug' },
@@ -97,12 +107,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: 'profile-upsert-failed' }, { status: 500 })
   }
 
+  if (!profileEnabled) {
+    revalidateTag('trendyol-market')
+    revalidatePath('/pazar-nabzi/trendyol')
+    return NextResponse.json({ ok: true, profile: profileSlug, enabled: false, productCount: 0 })
+  }
+
   const coverage = record(quality.coverage)
   const { data: run, error: runError } = await database
     .from('market_pipeline_runs')
     .upsert(
       {
-        profile_slug: profile.slug,
+        profile_slug: profileSlug,
         observed_date: observedDate,
         captured_at: capturedAt,
         status: 'PASS',
@@ -167,7 +183,7 @@ export async function POST(request: Request) {
 
   const observations = products.map((product) => ({
     run_id: run.id,
-    profile_slug: profile.slug,
+    profile_slug: profileSlug,
     observed_date: observedDate,
     captured_at: product.capturedAt || capturedAt,
     marketplace: 'trendyol',
@@ -215,5 +231,5 @@ export async function POST(request: Request) {
   revalidateTag('trendyol-market')
   revalidatePath('/pazar-nabzi/trendyol')
 
-  return NextResponse.json({ ok: true, profile: profile.slug, productCount: products.length })
+  return NextResponse.json({ ok: true, profile: profileSlug, productCount: products.length })
 }
