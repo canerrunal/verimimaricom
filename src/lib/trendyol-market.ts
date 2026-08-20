@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { createServiceClient, supabase } from '@/lib/supabase'
 
 const REPOSITORY_RAW_ROOT = 'https://raw.githubusercontent.com/caner8047-coder/Trendyol/main'
 
@@ -295,8 +295,9 @@ async function getGithubSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
 }
 
 async function getSupabaseSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
-  if (!supabase) return null
-  const { data, error } = await supabase
+  const database = createServiceClient() || supabase
+  if (!database) return null
+  const { data, error } = await database
     .from('market_latest_observations')
     .select('*')
     .eq('profile_slug', profile.slug)
@@ -323,8 +324,9 @@ async function getSupabaseSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
 }
 
 async function getSupabaseQuality(profile: (typeof MARKET_PROFILES)[number]) {
-  if (!supabase) return null
-  const { data, error } = await supabase
+  const database = createServiceClient() || supabase
+  if (!database) return null
+  const { data, error } = await database
     .from('market_pipeline_runs')
     .select('status,product_count,detail_success_rate,coverage,captured_at,observed_date')
     .eq('profile_slug', profile.slug)
