@@ -2,7 +2,14 @@ import { createServiceClient, supabase } from '@/lib/supabase'
 
 const REPOSITORY_RAW_ROOT = 'https://raw.githubusercontent.com/caner8047-coder/Trendyol/main'
 
-export const MARKET_PROFILES = [
+export type MarketProfile = {
+  slug: string
+  label: string
+  path: string
+  sourceLabel: string
+}
+
+export const DEFAULT_MARKET_PROFILES: MarketProfile[] = [
   { slug: 'cocuk', label: 'Çocuk', path: '', sourceLabel: 'Çocuk / En Çok Satan' },
   { slug: 'erkek', label: 'Erkek', path: 'categories/erkek', sourceLabel: 'Erkek / En Çok Satan' },
   {
@@ -42,12 +49,33 @@ export const MARKET_PROFILES = [
     path: 'categories/mobilya',
     sourceLabel: 'Mobilya / En Çok Satan',
   },
-] as const
+  {
+    slug: 'otomobil-motosiklet',
+    label: 'Otomobil & Motosiklet',
+    path: 'categories/otomobil-motosiklet',
+    sourceLabel: 'Otomobil & Motosiklet / Çok Satanlar',
+  },
+  {
+    slug: 'hamile',
+    label: 'Hamile',
+    path: 'categories/hamile',
+    sourceLabel: 'Hamile / Çok Satanlar',
+  },
+  {
+    slug: 'hobi',
+    label: 'Hobi',
+    path: 'categories/hobi',
+    sourceLabel: 'Hobi / Çok Satanlar',
+  },
+]
 
-export type MarketProfileSlug = (typeof MARKET_PROFILES)[number]['slug']
+/** @deprecated Yeni kodda getMarketProfiles kullanın. Bu liste yalnız bağlantısız fallback'tir. */
+export const MARKET_PROFILES = DEFAULT_MARKET_PROFILES
+
+export type MarketProfileSlug = string
 
 export function isMarketProfileSlug(value: unknown): value is MarketProfileSlug {
-  return typeof value === 'string' && MARKET_PROFILES.some((profile) => profile.slug === value)
+  return typeof value === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)
 }
 
 export const MARKET_VIEWS = [
@@ -112,7 +140,7 @@ export type MarketQuality = {
 }
 
 export type MarketSnapshot = {
-  profile: (typeof MARKET_PROFILES)[number]
+  profile: MarketProfile
   products: MarketProduct[]
   quality: MarketQuality
   source: 'supabase' | 'github' | 'unavailable'
@@ -154,13 +182,43 @@ function asStringArray(value: unknown) {
   }
 }
 
-function profileRoot(profile: (typeof MARKET_PROFILES)[number]) {
+function profileRoot(profile: MarketProfile) {
   return profile.path ? `${REPOSITORY_RAW_ROOT}/${profile.path}` : REPOSITORY_RAW_ROOT
 }
 
-export function getMarketProfile(value: unknown) {
+export function getMarketProfile(
+  value: unknown,
+  profiles: MarketProfile[] = DEFAULT_MARKET_PROFILES,
+) {
   const slug = typeof value === 'string' ? value : ''
-  return MARKET_PROFILES.find((profile) => profile.slug === slug) ?? MARKET_PROFILES[4]
+  return (
+    profiles.find((profile) => profile.slug === slug) ??
+    profiles.find((profile) => profile.slug === 'genel-cok-satanlar') ??
+    profiles[0] ??
+    DEFAULT_MARKET_PROFILES[4]
+  )
+}
+
+export async function getMarketProfiles(): Promise<MarketProfile[]> {
+  const database = createServiceClient() || supabase
+  if (!database) return DEFAULT_MARKET_PROFILES
+
+  const { data, error } = await database
+    .from('market_profiles')
+    .select('slug,label,source_label,created_at')
+    .eq('marketplace', 'trendyol')
+    .eq('enabled', true)
+    .order('created_at', { ascending: true })
+
+  if (error || !data?.length) return DEFAULT_MARKET_PROFILES
+  return data
+    .filter((profile) => isMarketProfileSlug(profile.slug))
+    .map((profile) => ({
+      slug: profile.slug,
+      label: profile.label,
+      sourceLabel: profile.source_label,
+      path: profile.slug === 'cocuk' ? '' : `categories/${profile.slug}`,
+    }))
 }
 
 export function getMarketView(value: unknown): MarketViewSlug {
@@ -276,7 +334,7 @@ async function fetchJson(url: string) {
   return response.json() as Promise<unknown>
 }
 
-async function getGithubSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
+async function getGithubSnapshot(profile: MarketProfile) {
   const root = profileRoot(profile)
   const [rawProducts, rawQuality] = await Promise.all([
     fetchJson(`${root}/data/latest.json`),
@@ -294,7 +352,7 @@ async function getGithubSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
   }
 }
 
-async function getSupabaseSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
+async function getSupabaseSnapshot(profile: MarketProfile) {
   const database = createServiceClient() || supabase
   if (!database) return null
   const { data, error } = await database
@@ -323,7 +381,7 @@ async function getSupabaseSnapshot(profile: (typeof MARKET_PROFILES)[number]) {
   return { products, quality }
 }
 
-async function getSupabaseQuality(profile: (typeof MARKET_PROFILES)[number]) {
+async function getSupabaseQuality(profile: MarketProfile) {
   const database = createServiceClient() || supabase
   if (!database) return null
   const { data, error } = await database
@@ -338,8 +396,11 @@ async function getSupabaseQuality(profile: (typeof MARKET_PROFILES)[number]) {
   return normalizeQuality(data, profile.slug)
 }
 
-export async function getMarketSnapshot(profileValue: unknown): Promise<MarketSnapshot> {
-  const profile = getMarketProfile(profileValue)
+export async function getMarketSnapshot(
+  profileValue: unknown,
+  profiles: MarketProfile[] = DEFAULT_MARKET_PROFILES,
+): Promise<MarketSnapshot> {
+  const profile = getMarketProfile(profileValue, profiles)
   const csvUrl = `${profileRoot(profile)}/data/latest.csv`
   try {
     const databaseSnapshot = await getSupabaseSnapshot(profile)
@@ -359,9 +420,9 @@ export async function getMarketSnapshot(profileValue: unknown): Promise<MarketSn
   }
 }
 
-export async function getMarketQualities() {
+export async function getMarketQualities(profiles: MarketProfile[] = DEFAULT_MARKET_PROFILES) {
   return Promise.all(
-    MARKET_PROFILES.map(async (profile) => {
+    profiles.map(async (profile) => {
       try {
         const databaseQuality = await getSupabaseQuality(profile)
         if (databaseQuality) return databaseQuality
