@@ -177,6 +177,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.85,
     },
     {
+      url: `${siteUrl}/pazar-nabzi/trendyol`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.94,
+    },
+    {
       url: `${siteUrl}/duyurular`,
       lastModified: now,
       changeFrequency: 'weekly',
