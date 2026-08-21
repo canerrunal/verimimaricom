@@ -70,6 +70,11 @@ function compact(value: number | null) {
   )
 }
 
+function fullCount(value: number | null) {
+  if (value === null) return '—'
+  return new Intl.NumberFormat('tr-TR').format(value)
+}
+
 function stockLabel(status: string | null, signal: string | null) {
   if (status === 'OutOfStock') return 'Stok dışı'
   if (signal) return signal
@@ -166,7 +171,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                 : `${passedProfiles}/${profiles.length} profil kalite kapısından geçti`}
             </span>
             <span className="tag">
-              <i /> {compact(observedProductCount)} günlük benzersiz ürün
+              <i /> {fullCount(observedProductCount)} günlük benzersiz ürün
             </span>
             <span className="tag">
               <i /> Son güncelleme:{' '}
@@ -180,19 +185,19 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
         <div className="wrap market-status-grid">
           <div>
             <span>KATEGORİ EVRENİ</span>
-            <strong>{compact(taxonomyOverview?.totalCategories || profiles.length)}</strong>
+            <strong>{fullCount(taxonomyOverview?.totalCategories || profiles.length)}</strong>
             <small>
-              {compact(taxonomyOverview?.totalCategoryPaths || profiles.length)} kategori yolu
+              {fullCount(taxonomyOverview?.totalCategoryPaths || profiles.length)} kategori yolu
             </small>
           </div>
           <div>
             <span>BENZERSİZ ÜRÜN</span>
-            <strong>{compact(taxonomyOverview?.uniqueProducts || observedProductCount)}</strong>
+            <strong>{fullCount(taxonomyOverview?.uniqueProducts || observedProductCount)}</strong>
             <small>son başarılı günlük koşu</small>
           </div>
           <div>
             <span>SIRALAMA KAYDI</span>
-            <strong>{compact(taxonomyOverview?.rankingMemberships || 0)}</strong>
+            <strong>{fullCount(taxonomyOverview?.rankingMemberships || 0)}</strong>
             <small>kategori–ürün üyeliği</small>
           </div>
           <div>
@@ -200,7 +205,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
             <strong>{taxonomyOverview ? 'PASS' : snapshot.quality.status}</strong>
             <small>
               {taxonomyOverview
-                ? `${compact(taxonomyOverview.coveredCategories)} kategori kapsandı`
+                ? `${fullCount(taxonomyOverview.coveredCategories)} kategori kapsandı`
                 : `%${snapshot.quality.detailSuccessRate} detay yenileme`}
             </small>
           </div>

@@ -605,7 +605,7 @@ export async function getMarketTaxonomySnapshot(
     database.rpc('get_market_category_rankings', {
       p_category_id: categoryId,
       p_observed_date: observedDate,
-      p_limit: 200,
+      p_limit: 40,
     }),
   ])
   if (response.error || !response.data) return { category, products: [], observedDate: null }
