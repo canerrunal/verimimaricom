@@ -147,6 +147,64 @@ export type MarketSnapshot = {
   csvUrl: string
 }
 
+export type MarketTaxonomyOverview = {
+  observedDate: string
+  capturedAt: string
+  catalogGeneratedAt: string
+  totalCategoryPaths: number
+  totalCategories: number
+  coveredCategories: number
+  coverage: number
+  uniqueProducts: number
+  rankingMemberships: number
+  categoriesWithProducts: number
+  emptyCategories: number
+  roots: Array<{ categoryId: number; name: string; totalCategories: number }>
+}
+
+export type MarketTaxonomyCategory = {
+  categoryId: number
+  pathKey: string
+  path: string
+  level: number
+  rootId: number
+  sourceUrl: string
+}
+
+export type MarketTaxonomyProduct = {
+  observedDate: string
+  capturedAt: string
+  categoryId: number
+  rank: number
+  previousRank: number | null
+  rankDelta: number | null
+  productKey: string
+  productId: string
+  merchantId: string | null
+  title: string
+  brand: string | null
+  url: string
+  imageUrl: string | null
+  price: number | null
+  previousPrice: number | null
+  priceDeltaPercent: number | null
+  originalPrice: number | null
+  currency: string
+  inStock: boolean | null
+  runningOut: boolean | null
+  rating: number | null
+  ratingCount: number | null
+  promotions: string[]
+  fastDelivery: boolean | null
+  rushDeliveryHours: number | null
+}
+
+export type MarketTaxonomySnapshot = {
+  category: MarketTaxonomyCategory | null
+  products: MarketTaxonomyProduct[]
+  observedDate: string | null
+}
+
 type UnknownRecord = Record<string, unknown>
 
 function asRecord(value: unknown): UnknownRecord {
@@ -433,6 +491,155 @@ export async function getMarketQualities(profiles: MarketProfile[] = DEFAULT_MAR
       }
     }),
   )
+}
+
+export async function getMarketTaxonomyOverview(): Promise<MarketTaxonomyOverview | null> {
+  const database = createServiceClient() || supabase
+  if (!database) return null
+  const { data, error } = await database
+    .from('market_taxonomy_runs')
+    .select('*')
+    .eq('marketplace', 'trendyol')
+    .eq('status', 'PASS')
+    .order('observed_date', { ascending: false })
+    .order('captured_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  if (error || !data) return null
+  const roots = Array.isArray(data.roots) ? data.roots : []
+  return {
+    observedDate: String(data.observed_date),
+    capturedAt: String(data.captured_at),
+    catalogGeneratedAt: String(data.catalog_generated_at),
+    totalCategoryPaths: Number(data.total_category_paths || 0),
+    totalCategories: Number(data.total_categories || 0),
+    coveredCategories: Number(data.covered_categories || 0),
+    coverage: Number(data.coverage || 0),
+    uniqueProducts: Number(data.unique_products || 0),
+    rankingMemberships: Number(data.ranking_memberships || 0),
+    categoriesWithProducts: Number(data.categories_with_products || 0),
+    emptyCategories: Number(data.empty_categories || 0),
+    roots: roots
+      .map((value) => asRecord(value))
+      .map((root) => ({
+        categoryId: Number(root.categoryId || 0),
+        name: String(root.name || ''),
+        totalCategories: Number(root.totalCategories || 0),
+      }))
+      .filter((root) => root.categoryId > 0 && root.name),
+  }
+}
+
+export async function getMarketTaxonomyDates(limit = 30): Promise<string[]> {
+  const database = createServiceClient() || supabase
+  if (!database) return []
+  const { data, error } = await database
+    .from('market_taxonomy_runs')
+    .select('observed_date')
+    .eq('marketplace', 'trendyol')
+    .eq('status', 'PASS')
+    .order('observed_date', { ascending: false })
+    .limit(Math.min(Math.max(limit, 1), 90))
+  if (error || !data) return []
+  return data.map((row) => String(row.observed_date)).filter(Boolean)
+}
+
+export async function getMarketTaxonomyCategories(
+  query = '',
+  rootId: number | null = null,
+  limit = 40,
+): Promise<MarketTaxonomyCategory[]> {
+  const database = createServiceClient() || supabase
+  if (!database) return []
+  let request = database
+    .from('market_taxonomy_category_paths')
+    .select('category_id,path_key,path,level,root_id,source_url')
+    .eq('marketplace', 'trendyol')
+    .order('level', { ascending: true })
+    .order('path', { ascending: true })
+    .limit(Math.min(Math.max(limit, 1), 100))
+  if (rootId) request = request.eq('root_id', rootId)
+  if (query.trim()) request = request.ilike('path', `%${query.trim().slice(0, 80)}%`)
+  const { data, error } = await request
+  if (error || !data) return []
+  return data.map((row) => ({
+    categoryId: Number(row.category_id),
+    pathKey: String(row.path_key),
+    path: String(row.path),
+    level: Number(row.level),
+    rootId: Number(row.root_id),
+    sourceUrl: String(row.source_url),
+  }))
+}
+
+async function getMarketTaxonomyCategory(categoryId: number) {
+  const database = createServiceClient() || supabase
+  if (!database || !Number.isInteger(categoryId) || categoryId < 1) return null
+  const { data, error } = await database
+    .from('market_taxonomy_category_paths')
+    .select('category_id,path_key,path,level,root_id,source_url')
+    .eq('marketplace', 'trendyol')
+    .eq('category_id', categoryId)
+    .order('level', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  if (error || !data) return null
+  return {
+    categoryId: Number(data.category_id),
+    pathKey: String(data.path_key),
+    path: String(data.path),
+    level: Number(data.level),
+    rootId: Number(data.root_id),
+    sourceUrl: String(data.source_url),
+  } satisfies MarketTaxonomyCategory
+}
+
+export async function getMarketTaxonomySnapshot(
+  categoryId: number,
+  observedDate: string | null = null,
+): Promise<MarketTaxonomySnapshot> {
+  const database = createServiceClient() || supabase
+  if (!database) return { category: null, products: [], observedDate: null }
+  const [category, response] = await Promise.all([
+    getMarketTaxonomyCategory(categoryId),
+    database.rpc('get_market_category_rankings', {
+      p_category_id: categoryId,
+      p_observed_date: observedDate,
+      p_limit: 200,
+    }),
+  ])
+  if (response.error || !response.data) return { category, products: [], observedDate: null }
+  const products = response.data.map((value: unknown) => {
+    const row = asRecord(value)
+    return {
+      observedDate: String(row.observed_date || ''),
+      capturedAt: String(row.captured_at || ''),
+      categoryId: Number(row.category_id),
+      rank: Number(row.rank),
+      previousRank: asNumber(row.previous_rank),
+      rankDelta: asNumber(row.rank_delta),
+      productKey: String(row.product_key || ''),
+      productId: String(row.product_id || ''),
+      merchantId: asText(row.merchant_id),
+      title: String(row.title || ''),
+      brand: asText(row.brand),
+      url: String(row.url || ''),
+      imageUrl: asText(row.image_url),
+      price: asNumber(row.price),
+      previousPrice: asNumber(row.previous_price),
+      priceDeltaPercent: asNumber(row.price_delta_percent),
+      originalPrice: asNumber(row.original_price),
+      currency: String(row.currency || 'TRY'),
+      inStock: typeof row.in_stock === 'boolean' ? row.in_stock : null,
+      runningOut: typeof row.running_out === 'boolean' ? row.running_out : null,
+      rating: asNumber(row.rating),
+      ratingCount: asNumber(row.rating_count),
+      promotions: asStringArray(row.promotions),
+      fastDelivery: typeof row.fast_delivery === 'boolean' ? row.fast_delivery : null,
+      rushDeliveryHours: asNumber(row.rush_delivery_hours),
+    } satisfies MarketTaxonomyProduct
+  })
+  return { category, products, observedDate: products[0]?.observedDate || observedDate }
 }
 
 function includesSearch(product: MarketProduct, query: string) {
