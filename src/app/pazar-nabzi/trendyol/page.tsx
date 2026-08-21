@@ -3,6 +3,7 @@ import JsonLd from '@/components/common/JsonLd'
 import NavBar from '@/components/landing/NavBar'
 import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
+import productStyles from './TrendyolProductImage.module.css'
 import { getDictionary } from '@/lib/i18n'
 import { getSiteUrl } from '@/lib/seo'
 import {
@@ -321,7 +322,9 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
 
                   {taxonomySnapshot.products.length ? (
                     <div className="market-table-shell market-taxonomy-table-shell">
-                      <table className="market-table market-taxonomy-table">
+                      <table
+                        className={`market-table market-taxonomy-table ${productStyles.productTable}`}
+                      >
                         <caption>
                           {taxonomySnapshot.category?.path} için{' '}
                           {formatMarketDate(taxonomySnapshot.observedDate)} tarihli çok satanlar
@@ -342,17 +345,42 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                                 <strong className="market-rank">{product.rank}</strong>
                               </td>
                               <th scope="row" data-label="Ürün">
-                                <a
-                                  href={product.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer nofollow"
-                                >
-                                  {product.title}
-                                </a>
-                                <span>
-                                  {product.brand || 'Marka belirtilmedi'} · Ürün #
-                                  {product.productId}
-                                </span>
+                                <div className={productStyles.productCell}>
+                                  <a
+                                    className={`${productStyles.productImage}${product.imageUrl ? '' : ` ${productStyles.isEmpty}`}`}
+                                    href={product.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                    aria-label={`${product.title} ürününü Trendyol'da aç`}
+                                  >
+                                    {product.imageUrl ? (
+                                      <img
+                                        src={product.imageUrl}
+                                        alt={`${product.title} ürün görseli`}
+                                        width="64"
+                                        height="78"
+                                        loading="lazy"
+                                        decoding="async"
+                                        referrerPolicy="no-referrer"
+                                      />
+                                    ) : (
+                                      <span aria-hidden="true">GÖRSEL YOK</span>
+                                    )}
+                                  </a>
+                                  <div>
+                                    <a
+                                      href={product.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer nofollow"
+                                    >
+                                      {product.title}
+                                    </a>
+                                    <span className={productStyles.productMeta}>
+                                      {product.brand || 'Marka belirtilmedi'} · Ürün #
+                                      {product.productId}
+                                    </span>
+                                  </div>
+                                </div>
                               </th>
                               <td data-label="Fiyat">
                                 <strong>{formatMarketMoney(product.price)}</strong>
