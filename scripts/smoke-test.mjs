@@ -6,6 +6,8 @@ const checks = [
   { name: 'Membership', path: '/uyelik', expectedStatus: 200 },
   { name: 'Robots', path: '/robots.txt', expectedStatus: 200 },
   { name: 'Sitemap', path: '/sitemap.xml', expectedStatus: 200 },
+  { name: 'Veri Asistanı', path: '/araclar/veri-asistani', expectedStatus: 200 },
+  { name: 'Veri Asistanı API (method check)', path: '/api/veri-asistani', expectedStatus: 405 },
   { name: 'VeriBot API (method check)', path: '/api/veribot', expectedStatus: 405 },
   {
     name: 'Membership unlock API (method check)',
