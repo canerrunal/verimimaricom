@@ -12,6 +12,10 @@ import {
   getMarketQualities,
   getMarketProfiles,
   getMarketSnapshot,
+  getMarketTaxonomyCategories,
+  getMarketTaxonomyDates,
+  getMarketTaxonomyOverview,
+  getMarketTaxonomySnapshot,
   getMarketView,
   selectMarketProducts,
   summarizeMarketProducts,
@@ -48,6 +52,12 @@ function marketHref(profile: MarketProfileSlug, view: MarketViewSlug, query = ''
   return `/pazar-nabzi/trendyol?${params.toString()}#radar`
 }
 
+function taxonomyHref(categoryId: number, date = '') {
+  const params = new URLSearchParams({ 'kategori-id': String(categoryId) })
+  if (date) params.set('tarih', date)
+  return `/pazar-nabzi/trendyol?${params.toString()}#kategori-evreni`
+}
+
 function percent(value: number | null) {
   if (value === null) return '—'
   return `${value > 0 ? '+' : ''}${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 1 }).format(value)}%`
@@ -72,10 +82,28 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
   const category = first(params.kategori)
   const view = getMarketView(first(params.gorunum))
   const query = first(params.arama).slice(0, 80)
+  const taxonomyQuery = first(params['taksonomi-arama']).slice(0, 80)
+  const requestedRootId = Number(first(params['ana-kategori']))
+  const requestedCategoryId = Number(first(params['kategori-id']))
+  const requestedDate = /^\d{4}-\d{2}-\d{2}$/.test(first(params.tarih)) ? first(params.tarih) : ''
   const profiles = await getMarketProfiles()
-  const [snapshot, qualities] = await Promise.all([
+  const [snapshot, qualities, taxonomyOverview, taxonomyDates] = await Promise.all([
     getMarketSnapshot(category, profiles),
     getMarketQualities(profiles),
+    getMarketTaxonomyOverview(),
+    getMarketTaxonomyDates(),
+  ])
+  const defaultCategoryId = taxonomyOverview?.roots[0]?.categoryId || 0
+  const taxonomyCategoryId =
+    Number.isInteger(requestedCategoryId) && requestedCategoryId > 0
+      ? requestedCategoryId
+      : defaultCategoryId
+  const rootId = Number.isInteger(requestedRootId) && requestedRootId > 0 ? requestedRootId : null
+  const [taxonomyCategories, taxonomySnapshot] = await Promise.all([
+    getMarketTaxonomyCategories(taxonomyQuery, rootId, taxonomyQuery || rootId ? 60 : 19),
+    taxonomyCategoryId
+      ? getMarketTaxonomySnapshot(taxonomyCategoryId, requestedDate || null)
+      : Promise.resolve({ category: null, products: [], observedDate: null }),
   ])
   const filtered = selectMarketProducts(snapshot.products, view, query)
   const products = filtered.slice(0, 40)
@@ -85,7 +113,9 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
   const topOpportunity = selectMarketProducts(snapshot.products, 'firsat-radari')[0]
   const latestCapturedAt = snapshot.quality.capturedAt || snapshot.products[0]?.capturedAt || null
   const passedProfiles = qualities.filter((quality) => quality.status === 'PASS').length
-  const observedProductCount = qualities.reduce((total, quality) => total + quality.productCount, 0)
+  const observedProductCount =
+    taxonomyOverview?.uniqueProducts ||
+    qualities.reduce((total, quality) => total + quality.productCount, 0)
   const datasetLd = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
@@ -121,8 +151,8 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
             sunulur.
           </p>
           <div className="actions-row">
-            <a className="btn hero-primary" href="#radar">
-              Bugünün sinyallerini gör <span>↓</span>
+            <a className="btn hero-primary" href="#kategori-evreni">
+              Tüm kategorileri keşfet <span>↓</span>
             </a>
             <a className="hero-link" href="#yontem">
               Yöntemi ve sınırları oku ↗
@@ -130,13 +160,17 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
           </div>
           <div className="signals market-hero-signals">
             <span className="tag">
-              <i /> {passedProfiles}/{profiles.length} profil kalite kapısından geçti
+              <i />{' '}
+              {taxonomyOverview
+                ? `${taxonomyOverview.coverage}% kategori kapsamı`
+                : `${passedProfiles}/${profiles.length} profil kalite kapısından geçti`}
             </span>
             <span className="tag">
-              <i /> {observedProductCount || '1.800'} günlük gözlem
+              <i /> {compact(observedProductCount)} günlük benzersiz ürün
             </span>
             <span className="tag">
-              <i /> Son güncelleme: {formatMarketDate(latestCapturedAt)}
+              <i /> Son güncelleme:{' '}
+              {formatMarketDate(taxonomyOverview?.capturedAt || latestCapturedAt)}
             </span>
           </div>
         </div>
@@ -145,25 +179,233 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
       <section className="market-status-strip" aria-label="Günlük pazar özeti">
         <div className="wrap market-status-grid">
           <div>
-            <span>AKTİF KATEGORİ</span>
-            <strong>{snapshot.profile.label}</strong>
-            <small>{snapshot.quality.productCount || snapshot.products.length} ürün gözlemi</small>
+            <span>KATEGORİ EVRENİ</span>
+            <strong>{compact(taxonomyOverview?.totalCategories || profiles.length)}</strong>
+            <small>
+              {compact(taxonomyOverview?.totalCategoryPaths || profiles.length)} kategori yolu
+            </small>
           </div>
           <div>
-            <span>MEDYAN FİYAT</span>
-            <strong>{formatMarketMoney(summary.medianPrice)}</strong>
-            <small>seçili günlük havuz</small>
+            <span>BENZERSİZ ÜRÜN</span>
+            <strong>{compact(taxonomyOverview?.uniqueProducts || observedProductCount)}</strong>
+            <small>son başarılı günlük koşu</small>
           </div>
           <div>
-            <span>YÜKSELİŞ SİNYALİ</span>
-            <strong>{summary.risingCount}</strong>
-            <small>aynı kapsam içindeki hareket</small>
+            <span>SIRALAMA KAYDI</span>
+            <strong>{compact(taxonomyOverview?.rankingMemberships || 0)}</strong>
+            <small>kategori–ürün üyeliği</small>
           </div>
           <div>
             <span>VERİ KALİTESİ</span>
-            <strong>{snapshot.quality.status}</strong>
-            <small>%{snapshot.quality.detailSuccessRate} detay yenileme</small>
+            <strong>{taxonomyOverview ? 'PASS' : snapshot.quality.status}</strong>
+            <small>
+              {taxonomyOverview
+                ? `${compact(taxonomyOverview.coveredCategories)} kategori kapsandı`
+                : `%${snapshot.quality.detailSuccessRate} detay yenileme`}
+            </small>
           </div>
+        </div>
+      </section>
+
+      <section className="section-band band-paper market-taxonomy-band" id="kategori-evreni">
+        <div className="wrap section market-taxonomy-workspace">
+          <div className="head market-head">
+            <div>
+              <span className="eyebrow">TÜM KATEGORİLER / GÜNLÜK ÇOK SATANLAR</span>
+              <h2>Bir kategoriyi ve tarihi seçin.</h2>
+            </div>
+            <p>
+              Yeni kategoriler günlük keşifle kendiliğinden eklenir. İkinci başarılı günden itibaren
+              sıra ve fiyat hareketleri önceki günle karşılaştırılır.
+            </p>
+          </div>
+
+          {taxonomyOverview ? (
+            <>
+              <form className="market-taxonomy-search panel" action="/pazar-nabzi/trendyol">
+                <div>
+                  <label htmlFor="taxonomy-root">Ana kategori</label>
+                  <select id="taxonomy-root" name="ana-kategori" defaultValue={rootId || ''}>
+                    <option value="">Tüm ana kategoriler</option>
+                    {taxonomyOverview.roots.map((root) => (
+                      <option key={root.categoryId} value={root.categoryId}>
+                        {root.name} ({root.totalCategories})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="market-taxonomy-query">
+                  <label htmlFor="taxonomy-query">Kategori yolu ara</label>
+                  <input
+                    id="taxonomy-query"
+                    className="search"
+                    type="search"
+                    name="taksonomi-arama"
+                    defaultValue={taxonomyQuery}
+                    placeholder="Örn. robot süpürge, kahve, bebek bezi"
+                  />
+                </div>
+                <button className="btn" type="submit">
+                  Kategorileri bul
+                </button>
+              </form>
+
+              <div className="market-taxonomy-layout">
+                <aside className="market-taxonomy-categories" aria-label="Kategori sonuçları">
+                  <div>
+                    <span>KATEGORİ SONUÇLARI</span>
+                    <strong>{taxonomyCategories.length}</strong>
+                  </div>
+                  <nav>
+                    {taxonomyCategories.map((item) => (
+                      <a
+                        key={item.pathKey}
+                        href={taxonomyHref(item.categoryId, requestedDate)}
+                        className={
+                          item.categoryId === taxonomySnapshot.category?.categoryId
+                            ? 'active'
+                            : undefined
+                        }
+                        aria-current={
+                          item.categoryId === taxonomySnapshot.category?.categoryId
+                            ? 'page'
+                            : undefined
+                        }
+                      >
+                        <span>{item.path}</span>
+                        <small>
+                          Seviye {item.level + 1} · #{item.categoryId}
+                        </small>
+                      </a>
+                    ))}
+                  </nav>
+                  {!taxonomyCategories.length ? (
+                    <p>Bu aramayla eşleşen kategori yolu bulunamadı.</p>
+                  ) : null}
+                </aside>
+
+                <div className="market-taxonomy-results">
+                  <div className="market-table-head">
+                    <div>
+                      <span className="eyebrow">SEÇİLİ KATEGORİ</span>
+                      <h3>{taxonomySnapshot.category?.path || 'Kategori seçin'}</h3>
+                    </div>
+                    <form action="/pazar-nabzi/trendyol">
+                      <input type="hidden" name="kategori-id" value={taxonomyCategoryId} />
+                      <label htmlFor="taxonomy-date">Rapor tarihi</label>
+                      <select
+                        id="taxonomy-date"
+                        name="tarih"
+                        defaultValue={
+                          taxonomySnapshot.observedDate ||
+                          requestedDate ||
+                          taxonomyOverview.observedDate
+                        }
+                      >
+                        {taxonomyDates.map((date) => (
+                          <option key={date} value={date}>
+                            {formatMarketDate(date)}
+                          </option>
+                        ))}
+                      </select>
+                      <button className="btn alt" type="submit">
+                        Tarihi getir
+                      </button>
+                    </form>
+                  </div>
+
+                  {taxonomySnapshot.products.length ? (
+                    <div className="market-table-shell market-taxonomy-table-shell">
+                      <table className="market-table market-taxonomy-table">
+                        <caption>
+                          {taxonomySnapshot.category?.path} için{' '}
+                          {formatMarketDate(taxonomySnapshot.observedDate)} tarihli çok satanlar
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">Sıra</th>
+                            <th scope="col">Ürün</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Günlük hareket</th>
+                            <th scope="col">Stok / puan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {taxonomySnapshot.products.map((product) => (
+                            <tr key={`${product.rank}-${product.productKey}`}>
+                              <td data-label="Sıra">
+                                <strong className="market-rank">{product.rank}</strong>
+                              </td>
+                              <th scope="row" data-label="Ürün">
+                                <a
+                                  href={product.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer nofollow"
+                                >
+                                  {product.title}
+                                </a>
+                                <span>
+                                  {product.brand || 'Marka belirtilmedi'} · Ürün #
+                                  {product.productId}
+                                </span>
+                              </th>
+                              <td data-label="Fiyat">
+                                <strong>{formatMarketMoney(product.price)}</strong>
+                                <span>{product.promotions[0] || 'Kampanya etiketi yok'}</span>
+                              </td>
+                              <td data-label="Günlük hareket">
+                                <strong
+                                  className={
+                                    (product.rankDelta || 0) > 0
+                                      ? 'signal-up'
+                                      : (product.rankDelta || 0) < 0
+                                        ? 'signal-down'
+                                        : undefined
+                                  }
+                                >
+                                  {product.rankDelta === null
+                                    ? 'İlk gözlem'
+                                    : product.rankDelta === 0
+                                      ? 'Sıra değişmedi'
+                                      : `${product.rankDelta > 0 ? '+' : ''}${product.rankDelta} sıra`}
+                                </strong>
+                                <span>Fiyat {percent(product.priceDeltaPercent)}</span>
+                              </td>
+                              <td data-label="Stok ve puan">
+                                <strong>
+                                  {product.inStock === false
+                                    ? 'Stok dışı'
+                                    : product.runningOut
+                                      ? 'Tükeniyor'
+                                      : 'Stokta'}
+                                </strong>
+                                <span>
+                                  {product.rating
+                                    ? `${product.rating.toFixed(1)} puan`
+                                    : 'Puan yok'}{' '}
+                                  · {compact(product.ratingCount)}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <div className="market-empty" role="status">
+                      <strong>Bu kategori ve tarih için ürün kaydı yok.</strong>
+                      <p>Kategori başarılı ancak boş dönmüş olabilir; başka bir kategori seçin.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="market-empty" role="status">
+              <strong>Kategori evreni ilk aktarımı bekliyor.</strong>
+              <p>Son doğrulanmış 12 profil aşağıdaki konsolda görünmeye devam ediyor.</p>
+            </div>
+          )}
         </div>
       </section>
 
