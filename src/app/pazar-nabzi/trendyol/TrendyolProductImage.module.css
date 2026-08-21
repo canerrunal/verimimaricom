@@ -1,9 +1,21 @@
+.productTable thead th:nth-child(1) {
+  width: 8%;
+}
+
 .productTable thead th:nth-child(2) {
-  width: 40%;
+  width: 46%;
+}
+
+.productTable thead th:nth-child(3) {
+  width: 13%;
+}
+
+.productTable thead th:nth-child(4) {
+  width: 16%;
 }
 
 .productTable thead th:nth-child(5) {
-  width: 15%;
+  width: 17%;
 }
 
 .productCell {
