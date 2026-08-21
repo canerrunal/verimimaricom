@@ -33,6 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      url: `${siteUrl}/araclar/veri-asistani`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.98,
+    },
+    {
       url: `${siteUrl}/araclar/basabas-roas-hesaplayici`,
       lastModified: now,
       changeFrequency: 'weekly',

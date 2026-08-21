@@ -15,24 +15,23 @@ export default function ToolsSection({ t }: { t: any }) {
 
         <div className="grid">
           <div className="feature">
-            <span className="eyebrow" style={{ color: '#aaa' }}>
-              CANLI / 2 DK
-            </span>
-            <h3 style={{ font: "700 24px 'Space Mono'", letterSpacing: '-0.02em' }}>
-              Başa Baş ROAS Hesaplayıcı
-            </h3>
-            <p>Reklamda zarar etmeye başladığınız seviyeyi bulun.</p>
-            <a className="btn" href="/araclar/basabas-roas-hesaplayici">
-              Hesaplamayı Başlat
+            <span className="eyebrow">YENİ / BETA / ÜCRETSİZ</span>
+            <h3>Veri Asistanı</h3>
+            <p>
+              Pazar sinyalini sorun, kârı konuşarak hesaplayın; doğru Veri Mimarı aracını tek adımda
+              çalıştırın.
+            </p>
+            <a className="btn" href="/araclar/veri-asistani">
+              Asistana Sor
             </a>
           </div>
 
           <div className="card">
             <span className="tag live">CANLI</span>
-            <h3>Kâr Marjı Hesaplayıcı</h3>
-            <p>Sipariş başına katkı payınızı görün.</p>
-            <a className="link" href="/araclar/kar-marji-hesaplayici">
-              Hesaplamayı başlat
+            <h3>Başa Baş ROAS Hesaplayıcı</h3>
+            <p>Reklamda zarar etmeye başladığınız seviyeyi bulun.</p>
+            <a className="link" href="/araclar/basabas-roas-hesaplayici">
+              ROAS eşiğini hesapla
             </a>
           </div>
 

@@ -1,186 +1,33 @@
 'use client'
 
 import { useState } from 'react'
-import { useChat } from 'ai/react'
 import { trackEvent } from '@/lib/analytics'
-import { parseActionHintFromText, isSafeTarget } from '@/lib/ai/contracts'
-
-function formatAssistantContent(content: string) {
-  const cleanContent = String(content || '')
-    .replace(/<ACTION_HINT>[\s\S]*?<\/ACTION_HINT>/gi, '')
-    .trim()
-
-  const parts = cleanContent.split(/\n\s*\n/).filter(Boolean)
-
-  return parts.map((block, index) => {
-    const lines = block
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-
-    const looksLikeList =
-      lines.length > 1 && lines.every((line) => line.startsWith('- ') || /^\d+\./.test(line))
-    const looksLikeReferences = /^kaynaklar:?/i.test(lines[0] || '')
-
-    if (looksLikeReferences) {
-      return (
-        <section key={`ref-${index}`} className="bubble-section refs">
-          <strong>Kaynaklar</strong>
-          <ul>
-            {lines
-              .slice(1)
-              .map((line) => line.replace(/^[-*]\s*/, '').trim())
-              .filter(Boolean)
-              .map((line, i) => (
-                <li key={`ref-item-${index}-${i}`}>{line}</li>
-              ))}
-          </ul>
-        </section>
-      )
-    }
-
-    if (looksLikeList) {
-      return (
-        <ul key={`list-${index}`} className="bubble-list">
-          {lines.map((line, i) => (
-            <li key={`line-${index}-${i}`}>{line.replace(/^[-*]\s*/, '').trim()}</li>
-          ))}
-        </ul>
-      )
-    }
-
-    return <p key={`p-${index}`}>{lines.join(' ')}</p>
-  })
-}
+import VeriAssistantChat from './VeriAssistantChat'
 
 export default function VeriBotChat() {
   const [open, setOpen] = useState(false)
 
-  const executeActionHint = (hint: any) => {
-    if (!hint || !isSafeTarget(hint.target)) return
-
-    trackEvent('veribot_action_hint_click', {
-      action: hint.action,
-      target: hint.target,
-    })
-
-    if (hint.action === 'randevu_al' || /cal\.com|calendly/i.test(String(hint.target))) {
-      trackEvent('calendly_booking', { source: 'veribot', target: hint.target })
-    } else if (hint.action === 'indir_cv') {
-      trackEvent('download', { source: 'veribot', target: hint.target })
-    }
-
-    if (String(hint.target).startsWith('#')) {
-      window.location.hash = hint.target
-      return
-    }
-
-    window.location.href = hint.target
-  }
-
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
-    api: '/api/veribot',
-    initialMessages: [
-      {
-        id: 'welcome',
-        role: 'assistant',
-        content:
-          'Merhaba, ben VeriBot. Projeler, analizler ve yetkinlikler hakkında soru sorabilirsiniz.',
-      },
-    ],
-  })
-
   return (
-    <div className={`veribot ${open ? 'open' : ''}`} aria-label="VeriBot chat widget">
+    <div className={`veribot ${open ? 'open' : ''}`} aria-label="Veri Asistanı sohbet aracı">
       <button
         className="veribot-trigger"
         onClick={() => {
           const nextOpen = !open
           setOpen(nextOpen)
-          trackEvent(nextOpen ? 'veribot_open' : 'veribot_close', {
+          trackEvent(nextOpen ? 'veri_assistant_open' : 'veri_assistant_close', {
             source: 'floating_widget',
           })
         }}
+        aria-expanded={open}
+        aria-controls="veri-assistant-widget"
       >
-        {open ? 'Kapat' : 'VeriBot'}
+        {open ? 'Kapat' : 'Veri Asistanı'}
       </button>
 
       {open && (
-        <section className="veribot-panel">
-          <header className="veribot-head">
-            <strong>Agentic AI Asistanı</strong>
-            <span>RAG destekli · Proje + Rehber + Araç</span>
-          </header>
-
-          <div className="veribot-stream" role="log" aria-live="polite">
-            {messages.length <= 1 && !isLoading && (
-              <div className="veribot-empty-state">
-                <strong>Önerilen sorular</strong>
-                <ul>
-                  <li>Bu sitede hangi analizler var?</li>
-                  <li>NLP projelerinde hangi teknoloji yığını kullanıldı?</li>
-                  <li>Premium üyelikte hangi içerikler açılıyor?</li>
-                </ul>
-              </div>
-            )}
-
-            {messages.map((m) => (
-              <article key={m.id} className={`bubble ${m.role === 'user' ? 'user' : 'assistant'}`}>
-                {m.role === 'assistant' ? (
-                  <>
-                    {formatAssistantContent(m.content)}
-                    {(() => {
-                      const hint = parseActionHintFromText(m.content)
-                      if (!hint) return null
-
-                      return (
-                        <div className="veribot-action-hint" aria-label="Onerilen aksiyon">
-                          <small>{hint.reason}</small>
-                          <button type="button" onClick={() => executeActionHint(hint)}>
-                            {hint.label}
-                          </button>
-                        </div>
-                      )
-                    })()}
-                  </>
-                ) : (
-                  <p>{m.content}</p>
-                )}
-              </article>
-            ))}
-
-            {isLoading && <div className="veribot-status">VeriBot yanıtı hazırlanıyor...</div>}
-
-            {error && (
-              <div className="veribot-status error">
-                VeriBot şu anda yanıt üretemedi. Lütfen sorunuzu yeniden deneyin.
-              </div>
-            )}
-          </div>
-
-          <form
-            onSubmit={(e) => {
-              if (input.trim()) {
-                trackEvent('veribot_submit', {
-                  prompt_length: input.trim().length,
-                })
-              }
-              handleSubmit(e)
-            }}
-            className="veribot-form"
-          >
-            <input
-              name="prompt"
-              value={input}
-              onChange={handleInputChange}
-              placeholder="Örn: NLP projelerinde hangi teknoloji yığınını kullandın?"
-              aria-label="VeriBot mesajı"
-            />
-            <button type="submit" disabled={isLoading || !input.trim()}>
-              {isLoading ? 'Yanıtlanıyor...' : 'Sor'}
-            </button>
-          </form>
-        </section>
+        <div className="veribot-panel" id="veri-assistant-widget">
+          <VeriAssistantChat variant="widget" />
+        </div>
       )}
     </div>
   )

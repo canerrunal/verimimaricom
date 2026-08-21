@@ -7,6 +7,16 @@ import { getDictionary } from '@/lib/i18n'
 
 const allTools = [
   {
+    title: 'Veri Asistanı',
+    description:
+      'Trendyol ürün ve kategori sinyallerini sorun; satış fiyatı ve maliyetlerle kârınızı konuşarak hesaplayın.',
+    status: 'BETA',
+    category: 'Yapay zekâ',
+    badge: 'BETA · KONUŞMALI · ÜCRETSİZ',
+    href: '/araclar/veri-asistani',
+    cta: 'Asistana Sor →',
+  },
+  {
     title: 'E-Ticaret Strateji ve Pazarlama Analizi',
     description:
       'Çoklu ürün kârlılığını, reklam sınırlarını, fiyat kararlarını ve 30 günlük uygulama planını tek ekranda analiz edin.',
