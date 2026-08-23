@@ -88,7 +88,13 @@ export default async function AnnouncementDetailPage({ params }: PageProps) {
           <div className="wrap section announcement-reading-grid">
             <div className="announcement-article-main">
               <figure className="announcement-hero-image">
-                <img src={announcement.image} alt={announcement.imageAlt} />
+                <img
+                  className={
+                    announcement.image.endsWith('.png') ? 'announcement-hero-image-tall' : ''
+                  }
+                  src={announcement.image}
+                  alt={announcement.imageAlt}
+                />
                 <figcaption>{announcement.source}</figcaption>
               </figure>
 

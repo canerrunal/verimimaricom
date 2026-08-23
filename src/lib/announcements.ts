@@ -38,6 +38,120 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'trendyol-agustos-2026-avantajli-komisyon-guncellemesi',
+    addedOrder: 7,
+    eyebrow: 'TRENDYOL DUYURULARI / AĞUSTOS 2026',
+    title: 'Ağustos avantajlı komisyon güncellemesi: oranlar %15 düşebilir.',
+    excerpt:
+      'Satıcı puanı 8’in üzerinde olan ve belirtilen koşulları sağlayan iş ortaklarında 25 Ağustos 08:00–1 Eylül 07:59 arasında avantajlı komisyon güncellemesi uygulanacak.',
+    category: 'Trendyol Duyuruları',
+    publishedAt: '2026-08-24',
+    updatedAt: '2026-08-24',
+    readingTime: '6 dk',
+    image: '/duyurular/trendyol-agustos-2026-avantajli-komisyon-guncellemesi.png',
+    imageAlt: 'Trendyol Akademi Ağustos 2026 Avantajlı Komisyon Güncellemesi duyurusu',
+    source: 'Trendyol Akademi e-posta duyurusu · Ağustos 2026 Avantajlı Komisyon Güncellemesi',
+    sourceNote:
+      'Bu duyuru, paylaşılan Trendyol Akademi görselindeki bilgilendirmeye göre hazırlanmıştır. Uygunluk; satıcı puanı, belirtilen koşullar ve ürünün Komisyon Oranı Tablosu/Ürün Komisyon Tarifesi kapsamına göre değişiyor. Kendi Satıcı Paneli’nizde görünen güncel oranı ve kampanya kapsamını ayrıca doğrulayın.',
+    stats: [
+      {
+        label: 'UYGULAMA PENCERESİ',
+        value: '25 AĞU / 1 EYL',
+        detail: '25 Ağustos 08:00’den 1 Eylül 07:59’a kadar',
+      },
+      {
+        label: 'GÜNCELLEME',
+        value: '-%15',
+        detail: 'Uygun ürün ve satıcı koşullarında oran indirimi',
+      },
+      {
+        label: 'PUAN KOŞULU',
+        value: '> 8',
+        detail: 'Satıcı puanının 8’in üzerinde olması gerekiyor',
+      },
+      {
+        label: 'ALT SINIR NOTU',
+        value: '%2,7',
+        detail: 'Güncelleme hesabında kritik minimum komisyon eşiği',
+      },
+    ],
+    sections: [
+      {
+        id: 'kimler-yararlanabilir',
+        heading: 'Avantaj herkese otomatik uygulanmıyor.',
+        paragraphs: [
+          'Trendyol Akademi duyurusuna göre komisyon oranları, satıcı puanı 8’in üzerinde olan ve belirtilen diğer koşulları sağlayan iş ortakları için 25 Ağustos 2026 saat 08:00 ile 1 Eylül 2026 saat 07:59 arasında güncellenecek.',
+          'Bu nedenle kampanyayı yalnızca “komisyon %15 düşüyor” diye okumak eksik kalır. Satıcının puanı, ürünün komisyon tarifesi kapsamı ve Satıcı Paneli’nde tanımlanan koşullar birlikte kontrol edilmeli.',
+        ],
+        bullets: [
+          'Satıcı puanınızı kontrol edin.',
+          'Ürünlerinizin Komisyon Oranı Tablosu kapsamını kontrol edin.',
+          'Uygulama tarihindeki panel oranını eski oranla karşılaştırın.',
+        ],
+      },
+      {
+        id: 'guncelleme-hesabi',
+        heading: 'Hesap mantığı: mevcut oran × (1 - %15).',
+        paragraphs: [
+          'Görseldeki örneğe göre %20 komisyonla çalışan bir ürün, uygun koşullarda %15 güncelleme ile %17 komisyona iniyor. Aynı mantıkla %10 komisyon oranı %8,5 olarak hesaplanıyor.',
+          'Buradaki %15, satış fiyatından yapılan indirim değil; mevcut komisyon oranının yüzde 15 azaltılması. Bu yüzden etkisini ürün bazında TL karşılığıyla görmek gerekiyor.',
+        ],
+        bullets: [
+          '%20 × (1 - %15) = %17',
+          '%10 × (1 - %15) = %8,5',
+          'Yeni komisyon farkını satış fiyatı ve sipariş adediyle çarpın.',
+        ],
+      },
+      {
+        id: 'urun-tarifesi-ve-taban',
+        heading: 'Ürün tarifesi ve %2,7 tabanı sonucu değiştirebilir.',
+        paragraphs: [
+          'Duyurudaki tabloda ürün komisyon tarifesine dahil olan ve olmayan ürünler ayrı örneklerle gösteriliyor. %2,90 oranının %15 güncellemeyle ham olarak %2,46’ya inmesi mümkün görünse de görselde %2,70 minimum oranı ayrıca belirtiliyor.',
+          'Ayrıca güncelleme öncesinde %2,7 ve altında komisyonla çalışan iş ortaklarının güncellemeye dahil olmadığı; güncelleme hesabı %2,7’nin altına inerse %2,7 komisyon uygulanacağı ifade ediliyor. Tablo kapsamı ile taban kuralını birlikte okumadan net oran varsaymayın.',
+        ],
+        bullets: [
+          'Mevcut oranı %2,7 ve altında olan ürünleri ayrıca işaretleyin.',
+          'Ham hesap ile panelde uygulanacak minimum oranı ayırın.',
+          'Ürün Komisyon Tarifesi’ne dahil olma durumunu ürün bazında doğrulayın.',
+        ],
+      },
+      {
+        id: 'marj-etkisi',
+        heading: 'Avantajı ciro değil, katkı payı üzerinden okuyun.',
+        paragraphs: [
+          'Komisyon oranındaki düşüş, sipariş başına katkı payını artırır; ancak gerçek etki ürün fiyatına, mevcut komisyona, kargo ve diğer değişken giderlere bağlıdır. %20 komisyonlu 1.000 TL’lik bir siparişte oran %17’ye inerse komisyon farkı sipariş başına 30 TL olur.',
+          'Bu farkı tüm siparişlere doğrudan yaymadan önce kampanya kapsamındaki ürünleri ve uygulama tarihindeki gerçek panel oranını ayırın. Uygun olmayan ürünlerde veya puan koşulu karşılanmadığında aynı avantaj oluşmayabilir.',
+        ],
+        bullets: [
+          'Ürün bazında eski komisyonu ve yeni komisyonu yan yana yazın.',
+          'Farkı sipariş adediyle çarparak dönemsel katkıyı bulun.',
+          'Kargo, indirim, iade ve reklam giderlerini aynı hesapta koruyun.',
+        ],
+      },
+      {
+        id: 'hemen-yapilacaklar',
+        heading: '25 Ağustos’tan önce yapılacak kontrol listesi.',
+        paragraphs: [
+          'Duyuruyu operasyon ve finans ekiplerine aktarmanın en pratik yolu, kampanya başlamadan önce mevcut oranları sabitleyip sonrasında aynı ürünlerde gerçekleşen oranı karşılaştırmak:',
+        ],
+        bullets: [
+          'Satıcı puanını ve uygunluk koşullarını ekran görüntüsüyle kaydedin.',
+          'En yüksek satış hacmine sahip ürünlerin komisyon oranlarını dışa aktarın veya listeleyin.',
+          'Ürün Komisyon Tarifesi’ne dahil ürünleri ayrı bir grup olarak işaretleyin.',
+          '25 Ağustos 08:00 sonrası ve 1 Eylül 07:59 öncesi panel oranlarını kontrol edin.',
+          'Komisyon farkını ürün marjı ve başa baş ROAS hesabına işleyin.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'SONRAKİ ADIM',
+      title: 'Oran düşüşünü ürün kârına çevirin.',
+      body: 'Komisyon öncesi ve sonrası senaryoyu ürün fiyatı, kargo, iade ve reklam giderleriyle birlikte karşılaştırın.',
+      ctaLabel: 'Komisyonu hesapla →',
+      ctaHref: '/araclar/pazaryeri-komisyon-hesaplayici',
+    },
+  },
+  {
     slug: 'trendyol-elektronik-ticaret-aracilik-sozlesmesi-degisiklik-protokolu-2026',
     addedOrder: 1,
     eyebrow: 'TRENDYOL DUYURULARI / 9 AĞUSTOS 2026',
