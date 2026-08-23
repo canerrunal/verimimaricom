@@ -10861,6 +10861,206 @@ a.card:hover {
   font: 700 7px/1.3 var(--mono);
 }
 
+.assistant-intelligence,
+.assistant-entity {
+  margin-top: 16px;
+  border: 1px solid var(--ink);
+  background: var(--surface);
+}
+
+.assistant-intelligence > header,
+.assistant-entity > header {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  color: white;
+  background: var(--dark);
+}
+
+.assistant-intelligence > header > span,
+.assistant-entity > header > span {
+  color: var(--lime);
+  font: 750 8px/1.3 var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.assistant-intelligence > header > strong,
+.assistant-entity > header > strong {
+  font-size: 17px;
+  line-height: 1.18;
+}
+
+.assistant-intelligence > header > small,
+.assistant-entity > header > small {
+  color: #aeb6ae;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.assistant-intelligence-metrics,
+.assistant-entity-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.assistant-intelligence-metrics > div,
+.assistant-entity-metrics > div {
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 12px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.assistant-intelligence-metrics small,
+.assistant-entity-metrics dt {
+  margin: 0;
+  color: var(--muted);
+  font: 700 7px/1.35 var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.assistant-intelligence-metrics strong,
+.assistant-entity-metrics dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 820;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.assistant-data-kind {
+  display: inline-flex;
+  min-height: 18px;
+  align-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 2px 6px;
+  color: var(--ink);
+  background: var(--paper-deep);
+  font: 750 6px/1 var(--mono);
+  letter-spacing: 0.05em;
+}
+
+.assistant-data-kind.observed {
+  background: var(--cyan);
+}
+
+.assistant-data-kind.derived {
+  background: var(--yellow);
+}
+
+.assistant-data-kind.user {
+  background: var(--purple);
+}
+
+.assistant-data-kind.estimate {
+  background: var(--orange);
+}
+
+.assistant-intelligence > p,
+.assistant-entity > p {
+  margin: 0;
+  padding: 11px 14px;
+  border-top: 1px dashed var(--line-dark);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.assistant-intelligence > a {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border-top: 1px solid var(--ink);
+  color: var(--ink);
+  background: var(--lime);
+  font-size: 10px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.assistant-entity .assistant-product-list {
+  margin-top: 0;
+}
+
+.assistant-evidence {
+  margin-top: 14px;
+  border: 1px solid var(--ink);
+  background: white;
+}
+
+.assistant-evidence > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper-deep);
+}
+
+.assistant-evidence > header strong {
+  color: var(--blue);
+  font: 750 8px/1 var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.assistant-evidence > header span {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.assistant-evidence dl {
+  margin: 0;
+}
+
+.assistant-evidence dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.assistant-evidence dl > div:last-child {
+  border-bottom: 0;
+}
+
+.assistant-evidence dt,
+.assistant-evidence dd {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: var(--ink);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.assistant-evidence dd {
+  font-family: var(--mono);
+  font-weight: 750;
+  text-align: right;
+}
+
+.assistant-evidence small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
 .assistant-explanation {
   margin-top: 14px;
   border: 1px solid var(--ink);
@@ -11331,6 +11531,19 @@ a.card:hover {
 
   .assistant-comparison {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .assistant-intelligence-metrics,
+  .assistant-entity-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .assistant-evidence dl > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .assistant-evidence dd {
+    text-align: left;
   }
 
   .assistant-followups {

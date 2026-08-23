@@ -2,11 +2,13 @@ import { describe, expect, it } from 'vitest'
 import {
   calculateProfit,
   extractMarketThresholds,
+  extractEntityAnalysisRequest,
   extractPriceBounds,
   extractProductQuery,
   extractProfitInputs,
   isComparisonQuestion,
   isExplanationQuestion,
+  isEntityAnalysisQuestion,
   looksLikeProfitQuestion,
   missingProfitInputs,
 } from './veri-assistant'
@@ -68,6 +70,9 @@ describe('Veri Asistanı karar araçları', () => {
   it('ürün aramasından filtre ifadelerini temizler', () => {
     expect(extractProductQuery('500 TL altında fırsat skoru 10 üstü ürünleri bul')).toBe('')
     expect(extractProductQuery('çelik kolye 500 TL altında bul')).toBe('çelik kolye')
+    expect(
+      extractProductQuery('500 TL altı, en fazla 3 satıcılı, ayda 100 üstü satan ürün bul'),
+    ).toBe('')
   })
 
   it('gelişmiş pazar eşiklerini doğal dilden çıkarır', () => {
@@ -75,7 +80,33 @@ describe('Veri Asistanı karar araçları', () => {
       extractMarketThresholds(
         '4,5 puan üstü, fırsat skoru 20 üzerinde ve en az 100+ satan ürünleri bul',
       ),
-    ).toEqual({ minRating: 4.5, minOpportunityScore: 20, minObservedSales: 100 })
+    ).toEqual({
+      minRating: 4.5,
+      minOpportunityScore: 20,
+      minObservedSales: 100,
+      minMonthlyRunRate: undefined,
+      maxObservedSellerCount: undefined,
+      minObservedSellerCount: undefined,
+    })
+    expect(
+      extractMarketThresholds('500 TL altı, en fazla 3 satıcılı, ayda 100 üstü satan ürün bul'),
+    ).toMatchObject({ minMonthlyRunRate: 100, maxObservedSellerCount: 3 })
+  })
+
+  it('kategori, marka ve mağaza analiz niyetlerini çıkarır', () => {
+    expect(extractEntityAnalysisRequest('Kozmetik kategorisini analiz et')).toEqual({
+      type: 'category',
+      query: 'Kozmetik',
+    })
+    expect(extractEntityAnalysisRequest('Nike markasını incele')).toEqual({
+      type: 'brand',
+      query: 'Nike',
+    })
+    expect(extractEntityAnalysisRequest('Örnek mağazasını özetle')).toEqual({
+      type: 'store',
+      query: 'Örnek',
+    })
+    expect(isEntityAnalysisQuestion('Kozmetik kategorisini analiz et')).toBe(true)
   })
 
   it('açıklama ve karşılaştırma niyetlerini ayırır', () => {

@@ -6,9 +6,9 @@ import VeriAssistantChat from '@/components/veribot/VeriAssistantChat'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'Veri Asistanı — Trendyol ve Kârlılık Analizi',
+  title: 'Veri Asistanı V2 — Ürün, Pazar ve Kârlılık Analizi',
   description:
-    'Trendyol ürün ve kategori sinyallerini sorun; satış fiyatı, maliyet, komisyon ve kargoyla kârınızı konuşarak hesaplayın.',
+    'Trendyol ürün linkini, kategori ve marka gözlemlerini analiz edin; ölçütünüze göre ürün bulun ve kârınızı konuşarak hesaplayın.',
   alternates: { canonical: '/araclar/veri-asistani' },
   openGraph: {
     title: 'Veri Asistanı | Veri Mimarı',
@@ -22,21 +22,27 @@ export const metadata: Metadata = {
 const capabilities = [
   {
     index: '01',
-    title: 'Tüm profillerde ürün bulur',
+    title: 'Ürün linkini tek karta çevirir',
     description:
-      'Fiyat, puan, fırsat skoru ve görünür satış sinyali filtrelerini günlük gözlemlerde birlikte çalıştırır.',
+      'Fiyatı, görülen satıcıları, sıralamayı ve görünür talep hızını aynı kaynak kartında toplar.',
   },
   {
     index: '02',
-    title: 'Kârı konuşarak hesaplar',
+    title: 'Ölçütünüzle ürün bulur',
     description:
-      'Satış, maliyet, komisyon ve kargoyu alır; güncellediğiniz değere göre hesabı yeniden kurar.',
+      'Fiyat, puan, fırsat, talep hızı ve gözlenen satıcı yoğunluğunu birlikte filtreler.',
   },
   {
     index: '03',
-    title: 'Kategorileri aynı zeminde kıyaslar',
+    title: 'Marka ve kategoriyi özetler',
     description:
-      'Medyan fiyat, yükseliş, fiyat düşüşü ve stok riskini aynı veri sözleşmesiyle karşılaştırır.',
+      'Ürün, marka, alt kategori, medyan fiyat ve talep alt sınırını gözlem kapsamıyla gösterir.',
+  },
+  {
+    index: '04',
+    title: 'Kârı konuşarak hesaplar',
+    description:
+      'Ürün fiyatını gözlemden alabilir; maliyet, komisyon ve kargoyu konuşmada güncel tutar.',
   },
 ]
 
@@ -53,15 +59,15 @@ export default function VeriAssistantPage() {
             ← Tüm Araçlar
           </a>
           <div className="crumb">
-            <i aria-hidden="true" /> ARAÇLAR / VERİ ASİSTANI / BETA
+            <i aria-hidden="true" /> ARAÇLAR / VERİ ASİSTANI / V2 BETA
           </div>
           <h1>
-            Soruyu yazın. <span className="accent">Doğru hesabı</span> birlikte çalıştıralım.
+            Ürünü sorun. <span className="accent">Rakamın kaynağını</span> birlikte görelim.
           </h1>
           <p className="intro">
-            Ürün linkini veya kategori sorunuzu paylaşın; isterseniz maliyetleri yazıp kârı
-            konuşarak hesaplayın ya da iki kategoriyi karşılaştırın. Asistan, Veri Mimarı’nın pazar
-            gözlemlerini ve açık hesaplama motorlarını kullanır.
+            Ürün linkini paylaşın, ölçütünüze göre ürün bulun veya marka ve kategoriyi analiz edin.
+            Ardından maliyetleri yazıp kârı konuşarak hesaplayın. Ölçülen, türetilen ve sizin
+            girdiğiniz değerler birbirine karışmaz.
           </p>
           <div className="actions-row">
             <a className="btn hero-primary" href="#asistana-sor">
@@ -73,19 +79,19 @@ export default function VeriAssistantPage() {
           </div>
           <div className="signals assistant-hero-signals">
             <span className="tag live">BETA · KAYIT YOK · ÜCRETSİZ</span>
-            <span className="tag">ÇOKLU PROFİL + AÇIK FORMÜL</span>
-            <span className="tag">UYDURMA SAYI YOK</span>
+            <span className="tag">6 KARAR MOTORU + AÇIK FORMÜL</span>
+            <span className="tag">HER RAKAMDA KAYNAK TÜRÜ</span>
           </div>
         </div>
       </section>
 
       <section className="wrap assistant-workspace" id="asistana-sor">
         <aside className="assistant-brief" aria-label="Veri Asistanı yetenekleri">
-          <span className="eyebrow">TEK SORU / ÜÇ KARAR MOTORU</span>
-          <h2>Doğru aracı sizin yerinize seçsin.</h2>
+          <span className="eyebrow">TEK SORU / ALTI KARAR MOTORU</span>
+          <h2>Soruyu doğru veri motoruna yönlendirsin.</h2>
           <p>
-            Ayrı hesaplayıcılar ve pazar ekranları arasında dolaşmadan niyetinizi yazın. Sonuç,
-            kaynağı ve bir sonraki doğru adımıyla gelir.
+            Ayrı hesaplayıcılar ve pazar ekranları arasında dolaşmadan niyetinizi yazın. Sonuç;
+            kapsamı, kaynak türü, yöntem notu ve bir sonraki doğru adımıyla gelir.
           </p>
           <ol>
             {capabilities.map((capability) => (
@@ -112,33 +118,33 @@ export default function VeriAssistantPage() {
               <h2>Sayı varsa kaynağı; yoksa eksiği görün.</h2>
             </div>
             <p>
-              Asistan, pazar tahmini üretmek yerine Veri Mimarı’nın günlük gözlem kapsamını ve
-              deterministik hesaplama motorlarını kullanır.
+              Asistan, tek bir kesinlik etiketi kullanmaz. Ölçülen gözlemi, açık formülle türetilen
+              değeri ve sizin girdiğiniz maliyeti ayrı gösterir.
             </p>
           </div>
           <div className="grid assistant-method-grid">
             <article className="card">
-              <span className="tag">01 / PAZAR</span>
-              <h3>Gözlemlenen sinyaller</h3>
+              <span className="tag">01 / ÖLÇÜLEN</span>
+              <h3>Gözlem olduğu gibi kalır</h3>
               <p>
-                Fiyat, sıra, stok ve Trendyol’un herkese açık talep ifadeleri tarih bilgisiyle
-                sunulur. Bunlar kesin pazar satışı değildir.
+                Fiyat, satıcı, sıra, stok ve herkese açık talep ifadeleri tarih ve kapsam bilgisiyle
+                sunulur. Gözlenmeyen değer tamamlanmaz.
               </p>
             </article>
             <article className="card">
-              <span className="tag">02 / HESAP</span>
-              <h3>Yalnız sizin girdiniz</h3>
+              <span className="tag">02 / TÜRETİLEN</span>
+              <h3>Formül görünür kalır</h3>
               <p>
-                Kârlılık hesabında eksik komisyon veya kargo için sektör ortalaması varsayılmaz;
+                Medyan fiyat ve 30 günlük hız alt sınırı hangi sinyalden, hangi formülle üretildiyse
+                adım adım açıklanır.
+              </p>
+            </article>
+            <article className="card">
+              <span className="tag">03 / SİZİN GİRDİNİZ</span>
+              <h3>Maliyetler tahmin edilmez</h3>
+              <p>
+                Komisyon, kargo veya ürün maliyeti doğrulanamıyorsa sektör ortalaması eklenmez;
                 asistan eksik değeri sizden ister.
-              </p>
-            </article>
-            <article className="card">
-              <span className="tag">03 / GİZLİLİK</span>
-              <h3>Minimum veri ilkesi</h3>
-              <p>
-                Soru sunucuda işlenir; bu deneyim konuşmayı bir kullanıcı profiline bağlayarak
-                saklamaz. Hassas mağaza verisi paylaşmayın.
               </p>
             </article>
           </div>
