@@ -37,6 +37,14 @@ export type MarketThresholds = {
   minRating?: number
   minOpportunityScore?: number
   minObservedSales?: number
+  minMonthlyRunRate?: number
+  maxObservedSellerCount?: number
+  minObservedSellerCount?: number
+}
+
+export type EntityAnalysisRequest = {
+  type: 'category' | 'brand' | 'store'
+  query: string
 }
 
 const NUMBER = String.raw`(\d+(?:[.,]\d+)?)`
@@ -212,8 +220,67 @@ export function extractMarketThresholds(text: string): MarketThresholds {
   const minObservedSales = lastNumberMatch(text, [
     new RegExp(`(?:en\\s+az\\s+)?${NUMBER}\\+?\\s*(?:ürün\\s+)?sat(?:an|ılmış|ıldı)`, 'gi'),
   ])
+  const minMonthlyRunRate = lastNumberMatch(text, [
+    new RegExp(
+      `(?:ayda|aylık(?:\\s+satış)?(?:ı|i)?)\\s*${NUMBER}\\+?\\s*(?:üstü|üzerinde|ve üstü)?`,
+      'gi',
+    ),
+    new RegExp(`${NUMBER}\\+?\\s*(?:üstü|üzerinde|ve üstü)\\s*(?:aylık|ayda)\\s*sat`, 'gi'),
+  ])
+  const maxObservedSellerCount = lastNumberMatch(text, [
+    new RegExp(`(?:en\\s+fazla|maksimum)\\s*${NUMBER}\\s*(?:gözlenen\\s+)?satıcı`, 'gi'),
+    new RegExp(`${NUMBER}\\s*satıcıdan\\s*(?:az|daha az)`, 'gi'),
+  ])
+  const minObservedSellerCount = lastNumberMatch(text, [
+    new RegExp(`(?:en\\s+az)\\s*${NUMBER}\\s*(?:gözlenen\\s+)?satıcı`, 'gi'),
+  ])
 
-  return { minRating, minOpportunityScore, minObservedSales }
+  return {
+    minRating,
+    minOpportunityScore,
+    minObservedSales,
+    minMonthlyRunRate,
+    maxObservedSellerCount,
+    minObservedSellerCount,
+  }
+}
+
+export function extractEntityAnalysisRequest(text: string): EntityAnalysisRequest | null {
+  const clean = text.trim().replace(/[?.!]+$/g, '')
+  const action = String.raw`(?:analiz\s+et|incele|özetle|raporla|ne\s+satıyor|ne\s+satar)`
+  const patterns: Array<[EntityAnalysisRequest['type'], RegExp]> = [
+    [
+      'brand',
+      new RegExp(
+        `^(.{2,100}?)\\s+(?:markasını|markasini|markası|markasi|marka)\\s+${action}$`,
+        'i',
+      ),
+    ],
+    [
+      'store',
+      new RegExp(
+        `^(.{2,100}?)\\s+(?:mağazasını|magazasini|mağazası|magazasi|mağaza|magaza|satıcısını|saticisini|satıcısı|saticisi)\\s+${action}$`,
+        'i',
+      ),
+    ],
+    [
+      'category',
+      new RegExp(
+        `^(.{2,100}?)\\s+(?:kategorisini|kategorisi|kategori|pazarını|pazari|pazarı)\\s+${action}$`,
+        'i',
+      ),
+    ],
+  ]
+
+  for (const [type, pattern] of patterns) {
+    const query = clean.match(pattern)?.[1]?.trim()
+    if (query) return { type, query }
+  }
+  return null
+}
+
+export function isEntityAnalysisQuestion(text: string) {
+  return extractEntityAnalysisRequest(text) !== null
 }
 
 export function isExplanationQuestion(text: string) {
@@ -239,6 +306,12 @@ export function extractProductQuery(text: string, matchedProfile = false) {
     .replace(/fırsat\s+(?:skoru|puanı)\s*\d+(?:[.,]\d+)?\s*(?:üstü|üzerinde|ve üstü)?/gi, ' ')
     .replace(/\d+(?:[.,]\d+)?\s*(?:puan|yıldız)\s*(?:üstü|üzerinde|ve üstü)/gi, ' ')
     .replace(/(?:en\s+az\s+)?\d+(?:[.,]\d+)?\+?\s*(?:ürün\s+)?sat(?:an|ılmış|ıldı)/gi, ' ')
+    .replace(
+      /(?:ayda|aylık(?:\s+satış)?(?:ı|i)?)\s*\d+(?:[.,]\d+)?\+?\s*(?:üstü|üzerinde|ve üstü)?/gi,
+      ' ',
+    )
+    .replace(/(?:en\s+fazla|maksimum|en\s+az)\s*\d+(?:[.,]\d+)?\s*(?:gözlenen\s+)?satıcılı?/gi, ' ')
+    .replace(/[,:;]+/g, ' ')
     .replace(
       /(?:^|\s)(?:trendyol|ürün|ürünü|ürünler|ürünleri|bana|bir|bu|hafta|en|çok|satan|ve)(?=\s|$)/gi,
       ' ',

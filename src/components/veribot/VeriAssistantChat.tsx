@@ -16,12 +16,17 @@ type AssistantProduct = {
   rating: number | null
   salesSignalMin: number | null
   salesSignal: string | null
+  monthlyDemandRunRateMin: number | null
+  observedSellerCount: number
+  observedSellerNames: string[]
+  minObservedPrice: number | null
+  maxObservedPrice: number | null
   stockSignal: string | null
   observedDate: string
 }
 
 type AssistantPayload = {
-  intent: 'market' | 'profit' | 'tool' | 'guide' | 'compare' | 'explain'
+  intent: 'market' | 'product' | 'entity' | 'profit' | 'tool' | 'guide' | 'compare' | 'explain'
   reply: string
   products?: AssistantProduct[]
   calculation?: {
@@ -54,12 +59,43 @@ type AssistantPayload = {
     risingCount: number
     priceDropCount: number
     stockRiskCount: number
+    brandCount: number
+    observedSellerCount: number
+    monthlyDemandRunRateMin: number | null
+    demandSignalProductCount: number
     topOpportunity: {
       title: string
       score: number | null
       price: number | null
       url: string
     } | null
+  }>
+  productAnalysis?: AssistantProduct & {
+    observationCount: number
+    profileCount: number
+  }
+  entityAnalysis?: {
+    type: 'category' | 'brand' | 'store'
+    label: string
+    productCount: number
+    brandCount: number
+    categoryCount: number
+    observedSellerCount: number
+    medianPrice: number | null
+    minPrice: number | null
+    maxPrice: number | null
+    averageRating: number | null
+    totalReviewCount: number
+    monthlyDemandRunRateMin: number | null
+    monthlyRevenueRunRateMin: number | null
+    demandSignalProductCount: number
+    topProducts: AssistantProduct[]
+  }
+  evidence?: Array<{
+    label: string
+    value: string
+    kind: 'observed' | 'derived' | 'user' | 'estimate'
+    note?: string
   }>
   explanation?: {
     title: string
@@ -86,21 +122,33 @@ type ChatMessage = {
   payload?: AssistantPayload
 }
 
-type AssistantMode = 'market' | 'profit' | 'compare' | 'tools'
+type AssistantMode = 'product' | 'market' | 'entity' | 'profit' | 'compare' | 'tools'
 
 const modeOptions: Array<{ id: AssistantMode; label: string }> = [
-  { id: 'market', label: 'Pazar araştır' },
+  { id: 'product', label: 'Ürün linki' },
+  { id: 'market', label: 'Ürün bul' },
+  { id: 'entity', label: 'Marka / kategori' },
   { id: 'profit', label: 'Kâr hesapla' },
-  { id: 'compare', label: 'Kategori kıyasla' },
+  { id: 'compare', label: 'Kıyasla' },
   { id: 'tools', label: 'Araç seç' },
 ]
 
 const modePrompts: Record<AssistantMode, string[]> = {
+  product: [
+    'https://www.trendyol.com/urun-p-1130829074 ürününü analiz et',
+    'Kozmetik kategorisini analiz et',
+    "750 TL'ye satarsam kaç kazanırım? Maliyet 250, komisyon %15, kargo 90",
+  ],
   market: [
+    '500 TL altı, en fazla 3 gözlenen satıcılı, ayda 100 üstü hız sinyalli ürün bul',
     'Kozmetikte yükselen ürünleri göster',
-    '500 TL altında fırsat ürünlerini bul',
     '4,5 puan üstü ve en az 100+ satan ürünleri bul',
     'Elektronikte fiyatı düşen ürünleri göster',
+  ],
+  entity: [
+    'Kozmetik kategorisini analiz et',
+    'Elektronik kategorisini analiz et',
+    'Embeauty markasını analiz et',
   ],
   profit: [
     "750 TL'ye satarsam kaç kazanırım? Maliyet 250, komisyon %15, kargo 90",
@@ -124,7 +172,7 @@ const initialMessage: ChatMessage = {
   id: 'welcome',
   role: 'assistant',
   content:
-    'Bir ürün veya kategori sorun, iki pazarı karşılaştırın ya da maliyetleri yazıp kârı konuşarak hesaplayın. Yalnızca gözlemlenen veri ve açık formüllerle yanıt veririm.',
+    'Ürün linkini analiz edin, ölçütünüze uygun ürün bulun, marka veya kategoriyi okuyun; ardından kârı konuşarak hesaplayın. Her rakamın ölçüm türünü ve kaynağını ayrı gösteririm.',
 }
 
 function createId() {
@@ -135,6 +183,12 @@ function createId() {
 
 function money(value: number) {
   return `${value.toLocaleString('tr-TR', { maximumFractionDigits: 2 })} TL`
+}
+
+function compactNumber(value: number) {
+  return new Intl.NumberFormat('tr-TR', { notation: 'compact', maximumFractionDigits: 1 }).format(
+    value,
+  )
 }
 
 function copySummary(payload: AssistantPayload) {
@@ -152,6 +206,14 @@ function copySummary(payload: AssistantPayload) {
         (product, index) =>
           `${index + 1}. ${product.title} — ${product.price === null ? 'Fiyat yok' : money(product.price)}`,
       ),
+    )
+  }
+  if (payload.entityAnalysis) {
+    const entity = payload.entityAnalysis
+    lines.push(
+      `${entity.label}: ${entity.productCount} gözlenen ürün, ${entity.observedSellerCount} gözlenen satıcı`,
+      `Medyan fiyat: ${entity.medianPrice === null ? '—' : money(entity.medianPrice)}`,
+      `30 günlük hız alt sınırı: ${entity.monthlyDemandRunRateMin === null ? '—' : `${compactNumber(entity.monthlyDemandRunRateMin)}+ ürün`}`,
     )
   }
   if (payload.comparison?.length) {
@@ -194,12 +256,193 @@ function ProductResults({ products }: { products: AssistantProduct[] }) {
                 ? ` · fırsat ${product.opportunityScore.toLocaleString('tr-TR')}`
                 : ''}
             </span>
+            <span>
+              {product.observedSellerCount
+                ? `${product.observedSellerCount} gözlenen satıcı`
+                : 'Satıcı sinyali yok'}
+              {product.monthlyDemandRunRateMin
+                ? ` · 30 günlük hız ≥ ${compactNumber(product.monthlyDemandRunRateMin)}`
+                : ''}
+            </span>
             {product.salesSignal ? <em>{product.salesSignal}</em> : null}
           </span>
           <b aria-hidden="true">↗</b>
         </a>
       ))}
     </div>
+  )
+}
+
+function ProductIntelligenceCard({
+  product,
+}: {
+  product: NonNullable<AssistantPayload['productAnalysis']>
+}) {
+  const priceRange =
+    product.minObservedPrice !== null && product.maxObservedPrice !== null
+      ? product.minObservedPrice === product.maxObservedPrice
+        ? money(product.minObservedPrice)
+        : `${money(product.minObservedPrice)}–${money(product.maxObservedPrice)}`
+      : '—'
+  return (
+    <section className="assistant-intelligence" aria-label="Ürün analiz kartı">
+      <header>
+        <span>ÜRÜN ANALİZİ / GÖZLEM EVRENİ</span>
+        <strong>{product.title}</strong>
+        <small>
+          {[product.brand, product.category].filter(Boolean).join(' / ') || 'Kategori yok'}
+        </small>
+      </header>
+      <div className="assistant-intelligence-metrics">
+        <div>
+          <small>SON FİYAT</small>
+          <strong>{product.price === null ? '—' : money(product.price)}</strong>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <small>GÖZLENEN SATICI</small>
+          <strong>{product.observedSellerCount || '—'}</strong>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <small>30 GÜNLÜK HIZ ALT SINIRI</small>
+          <strong>
+            {product.monthlyDemandRunRateMin === null
+              ? '—'
+              : `${compactNumber(product.monthlyDemandRunRateMin)}+`}
+          </strong>
+          <span className="assistant-data-kind derived">TÜRETİLEN</span>
+        </div>
+        <div>
+          <small>FİYAT ARALIĞI</small>
+          <strong>{priceRange}</strong>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <small>PUAN / FIRSAT</small>
+          <strong>
+            {product.rating ?? '—'} / {product.opportunityScore ?? '—'}
+          </strong>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <small>KAPSAM</small>
+          <strong>
+            {product.profileCount} profil · {product.observationCount} gözlem
+          </strong>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+      </div>
+      {product.observedSellerNames.length ? (
+        <p>Görülen satıcılar: {product.observedSellerNames.join(' · ')}</p>
+      ) : null}
+      <a href={product.url} target="_blank" rel="noreferrer">
+        Ürünü aç <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+  )
+}
+
+function EntityAnalysisCard({
+  entity,
+}: {
+  entity: NonNullable<AssistantPayload['entityAnalysis']>
+}) {
+  const typeLabel =
+    entity.type === 'brand' ? 'MARKA' : entity.type === 'store' ? 'MAĞAZA' : 'KATEGORİ'
+  return (
+    <section
+      className="assistant-entity"
+      aria-label={`${entity.label} ${typeLabel.toLocaleLowerCase('tr-TR')} analizi`}
+    >
+      <header>
+        <span>{typeLabel} ANALİZİ / GÖZLEM EVRENİ</span>
+        <strong>{entity.label}</strong>
+        <small>
+          {entity.productCount} tekil ürün · {entity.demandSignalProductCount} üründe görünür talep
+          sinyali
+        </small>
+      </header>
+      <dl className="assistant-entity-metrics">
+        <div>
+          <dt>Gözlenen ürün</dt>
+          <dd>{entity.productCount}</dd>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <dt>Gözlenen satıcı</dt>
+          <dd>{entity.observedSellerCount}</dd>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <dt>Marka / alt kategori</dt>
+          <dd>
+            {entity.brandCount} / {entity.categoryCount}
+          </dd>
+          <span className="assistant-data-kind observed">ÖLÇÜLEN</span>
+        </div>
+        <div>
+          <dt>Medyan fiyat</dt>
+          <dd>{entity.medianPrice === null ? '—' : money(entity.medianPrice)}</dd>
+          <span className="assistant-data-kind derived">TÜRETİLEN</span>
+        </div>
+        <div>
+          <dt>30 günlük hız alt sınırı</dt>
+          <dd>
+            {entity.monthlyDemandRunRateMin === null
+              ? '—'
+              : `${compactNumber(entity.monthlyDemandRunRateMin)}+`}
+          </dd>
+          <span className="assistant-data-kind derived">TÜRETİLEN</span>
+        </div>
+        <div>
+          <dt>Ciro hız alt sınırı</dt>
+          <dd>
+            {entity.monthlyRevenueRunRateMin === null
+              ? '—'
+              : `${compactNumber(entity.monthlyRevenueRunRateMin)} TL+`}
+          </dd>
+          <span className="assistant-data-kind derived">TÜRETİLEN</span>
+        </div>
+      </dl>
+      <p>
+        Bu metrikler tüm Trendyol’u temsil etmez; son başarılı Veri Mimarı gözlem evrenini özetler.
+      </p>
+      <ProductResults products={entity.topProducts} />
+    </section>
+  )
+}
+
+const evidenceLabels = {
+  observed: 'ÖLÇÜLEN',
+  derived: 'TÜRETİLEN',
+  user: 'SİZİN GİRDİNİZ',
+  estimate: 'TAHMİN',
+} as const
+
+function EvidenceLedger({ facts }: { facts: NonNullable<AssistantPayload['evidence']> }) {
+  if (!facts.length) return null
+  return (
+    <section className="assistant-evidence" aria-label="Rakamların kaynak türleri">
+      <header>
+        <strong>RAKAM HARİTASI</strong>
+        <span>Her değer nereden geldi?</span>
+      </header>
+      <dl>
+        {facts.map((fact, index) => (
+          <div key={`${fact.label}-${index}`}>
+            <dt>
+              <span className={`assistant-data-kind ${fact.kind}`}>
+                {evidenceLabels[fact.kind]}
+              </span>
+              {fact.label}
+            </dt>
+            <dd>{fact.value}</dd>
+            {fact.note ? <small>{fact.note}</small> : null}
+          </div>
+        ))}
+      </dl>
+    </section>
   )
 }
 
@@ -231,6 +474,20 @@ function ComparisonResults({
             <div>
               <dt>Stok riski</dt>
               <dd>{item.stockRiskCount}</dd>
+            </div>
+            <div>
+              <dt>Marka / gözlenen satıcı</dt>
+              <dd>
+                {item.brandCount} / {item.observedSellerCount}
+              </dd>
+            </div>
+            <div>
+              <dt>30 günlük hız alt sınırı</dt>
+              <dd>
+                {item.monthlyDemandRunRateMin === null
+                  ? '—'
+                  : `${compactNumber(item.monthlyDemandRunRateMin)}+`}
+              </dd>
             </div>
           </dl>
           {item.topOpportunity ? (
@@ -350,7 +607,14 @@ function AssistantReply({
       <MarketCoverage payload={payload} />
       {payload.calculation ? <CalculationResult calculation={payload.calculation} /> : null}
       {payload.comparison ? <ComparisonResults comparison={payload.comparison} /> : null}
-      {payload.products ? <ProductResults products={payload.products} /> : null}
+      {payload.productAnalysis ? (
+        <ProductIntelligenceCard product={payload.productAnalysis} />
+      ) : null}
+      {payload.entityAnalysis ? <EntityAnalysisCard entity={payload.entityAnalysis} /> : null}
+      {payload.products && !payload.productAnalysis && !payload.entityAnalysis ? (
+        <ProductResults products={payload.products} />
+      ) : null}
+      {payload.evidence ? <EvidenceLedger facts={payload.evidence} /> : null}
       {payload.explanation ? <ExplanationPanel explanation={payload.explanation} /> : null}
       {payload.missingFields?.length ? (
         <div className="assistant-missing-fields">
@@ -384,7 +648,7 @@ export default function VeriAssistantChat({ variant = 'page' }: { variant?: 'pag
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [activeMode, setActiveMode] = useState<AssistantMode>('market')
+  const [activeMode, setActiveMode] = useState<AssistantMode>('product')
   const [copiedMessageId, setCopiedMessageId] = useState('')
   const streamRef = useRef<HTMLDivElement>(null)
 
@@ -483,10 +747,10 @@ export default function VeriAssistantChat({ variant = 'page' }: { variant?: 'pag
         </div>
         <div>
           <strong>Veri Asistanı</strong>
-          <span>PAZAR + KÂRLILIK + ARAÇ YÖNLENDİRME</span>
+          <span>ÜRÜN + PAZAR + KÂRLILIK + KAYNAK HARİTASI</span>
         </div>
         <small>
-          <i aria-hidden="true" /> BETA
+          <i aria-hidden="true" /> V2 BETA
         </small>
       </header>
 
@@ -565,15 +829,15 @@ export default function VeriAssistantChat({ variant = 'page' }: { variant?: 'pag
             onKeyDown={onKeyDown}
             rows={2}
             maxLength={2_000}
-            placeholder="Ürün linki yapıştırın veya ‘750 TL’ye satarsam kaç kazanırım?’ yazın"
+            placeholder="Ürün linki yapıştırın veya ‘Kozmetik kategorisini analiz et’ yazın"
           />
           <button type="submit" disabled={isLoading || !input.trim()}>
             {isLoading ? 'Kontrol ediliyor' : 'Sor'} <span aria-hidden="true">↗</span>
           </button>
         </div>
         <small>
-          Sorular sunucuda işlenir; konuşma kullanıcı hesabına bağlı saklanmaz. Pazar sayıları
-          gözlem kapsamı ve tarihiyle gösterilir.
+          Ölçülen, türetilen ve sizin girdiğiniz değerler ayrı etiketlenir. Konuşma kullanıcı
+          hesabına bağlı saklanmaz.
         </small>
       </form>
     </section>

@@ -5,11 +5,13 @@ import { buildRagContext, toContextText } from '@/lib/rag'
 import {
   extractMarketView,
   extractMarketThresholds,
+  extractEntityAnalysisRequest,
   extractPriceBounds,
   extractProductId,
   extractProductQuery,
   extractProfitInputs,
   isComparisonQuestion,
+  isEntityAnalysisQuestion,
   isExplanationQuestion,
   looksLikeMarketQuestion,
   looksLikeProfitQuestion,
@@ -18,7 +20,17 @@ import {
   profitCalculatorHref,
   recommendTool,
   type VeriAssistantMessage,
+  type ProfitInputs,
 } from '@/lib/veri-assistant'
+import {
+  analyzeEntity,
+  buildProductInsights,
+  findEntityProducts,
+  monthlyDemandRunRateMin,
+  normalizeEntityText,
+  type EvidenceFact,
+  type ProductInsight,
+} from '@/lib/veri-assistant-analytics'
 import {
   formatMarketDate,
   getMarketProfiles,
@@ -76,7 +88,11 @@ function money(value: number) {
   return `${value.toLocaleString('tr-TR', { maximumFractionDigits: 2 })} TL`
 }
 
-function productPayload(product: MarketProduct) {
+function number(value: number) {
+  return value.toLocaleString('tr-TR', { maximumFractionDigits: 0 })
+}
+
+function productPayload(product: MarketProduct, insight?: ProductInsight) {
   return {
     id: product.productId,
     title: product.title,
@@ -90,9 +106,19 @@ function productPayload(product: MarketProduct) {
     rating: product.rating,
     salesSignalMin: product.salesSignalMin,
     salesSignal: product.salesSignal,
+    monthlyDemandRunRateMin: insight?.monthlyDemandRunRateMin ?? monthlyDemandRunRateMin(product),
+    observedSellerCount: insight?.observedSellerCount ?? (product.merchantId ? 1 : 0),
+    observedSellerNames:
+      insight?.observedSellerNames ?? (product.sellerName ? [product.sellerName] : []),
+    minObservedPrice: insight?.minObservedPrice ?? product.price,
+    maxObservedPrice: insight?.maxObservedPrice ?? product.price,
     stockSignal: product.stockSignal || product.stockStatus,
     observedDate: product.observedDate,
   }
+}
+
+function evidence(...facts: Array<EvidenceFact | null>): EvidenceFact[] {
+  return facts.filter((fact): fact is EvidenceFact => fact !== null)
 }
 
 function profileMatchesText(profile: { slug: string; label: string }, normalized: string) {
@@ -140,15 +166,19 @@ function combinedMarketSource(snapshots: MarketSnapshot[]) {
   }
 }
 
-function dedupeProducts(products: MarketProduct[]) {
-  const unique = new Map<string, MarketProduct>()
-  for (const product of products) {
-    const current = unique.get(product.productId)
-    if (!current || (product.opportunityScore || 0) > (current.opportunityScore || 0)) {
-      unique.set(product.productId, product)
-    }
+async function loadMarketUniverse(profiles: Awaited<ReturnType<typeof getMarketProfiles>>) {
+  const snapshots = await Promise.all(
+    profiles.map((profile) => getMarketSnapshot(profile.slug, profiles)),
+  )
+  const observations = snapshots.flatMap((snapshot) => snapshot.products)
+  const insights = buildProductInsights(observations)
+  return {
+    snapshots,
+    observations,
+    products: insights.map((insight) => insight.product),
+    insights,
+    insightByProductId: new Map(insights.map((insight) => [insight.product.productId, insight])),
   }
-  return [...unique.values()]
 }
 
 function profitExplanation(result: NonNullable<ReturnType<typeof calculateProfit>>) {
@@ -179,20 +209,6 @@ function profitExplanation(result: NonNullable<ReturnType<typeof calculateProfit
   }
 }
 
-async function findProductAcrossProfiles(
-  productId: string,
-  profiles: Awaited<ReturnType<typeof getMarketProfiles>>,
-) {
-  const snapshots = await Promise.all(
-    profiles.map((profile) => getMarketSnapshot(profile.slug, profiles)),
-  )
-  for (const snapshot of snapshots) {
-    const product = snapshot.products.find((item) => item.productId === productId)
-    if (product) return { snapshot, product }
-  }
-  return null
-}
-
 async function answerMarketComparison(question: string) {
   const profiles = await getMarketProfiles()
   const matched = findProfilesInText(question, profiles).slice(0, 3)
@@ -218,12 +234,17 @@ async function answerMarketComparison(question: string) {
   )
   const comparison = snapshots.map((snapshot) => {
     const summary = summarizeMarketProducts(snapshot.products)
+    const entity = analyzeEntity('category', snapshot.profile.label, snapshot.products)
     const topOpportunity = selectMarketProducts(snapshot.products, 'firsat-radari')[0] || null
     return {
       slug: snapshot.profile.slug,
       label: snapshot.profile.label,
       productCount: snapshot.products.length,
       ...summary,
+      brandCount: entity.brandCount,
+      observedSellerCount: entity.observedSellerCount,
+      monthlyDemandRunRateMin: entity.monthlyDemandRunRateMin,
+      demandSignalProductCount: entity.demandSignalProductCount,
       topOpportunity: topOpportunity
         ? {
             title: topOpportunity.title,
@@ -246,6 +267,20 @@ async function answerMarketComparison(question: string) {
     }${strongestRise ? ` Daha fazla yükseliş sinyali ${strongestRise.label} profilinde.` : ''}`,
     comparison,
     source: combinedMarketSource(snapshots),
+    evidence: evidence(
+      {
+        label: 'Ürün ve satıcı kapsamı',
+        value: `${comparison.reduce((total, item) => total + item.productCount, 0)} gözlem`,
+        kind: 'observed',
+        note: 'Yalnız karşılaştırılan günlük profillerde görülen kayıtlar.',
+      },
+      {
+        label: 'Medyan ve 30 günlük hız',
+        value: 'Açık formülle türetildi',
+        kind: 'derived',
+        note: 'Görünür kısa dönem talep alt sınırı aynı hızın 30 gün sürmesi varsayımıyla çevrilir.',
+      },
+    ),
     followUps: [
       `${comparison[0].label} kategorisindeki fırsat ürünlerini göster`,
       `${comparison[1].label} kategorisinde 500 TL altını göster`,
@@ -254,17 +289,140 @@ async function answerMarketComparison(question: string) {
   }
 }
 
+async function answerEntityAnalysis(question: string, explainMode = false) {
+  const request = extractEntityAnalysisRequest(question)
+  if (!request) return null
+  const profiles = await getMarketProfiles()
+  const universe = await loadMarketUniverse(profiles)
+  let matchingProducts: MarketProduct[] = []
+  let label = request.query
+  let source = combinedMarketSource(universe.snapshots)
+  let profileSlug: string | null = null
+
+  if (request.type === 'category') {
+    const profile = findProfilesInText(request.query, profiles)[0]
+    if (profile) {
+      const snapshot = universe.snapshots.find((item) => item.profile.slug === profile.slug)
+      matchingProducts = snapshot?.products || []
+      label = profile.label
+      profileSlug = profile.slug
+      if (snapshot) source = marketSource(snapshot)
+    } else {
+      const normalizedQuery = normalizeEntityText(request.query)
+      matchingProducts = universe.observations.filter((product) =>
+        normalizeEntityText(product.category || '').includes(normalizedQuery),
+      )
+    }
+  } else {
+    matchingProducts = findEntityProducts(universe.observations, request.type, request.query)
+    const exactLabel = matchingProducts.find((product) =>
+      request.type === 'brand' ? product.brand : product.sellerName,
+    )
+    label = (request.type === 'brand' ? exactLabel?.brand : exactLabel?.sellerName) || request.query
+  }
+
+  if (!matchingProducts.length) {
+    const field =
+      request.type === 'brand' ? 'marka' : request.type === 'store' ? 'mağaza' : 'kategori'
+    return {
+      intent: 'entity',
+      reply: `${request.query} için günlük gözlem evrenimde doğrulanmış bir ${field} kaydı bulamadım. Kapsam dışındaki ürün sayısı, satış veya ciro için tahmin üretmiyorum.`,
+      source,
+      coverage: {
+        profileCount: universe.snapshots.length,
+        candidateCount: universe.products.length,
+        resultCount: 0,
+      },
+      followUps: ['Kozmetik kategorisini analiz et', 'Kozmetik ile elektroniği karşılaştır'],
+      action: { href: '/pazar-nabzi/trendyol', label: 'Gözlem kapsamını aç' },
+    }
+  }
+
+  const analysis = analyzeEntity(request.type, label, matchingProducts)
+  const entityLabel =
+    request.type === 'brand' ? 'marka' : request.type === 'store' ? 'mağaza' : 'kategori'
+  const demandText =
+    analysis.monthlyDemandRunRateMin === null
+      ? 'Görünür talep alt sınırı yeterli değil.'
+      : `Görünür sinyaller aynı hızda sürerse 30 günlük toplam alt sınır ${number(analysis.monthlyDemandRunRateMin)} ürün.`
+
+  return {
+    intent: 'entity',
+    reply: `${explainMode ? 'Analizi aynı gözlem evreni ve formülle yeniden kurdum. ' : ''}${label} ${entityLabel} analizinde ${analysis.productCount} tekil ürün ve ${analysis.observedSellerCount} gözlenen satıcı var. ${demandText}`,
+    entityAnalysis: {
+      ...analysis,
+      topProducts: analysis.topProducts.map((insight) => productPayload(insight.product, insight)),
+    },
+    source,
+    coverage: {
+      profileCount: request.type === 'category' && profileSlug ? 1 : universe.snapshots.length,
+      candidateCount: universe.products.length,
+      resultCount: analysis.productCount,
+    },
+    evidence: evidence(
+      {
+        label: 'Tekil ürün',
+        value: number(analysis.productCount),
+        kind: 'observed',
+        note: 'Son başarılı günlük gözlemde tekilleştirildi.',
+      },
+      {
+        label: 'Gözlenen satıcı',
+        value: number(analysis.observedSellerCount),
+        kind: 'observed',
+        note: 'Toplam Trendyol satıcı sayısı değil; veri evreninde görülen farklı satıcılardır.',
+      },
+      analysis.monthlyDemandRunRateMin === null
+        ? null
+        : {
+            label: '30 günlük hız alt sınırı',
+            value: `${number(analysis.monthlyDemandRunRateMin)}+ ürün`,
+            kind: 'derived',
+            note: `${analysis.demandSignalProductCount} üründeki görünür kısa dönem satış alt sınırı 30 güne çevrildi; gerçekleşmiş aylık satış değildir.`,
+          },
+      analysis.monthlyRevenueRunRateMin === null
+        ? null
+        : {
+            label: '30 günlük ciro hız alt sınırı',
+            value: `${money(analysis.monthlyRevenueRunRateMin)}+`,
+            kind: 'derived',
+            note: 'Ürün fiyatı × 30 günlük talep hızı alt sınırı; sipariş veya finansal kayıt değildir.',
+          },
+    ),
+    explanation: {
+      title: 'Analiz nasıl kuruldu?',
+      formula:
+        'Günlük gözlemler → ürün kimliğine göre tekilleştirme → kapsam metrikleri → görünür talep alt sınırını 30 güne çevirme',
+      steps: [
+        { label: 'Gözlemdeki ürün', text: number(analysis.productCount) },
+        { label: 'Talep sinyali bulunan ürün', text: number(analysis.demandSignalProductCount) },
+        { label: 'Kapsam', text: 'Tüm Trendyol değil; Veri Mimarı günlük gözlem evreni' },
+      ],
+    },
+    followUps:
+      request.type === 'category'
+        ? [`${label} kategorisinde 500 TL altı ürünleri bul`, `${label} fırsat ürünlerini göster`]
+        : [`${label} ürünlerini fırsat skoruna göre göster`, 'Bu analizdeki rakamları açıkla'],
+    action: {
+      href: profileSlug ? `/pazar-nabzi/trendyol?kategori=${profileSlug}` : '/pazar-nabzi/trendyol',
+      label: 'Gözlem evrenini aç',
+    },
+  }
+}
+
 async function answerMarketQuestion(question: string, explainMode = false) {
   const profiles = await getMarketProfiles()
+  const universe = await loadMarketUniverse(profiles)
   const matchedProfile = findProfilesInText(question, profiles)[0]
-  let snapshot = await getMarketSnapshot(matchedProfile?.slug || 'genel-cok-satanlar', profiles)
+  let snapshot =
+    universe.snapshots.find(
+      (item) => item.profile.slug === (matchedProfile?.slug || 'genel-cok-satanlar'),
+    ) || universe.snapshots[0]
   const productId = extractProductId(question)
 
   if (productId) {
-    const localProduct = snapshot.products.find((product) => product.productId === productId)
-    const match = localProduct
-      ? { snapshot, product: localProduct }
-      : await findProductAcrossProfiles(productId, profiles)
+    const insight = universe.insightByProductId.get(productId)
+    const match = insight?.product
 
     if (!match) {
       return {
@@ -281,13 +439,22 @@ async function answerMarketQuestion(question: string, explainMode = false) {
       }
     }
 
-    snapshot = match.snapshot
+    snapshot =
+      universe.snapshots.find((item) =>
+        item.products.some((product) => product.productId === productId),
+      ) || snapshot
+    const payload = productPayload(match, insight)
     return {
-      intent: 'market',
-      reply: `${match.product.title} için son gözlemde ${
-        match.product.price === null ? 'fiyat sinyali yok' : `${money(match.product.price)} fiyat`
-      } ve ${match.product.rankPosition ? `${match.product.rankPosition}. sıra` : 'sıra bilgisi yok'}. Aşağıdaki kart yalnız gözlemlenmiş sinyalleri gösterir.`,
-      products: [productPayload(match.product)],
+      intent: 'product',
+      reply: `${match.title} için tek kartta doğrulanabilen sinyalleri topladım. ${
+        match.price === null ? 'Fiyat sinyali yok.' : `Son gözlenen fiyat ${money(match.price)}.`
+      } ${insight?.observedSellerCount ? `Gözlem evreninde ${insight.observedSellerCount} farklı satıcı görüldü.` : 'Satıcı sinyali yok.'}`,
+      products: [payload],
+      productAnalysis: {
+        ...payload,
+        observationCount: insight?.observationCount || 1,
+        profileCount: insight?.profileCount || 1,
+      },
       source: marketSource(snapshot),
       action: {
         href: `/pazar-nabzi/trendyol?kategori=${snapshot.profile.slug}`,
@@ -295,16 +462,38 @@ async function answerMarketQuestion(question: string, explainMode = false) {
       },
       explanation: {
         title: 'Ürün kartı seçim yöntemi',
-        formula: 'Ürün kimliği → günlük profil gözlemi → fiyat, sıra, stok ve talep sinyali',
+        formula:
+          'Ürün kimliği → tüm günlük profil gözlemleri → fiyat, görülen satıcı, sıra, stok ve talep sinyali',
         steps: [
-          { label: 'Ürün kimliği', text: match.product.productId },
+          { label: 'Ürün kimliği', text: match.productId },
           { label: 'Gözlem profili', text: snapshot.profile.label },
-          { label: 'Gözlem tarihi', text: match.product.observedDate || 'Tarih yok' },
+          { label: 'Gözlem tarihi', text: match.observedDate || 'Tarih yok' },
         ],
       },
+      evidence: evidence(
+        match.price === null
+          ? null
+          : { label: 'Fiyat', value: money(match.price), kind: 'observed' },
+        insight?.observedSellerCount
+          ? {
+              label: 'Gözlenen satıcı',
+              value: number(insight.observedSellerCount),
+              kind: 'observed',
+              note: 'Toplam teklif sayısı değil; Veri Mimarı gözlem evreninde görülen farklı satıcılardır.',
+            }
+          : null,
+        insight?.monthlyDemandRunRateMin
+          ? {
+              label: '30 günlük hız alt sınırı',
+              value: `${number(insight.monthlyDemandRunRateMin)}+ ürün`,
+              kind: 'derived',
+              note: 'Görünür kısa dönem alt sınırı aynı hızın sürmesi varsayımıyla 30 güne çevrildi.',
+            }
+          : null,
+      ),
       followUps: [
-        `${snapshot.profile.label} kategorisindeki yükselen ürünleri göster`,
-        'Bu ürün için kârlılık hesabı yap',
+        'Maliyetim 200, komisyon %15, kargo 90; bu üründe ne kalır?',
+        `${snapshot.profile.label} kategorisini analiz et`,
       ],
     }
   }
@@ -316,14 +505,12 @@ async function answerMarketQuestion(question: string, explainMode = false) {
   let source = marketSource(snapshot)
   let profileCount = 1
   let candidateProducts = snapshot.products
+  let productInsights = universe.insightByProductId
 
   if (!matchedProfile) {
-    const snapshots = await Promise.all(
-      profiles.map((profile) => getMarketSnapshot(profile.slug, profiles)),
-    )
-    candidateProducts = dedupeProducts(snapshots.flatMap((item) => item.products))
-    source = combinedMarketSource(snapshots)
-    profileCount = snapshots.length
+    candidateProducts = universe.products
+    source = combinedMarketSource(universe.snapshots)
+    profileCount = universe.snapshots.length
   }
 
   let products = selectMarketProducts(candidateProducts, view, query)
@@ -344,10 +531,26 @@ async function answerMarketQuestion(question: string, explainMode = false) {
       (product.salesSignalMin || 0) < thresholds.minObservedSales
     )
       return false
+    const insight = productInsights.get(product.productId)
+    if (
+      thresholds.minMonthlyRunRate !== undefined &&
+      (insight?.monthlyDemandRunRateMin || 0) < thresholds.minMonthlyRunRate
+    )
+      return false
+    if (
+      thresholds.maxObservedSellerCount !== undefined &&
+      (!insight?.observedSellerCount ||
+        insight.observedSellerCount > thresholds.maxObservedSellerCount)
+    )
+      return false
+    if (
+      thresholds.minObservedSellerCount !== undefined &&
+      (insight?.observedSellerCount || 0) < thresholds.minObservedSellerCount
+    )
+      return false
     return true
   })
   const top = products.slice(0, 5)
-  const unavailableSellerCount = /satıcı|mağaza sayısı/i.test(question)
   const viewLabel = {
     'cok-satanlar': 'çok satan',
     yukselenler: 'yükselen',
@@ -366,19 +569,24 @@ async function answerMarketQuestion(question: string, explainMode = false) {
     thresholds.minObservedSales !== undefined
       ? `Gözlemlenen satış sinyali ≥ ${thresholds.minObservedSales}`
       : null,
+    thresholds.minMonthlyRunRate !== undefined
+      ? `30 günlük hız alt sınırı ≥ ${thresholds.minMonthlyRunRate}`
+      : null,
+    thresholds.maxObservedSellerCount !== undefined
+      ? `Gözlenen satıcı ≤ ${thresholds.maxObservedSellerCount}`
+      : null,
+    thresholds.minObservedSellerCount !== undefined
+      ? `Gözlenen satıcı ≥ ${thresholds.minObservedSellerCount}`
+      : null,
     query ? `Arama: ${query}` : null,
   ].filter((item): item is string => Boolean(item))
 
   return {
     intent: 'market',
     reply: top.length
-      ? `${explainMode ? 'Önceki sonucu aynı ölçütlerle yeniden kurdum. ' : ''}${scope} içinde ölçütünüze uyan ${top.length} ${viewLabel} ürünü öne çıkardım.${
-          unavailableSellerCount
-            ? ' Satıcı sayısı bu veri setinde doğrulanmadığı için onu sonuç sıralamasına katmadım.'
-            : ''
-        }`
+      ? `${explainMode ? 'Önceki sonucu aynı ölçütlerle yeniden kurdum. ' : ''}${scope} içinde ölçütünüze uyan ${top.length} ${viewLabel} ürünü öne çıkardım.${thresholds.maxObservedSellerCount !== undefined || thresholds.minObservedSellerCount !== undefined ? ' Satıcı filtresi toplam Trendyol teklifini değil, gözlem evreninde görülen farklı satıcıları kullanır.' : ''}`
       : `${scope} görünümünde bu ölçüte uyan doğrulanmış bir günlük sinyal bulamadım. Kapsam dışındaki ürünler için sayı üretmiyorum.`,
-    products: top.map(productPayload),
+    products: top.map((product) => productPayload(product, productInsights.get(product.productId))),
     source,
     appliedFilters,
     coverage: {
@@ -400,6 +608,30 @@ async function answerMarketQuestion(question: string, explainMode = false) {
         { label: 'Filtre sonrası sonuç', text: String(products.length) },
       ],
     },
+    evidence: evidence(
+      {
+        label: 'Aday evren',
+        value: `${number(candidateProducts.length)} ürün`,
+        kind: 'observed',
+        note: 'Son başarılı profil gözlemlerinin tekilleştirilmiş kapsamı.',
+      },
+      thresholds.minMonthlyRunRate !== undefined
+        ? {
+            label: '30 günlük hız filtresi',
+            value: `${number(thresholds.minMonthlyRunRate)}+ ürün`,
+            kind: 'derived',
+            note: 'Görünür kısa dönem satış alt sınırından türetildi; gerçekleşmiş aylık satış değildir.',
+          }
+        : null,
+      thresholds.maxObservedSellerCount !== undefined
+        ? {
+            label: 'Satıcı yoğunluğu filtresi',
+            value: `≤ ${thresholds.maxObservedSellerCount} gözlenen satıcı`,
+            kind: 'observed',
+            note: 'Toplam pazar satıcı sayısını temsil etmez.',
+          }
+        : null,
+    ),
     followUps: matchedProfile
       ? [
           `${matchedProfile.label} kategorisinde 500 TL altını göster`,
@@ -415,8 +647,34 @@ async function answerMarketQuestion(question: string, explainMode = false) {
   }
 }
 
-function answerProfitQuestion(messages: VeriAssistantMessage[]) {
+async function resolveProfitContext(messages: VeriAssistantMessage[]) {
   const inputs = extractProfitInputs(messages)
+  if (inputs.sale !== undefined) return { inputs, observedSaleProduct: null }
+  const productId = [...messages]
+    .reverse()
+    .filter((message) => message.role === 'user')
+    .map((message) => extractProductId(message.content))
+    .find((value): value is string => Boolean(value))
+  if (!productId) return { inputs, observedSaleProduct: null }
+
+  const profiles = await getMarketProfiles()
+  const universe = await loadMarketUniverse(profiles)
+  const product = universe.insightByProductId.get(productId)?.product || null
+  if (product?.price === null || product?.price === undefined) {
+    return { inputs, observedSaleProduct: null }
+  }
+  return {
+    inputs: { ...inputs, sale: product.price },
+    observedSaleProduct: product,
+  }
+}
+
+function answerProfitQuestion(
+  messages: VeriAssistantMessage[],
+  resolvedInputs?: ProfitInputs,
+  observedSaleProduct?: MarketProduct | null,
+) {
+  const inputs = resolvedInputs || extractProfitInputs(messages)
   const missing = missingProfitInputs(inputs)
   if (missing.length) {
     return {
@@ -429,6 +687,16 @@ function answerProfitQuestion(messages: VeriAssistantMessage[]) {
         note: 'Eksik maliyetler için varsayılan oran kullanılmaz.',
       },
       followUps: ['Satış 750, maliyet 250, komisyon %15, kargo 90', 'Kârlılık formülünü göster'],
+      evidence: evidence(
+        observedSaleProduct?.price
+          ? {
+              label: 'Satış fiyatı',
+              value: money(observedSaleProduct.price),
+              kind: 'observed',
+              note: `${observedSaleProduct.title} için son gözlenen fiyat kullanıldı.`,
+            }
+          : null,
+      ),
     }
   }
 
@@ -443,9 +711,31 @@ function answerProfitQuestion(messages: VeriAssistantMessage[]) {
     }.`,
     calculation: result,
     explanation: profitExplanation(result),
+    evidence: evidence(
+      {
+        label: 'Maliyet girdileri',
+        value: 'Konuşmadan alındı',
+        kind: 'user',
+      },
+      observedSaleProduct?.price
+        ? {
+            label: 'Satış fiyatı',
+            value: money(observedSaleProduct.price),
+            kind: 'observed',
+            note: 'Ürün linkinin son günlük fiyat gözleminden otomatik dolduruldu.',
+          }
+        : { label: 'Satış fiyatı', value: money(result.inputs.sale), kind: 'user' },
+      {
+        label: 'Net kâr ve ROAS',
+        value: 'Açık formülle hesaplandı',
+        kind: 'derived',
+      },
+    ),
     source: {
       label: 'Veri Mimarı deterministik kârlılık motoru',
-      note: 'Hesap yalnızca yazdığınız değerleri kullanır. KDV mahsuplaşması ve yazmadığınız sabit giderler ayrıca modellenmez.',
+      note: observedSaleProduct
+        ? 'Satış fiyatı son ürün gözleminden; diğer maliyetler yalnızca yazdığınız değerlerden gelir. KDV mahsuplaşması ve yazmadığınız sabit giderler ayrıca modellenmez.'
+        : 'Hesap yalnızca yazdığınız değerleri kullanır. KDV mahsuplaşması ve yazmadığınız sabit giderler ayrıca modellenmez.',
     },
     action: {
       href: profitCalculatorHref(result),
@@ -455,10 +745,14 @@ function answerProfitQuestion(messages: VeriAssistantMessage[]) {
   }
 }
 
-function answerProfitExplanation(messages: VeriAssistantMessage[]) {
-  const inputs = extractProfitInputs(messages)
+function answerProfitExplanation(
+  messages: VeriAssistantMessage[],
+  resolvedInputs?: ProfitInputs,
+  observedSaleProduct?: MarketProduct | null,
+) {
+  const inputs = resolvedInputs || extractProfitInputs(messages)
   const missing = missingProfitInputs(inputs)
-  if (missing.length) return answerProfitQuestion(messages)
+  if (missing.length) return answerProfitQuestion(messages, inputs, observedSaleProduct)
   const result = calculateProfit(inputs)!
   return {
     intent: 'explain',
@@ -466,9 +760,26 @@ function answerProfitExplanation(messages: VeriAssistantMessage[]) {
       'Sonucu yalnız konuşmada verdiğiniz kalemlerle yeniden kurdum. Her kesinti aşağıda ayrı satırda; başa baş ROAS ise reklam öncesi katkı payından hesaplanıyor.',
     calculation: result,
     explanation: profitExplanation(result),
+    evidence: evidence(
+      {
+        label: 'Kullanıcı girdileri',
+        value: 'Maliyet, komisyon ve kargo',
+        kind: 'user',
+      },
+      observedSaleProduct?.price
+        ? {
+            label: 'Satış fiyatı',
+            value: money(observedSaleProduct.price),
+            kind: 'observed',
+          }
+        : null,
+      { label: 'Sonuç', value: money(result.netProfit), kind: 'derived' },
+    ),
     source: {
       label: 'Veri Mimarı deterministik kârlılık motoru',
-      note: 'Sektör ortalaması veya model tahmini eklenmedi; yazmadığınız kalemler sıfır kabul edildi ve dökümde görünür tutuldu.',
+      note: observedSaleProduct
+        ? 'Satış fiyatı ürün gözleminden; diğer kalemler konuşmadan alındı. Sektör ortalaması veya model tahmini eklenmedi.'
+        : 'Sektör ortalaması veya model tahmini eklenmedi; yazmadığınız kalemler sıfır kabul edildi ve dökümde görünür tutuldu.',
     },
     followUps: ['Kargoyu 110 yap', 'İade maliyetini 30 yap', 'Ayrıntılı ROAS aracını aç'],
     action: { href: profitCalculatorHref(result), label: 'Ayrıntılı ROAS hesabını aç' },
@@ -572,8 +883,13 @@ export async function POST(request: Request) {
   const question = [...messages].reverse().find((message) => message.role === 'user')?.content || ''
 
   try {
-    const profitInputs = extractProfitInputs(messages)
     const explanationRequested = isExplanationQuestion(question)
+    const rawProfitInputs = extractProfitInputs(messages)
+    const profitContext =
+      looksLikeProfitQuestion(question) || explanationRequested
+        ? await resolveProfitContext(messages)
+        : { inputs: rawProfitInputs, observedSaleProduct: null }
+    const profitInputs = profitContext.inputs
     const previousMarketQuestion = [...messages]
       .reverse()
       .find(
@@ -582,23 +898,39 @@ export async function POST(request: Request) {
           message.content !== question &&
           looksLikeMarketQuestion(message.content),
       )?.content
+    const previousEntityQuestion = [...messages]
+      .reverse()
+      .find(
+        (message) =>
+          message.role === 'user' &&
+          message.content !== question &&
+          isEntityAnalysisQuestion(message.content),
+      )?.content
     const shouldCalculate =
       looksLikeProfitQuestion(question) &&
       (Object.keys(profitInputs).length > 0 || /kaç kazan|hesapla|olsun|yap/i.test(question))
     const answer =
       explanationRequested && missingProfitInputs(profitInputs).length === 0
-        ? answerProfitExplanation(messages)
-        : explanationRequested && previousMarketQuestion
-          ? await answerMarketQuestion(previousMarketQuestion, true)
-          : explanationRequested && looksLikeProfitQuestion(question)
-            ? answerProfitFormula()
-            : isComparisonQuestion(question)
-              ? await answerMarketComparison(question)
-              : shouldCalculate
-                ? answerProfitQuestion(messages)
-                : looksLikeMarketQuestion(question)
-                  ? await answerMarketQuestion(question)
-                  : await answerGeneralQuestion(question)
+        ? answerProfitExplanation(messages, profitInputs, profitContext.observedSaleProduct)
+        : explanationRequested && previousEntityQuestion
+          ? await answerEntityAnalysis(previousEntityQuestion, true)
+          : explanationRequested && previousMarketQuestion
+            ? await answerMarketQuestion(previousMarketQuestion, true)
+            : explanationRequested && looksLikeProfitQuestion(question)
+              ? answerProfitFormula()
+              : isComparisonQuestion(question)
+                ? await answerMarketComparison(question)
+                : isEntityAnalysisQuestion(question)
+                  ? await answerEntityAnalysis(question)
+                  : shouldCalculate
+                    ? answerProfitQuestion(
+                        messages,
+                        profitInputs,
+                        profitContext.observedSaleProduct,
+                      )
+                    : looksLikeMarketQuestion(question)
+                      ? await answerMarketQuestion(question)
+                      : await answerGeneralQuestion(question)
 
     return NextResponse.json(answer, {
       headers: { 'Cache-Control': 'private, no-store' },
