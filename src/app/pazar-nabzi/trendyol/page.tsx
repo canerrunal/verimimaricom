@@ -3,6 +3,7 @@ import JsonLd from '@/components/common/JsonLd'
 import NavBar from '@/components/landing/NavBar'
 import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
+import { MarketHistoryModal, MarketHistoryTrigger } from '@/components/market/MarketHistoryExplorer'
 import productStyles from './TrendyolProductImage.module.css'
 import { getDictionary } from '@/lib/i18n'
 import { getSiteUrl } from '@/lib/seo'
@@ -383,8 +384,18 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                                 </div>
                               </th>
                               <td data-label="Fiyat">
-                                <strong>{formatMarketMoney(product.price)}</strong>
-                                <span>{product.promotions[0] || 'Kampanya etiketi yok'}</span>
+                                <MarketHistoryTrigger
+                                  request={{
+                                    source: 'taxonomy',
+                                    metric: 'price',
+                                    productId: product.productId,
+                                    productKey: product.productKey,
+                                    merchantId: product.merchantId,
+                                    title: product.title,
+                                  }}
+                                  primary={formatMarketMoney(product.price)}
+                                  secondary={product.promotions[0] || 'Kampanya etiketi yok'}
+                                />
                               </td>
                               <td data-label="Günlük hareket">
                                 <strong
@@ -405,19 +416,24 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                                 <span>Fiyat {percent(product.priceDeltaPercent)}</span>
                               </td>
                               <td data-label="Stok ve puan">
-                                <strong>
-                                  {product.inStock === false
-                                    ? 'Stok dışı'
-                                    : product.runningOut
-                                      ? 'Tükeniyor'
-                                      : 'Stokta'}
-                                </strong>
-                                <span>
-                                  {product.rating
-                                    ? `${product.rating.toFixed(1)} puan`
-                                    : 'Puan yok'}{' '}
-                                  · {compact(product.ratingCount)}
-                                </span>
+                                <MarketHistoryTrigger
+                                  request={{
+                                    source: 'taxonomy',
+                                    metric: 'stock',
+                                    productId: product.productId,
+                                    productKey: product.productKey,
+                                    merchantId: product.merchantId,
+                                    title: product.title,
+                                  }}
+                                  primary={
+                                    product.inStock === false
+                                      ? 'Stok dışı'
+                                      : product.runningOut
+                                        ? 'Tükeniyor'
+                                        : 'Stokta'
+                                  }
+                                  secondary={`${product.rating ? `${product.rating.toFixed(1)} puan` : 'Puan yok'} · ${compact(product.ratingCount)}`}
+                                />
                               </td>
                             </tr>
                           ))}
@@ -593,10 +609,23 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                         </span>
                       </th>
                       <td data-label="Fiyat">
-                        <strong>{formatMarketMoney(product.price)}</strong>
-                        {product.discountPercent ? (
-                          <span>%{product.discountPercent} indirim etiketi</span>
-                        ) : null}
+                        <MarketHistoryTrigger
+                          request={{
+                            source: 'profile',
+                            metric: 'price',
+                            productId: product.productId,
+                            offerKey: product.offerKey,
+                            profileSlug: snapshot.profile.slug,
+                            merchantId: product.merchantId,
+                            title: product.title,
+                          }}
+                          primary={formatMarketMoney(product.price)}
+                          secondary={
+                            product.discountPercent
+                              ? `%${product.discountPercent} indirim etiketi`
+                              : 'Fiyat geçmişi'
+                          }
+                        />
                       </td>
                       <td data-label="Hareket">
                         <strong
@@ -615,19 +644,38 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                         <span>Fiyat {percent(product.priceDeltaPercent)}</span>
                       </td>
                       <td data-label="Görünür talep">
-                        <strong>{product.salesSignal || 'Etiket yok'}</strong>
-                        {product.salesSignalDailyMin !== null ? (
-                          <span>Günlük ≥ {compact(product.salesSignalDailyMin)} alt sınır</span>
-                        ) : (
-                          <span>Kesin satış adedi değildir</span>
-                        )}
+                        <MarketHistoryTrigger
+                          request={{
+                            source: 'profile',
+                            metric: 'sales',
+                            productId: product.productId,
+                            offerKey: product.offerKey,
+                            profileSlug: snapshot.profile.slug,
+                            merchantId: product.merchantId,
+                            title: product.title,
+                          }}
+                          primary={product.salesSignal || 'Etiket yok'}
+                          secondary={
+                            product.salesSignalDailyMin !== null
+                              ? `Günlük ≥ ${compact(product.salesSignalDailyMin)} alt sınır`
+                              : 'Kesin satış adedi değildir'
+                          }
+                        />
                       </td>
                       <td data-label="Stok ve puan">
-                        <strong>{stockLabel(product.stockStatus, product.stockSignal)}</strong>
-                        <span>
-                          {product.rating ? `${product.rating.toFixed(1)} puan` : 'Puan yok'} ·{' '}
-                          {compact(product.ratingCount)} değerlendirme
-                        </span>
+                        <MarketHistoryTrigger
+                          request={{
+                            source: 'profile',
+                            metric: 'stock',
+                            productId: product.productId,
+                            offerKey: product.offerKey,
+                            profileSlug: snapshot.profile.slug,
+                            merchantId: product.merchantId,
+                            title: product.title,
+                          }}
+                          primary={stockLabel(product.stockStatus, product.stockSignal)}
+                          secondary={`${product.rating ? `${product.rating.toFixed(1)} puan` : 'Puan yok'} · ${compact(product.ratingCount)} değerlendirme`}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -740,6 +788,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
       </section>
 
       <NewsletterSection t={t} />
+      <MarketHistoryModal />
       <Footer t={t} />
     </main>
   )
