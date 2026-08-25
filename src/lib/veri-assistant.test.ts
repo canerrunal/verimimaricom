@@ -10,6 +10,7 @@ import {
   isExplanationQuestion,
   isEntityAnalysisQuestion,
   looksLikeProfitQuestion,
+  looksLikeMarketQuestion,
   missingProfitInputs,
 } from './veri-assistant'
 
@@ -73,6 +74,13 @@ describe('Veri Asistanı karar araçları', () => {
     expect(
       extractProductQuery('500 TL altı, en fazla 3 satıcılı, ayda 100 üstü satan ürün bul'),
     ).toBe('')
+    expect(extractProductQuery('çamaşır kurutma makinesi', false, true)).toBe(
+      'çamaşır kurutma makinesi',
+    )
+    expect(extractProductQuery('çamaşır kurutma makinesinde fiyatı düşenler')).toBe(
+      'çamaşır kurutma makinesi',
+    )
+    expect(looksLikeMarketQuestion('çamaşır kurutma makinesinde fiyatı düşenler')).toBe(true)
   })
 
   it('gelişmiş pazar eşiklerini doğal dilden çıkarır', () => {

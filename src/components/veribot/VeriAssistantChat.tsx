@@ -758,6 +758,7 @@ export default function VeriAssistantChat({ variant = 'page' }: { variant?: 'pag
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          mode: activeMode,
           messages: nextMessages.slice(-12).map(({ role, content }) => ({ role, content })),
         }),
       })

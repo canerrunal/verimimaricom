@@ -5,6 +5,8 @@ export type VeriAssistantMessage = {
   content: string
 }
 
+export type VeriAssistantMode = 'product' | 'market' | 'entity' | 'profit' | 'compare' | 'tools'
+
 export type ProfitInputs = {
   sale?: number
   cost?: number
@@ -184,7 +186,7 @@ export function looksLikeProfitQuestion(text: string) {
 }
 
 export function looksLikeMarketQuestion(text: string) {
-  return /(trendyol\.com|trendyol|ürün|kategori|çok satan|yükselen|fırsat|fiyat düş|stok|pazar|marka|mağaza)/i.test(
+  return /(trendyol\.com|trendyol|ürün|kategori|çok satan|yükselen|fırsat|fiyat(?:ı|i)?\s+düş|stok|pazar|marka|mağaza)/i.test(
     text,
   )
 }
@@ -192,7 +194,7 @@ export function looksLikeMarketQuestion(text: string) {
 export function extractMarketView(text: string) {
   if (/fırsat|niş|rekabet/i.test(text)) return 'firsat-radari' as const
   if (/yükselen|trend|ivme/i.test(text)) return 'yukselenler' as const
-  if (/fiyat düş|indirim/i.test(text)) return 'fiyat-dususleri' as const
+  if (/fiyat(?:ı|i)?\s+düş|indirim/i.test(text)) return 'fiyat-dususleri' as const
   if (/stok|tüken/i.test(text)) return 'stok-sinyalleri' as const
   return 'cok-satanlar' as const
 }
@@ -298,11 +300,16 @@ export function extractProductId(text: string) {
   return text.match(/-p-(\d+)/i)?.[1] || null
 }
 
-export function extractProductQuery(text: string, matchedProfile = false) {
+export function extractProductQuery(text: string, matchedProfile = false, allowBareQuery = false) {
   if (matchedProfile || /https?:\/\//i.test(text)) return ''
   const beforeVerb = text.match(/^(.{2,80}?)\s+(?:pazarını\s+)?(?:araştır|bul|göster|incele)/i)?.[1]
-  if (!beforeVerb) return ''
-  return beforeVerb
+  const beforeSignal = text.match(
+    /^(.{2,80}?)\s+(?:fiyat(?:ı|i)?\s+düş(?:en|enler|üşü|üşleri)|yükselen(?:ler)?|stok(?:ta|u)?\s+(?:azalan|tükenen))/i,
+  )?.[1]
+  const rawQuery = beforeVerb || beforeSignal || (allowBareQuery ? text : '')
+  if (!rawQuery) return ''
+  const normalizedQuery = beforeSignal ? rawQuery.replace(/(?:nde|nda|de|da)$/i, '') : rawQuery
+  return normalizedQuery
     .replace(/\d+(?:[.,]\d+)?\s*(?:tl|₺)\s*(?:altında|altı|dan az|üzerinde|üstü|dan fazla)/gi, ' ')
     .replace(/fırsat\s+(?:skoru|puanı)\s*\d+(?:[.,]\d+)?\s*(?:üstü|üzerinde|ve üstü)?/gi, ' ')
     .replace(/\d+(?:[.,]\d+)?\s*(?:puan|yıldız)\s*(?:üstü|üzerinde|ve üstü)/gi, ' ')
