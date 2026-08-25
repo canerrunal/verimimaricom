@@ -24,8 +24,10 @@ import {
 } from '@/lib/veri-assistant'
 import {
   analyzeEntity,
+  buildEntityBenchmark,
   buildProductInsights,
   findEntityProducts,
+  getEntityPeerProducts,
   monthlyDemandRunRateMin,
   normalizeEntityText,
   type EvidenceFact,
@@ -339,6 +341,15 @@ async function answerEntityAnalysis(question: string, explainMode = false) {
   }
 
   const analysis = analyzeEntity(request.type, label, matchingProducts)
+  const benchmarkScope =
+    request.type === 'category'
+      ? 'Tüm Veri Mimarı gözlem evreni'
+      : `${number(analysis.categoryCount)} gözlenen alt kategori kümesi`
+  const benchmark = buildEntityBenchmark(
+    analysis,
+    getEntityPeerProducts(request.type, matchingProducts, universe.observations),
+    benchmarkScope,
+  )
   const entityLabel =
     request.type === 'brand' ? 'marka' : request.type === 'store' ? 'mağaza' : 'kategori'
   const demandText =
@@ -351,6 +362,7 @@ async function answerEntityAnalysis(question: string, explainMode = false) {
     reply: `${explainMode ? 'Analizi aynı gözlem evreni ve formülle yeniden kurdum. ' : ''}${label} ${entityLabel} analizinde ${analysis.productCount} tekil ürün ve ${analysis.observedSellerCount} gözlenen satıcı var. ${demandText}`,
     entityAnalysis: {
       ...analysis,
+      benchmark,
       topProducts: analysis.topProducts.map((insight) => productPayload(insight.product, insight)),
     },
     source,
@@ -387,6 +399,22 @@ async function answerEntityAnalysis(question: string, explainMode = false) {
             value: `${money(analysis.monthlyRevenueRunRateMin)}+`,
             kind: 'derived',
             note: 'Ürün fiyatı × 30 günlük talep hızı alt sınırı; sipariş veya finansal kayıt değildir.',
+          },
+      benchmark.entityProductSharePercent === null
+        ? null
+        : {
+            label: 'Gözlem evreni ürün payı',
+            value: `%${benchmark.entityProductSharePercent.toLocaleString('tr-TR')}`,
+            kind: 'derived',
+            note: `${benchmark.peerProductCount} tekil üründen oluşan ${benchmark.scopeLabel.toLocaleLowerCase('tr-TR')} içinde hesaplanır; tüm Trendyol pazar payı değildir.`,
+          },
+      benchmark.demandRunRateSharePercent === null
+        ? null
+        : {
+            label: 'Hız sinyali payı',
+            value: `%${benchmark.demandRunRateSharePercent.toLocaleString('tr-TR')}`,
+            kind: 'derived',
+            note: 'Aynı karşılaştırma kümesindeki görünür 30 günlük hız alt sınırları üzerinden hesaplanır; gerçekleşmiş satış payı değildir.',
           },
     ),
     explanation: {

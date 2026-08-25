@@ -11012,6 +11012,78 @@ a.card:hover {
   margin-top: 0;
 }
 
+.assistant-entity-benchmark {
+  border-top: 1px solid var(--ink);
+  background: var(--paper-deep);
+}
+
+.assistant-entity-benchmark > header {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.assistant-entity-benchmark > header span {
+  color: var(--blue);
+  font: 750 7px/1.3 var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.assistant-entity-benchmark > header strong {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.assistant-entity-benchmark dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-left: 1px solid var(--ink);
+}
+
+.assistant-entity-benchmark dl > div {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+  padding: 12px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--surface);
+}
+
+.assistant-entity-benchmark dt,
+.assistant-entity-benchmark dd,
+.assistant-entity-benchmark small {
+  margin: 0;
+}
+
+.assistant-entity-benchmark dt {
+  color: var(--muted);
+  font: 700 7px/1.35 var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.assistant-entity-benchmark dd {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 820;
+  line-height: 1.1;
+}
+
+.assistant-entity-benchmark small,
+.assistant-entity-benchmark > p {
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.assistant-entity-benchmark > p {
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 0;
+}
+
 .assistant-evidence {
   margin-top: 14px;
   border: 1px solid var(--ink);
@@ -11554,6 +11626,14 @@ a.card:hover {
   .assistant-intelligence-metrics,
   .assistant-entity-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .assistant-entity-benchmark dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .assistant-entity-benchmark dl > div:last-child {
+    grid-column: 1 / -1;
   }
 
   .assistant-evidence dl > div {

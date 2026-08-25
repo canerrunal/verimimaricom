@@ -89,6 +89,15 @@ type AssistantPayload = {
     monthlyDemandRunRateMin: number | null
     monthlyRevenueRunRateMin: number | null
     demandSignalProductCount: number
+    benchmark: {
+      scopeLabel: string
+      peerProductCount: number
+      entityProductSharePercent: number | null
+      peerMedianPrice: number | null
+      medianPriceDeltaPercent: number | null
+      peerMonthlyDemandRunRateMin: number | null
+      demandRunRateSharePercent: number | null
+    }
     topProducts: AssistantProduct[]
   }
   evidence?: Array<{
@@ -148,7 +157,7 @@ const modePrompts: Record<AssistantMode, string[]> = {
   entity: [
     'Kozmetik kategorisini analiz et',
     'Elektronik kategorisini analiz et',
-    'Embeauty markasını analiz et',
+    'Embeauty markasını pazar bağlamıyla analiz et',
   ],
   profit: [
     "750 TL'ye satarsam kaç kazanırım? Maliyet 250, komisyon %15, kargo 90",
@@ -214,6 +223,7 @@ function copySummary(payload: AssistantPayload) {
       `${entity.label}: ${entity.productCount} gözlenen ürün, ${entity.observedSellerCount} gözlenen satıcı`,
       `Medyan fiyat: ${entity.medianPrice === null ? '—' : money(entity.medianPrice)}`,
       `30 günlük hız alt sınırı: ${entity.monthlyDemandRunRateMin === null ? '—' : `${compactNumber(entity.monthlyDemandRunRateMin)}+ ürün`}`,
+      `Gözlem evreni ürün payı: ${entity.benchmark.entityProductSharePercent === null ? '—' : `%${entity.benchmark.entityProductSharePercent.toLocaleString('tr-TR')}`}`,
     )
   }
   if (payload.comparison?.length) {
@@ -350,6 +360,9 @@ function EntityAnalysisCard({
 }) {
   const typeLabel =
     entity.type === 'brand' ? 'MARKA' : entity.type === 'store' ? 'MAĞAZA' : 'KATEGORİ'
+  const priceDelta = entity.benchmark.medianPriceDeltaPercent
+  const priceDeltaLabel =
+    priceDelta === null ? '—' : `${priceDelta > 0 ? '+' : ''}%${priceDelta.toLocaleString('tr-TR')}`
   return (
     <section
       className="assistant-entity"
@@ -408,6 +421,46 @@ function EntityAnalysisCard({
       <p>
         Bu metrikler tüm Trendyol’u temsil etmez; son başarılı Veri Mimarı gözlem evrenini özetler.
       </p>
+      <section className="assistant-entity-benchmark" aria-label="Pazar bağlamı karşılaştırması">
+        <header>
+          <span>PAZAR BAĞLAMI / TÜRETİLEN</span>
+          <strong>{entity.benchmark.scopeLabel}</strong>
+        </header>
+        <dl>
+          <div>
+            <dt>Gözlem evreni ürün payı</dt>
+            <dd>
+              {entity.benchmark.entityProductSharePercent === null
+                ? '—'
+                : `%${entity.benchmark.entityProductSharePercent.toLocaleString('tr-TR')}`}
+            </dd>
+            <small>{entity.benchmark.peerProductCount} tekil karşılaştırma ürünü</small>
+          </div>
+          <div>
+            <dt>Hız sinyali payı</dt>
+            <dd>
+              {entity.benchmark.demandRunRateSharePercent === null
+                ? '—'
+                : `%${entity.benchmark.demandRunRateSharePercent.toLocaleString('tr-TR')}`}
+            </dd>
+            <small>30 günlük görünür hız alt sınırları</small>
+          </div>
+          <div>
+            <dt>Medyan fiyat farkı</dt>
+            <dd>{priceDeltaLabel}</dd>
+            <small>
+              Eş küme medyanı:{' '}
+              {entity.benchmark.peerMedianPrice === null
+                ? '—'
+                : money(entity.benchmark.peerMedianPrice)}
+            </small>
+          </div>
+        </dl>
+        <p>
+          Bu oranlar yalnız aynı gözlem kümesindeki ürünler ve görünür talep alt sınırlarıyla
+          hesaplanır; toplam pazar payı veya gerçekleşmiş satış payı değildir.
+        </p>
+      </section>
       <ProductResults products={entity.topProducts} />
     </section>
   )

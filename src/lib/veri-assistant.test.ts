@@ -102,6 +102,10 @@ describe('Veri Asistanı karar araçları', () => {
       type: 'brand',
       query: 'Nike',
     })
+    expect(extractEntityAnalysisRequest('Embeauty markasını pazar bağlamıyla analiz et')).toEqual({
+      type: 'brand',
+      query: 'Embeauty',
+    })
     expect(extractEntityAnalysisRequest('Örnek mağazasını özetle')).toEqual({
       type: 'store',
       query: 'Örnek',

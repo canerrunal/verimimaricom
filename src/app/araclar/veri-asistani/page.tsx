@@ -34,9 +34,9 @@ const capabilities = [
   },
   {
     index: '03',
-    title: 'Marka ve kategoriyi özetler',
+    title: 'Markayı pazar bağlamına koyar',
     description:
-      'Ürün, marka, alt kategori, medyan fiyat ve talep alt sınırını gözlem kapsamıyla gösterir.',
+      'Ürün, alt kategori, medyan fiyat ve talep alt sınırını aynı gözlem kümesindeki karşılaştırılabilir ürünlerle birlikte gösterir.',
   },
   {
     index: '04',

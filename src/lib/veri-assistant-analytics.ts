@@ -40,6 +40,16 @@ export type EntityAnalysis = {
   topProducts: ProductInsight[]
 }
 
+export type EntityBenchmark = {
+  scopeLabel: string
+  peerProductCount: number
+  entityProductSharePercent: number | null
+  peerMedianPrice: number | null
+  medianPriceDeltaPercent: number | null
+  peerMonthlyDemandRunRateMin: number | null
+  demandRunRateSharePercent: number | null
+}
+
 function uniqueValues(values: Array<string | null | undefined>) {
   return [...new Set(values.filter((value): value is string => Boolean(value)))]
 }
@@ -49,6 +59,11 @@ function median(values: number[]) {
   const sorted = [...values].sort((a, b) => a - b)
   const middle = Math.floor(sorted.length / 2)
   return sorted.length % 2 === 0 ? (sorted[middle - 1] + sorted[middle]) / 2 : sorted[middle]
+}
+
+function percentage(part: number, total: number) {
+  if (total <= 0) return null
+  return Math.round((part / total) * 1000) / 10
 }
 
 export function normalizeEntityText(value: string) {
@@ -129,6 +144,25 @@ export function findEntityProducts(
   })
 }
 
+export function getEntityPeerProducts(
+  type: EntityAnalysisType,
+  entityProducts: MarketProduct[],
+  universeProducts: MarketProduct[],
+) {
+  if (type === 'category') return universeProducts
+
+  const categorySet = new Set(
+    buildProductInsights(entityProducts)
+      .map((insight) => normalizeEntityText(insight.product.category || ''))
+      .filter(Boolean),
+  )
+
+  if (!categorySet.size) return universeProducts
+  return universeProducts.filter((product) =>
+    categorySet.has(normalizeEntityText(product.category || '')),
+  )
+}
+
 export function analyzeEntity(
   type: EntityAnalysisType,
   label: string,
@@ -183,5 +217,30 @@ export function analyzeEntity(
     monthlyRevenueRunRateMin: demandInsights.length ? Math.round(monthlyRevenue) : null,
     demandSignalProductCount: demandInsights.length,
     topProducts,
+  }
+}
+
+export function buildEntityBenchmark(
+  entity: EntityAnalysis,
+  peerProducts: MarketProduct[],
+  scopeLabel: string,
+): EntityBenchmark {
+  const peers = analyzeEntity('category', scopeLabel, peerProducts)
+  return {
+    scopeLabel,
+    peerProductCount: peers.productCount,
+    entityProductSharePercent: percentage(entity.productCount, peers.productCount),
+    peerMedianPrice: peers.medianPrice,
+    medianPriceDeltaPercent:
+      entity.medianPrice !== null && peers.medianPrice !== null && peers.medianPrice > 0
+        ? Math.round((entity.medianPrice / peers.medianPrice - 1) * 1000) / 10
+        : null,
+    peerMonthlyDemandRunRateMin: peers.monthlyDemandRunRateMin,
+    demandRunRateSharePercent:
+      entity.monthlyDemandRunRateMin !== null &&
+      peers.monthlyDemandRunRateMin !== null &&
+      peers.monthlyDemandRunRateMin > 0
+        ? percentage(entity.monthlyDemandRunRateMin, peers.monthlyDemandRunRateMin)
+        : null,
   }
 }
