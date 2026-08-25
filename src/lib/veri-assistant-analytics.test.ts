@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest'
 import type { MarketProduct } from './trendyol-market'
 import {
   analyzeEntity,
+  buildEntityBenchmark,
   buildProductInsights,
   findEntityProducts,
+  getEntityPeerProducts,
   monthlyDemandRunRateMin,
 } from './veri-assistant-analytics'
 
@@ -86,5 +88,41 @@ describe('Veri Asistanı pazar analiz motoru', () => {
     const products = [product()]
     expect(findEntityProducts(products, 'brand', 'örnek marka')).toHaveLength(1)
     expect(findEntityProducts(products, 'store', 'örnek mağaza')).toHaveLength(1)
+  })
+
+  it('markayı bulunduğu alt kategori kümesiyle karşılaştırır', () => {
+    const entityProducts = [product()]
+    const peerProducts = [
+      ...entityProducts,
+      product({
+        productId: '2',
+        offerKey: '2:11',
+        merchantId: '11',
+        brand: 'Rakip Marka',
+        sellerName: 'Rakip Mağaza',
+        price: 500,
+        salesSignalDailyMin: 200,
+      }),
+      product({
+        productId: '3',
+        offerKey: '3:12',
+        merchantId: '12',
+        category: 'Saç Bakımı',
+        price: 150,
+      }),
+    ]
+    const entity = analyzeEntity('brand', 'Örnek Marka', entityProducts)
+    const scopedPeers = getEntityPeerProducts('brand', entityProducts, peerProducts)
+    const benchmark = buildEntityBenchmark(entity, scopedPeers, 'Yüz Bakımı gözlem kümesi')
+
+    expect(scopedPeers).toHaveLength(2)
+    expect(benchmark).toMatchObject({
+      peerProductCount: 2,
+      entityProductSharePercent: 50,
+      peerMedianPrice: 400,
+      medianPriceDeltaPercent: -25,
+      peerMonthlyDemandRunRateMin: 9000,
+      demandRunRateSharePercent: 33.3,
+    })
   })
 })

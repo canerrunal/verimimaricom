@@ -248,25 +248,26 @@ export function extractMarketThresholds(text: string): MarketThresholds {
 export function extractEntityAnalysisRequest(text: string): EntityAnalysisRequest | null {
   const clean = text.trim().replace(/[?.!]+$/g, '')
   const action = String.raw`(?:analiz\s+et|incele|özetle|raporla|ne\s+satıyor|ne\s+satar)`
+  const qualifier = String.raw`(?:\s+(?:pazar\s+bağlamıyla|pazar\s+bağlamında|karşılaştırmalı(?:\s+olarak)?|kendi\s+kategorisinde))*`
   const patterns: Array<[EntityAnalysisRequest['type'], RegExp]> = [
     [
       'brand',
       new RegExp(
-        `^(.{2,100}?)\\s+(?:markasını|markasini|markası|markasi|marka)\\s+${action}$`,
+        `^(.{2,100}?)\\s+(?:markasını|markasini|markası|markasi|marka)${qualifier}\\s+${action}$`,
         'i',
       ),
     ],
     [
       'store',
       new RegExp(
-        `^(.{2,100}?)\\s+(?:mağazasını|magazasini|mağazası|magazasi|mağaza|magaza|satıcısını|saticisini|satıcısı|saticisi)\\s+${action}$`,
+        `^(.{2,100}?)\\s+(?:mağazasını|magazasini|mağazası|magazasi|mağaza|magaza|satıcısını|saticisini|satıcısı|saticisi)${qualifier}\\s+${action}$`,
         'i',
       ),
     ],
     [
       'category',
       new RegExp(
-        `^(.{2,100}?)\\s+(?:kategorisini|kategorisi|kategori|pazarını|pazari|pazarı)\\s+${action}$`,
+        `^(.{2,100}?)\\s+(?:kategorisini|kategorisi|kategori|pazarını|pazari|pazarı)${qualifier}\\s+${action}$`,
         'i',
       ),
     ],
