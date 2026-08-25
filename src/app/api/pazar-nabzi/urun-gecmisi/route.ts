@@ -22,7 +22,6 @@ export async function GET(request: Request) {
   const productKey = clean(url.searchParams.get('productKey'))
   const offerKey = clean(url.searchParams.get('offerKey'))
   const profileSlug = clean(url.searchParams.get('profileSlug'), 80)
-  const merchantId = clean(url.searchParams.get('merchantId'), 80)
 
   if (!validSource(sourceValue) || !productId) {
     return NextResponse.json(
@@ -55,9 +54,9 @@ export async function GET(request: Request) {
   if (sourceValue === 'profile' && profileSlug) {
     profileRequest = profileRequest.eq('profile_slug', profileSlug)
   }
-  if (sourceValue === 'taxonomy' && merchantId) {
-    profileRequest = profileRequest.eq('merchant_id', merchantId)
-  }
+  // Taksonomi teklifinin fiyat/stok geçmişi product_key ile ayrılır. Görünür satış etiketi ise
+  // ürün sayfası seviyesinde olduğundan satıcı kimliğiyle daraltılmaz; bazı profil koşularında
+  // merchant_id bulunmasa da aynı ürünün doğrulanmış talep geçmişi korunur.
 
   const [profileResponse, taxonomyResponse] = await Promise.all([
     profileRequest,
