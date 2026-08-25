@@ -19,6 +19,7 @@ import {
   calculateProfit,
   profitCalculatorHref,
   recommendTool,
+  type VeriAssistantMode,
   type VeriAssistantMessage,
   type ProfitInputs,
 } from '@/lib/veri-assistant'
@@ -49,6 +50,14 @@ export const maxDuration = 30
 const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000
 const RATE_LIMIT_MAX = 20
 const requests = new Map<string, { count: number; resetAt: number }>()
+const ASSISTANT_MODES = new Set<VeriAssistantMode>([
+  'product',
+  'market',
+  'entity',
+  'profit',
+  'compare',
+  'tools',
+])
 
 function clientIp(request: Request) {
   return (
@@ -84,6 +93,12 @@ function validateMessages(value: unknown): VeriAssistantMessage[] | null {
     .map((item) => ({ role: item.role, content: item.content.trim().slice(0, 2_000) }))
     .filter((item) => item.content)
   return messages.length ? messages : null
+}
+
+function validateMode(value: unknown): VeriAssistantMode | null {
+  return typeof value === 'string' && ASSISTANT_MODES.has(value as VeriAssistantMode)
+    ? (value as VeriAssistantMode)
+    : null
 }
 
 function money(value: number) {
@@ -438,7 +453,11 @@ async function answerEntityAnalysis(question: string, explainMode = false) {
   }
 }
 
-async function answerMarketQuestion(question: string, explainMode = false) {
+async function answerMarketQuestion(
+  question: string,
+  explainMode = false,
+  allowBareProductQuery = false,
+) {
   const profiles = await getMarketProfiles()
   const universe = await loadMarketUniverse(profiles)
   const matchedProfile = findProfilesInText(question, profiles)[0]
@@ -527,7 +546,7 @@ async function answerMarketQuestion(question: string, explainMode = false) {
   }
 
   const view = extractMarketView(question)
-  const query = extractProductQuery(question, Boolean(matchedProfile))
+  const query = extractProductQuery(question, Boolean(matchedProfile), allowBareProductQuery)
   const bounds = extractPriceBounds(question)
   const thresholds = extractMarketThresholds(question)
   let source = marketSource(snapshot)
@@ -867,25 +886,39 @@ async function answerGeneralQuestion(question: string) {
     }
   }
 
-  const rag = await buildRagContext(question)
-  const context = toContextText(rag)
-  const result = await generateText({
-    model: openai(process.env.OPENAI_MODEL || 'gpt-4o-mini'),
-    system:
-      'Sen Veri Mimarı’nın e-ticaret karar asistanısın. Yalnız verilen bağlama dayan. Bilgi yoksa açıkça söyle. En fazla 120 kelime, Türkçe, doğrudan ve tek bir sonraki adımla yanıt ver. Sayısal veri uydurma.',
-    prompt: `SORU:\n${question}\n\nVERİ MİMARI BAĞLAMI:\n${context}`,
-    temperature: 0.2,
-    maxTokens: 260,
-  })
-  return {
-    intent: 'guide',
-    reply: result.text,
-    action: { href: '/araclar', label: 'İlgili araçları gör' },
-    source: {
-      label: 'Veri Mimarı rehber ve proje dizini',
-      note: 'Yanıt site içeriğinden getirilen bağlama dayanır; bağlam dışı iddia üretilmez.',
-    },
-    followUps: ['İlgili ücretsiz aracı göster', 'Bu yöntem için rehber öner'],
+  try {
+    const rag = await buildRagContext(question)
+    const context = toContextText(rag)
+    const result = await generateText({
+      model: openai(process.env.OPENAI_MODEL || 'gpt-4o-mini'),
+      system:
+        'Sen Veri Mimarı’nın e-ticaret karar asistanısın. Yalnız verilen bağlama dayan. Bilgi yoksa açıkça söyle. En fazla 120 kelime, Türkçe, doğrudan ve tek bir sonraki adımla yanıt ver. Sayısal veri uydurma.',
+      prompt: `SORU:\n${question}\n\nVERİ MİMARI BAĞLAMI:\n${context}`,
+      temperature: 0.2,
+      maxTokens: 260,
+    })
+    return {
+      intent: 'guide',
+      reply: result.text,
+      action: { href: '/araclar', label: 'İlgili araçları gör' },
+      source: {
+        label: 'Veri Mimarı rehber ve proje dizini',
+        note: 'Yanıt site içeriğinden getirilen bağlama dayanır; bağlam dışı iddia üretilmez.',
+      },
+      followUps: ['İlgili ücretsiz aracı göster', 'Bu yöntem için rehber öner'],
+    }
+  } catch {
+    return {
+      intent: 'guide',
+      reply:
+        'Genel yanıt servisi şu anda kullanılamıyor. Trendyol ürün araması için “Ürün bul” modunu, hesaplama için “Kâr hesapla” modunu seçerek devam edebilirsiniz.',
+      action: { href: '/araclar', label: 'Tüm araçları gör' },
+      source: {
+        label: 'Veri Mimarı görev yönlendiricisi',
+        note: 'Dış yanıt servisi çalışmadığında doğrulanmamış bilgi veya sayı üretilmez.',
+      },
+      followUps: ['Kozmetikte yükselen ürünleri göster', 'Kâr hesabı yapmak istiyorum'],
+    }
   }
 }
 
@@ -908,6 +941,7 @@ export async function POST(request: Request) {
   if (!messages) {
     return NextResponse.json({ error: 'Geçerli bir soru yazın.' }, { status: 400 })
   }
+  const mode = validateMode((body as { mode?: unknown })?.mode)
   const question = [...messages].reverse().find((message) => message.role === 'user')?.content || ''
 
   try {
@@ -956,8 +990,8 @@ export async function POST(request: Request) {
                         profitInputs,
                         profitContext.observedSaleProduct,
                       )
-                    : looksLikeMarketQuestion(question)
-                      ? await answerMarketQuestion(question)
+                    : looksLikeMarketQuestion(question) || mode === 'market'
+                      ? await answerMarketQuestion(question, false, mode === 'market')
                       : await answerGeneralQuestion(question)
 
     return NextResponse.json(answer, {
