@@ -366,9 +366,7 @@
 
   .toolbar > div {
     width: 100%;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 4px;
+    flex-wrap: wrap;
   }
 
   .toolbar button {
