@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Apple M6 ve M5 Ultra yerel yapay zekâ kapasitesi</title>
+  <desc id="desc">M6 için 2 nanometre üretim sürecini, M5 Ultra için 512 GB birleşik belleği öne çıkaran Veri Mimarı editoryal duyuru görseli.</desc>
+  <rect width="1200" height="760" fill="#f6f4ed"/>
+  <path d="M0 108h1200M0 216h1200M0 324h1200M0 432h1200M0 540h1200M0 648h1200M108 0v760M216 0v760M324 0v760M432 0v760M540 0v760M648 0v760M756 0v760M864 0v760M972 0v760M1080 0v760" stroke="#c9ccc3" stroke-width="1" opacity=".45"/>
+  <rect x="54" y="54" width="1092" height="652" fill="#fffef9" stroke="#101411" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="108" fill="#a99aff" stroke="#101411" stroke-width="3"/>
+  <text x="86" y="119" fill="#101411" font-family="monospace" font-size="25" font-weight="700" letter-spacing="3">APPLE SILICON / AĞUSTOS 2026</text>
+
+  <g transform="translate(86 214)">
+    <rect width="470" height="304" fill="#d6ff63" stroke="#101411" stroke-width="3"/>
+    <text x="34" y="76" fill="#101411" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-5">M6</text>
+    <text x="34" y="126" fill="#101411" font-family="monospace" font-size="19" font-weight="700" letter-spacing="2">GÜNLÜK YEREL AI</text>
+    <path d="M34 158h402" stroke="#101411" stroke-width="2"/>
+    <text x="34" y="218" fill="#101411" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="-2">2 NM</text>
+    <text x="250" y="218" fill="#101411" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="-2">170 GB/S</text>
+    <text x="34" y="258" fill="#5f655f" font-family="monospace" font-size="16" font-weight="700">ÇİFT 16 ÇEKİRDEK NEURAL ENGINE</text>
+  </g>
+
+  <g transform="translate(604 214)">
+    <rect width="510" height="304" fill="#101411" stroke="#101411" stroke-width="3"/>
+    <text x="34" y="76" fill="#fffef9" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="800" letter-spacing="-5">M5 ULTRA</text>
+    <text x="34" y="126" fill="#a99aff" font-family="monospace" font-size="19" font-weight="700" letter-spacing="2">MASAÜSTÜ AI İSTASYONU</text>
+    <path d="M34 158h442" stroke="#aeb6ae" stroke-width="2"/>
+    <text x="34" y="218" fill="#fffef9" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="-2">512 GB</text>
+    <text x="280" y="218" fill="#fffef9" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="-2">1,2 TB/S</text>
+    <text x="34" y="258" fill="#aeb6ae" font-family="monospace" font-size="16" font-weight="700">80 GPU ÇEKİRDEĞİNE KADAR</text>
+  </g>
+
+  <rect x="86" y="566" width="1028" height="88" fill="#86e7ff" stroke="#101411" stroke-width="3"/>
+  <text x="114" y="620" fill="#101411" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="800" letter-spacing="-1">ASIL KIRILMA: MODELİ CİHAZIN BELLEĞİNDE TUTABİLMEK.</text>
+  <text x="86" y="684" fill="#5f655f" font-family="monospace" font-size="16" font-weight="700">VERİ MİMARI / KAYNAK: APPLE NEWSROOM / 25.08.2026</text>
+</svg>
