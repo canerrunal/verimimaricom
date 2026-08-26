@@ -54,7 +54,9 @@ test('platforma özgü metinleri ve 4:5 görsel adresini üretir', () => {
   assert.match(content.instagram, /#VeriMimarı/)
   assert.match(content.linkedin, /Benim için öne çıkan veriler/)
   assert.ok(content.x.length <= 280)
-  assert.match(content.x, /https:\/\/verimimari\.com\/duyurular\/ornek-duyuru$/)
+  assert.match(content.x, /Detaylar profil bağlantısında\./)
+  assert.match(content.x, /#VeriMimarı/)
+  assert.doesNotMatch(content.x, /https?:\/\//)
 })
 
 test('Instagram medya konteynerini hazırlayıp yayınlar', async () => {

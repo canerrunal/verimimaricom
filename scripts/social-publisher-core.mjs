@@ -106,7 +106,7 @@ export function buildSocialContent(announcement, siteUrl = 'https://verimimari.c
     .filter((part, index, parts) => part || (index > 0 && parts[index - 1]))
     .join('\n')
 
-  const xSuffix = `\n\n${url}`
+  const xSuffix = `\n\nDetaylar profil bağlantısında.\n\n${tags}`
   const xLead = `${clean(announcement.title)} ${clean(announcement.excerpt)}`
   const x = `${trimForX(xLead, 280 - xSuffix.length)}${xSuffix}`
 
