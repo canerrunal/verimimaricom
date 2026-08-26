@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises'
+import { createHmac, randomBytes } from 'node:crypto'
 import ts from 'typescript'
 
 export const SOCIAL_PLATFORMS = ['instagram', 'facebook', 'linkedin', 'x']
@@ -263,13 +264,51 @@ export async function publishLinkedIn(content, { env = process.env, fetchImpl = 
   return { ...body, id: response.headers.get('x-restli-id') }
 }
 
-export async function publishX(content, { env = process.env, fetchImpl = fetch } = {}) {
-  requireEnv(env, ['X_USER_ACCESS_TOKEN'])
+function xPercentEncode(value) {
+  return encodeURIComponent(String(value)).replace(/[!'()*]/g, (character) =>
+    `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
+  )
+}
+
+export function createXOAuth1Header(
+  url,
+  env,
+  { timestamp = Math.floor(Date.now() / 1000), nonce = randomBytes(16).toString('hex') } = {},
+) {
+  requireEnv(env, ['X_CONSUMER_KEY', 'X_CONSUMER_SECRET', 'X_ACCESS_TOKEN', 'X_ACCESS_TOKEN_SECRET'])
+  const parameters = {
+    oauth_consumer_key: env.X_CONSUMER_KEY,
+    oauth_nonce: nonce,
+    oauth_signature_method: 'HMAC-SHA1',
+    oauth_timestamp: String(timestamp),
+    oauth_token: env.X_ACCESS_TOKEN,
+    oauth_version: '1.0',
+  }
+  const parameterString = Object.entries(parameters)
+    .map(([key, value]) => [xPercentEncode(key), xPercentEncode(value)])
+    .sort(([keyA, valueA], [keyB, valueB]) => keyA.localeCompare(keyB) || valueA.localeCompare(valueB))
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&')
+  const signatureBase = ['POST', xPercentEncode(url), xPercentEncode(parameterString)].join('&')
+  const signingKey = `${xPercentEncode(env.X_CONSUMER_SECRET)}&${xPercentEncode(env.X_ACCESS_TOKEN_SECRET)}`
+  const signature = createHmac('sha1', signingKey).update(signatureBase).digest('base64')
+
+  return `OAuth ${Object.entries({ ...parameters, oauth_signature: signature })
+    .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+    .map(([key, value]) => `${xPercentEncode(key)}="${xPercentEncode(value)}"`)
+    .join(', ')}`
+}
+
+export async function publishX(
+  content,
+  { env = process.env, fetchImpl = fetch, oauth = {} } = {},
+) {
+  const url = 'https://api.x.com/2/tweets'
   return readResponse(
-    await fetchImpl('https://api.x.com/2/tweets', {
+    await fetchImpl(url, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${env.X_USER_ACCESS_TOKEN}`,
+        Authorization: createXOAuth1Header(url, env, oauth),
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ text: content.x }),
