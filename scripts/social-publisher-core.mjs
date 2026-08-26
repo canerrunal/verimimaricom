@@ -47,7 +47,7 @@ function trimForX(text, maxLength = 280) {
 export function buildSocialContent(announcement, siteUrl = 'https://verimimari.com') {
   const baseUrl = siteUrl.replace(/\/$/, '')
   const url = `${baseUrl}/duyurular/${announcement.slug}`
-  const imageUrl = `${baseUrl}/api/social/announcements/${announcement.slug}/image`
+  const imageUrl = `${baseUrl}/api/social/announcements/${announcement.slug}/image?v=2`
   const stats = keyStats(announcement)
   const tags = hashtags(announcement)
   const closing = clean(
