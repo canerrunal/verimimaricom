@@ -70,7 +70,11 @@ export default async function AnnouncementDetailPage({ params }: PageProps) {
             <div className="announcement-detail-meta">
               <span>
                 <small>YAYIN</small>
-                {announcement.publishedAt}
+                <time dateTime={announcement.publishedAt}>{announcement.publishedAt}</time>
+              </span>
+              <span>
+                <small>SON DOĞRULAMA</small>
+                <time dateTime={announcement.updatedAt}>{announcement.updatedAt}</time>
               </span>
               <span>
                 <small>KATEGORİ</small>
@@ -95,7 +99,15 @@ export default async function AnnouncementDetailPage({ params }: PageProps) {
                   src={announcement.image}
                   alt={announcement.imageAlt}
                 />
-                <figcaption>{announcement.source}</figcaption>
+                <figcaption>
+                  {announcement.sourceUrl ? (
+                    <a href={announcement.sourceUrl} target="_blank" rel="noreferrer">
+                      {announcement.source} ↗
+                    </a>
+                  ) : (
+                    announcement.source
+                  )}
+                </figcaption>
               </figure>
 
               <div className="announcement-stat-grid" aria-label="Duyurunun özet metrikleri">

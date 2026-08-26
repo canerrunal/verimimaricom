@@ -24,6 +24,7 @@ export type Announcement = {
   image: string
   imageAlt: string
   source: string
+  sourceUrl?: string
   sourceNote: string
   stats: AnnouncementStat[]
   sections: AnnouncementSection[]
@@ -37,6 +38,130 @@ export type Announcement = {
 }
 
 export const announcements: Announcement[] = [
+  {
+    slug: 'apple-m6-m5-ultra-yerel-ai-hesaplama-2026',
+    addedOrder: 8,
+    eyebrow: 'APPLE SILICON / 25 AĞUSTOS 2026',
+    title: 'Apple M6 ve M5 Ultra: asıl sıçrama yerel AI tarafında.',
+    excerpt:
+      'Benim bu duyuruda asıl dikkatimi çeken şey yalnızca daha hızlı CPU ve GPU değil; Apple’ın kişisel bilgisayarı yeniden ciddi bir yerel AI makinesi olarak konumlandırması.',
+    category: 'AI ve Teknoloji',
+    publishedAt: '2026-08-25',
+    updatedAt: '2026-08-26',
+    readingTime: '9 dk',
+    image: '/duyurular/apple-m6-m5-ultra-yerel-ai-2026.svg',
+    imageAlt:
+      'Apple M6 ve M5 Ultra çiplerinin yerel yapay zekâ kapasitesini karşılaştıran Veri Mimarı editoryal görseli',
+    source: 'Apple Newsroom · M6 ve M5 Ultra basın duyurusu · 25 Ağustos 2026',
+    sourceUrl:
+      'https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/',
+    sourceNote:
+      'Bu yorum, Apple’ın 25 Ağustos 2026 tarihli resmî basın duyurusuna dayanıyor. Performans oranları Apple’ın ön üretim cihazlar ve seçili testlerle elde ettiği sonuçlardır; bağımsız incelemeler yayımlanmadan gerçek uygulama performansı olarak okunmamalıdır. “Yüz milyarlarca parametreli model” ifadesi de modelin belleğe sığmasını anlatır; kalite, hız ve kullanılabilirlik garantisi değildir.',
+    stats: [
+      {
+        label: 'M6 ÜRETİM SÜRECİ',
+        value: '2 NM',
+        detail: 'Apple’ın bu ölçekteki ilk çipi olarak duyuruldu',
+      },
+      {
+        label: 'M6 BELLEK BANTI',
+        value: '170 GB/S',
+        detail: '32 GB’a kadar birleşik bellek ile birlikte',
+      },
+      {
+        label: 'M5 ULTRA BELLEK',
+        value: '512 GB',
+        detail: 'Büyük yerel modeller için asıl kritik kapasite',
+      },
+      {
+        label: 'M5 ULTRA BANT',
+        value: '1,2 TB/S',
+        detail: 'M3 Ultra’dan yüzde 50 daha yüksek olduğu belirtiliyor',
+      },
+    ],
+    sections: [
+      {
+        id: 'ne-duyuruldu',
+        heading: 'Apple iki farklı AI bilgisayarı tarif ediyor.',
+        paragraphs: [
+          'Apple, 25 Ağustos 2026’da yeni Mac mini için M6’yı, yeni Mac Studio için de M5 Ultra’yı tanıttı. İlk bakışta isim sırası kafa karıştırabilir: M6 daha yeni nesil ve daha geniş kullanıcı kitlesine yönelik; M5 Ultra ise önceki mimarinin çok daha büyük, profesyonel ve yüksek bellekli tepe modeli.',
+          'Ben bu ikiliyi aynı performans yarışının iki basamağı gibi görmüyorum. M6; geliştirici, öğrenci, küçük ekip ve günlük üretim için yerel AI’ı standartlaştırmaya çalışıyor. M5 Ultra ise büyük model, bilimsel hesaplama, 3D, video ve yoğun veri işlerinde masaüstünün sınırını yukarı taşıyor.',
+        ],
+        bullets: [
+          'M6: 12 çekirdek CPU, 12 çekirdek GPU ve çift 16 çekirdek Neural Engine.',
+          'M5 Ultra: 36 çekirdeğe kadar CPU, 80 çekirdeğe kadar GPU ve 32 çekirdek Neural Engine.',
+          'M6 yeni Mac mini’de, M5 Ultra yeni Mac Studio’da konumlanıyor.',
+        ],
+      },
+      {
+        id: 'm6-gunluk-yerel-ai',
+        heading: 'M6’nın mesajı net: yerel AI artık yan özellik değil.',
+        paragraphs: [
+          'M6, Apple’ın 2 nm üretim süreciyle hazırladığı ilk çip. İki süper, dört performans ve altı verimlilik çekirdeğinden oluşan 12 çekirdekli CPU’ya; her çekirdeğinde Neural Accelerator bulunan 12 çekirdekli GPU’ya sahip. Apple, çok çekirdekli CPU performansının M5’e göre 1,2 kata, M1’e göre 2,4 kata kadar çıktığını söylüyor.',
+          'AI tarafındaki daha önemli değişiklik çift 16 çekirdekli Neural Engine. Apple’a göre önceki nesle kıyasla tepe hesaplama gücü iki kata kadar yükseliyor. GPU’nun AI hesaplama gücü de M5’e göre yaklaşık yüzde 30, M1’e göre sekiz kattan fazla artıyor. 170 GB/sn bellek bant genişliği bu birimlerin aynı veri havuzuna daha hızlı ulaşmasını sağlıyor.',
+          'Benim için buradaki pratik anlam; kod yardımcısı, belge analizi, görsel üretim, kişisel arama ve sınırlı kapsamlı ajan işlerinin buluta daha az bağımlı çalışabilmesi. Ancak 32 GB bellek tavanı M6’nın sınırını da açıkça gösteriyor: Bu, dev modeller için değil; iyi optimize edilmiş küçük ve orta ölçekli modeller için güçlü bir günlük çalışma makinesi.',
+        ],
+      },
+      {
+        id: 'm5-ultra-bellek-esigi',
+        heading: 'M5 Ultra’da asıl başlık 80 GPU çekirdeği değil, 512 GB bellek.',
+        paragraphs: [
+          'M5 Ultra, iki adet çift kalıplı M5 Max yapısını UltraFusion ile birleştirerek Apple Silicon tarafındaki ilk dört kalıplı mimariyi kuruyor. Apple, kalıplar arası bağlantının 4,4 TB/sn üzerine çıktığını ve dört parçanın tek işlemci gibi çalışabildiğini belirtiyor.',
+          'Elbette 36 çekirdeğe kadar CPU ve 80 çekirdeğe kadar GPU etkileyici. Apple’ın iddiasına göre GPU’nun AI tepe hesaplama gücü M3 Ultra’nın 4,5 katına, M1 Ultra’nın ise altı katından fazlasına çıkıyor. Fakat benim gözüm doğrudan 512 GB birleşik belleğe ve 1,2 TB/sn bant genişliğine gidiyor.',
+          'Çünkü büyük dil modellerinde yalnızca ham işlem gücü değil, modelin tamamını hızlı bellekte tutabilmek belirleyici. Apple da yüz milyarlarca parametreli modellerin tamamen cihaz üzerinde çalıştırılabileceğini söylüyor. Bu, masaüstü sınıfında yerel model deneyi, kurum içi prototipleme ve hassas veriyle çalışma için ciddi bir eşik.',
+        ],
+      },
+      {
+        id: 'neden-onemli',
+        heading: 'Bence asıl dönüşüm, AI hesabının yeniden bilgisayara dönmesi.',
+        paragraphs: [
+          'Son birkaç yılda AI denince varsayılan model buluttaki API oldu. Bu yaklaşım hızlı başlatıyor ama kullanım arttıkça maliyet, gecikme, veri gizliliği ve sağlayıcı bağımlılığı büyüyor. Güçlü yerel donanım bu sorunların tamamını tek başına çözmez; fakat ekiplerin yeni bir hibrit mimari kurmasına imkân verir.',
+          'Hassas veriyi cihazda hazırlayıp yalnızca gereken kısmı buluta göndermek, tekrarlanan görevleri yerel modelde çalıştırmak veya internet bağlantısından bağımsız bir ajan kullanmak daha gerçekçi hale geliyor. Özellikle Core AI, Core ML, Metal ve Xcode aynı donanım havuzuna göre optimize edildiğinde Apple’ın avantajı yalnızca çip değil, donanım ile yazılımın birlikte tasarlanması oluyor.',
+          'Yine de donanım kapasitesi ile kullanılabilir ürün arasında mesafe var. Model desteği, nicemleme kalitesi, uygulama optimizasyonu, enerji tüketimi ve geliştirici araçları gerçek sonucu belirleyecek. Kâğıt üzerindeki TOPS ya da tepe GPU gücü tek başına iyi bir AI iş akışı kurmuyor.',
+        ],
+      },
+      {
+        id: 'e-ticaret-ve-otomasyon',
+        heading: 'E-ticaret ekipleri için değer, veriyi dışarı çıkarmadan işlemekte.',
+        paragraphs: [
+          'Bu gelişmeyi yalnızca çip meraklılarının haberi olarak okumuyorum. Ürün maliyeti, fiyatlama, müşteri yorumu, satış geçmişi ve kampanya verisi aynı akışta işlendiğinde gizlilik ve kontrol önemli hale geliyor. Yerel modeller; katalog sınıflandırma, yorum özetleme, ürün metni taslağı, görsel varyasyon ve şirket içi rapor sorgulama gibi tekrarlanan işlerde anlamlı olabilir.',
+          'Örneğin bir ekip, hassas satış dosyasını cihazdan çıkarmadan analiz eden bir ajan kurabilir; yalnızca anonimleştirilmiş sonucu başka bir servise gönderebilir. Bu hem veri yüzeyini küçültür hem de sürekli API maliyeti doğuran görevleri ayırmaya yardımcı olur.',
+          'Fakat çoğu e-ticaret ekibinin M5 Ultra’ya ihtiyacı olmayacak. İş yükü ölçülmeden alınan pahalı donanım, verimsiz bir kapasite yatırımına dönüşür. Önce model boyutunu, günlük sorgu sayısını, beklenen yanıt hızını ve bulut maliyetini ölçmek; ardından M6, M5 Pro, M5 Max veya M5 Ultra arasında karar vermek daha doğru.',
+        ],
+        bullets: [
+          'Hangi verinin cihazdan çıkmaması gerektiğini sınıflandırın.',
+          'Yerelde çalışacak görevleri model boyutu ve günlük kullanım adediyle listeleyin.',
+          'Donanım bedelini 24–36 aylık API maliyetiyle karşılaştırın.',
+          'Yedekleme, erişim yetkisi ve cihaz güvenliğini mimarinin parçası yapın.',
+        ],
+      },
+      {
+        id: 'iddialari-nasil-okuyorum',
+        heading: 'Rakamlar güçlü; ama şimdilik Apple’ın kendi ölçümü.',
+        paragraphs: [
+          'Duyurudaki performans karşılaştırmaları Apple’ın Ağustos 2026’da ön üretim Mac mini ve Mac Studio sistemleriyle yaptığı seçili testlere dayanıyor. Bu yüzden “1,2 kat”, “4,5 kat” veya “sekiz kattan fazla” ifadelerini tüm uygulamalarda görülecek sabit hız artışı olarak okumamak gerekiyor.',
+          'Tepe AI hesaplama gücü; model yükleme süresini, token hızını, uzun bağlam performansını veya enerji tüketimini tek başına açıklamaz. Ayrıca bir modelin 512 GB belleğe sığması, aynı modelin iyi nicemlendiği, hızlı çalıştığı ya da buluttaki en güçlü modellerle aynı kaliteyi verdiği anlamına gelmez.',
+          'Bağımsız testlerde özellikle token/sn, ilk token gecikmesi, uzun süreli yük altında performans, güç tüketimi ve farklı model formatlarının desteğine bakacağım. Satın alma kararı için basın bülteninden daha anlamlı veriler bunlar olacak.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: Apple bilgisayarı yeniden hesaplama merkezine çeviriyor.',
+        paragraphs: [
+          'Ben bu duyuruyu “yeni çipler biraz daha hızlandı” diye özetlemem. M6, yerel AI’ı geniş kullanıcı kitlesinin günlük iş akışına taşımaya çalışıyor. M5 Ultra ise yüksek bellekli bir Mac’i, yalnızca yaratıcı profesyonel bilgisayarı olmaktan çıkarıp masaüstü bir AI geliştirme istasyonuna yaklaştırıyor.',
+          'Bana göre en önemli sinyal, Apple’ın CPU, GPU, Neural Engine ve birleşik belleği tek bir AI hikâyesinde birleştirmesi. Önümüzdeki dönemde farkı yalnızca en büyük modeli çalıştıran cihaz değil; doğru görevi yerel, özel bulut ve genel bulut arasında en verimli şekilde dağıtan sistem yaratacak.',
+          'Kısacası heyecan verici bir donanım sıçraması var; fakat gerçek başarı bağımsız testler ve bu kapasiteyi işe dönüştüren yazılımlarla belli olacak. Benim takip edeceğim yer tam olarak burası.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'SONRAKİ ADIM',
+      title: 'Yerel AI kapasitesini gerçek bir iş akışına bağlayın.',
+      body: 'Model seçimi, veri gizliliği ve otomasyon adımlarını donanımdan önce tanımlayın; sonra hangi kapasiteye gerçekten ihtiyaç duyduğunuzu ölçün.',
+      ctaLabel: 'AI otomasyon rehberini incele →',
+      ctaHref: '/rehberler/ai-otomasyon',
+    },
+  },
   {
     slug: 'trendyol-agustos-2026-avantajli-komisyon-guncellemesi',
     addedOrder: 7,
