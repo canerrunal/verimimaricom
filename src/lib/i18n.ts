@@ -9,8 +9,8 @@ export const dictionaries = {
       links: [
         { href: '/araclar', label: 'Araçlar' },
         { href: '/rehberler', label: 'Rehberler' },
+        { href: '/yapay-zeka', label: 'Yapay Zekâ' },
         { href: '/duyurular', label: 'Duyurular' },
-        { href: '/sozluk', label: 'Sözlük' },
         { href: '/analizler', label: 'Analizler' },
         { href: '/projeler', label: 'Projeler' },
         { href: '/hakkinda', label: 'Hakkında' },

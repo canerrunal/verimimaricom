@@ -1,0 +1,3562 @@
+[
+  {
+    "id": "ai-local-lab:20260716-rtx4060l-llmjp4-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LLM-jp-4 8B (thinking) — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "LLM-jp-4 8B (thinking), ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 47.31 token/sn. İlk token süresi 847.5 ms. Ortalama güç 62.6 W. Ölçüm tarihi 2026-07-16. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llm-jp-4-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llm-jp-4-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-16",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "llm-jp-4-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-a6000-glm-ocr-q80",
+    "kind": "external-ai-benchmark",
+    "title": "GLM-OCR — RTX A6000 48GB ワークステーション",
+    "excerpt": "GLM-OCR, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 473.17 token/sn. İlk token süresi 103.5 ms. Ortalama güç 138.8 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/glm-ocr/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/glm-ocr/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "a6000-workstation",
+      "modelId": "glm-ocr",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-a6000-minicpm-v46-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "MiniCPM-V 4.6 — RTX A6000 48GB ワークステーション",
+    "excerpt": "MiniCPM-V 4.6, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 298.66 token/sn. İlk token süresi 270.2 ms. Ortalama güç 145.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/minicpm-v-4.6/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/minicpm-v-4.6/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "a6000-workstation",
+      "modelId": "minicpm-v-4.6",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-a6000-nemotron-3-nano-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Nemotron 3 Nano 4B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Nemotron 3 Nano 4B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 166.49 token/sn. İlk token süresi 228.7 ms. Ortalama güç 223.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/nemotron-3-nano-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/nemotron-3-nano-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "a6000-workstation",
+      "modelId": "nemotron-3-nano-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-a6000-qwen25-coder-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 Coder 7B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 Coder 7B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 115.86 token/sn. İlk token süresi 164.5 ms. Ortalama güç 252.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-coder-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-coder-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-coder-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-a6000-qwen3vl-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 8B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3-VL 8B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 104.11 token/sn. İlk token süresi 199.8 ms. Ortalama güç 242.3 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-vl-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-vl-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3-vl-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-jons-gemma3-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 4B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Gemma 3 4B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 16.21 token/sn. İlk token süresi 2019.2 ms. Ortalama güç 17.3 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/gemma3-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/gemma3-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "gemma3-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-jons-gemma4-e2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E2B (有効2B / 実5.1B) — Jetson Orin Nano Super 8GB",
+    "excerpt": "Gemma 4 E2B (有効2B / 実5.1B), Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 23.43 token/sn. İlk token süresi 2045.7 ms. Ortalama güç 15 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/gemma4-e2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/gemma4-e2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "gemma4-e2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-jons-minicpm-v46-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "MiniCPM-V 4.6 — Jetson Orin Nano Super 8GB",
+    "excerpt": "MiniCPM-V 4.6, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 37.91 token/sn. İlk token süresi 1341.2 ms. Ortalama güç 12.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/minicpm-v-4.6/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/minicpm-v-4.6/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "minicpm-v-4.6",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-jons-qwen3-17b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 1.7B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Qwen3 1.7B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 36.4 token/sn. İlk token süresi 741.9 ms. Ortalama güç 17.9 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "qwen3-1.7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-gptoss-20b-mxfp4",
+    "kind": "external-ai-benchmark",
+    "title": "gpt-oss 20B (MoE) — Mac mini M4 16GB",
+    "excerpt": "gpt-oss 20B (MoE), Mac mini M4 16GB üzerinde MXFP4 ile ölçüldü. Üretim hızı 24.73 token/sn. İlk token süresi 273.9 ms. Ortalama güç 10.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gpt-oss-20b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gpt-oss-20b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "gpt-oss-20b",
+      "quantization": "MXFP4",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-llmjp4-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LLM-jp-4 8B (thinking) — Mac mini M4 16GB",
+    "excerpt": "LLM-jp-4 8B (thinking), Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 20.16 token/sn. İlk token süresi 144.9 ms. Ortalama güç 12.3 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llm-jp-4-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llm-jp-4-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llm-jp-4-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-ministral3-14b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 14B — Mac mini M4 16GB",
+    "excerpt": "Ministral 3 14B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 12.4 token/sn. İlk token süresi 210.7 ms. Ortalama güç 12.3 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/ministral-3-14b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/ministral-3-14b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "ministral-3-14b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-ministral3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 8B — Mac mini M4 16GB",
+    "excerpt": "Ministral 3 8B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 19.36 token/sn. İlk token süresi 181.6 ms. Ortalama güç 12.4 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/ministral-3-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/ministral-3-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "ministral-3-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-mistral-nemo-q40",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral Nemo (12B) — Mac mini M4 16GB",
+    "excerpt": "Mistral Nemo (12B), Mac mini M4 16GB üzerinde Q4_0 ile ölçüldü. Üretim hızı 14.86 token/sn. İlk token süresi 181.5 ms. Ortalama güç 11.4 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/mistral-nemo/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/mistral-nemo/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "mistral-nemo",
+      "quantization": "Q4_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-phi4-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Phi-4 — Mac mini M4 16GB",
+    "excerpt": "Phi-4, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 11.43 token/sn. İlk token süresi 154.5 ms. Ortalama güç 14.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/phi-4/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/phi-4/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "phi-4",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-macm4-qwen25-14b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 14B — Mac mini M4 16GB",
+    "excerpt": "Qwen2.5 14B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 11.56 token/sn. İlk token süresi 184.8 ms. Ortalama güç 13.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-14b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-14b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen2.5-14b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-elyza3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama-3-ELYZA-JP-8B — Raspberry Pi 5 8GB",
+    "excerpt": "Llama-3-ELYZA-JP-8B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2 token/sn. İlk token süresi 1019.7 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3-elyza-jp-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3-elyza-jp-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "llama-3-elyza-jp-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-falcon3-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Falcon3 7B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Falcon3 7B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2.08 token/sn. İlk token süresi 863.7 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/falcon3-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/falcon3-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "falcon3-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-glm-ocr-f16",
+    "kind": "external-ai-benchmark",
+    "title": "GLM-OCR — Raspberry Pi 5 8GB",
+    "excerpt": "GLM-OCR, Raspberry Pi 5 8GB üzerinde F16 ile ölçüldü. Üretim hızı 6.68 token/sn. İlk token süresi 387.5 ms. Ortalama güç 6.9 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/glm-ocr/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/glm-ocr/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "glm-ocr",
+      "quantization": "F16",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-granite33-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Granite 3.3 8B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Granite 3.3 8B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 1.88 token/sn. İlk token süresi 657.3 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/granite-3.3-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/granite-3.3-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "granite-3.3-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-lfm25-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 8B A1B — Raspberry Pi 5 8GB",
+    "excerpt": "LFM2.5 8B A1B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 8.84 token/sn. İlk token süresi 878.7 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/lfm2.5-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/lfm2.5-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "lfm2.5-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-llama31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Llama 3.1 8B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2 token/sn. İlk token süresi 1001.8 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-llmjp4-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LLM-jp-4 8B (thinking) — Raspberry Pi 5 8GB",
+    "excerpt": "LLM-jp-4 8B (thinking), Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 1.94 token/sn. İlk token süresi 905.7 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llm-jp-4-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llm-jp-4-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "llm-jp-4-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-minicpm-v46-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "MiniCPM-V 4.6 — Raspberry Pi 5 8GB",
+    "excerpt": "MiniCPM-V 4.6, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 14.46 token/sn. İlk token süresi 803.6 ms. Ortalama güç 6.3 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/minicpm-v-4.6/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/minicpm-v-4.6/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "minicpm-v-4.6",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-mistral-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — Raspberry Pi 5 8GB",
+    "excerpt": "Mistral 7B Instruct v0.3, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2.35 token/sn. İlk token süresi 473.8 ms. Ortalama güç 6.7 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-nemotron-3-nano-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Nemotron 3 Nano 4B — Raspberry Pi 5 8GB",
+    "excerpt": "Nemotron 3 Nano 4B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 3.12 token/sn. İlk token süresi 1131.5 ms. Ortalama güç 6.9 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/nemotron-3-nano-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/nemotron-3-nano-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "nemotron-3-nano-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-qwen25-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen2.5 7B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2.17 token/sn. İlk token süresi 867.2 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-qwen25-coder-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 Coder 7B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen2.5 Coder 7B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2.21 token/sn. İlk token süresi 870.5 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-coder-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-coder-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen2.5-coder-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-qwen3vl-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 8B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen3-VL 8B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2.09 token/sn. İlk token süresi 1092.8 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3-vl-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3-vl-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen3-vl-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rpi5-swallow31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 Swallow 8B Instruct v0.5 — Raspberry Pi 5 8GB",
+    "excerpt": "Llama 3.1 Swallow 8B Instruct v0.5, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2 token/sn. İlk token süresi 1036.7 ms. Ortalama güç 6.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.1-swallow-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.1-swallow-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "llama-3.1-swallow-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-elyza3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama-3-ELYZA-JP-8B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Llama-3-ELYZA-JP-8B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 49.52 token/sn. İlk token süresi 1059 ms. Ortalama güç 81.6 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3-elyza-jp-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3-elyza-jp-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "llama-3-elyza-jp-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-falcon3-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Falcon3 7B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Falcon3 7B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 52.59 token/sn. İlk token süresi 765.3 ms. Ortalama güç 84.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/falcon3-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/falcon3-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "falcon3-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-gemma3-1b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 1B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Gemma 3 1B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 176.68 token/sn. İlk token süresi 2198.3 ms. Ortalama güç 31.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma3-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma3-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "gemma3-1b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-gemma3-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 4B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Gemma 3 4B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 75.38 token/sn. İlk token süresi 2216.5 ms. Ortalama güç 57.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma3-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma3-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "gemma3-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-gemma4-e2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E2B (有効2B / 実5.1B) — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Gemma 4 E2B (有効2B / 実5.1B), ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 109.6 token/sn. İlk token süresi 2123.6 ms. Ortalama güç 42.7 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma4-e2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma4-e2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "gemma4-e2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-gemma4-e4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E4B (有効4B / 実8.0B) — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Gemma 4 E4B (有効4B / 実8.0B), ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 63.01 token/sn. İlk token süresi 2116.2 ms. Ortalama güç 55.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma4-e4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/gemma4-e4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "gemma4-e4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-glm-ocr-q80",
+    "kind": "external-ai-benchmark",
+    "title": "GLM-OCR — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "GLM-OCR, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q8_0 ile ölçüldü. Üretim hızı 291.8 token/sn. İlk token süresi 548.6 ms. Ortalama güç 30 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/glm-ocr/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/glm-ocr/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "glm-ocr",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-granite33-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Granite 3.3 8B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Granite 3.3 8B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 46.16 token/sn. İlk token süresi 364.9 ms. Ortalama güç 88.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/granite-3.3-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/granite-3.3-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "granite-3.3-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-lfm25-12b-jp-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 1.2B JP — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "LFM2.5 1.2B JP, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 265.5 token/sn. İlk token süresi 372.2 ms. Ortalama güç 51 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/lfm2.5-1.2b-jp/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/lfm2.5-1.2b-jp/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "lfm2.5-1.2b-jp",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-lfm25-230m-q80",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 230M — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "LFM2.5 230M, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q8_0 ile ölçüldü. Üretim hızı 580.46 token/sn. İlk token süresi 396 ms. Ortalama güç 23 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/lfm2.5-230m/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/lfm2.5-230m/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "lfm2.5-230m",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-lfm25-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 8B A1B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "LFM2.5 8B A1B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 177.55 token/sn. İlk token süresi 1180.7 ms. Ortalama güç 51.7 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/lfm2.5-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/lfm2.5-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "lfm2.5-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-llama31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Llama 3.1 8B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 49.19 token/sn. İlk token süresi 1060.6 ms. Ortalama güç 79.1 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-llama32-1b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 1B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Llama 3.2 1B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q8_0 ile ölçüldü. Üretim hızı 158.1 token/sn. İlk token süresi 1076.4 ms. Ortalama güç 41.7 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.2-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.2-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "llama-3.2-1b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-llama32-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 3B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Llama 3.2 3B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 100.89 token/sn. İlk token süresi 1060.8 ms. Ortalama güç 64.7 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "llama-3.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-minicpm-v46-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "MiniCPM-V 4.6 — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "MiniCPM-V 4.6, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 226.44 token/sn. İlk token süresi 1402 ms. Ortalama güç 31.1 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/minicpm-v-4.6/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/minicpm-v-4.6/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "minicpm-v-4.6",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-ministral3-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 3B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Ministral 3 3B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 94.26 token/sn. İlk token süresi 1167 ms. Ortalama güç 69 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/ministral-3-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/ministral-3-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "ministral-3-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-mistral-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Mistral 7B Instruct v0.3, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 53.87 token/sn. İlk token süresi 206.5 ms. Ortalama güç 87 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-nemotron-3-nano-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Nemotron 3 Nano 4B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Nemotron 3 Nano 4B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 77.91 token/sn. İlk token süresi 1226.2 ms. Ortalama güç 66.3 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/nemotron-3-nano-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/nemotron-3-nano-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "nemotron-3-nano-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-phi4-mini-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Phi-4-mini Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Phi-4-mini Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 84.25 token/sn. İlk token süresi 1175.1 ms. Ortalama güç 67.9 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/phi-4-mini/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/phi-4-mini/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "phi-4-mini",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-qwen25-15b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 1.5B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen2.5 1.5B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 178.03 token/sn. İlk token süresi 845.9 ms. Ortalama güç 46.4 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-1.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-1.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen2.5-1.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-qwen25-coder-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 Coder 7B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen2.5 Coder 7B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 51.86 token/sn. İlk token süresi 906.8 ms. Ortalama güç 81.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-coder-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-coder-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen2.5-coder-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-qwen3-17b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 1.7B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen3 1.7B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 167.63 token/sn. İlk token süresi 852.2 ms. Ortalama güç 52.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen3-1.7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-qwen35-08b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 0.8B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen3.5 0.8B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q8_0 ile ölçüldü. Üretim hızı 180.98 token/sn. İlk token süresi 1649.6 ms. Ortalama güç 34.5 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3.5-0.8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3.5-0.8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen3.5-0.8b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-qwen35-2b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 2B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen3.5 2B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q8_0 ile ölçüldü. Üretim hızı 96.7 token/sn. İlk token süresi 1587.7 ms. Ortalama güç 48.7 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3.5-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3.5-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen3.5-2b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-qwen3vl-2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 2B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen3-VL 2B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 162.18 token/sn. İlk token süresi 955.4 ms. Ortalama güç 55.1 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3-vl-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3-vl-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen3-vl-2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-sarashina22-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Sarashina 2.2 3B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Sarashina 2.2 3B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 93.11 token/sn. İlk token süresi 503 ms. Ortalama güç 73 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/sarashina2.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/sarashina2.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "sarashina2.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-smollm2-17b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "SmolLM2 1.7B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "SmolLM2 1.7B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q8_0 ile ölçüldü. Üretim hızı 116.99 token/sn. İlk token süresi 334 ms. Ortalama güç 74 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/smollm2-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/smollm2-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "smollm2-1.7b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260715-rtx4060l-swallow31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 Swallow 8B Instruct v0.5 — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Llama 3.1 Swallow 8B Instruct v0.5, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 49.21 token/sn. İlk token süresi 1075.1 ms. Ortalama güç 79.2 W. Ölçüm tarihi 2026-07-15. Runtime: ollama 0.32.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.1-swallow-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/llama-3.1-swallow-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-15",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "llama-3.1-swallow-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-gemma3-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 4B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Gemma 3 4B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 146.4 token/sn. İlk token süresi 409 ms. Ortalama güç 205.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma3-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma3-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "gemma3-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen25-05b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 0.5B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 0.5B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 423.41 token/sn. İlk token süresi 158.7 ms. Ortalama güç 77.1 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-0.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-0.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-0.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen25-14b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 14B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 14B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 64.3 token/sn. İlk token süresi 177.5 ms. Ortalama güç 265 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-14b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-14b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-14b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen25-coder-32b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 Coder 32B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 Coder 32B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 29.76 token/sn. İlk token süresi 204.5 ms. Ortalama güç 291.6 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-coder-32b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-coder-32b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-coder-32b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen3-30b-a3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 30B (A3B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3 30B (A3B), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 160.64 token/sn. İlk token süresi 171.3 ms. Ortalama güç 198.3 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-30b-a3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-30b-a3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3-30b-a3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen3-30b-a3b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 30B (A3B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3 30B (A3B), RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 124.31 token/sn. İlk token süresi 165.2 ms. Ortalama güç 211.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-30b-a3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-30b-a3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3-30b-a3b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen35-2b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 2B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3.5 2B, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 188.94 token/sn. İlk token süresi 297.2 ms. Ortalama güç 174.2 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.5-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.5-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3.5-2b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-a6000-qwen3vl-2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 2B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3-VL 2B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 268.2 token/sn. İlk token süresi 179.6 ms. Ortalama güç 162.1 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-vl-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-vl-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3-vl-2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-jons-gemma3-1b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 1B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Gemma 3 1B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 34.44 token/sn. İlk token süresi 1778.3 ms. Ortalama güç 12.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/gemma3-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/gemma3-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "gemma3-1b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-jons-qwen25-05b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 0.5B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Qwen2.5 0.5B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 75.71 token/sn. İlk token süresi 718.3 ms. Ortalama güç 12.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen2.5-0.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen2.5-0.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "qwen2.5-0.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-elyza3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama-3-ELYZA-JP-8B — Mac mini M4 16GB",
+    "excerpt": "Llama-3-ELYZA-JP-8B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 20.93 token/sn. İlk token süresi 167.7 ms. Ortalama güç 13.1 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3-elyza-jp-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3-elyza-jp-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llama-3-elyza-jp-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-falcon3-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Falcon3 7B Instruct — Mac mini M4 16GB",
+    "excerpt": "Falcon3 7B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 22.37 token/sn. İlk token süresi 127.9 ms. Ortalama güç 13.2 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/falcon3-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/falcon3-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "falcon3-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-gemma3-1b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 1B — Mac mini M4 16GB",
+    "excerpt": "Gemma 3 1B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 92.62 token/sn. İlk token süresi 272.1 ms. Ortalama güç 10.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma3-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma3-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "gemma3-1b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-gemma3-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 4B — Mac mini M4 16GB",
+    "excerpt": "Gemma 3 4B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 36.17 token/sn. İlk token süresi 341.6 ms. Ortalama güç 12.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma3-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma3-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "gemma3-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-granite33-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Granite 3.3 8B Instruct — Mac mini M4 16GB",
+    "excerpt": "Granite 3.3 8B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 19.42 token/sn. İlk token süresi 87.8 ms. Ortalama güç 13.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/granite-3.3-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/granite-3.3-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "granite-3.3-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-lfm25-12b-jp-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 1.2B JP — Mac mini M4 16GB",
+    "excerpt": "LFM2.5 1.2B JP, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 120.35 token/sn. İlk token süresi 65.5 ms. Ortalama güç 8.8 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/lfm2.5-1.2b-jp/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/lfm2.5-1.2b-jp/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "lfm2.5-1.2b-jp",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-lfm25-230m-q80",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 230M — Mac mini M4 16GB",
+    "excerpt": "LFM2.5 230M, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 284.29 token/sn. İlk token süresi 56.7 ms. Ortalama güç 8.2 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/lfm2.5-230m/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/lfm2.5-230m/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "lfm2.5-230m",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-llama31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — Mac mini M4 16GB",
+    "excerpt": "Llama 3.1 8B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 21.03 token/sn. İlk token süresi 167.9 ms. Ortalama güç 13.3 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-llama31-8b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — Mac mini M4 16GB",
+    "excerpt": "Llama 3.1 8B Instruct, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 12.82 token/sn. İlk token süresi 212.6 ms. Ortalama güç 10.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-ministral3-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 3B — Mac mini M4 16GB",
+    "excerpt": "Ministral 3 3B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 40.85 token/sn. İlk token süresi 153.5 ms. Ortalama güç 11.1 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/ministral-3-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/ministral-3-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "ministral-3-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-mistral-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — Mac mini M4 16GB",
+    "excerpt": "Mistral 7B Instruct v0.3, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 22.58 token/sn. İlk token süresi 65.8 ms. Ortalama güç 12.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-mistral-7b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — Mac mini M4 16GB",
+    "excerpt": "Mistral 7B Instruct v0.3, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 13.57 token/sn. İlk token süresi 95.8 ms. Ortalama güç 10.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-qwen25-05b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 0.5B — Mac mini M4 16GB",
+    "excerpt": "Qwen2.5 0.5B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 156.24 token/sn. İlk token süresi 104.5 ms. Ortalama güç 4.7 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-0.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-0.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen2.5-0.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-qwen25-15b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 1.5B Instruct — Mac mini M4 16GB",
+    "excerpt": "Qwen2.5 1.5B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 84.26 token/sn. İlk token süresi 128.3 ms. Ortalama güç 11.9 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-1.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-1.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen2.5-1.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-qwen25-7b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — Mac mini M4 16GB",
+    "excerpt": "Qwen2.5 7B Instruct, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 13.69 token/sn. İlk token süresi 168.7 ms. Ortalama güç 10.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-qwen3-17b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 1.7B — Mac mini M4 16GB",
+    "excerpt": "Qwen3 1.7B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 74.03 token/sn. İlk token süresi 105.6 ms. Ortalama güç 9.8 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen3-1.7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-qwen35-08b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 0.8B — Mac mini M4 16GB",
+    "excerpt": "Qwen3.5 0.8B, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 81.53 token/sn. İlk token süresi 215.4 ms. Ortalama güç 10.2 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3.5-0.8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3.5-0.8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen3.5-0.8b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-qwen3vl-2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 2B — Mac mini M4 16GB",
+    "excerpt": "Qwen3-VL 2B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 75.79 token/sn. İlk token süresi 123.2 ms. Ortalama güç 11.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3-vl-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3-vl-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen3-vl-2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-sarashina22-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Sarashina 2.2 3B Instruct — Mac mini M4 16GB",
+    "excerpt": "Sarashina 2.2 3B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 37.87 token/sn. İlk token süresi 77.5 ms. Ortalama güç 12.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/sarashina2.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/sarashina2.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "sarashina2.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-macm4-swallow31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 Swallow 8B Instruct v0.5 — Mac mini M4 16GB",
+    "excerpt": "Llama 3.1 Swallow 8B Instruct v0.5, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 21.01 token/sn. İlk token süresi 167.7 ms. Ortalama güç 13.3 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.1-swallow-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.1-swallow-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llama-3.1-swallow-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-gemma4-e2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E2B (有効2B / 実5.1B) — Raspberry Pi 5 8GB",
+    "excerpt": "Gemma 4 E2B (有効2B / 実5.1B), Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 6.29 token/sn. İlk token süresi 1563.8 ms. Ortalama güç 6.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/gemma4-e2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/gemma4-e2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "gemma4-e2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-llama32-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 3B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Llama 3.2 3B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 4.47 token/sn. İlk token süresi 744.7 ms. Ortalama güç 6.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "llama-3.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-phi4-mini-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Phi-4-mini Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Phi-4-mini Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 3.85 token/sn. İlk token süresi 801 ms. Ortalama güç 6.7 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/phi-4-mini/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/phi-4-mini/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "phi-4-mini",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-qwen25-05b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 0.5B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen2.5 0.5B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 25.14 token/sn. İlk token süresi 487.2 ms. Ortalama güç 6.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-0.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-0.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen2.5-0.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-qwen25-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 3B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen2.5 3B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 5.2 token/sn. İlk token süresi 598.1 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-3b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-3b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen2.5-3b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-qwen35-08b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 0.8B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen3.5 0.8B, Raspberry Pi 5 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 10.78 token/sn. İlk token süresi 930.6 ms. Ortalama güç 6.3 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3.5-0.8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3.5-0.8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen3.5-0.8b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-qwen3vl-2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 2B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen3-VL 2B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 9.41 token/sn. İlk token süresi 593.6 ms. Ortalama güç 6.7 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3-vl-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3-vl-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen3-vl-2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-sarashina22-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Sarashina 2.2 3B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Sarashina 2.2 3B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 4.51 token/sn. İlk token süresi 455.1 ms. Ortalama güç 6.4 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/sarashina2.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/sarashina2.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "sarashina2.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260714-rpi5-smollm2-17b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "SmolLM2 1.7B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "SmolLM2 1.7B Instruct, Raspberry Pi 5 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 5.32 token/sn. İlk token süresi 321.6 ms. Ortalama güç 6.5 W. Ölçüm tarihi 2026-07-14. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/smollm2-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/smollm2-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "smollm2-1.7b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260707-a6000-elyza3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama-3-ELYZA-JP-8B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama-3-ELYZA-JP-8B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 112.16 token/sn. İlk token süresi 189.2 ms. Ortalama güç 236.4 W. Ölçüm tarihi 2026-07-07. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3-elyza-jp-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3-elyza-jp-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-07",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3-elyza-jp-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260707-a6000-gptoss-20b-mxfp4",
+    "kind": "external-ai-benchmark",
+    "title": "gpt-oss 20B (MoE) — RTX A6000 48GB ワークステーション",
+    "excerpt": "gpt-oss 20B (MoE), RTX A6000 48GB ワークステーション üzerinde MXFP4 ile ölçüldü. Üretim hızı 132.82 token/sn. İlk token süresi 330.5 ms. Ortalama güç 220.8 W. Ölçüm tarihi 2026-07-07. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gpt-oss-20b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gpt-oss-20b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-07",
+      "deviceId": "a6000-workstation",
+      "modelId": "gpt-oss-20b",
+      "quantization": "MXFP4",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260707-a6000-llmjp4-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LLM-jp-4 8B (thinking) — RTX A6000 48GB ワークステーション",
+    "excerpt": "LLM-jp-4 8B (thinking), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 105.96 token/sn. İlk token süresi 147.9 ms. Ortalama güç 190.3 W. Ölçüm tarihi 2026-07-07. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llm-jp-4-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llm-jp-4-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-07",
+      "deviceId": "a6000-workstation",
+      "modelId": "llm-jp-4-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260707-a6000-sarashina22-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Sarashina 2.2 3B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Sarashina 2.2 3B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 180.87 token/sn. İlk token süresi 98.9 ms. Ortalama güç 203.9 W. Ölçüm tarihi 2026-07-07. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/sarashina2.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/sarashina2.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-07",
+      "deviceId": "a6000-workstation",
+      "modelId": "sarashina2.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260707-a6000-swallow31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 Swallow 8B Instruct v0.5 — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama 3.1 Swallow 8B Instruct v0.5, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 111.89 token/sn. İlk token süresi 190.6 ms. Ortalama güç 254.2 W. Ölçüm tarihi 2026-07-07. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-swallow-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-swallow-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-07",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3.1-swallow-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-a6000-lfm25-12b-jp-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 1.2B JP — RTX A6000 48GB ワークステーション",
+    "excerpt": "LFM2.5 1.2B JP, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 448.93 token/sn. İlk token süresi 81.1 ms. Ortalama güç 171.1 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/lfm2.5-1.2b-jp/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/lfm2.5-1.2b-jp/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "a6000-workstation",
+      "modelId": "lfm2.5-1.2b-jp",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-a6000-lfm25-230m-q80",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 230M — RTX A6000 48GB ワークステーション",
+    "excerpt": "LFM2.5 230M, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 735.79 token/sn. İlk token süresi 81.9 ms. Ortalama güç 174 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/lfm2.5-230m/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/lfm2.5-230m/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "a6000-workstation",
+      "modelId": "lfm2.5-230m",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-a6000-ministral3-14b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 14B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Ministral 3 14B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 62.31 token/sn. İlk token süresi 239.1 ms. Ortalama güç 270.9 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/ministral-3-14b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/ministral-3-14b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "a6000-workstation",
+      "modelId": "ministral-3-14b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-a6000-ministral3-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 3B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Ministral 3 3B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 177.49 token/sn. İlk token süresi 217.1 ms. Ortalama güç 197 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/ministral-3-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/ministral-3-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "a6000-workstation",
+      "modelId": "ministral-3-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-a6000-ministral3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 8B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Ministral 3 8B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 94.69 token/sn. İlk token süresi 223.8 ms. Ortalama güç 249.9 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/ministral-3-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/ministral-3-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "a6000-workstation",
+      "modelId": "ministral-3-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-jons-lfm25-12b-jp-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 1.2B JP — Jetson Orin Nano Super 8GB",
+    "excerpt": "LFM2.5 1.2B JP, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 57.46 token/sn. İlk token süresi 252.9 ms. Ortalama güç 20.5 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/lfm2.5-1.2b-jp/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/lfm2.5-1.2b-jp/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "lfm2.5-1.2b-jp",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-jons-lfm25-230m-q80",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 230M — Jetson Orin Nano Super 8GB",
+    "excerpt": "LFM2.5 230M, Jetson Orin Nano Super 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 140.54 token/sn. İlk token süresi 219.1 ms. Ortalama güç 15.7 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/lfm2.5-230m/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/lfm2.5-230m/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "lfm2.5-230m",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-jons-ministral3-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 3B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Ministral 3 3B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 19.29 token/sn. İlk token süresi 665.8 ms. Ortalama güç 20.7 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/ministral-3-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/ministral-3-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "ministral-3-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-rpi5-lfm25-12b-jp-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 1.2B JP — Raspberry Pi 5 8GB",
+    "excerpt": "LFM2.5 1.2B JP, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 14.98 token/sn. İlk token süresi 255.3 ms. Ortalama güç 6.6 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/lfm2.5-1.2b-jp/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/lfm2.5-1.2b-jp/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "lfm2.5-1.2b-jp",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-rpi5-lfm25-230m-q80",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 230M — Raspberry Pi 5 8GB",
+    "excerpt": "LFM2.5 230M, Raspberry Pi 5 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 43.84 token/sn. İlk token süresi 208.7 ms. Ortalama güç 5.8 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/lfm2.5-230m/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/lfm2.5-230m/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "lfm2.5-230m",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-rpi5-ministral3-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 3B — Raspberry Pi 5 8GB",
+    "excerpt": "Ministral 3 3B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 4.24 token/sn. İlk token süresi 819.8 ms. Ortalama güç 6.7 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/ministral-3-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/ministral-3-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "ministral-3-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260702-rpi5-ministral3-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Ministral 3 8B — Raspberry Pi 5 8GB",
+    "excerpt": "Ministral 3 8B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 1.96 token/sn. İlk token süresi 1102.4 ms. Ortalama güç 6.8 W. Ölçüm tarihi 2026-07-02. Runtime: ollama 0.31.1.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/ministral-3-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/ministral-3-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-07-02",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "ministral-3-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-jons-llama32-1b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 1B Instruct — Jetson Orin Nano Super 8GB",
+    "excerpt": "Llama 3.2 1B Instruct, Jetson Orin Nano Super 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 45.85 token/sn. İlk token süresi 1265.9 ms. Ortalama güç 17.6 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.21.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/llama-3.2-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/llama-3.2-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "llama-3.2-1b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-jons-qwen3vl-2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3-VL 2B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Qwen3-VL 2B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 36.44 token/sn. İlk token süresi 716.9 ms. Ortalama güç 18.1 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.21.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3-vl-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3-vl-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "qwen3-vl-2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-rpi5-gemma3-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 4B — Raspberry Pi 5 8GB",
+    "excerpt": "Gemma 3 4B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 3.59 token/sn. İlk token süresi 1536.7 ms. Ortalama güç 7.5 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/gemma3-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/gemma3-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "gemma3-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-rpi5-llama32-1b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 1B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Llama 3.2 1B Instruct, Raspberry Pi 5 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 7.77 token/sn. İlk token süresi 675.9 ms. Ortalama güç 6.9 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.2-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/llama-3.2-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "llama-3.2-1b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-rtx4060l-qwen25-05b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 0.5B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen2.5 0.5B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 319.9 token/sn. İlk token süresi 842.8 ms. Ortalama güç 23.2 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.30.10.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-0.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-0.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen2.5-0.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-rtx4060l-qwen25-14b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 14B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen2.5 14B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 12.85 token/sn. İlk token süresi 809.5 ms. Ortalama güç 24.9 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.30.10.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-14b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-14b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen2.5-14b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260623-rtx4060l-qwen35-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 4B — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen3.5 4B, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 69.5 token/sn. İlk token süresi 1635.3 ms. Ortalama güç 66.2 W. Ölçüm tarihi 2026-06-23. Runtime: ollama 0.30.10.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3.5-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen3.5-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-23",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen3.5-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-deepseek-r1-32b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "DeepSeek-R1 Distill Qwen 32B — RTX A6000 48GB ワークステーション",
+    "excerpt": "DeepSeek-R1 Distill Qwen 32B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 30.44 token/sn. İlk token süresi 209.8 ms. Ortalama güç 291.8 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/deepseek-r1-32b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/deepseek-r1-32b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "deepseek-r1-32b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-falcon3-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Falcon3 7B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Falcon3 7B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 117.43 token/sn. İlk token süresi 139.1 ms. Ortalama güç 250.3 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/falcon3-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/falcon3-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "falcon3-7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-gemma3-27b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 27B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Gemma 3 27B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 32.96 token/sn. İlk token süresi 474.2 ms. Ortalama güç 283.6 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma3-27b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma3-27b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "gemma3-27b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-mistral-nemo-q40",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral Nemo (12B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Mistral Nemo (12B), RTX A6000 48GB ワークステーション üzerinde Q4_0 ile ölçüldü. Üretim hızı 81.36 token/sn. İlk token süresi 201.8 ms. Ortalama güç 265.3 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-nemo/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-nemo/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "mistral-nemo",
+      "quantization": "Q4_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-mistral-small3-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral Small 3 (24B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Mistral Small 3 (24B), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 42.85 token/sn. İlk token süresi 217.2 ms. Ortalama güç 275.8 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-small-3/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-small-3/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "mistral-small-3",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-mixtral-8x7b-q40",
+    "kind": "external-ai-benchmark",
+    "title": "Mixtral 8x7B Instruct (MoE) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Mixtral 8x7B Instruct (MoE), RTX A6000 48GB ワークステーション üzerinde Q4_0 ile ölçüldü. Üretim hızı 78.85 token/sn. İlk token süresi 48.8 ms. Ortalama güç 269.5 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/mixtral-8x7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/mixtral-8x7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "mixtral-8x7b",
+      "quantization": "Q4_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-qwen36-27b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.6 27B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3.6 27B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 33.54 token/sn. İlk token süresi 373.9 ms. Ortalama güç 285.6 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.6-27b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.6-27b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3.6-27b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-a6000-teuken-7b-f16",
+    "kind": "external-ai-benchmark",
+    "title": "Teuken 7B Instruct (EU) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Teuken 7B Instruct (EU), RTX A6000 48GB ワークステーション üzerinde F16 ile ölçüldü. Üretim hızı 42.3 token/sn. İlk token süresi 204.9 ms. Ortalama güç 280.2 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/teuken-7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/teuken-7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "a6000-workstation",
+      "modelId": "teuken-7b",
+      "quantization": "F16",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-rtx4060l-qwen25-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 3B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen2.5 3B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 104.63 token/sn. İlk token süresi 838 ms. Ortalama güç 61.4 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.10.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-3b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-3b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen2.5-3b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260622-rtx4060l-qwen25-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+    "excerpt": "Qwen2.5 7B Instruct, ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB） üzerinde Q4_K_M ile ölçüldü. Üretim hızı 51.9 token/sn. İlk token süresi 823.3 ms. Ortalama güç 79 W. Ölçüm tarihi 2026-06-22. Runtime: ollama 0.30.10.",
+    "slug": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/rtx-4060-laptop/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-22",
+      "deviceId": "rtx-4060-laptop",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260621-a6000-granite33-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Granite 3.3 8B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Granite 3.3 8B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 102.24 token/sn. İlk token süresi 83 ms. Ortalama güç 259.9 W. Ölçüm tarihi 2026-06-21. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/granite-3.3-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/granite-3.3-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-21",
+      "deviceId": "a6000-workstation",
+      "modelId": "granite-3.3-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260621-a6000-mistral-7b-f16",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — RTX A6000 48GB ワークステーション",
+    "excerpt": "Mistral 7B Instruct v0.3, RTX A6000 48GB ワークステーション üzerinde F16 ile ölçüldü. Üretim hızı 28.8 token/sn. İlk token süresi 76.2 ms. Ortalama güç 269.6 W. Ölçüm tarihi 2026-06-21. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-21",
+      "deviceId": "a6000-workstation",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "F16",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260621-a6000-mistral-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — RTX A6000 48GB ワークステーション",
+    "excerpt": "Mistral 7B Instruct v0.3, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 114.77 token/sn. İlk token süresi 47.1 ms. Ortalama güç 254.6 W. Ölçüm tarihi 2026-06-21. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-21",
+      "deviceId": "a6000-workstation",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260621-a6000-mistral-7b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Mistral 7B Instruct v0.3 — RTX A6000 48GB ワークステーション",
+    "excerpt": "Mistral 7B Instruct v0.3, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 73.67 token/sn. İlk token süresi 52.6 ms. Ortalama güç 265.8 W. Ölçüm tarihi 2026-06-21. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/mistral-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-21",
+      "deviceId": "a6000-workstation",
+      "modelId": "mistral-7b-instruct",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260621-a6000-phi4-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Phi-4 — RTX A6000 48GB ワークステーション",
+    "excerpt": "Phi-4, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 65.64 token/sn. İlk token süresi 130.6 ms. Ortalama güç 271.2 W. Ölçüm tarihi 2026-06-21. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/phi-4/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/phi-4/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-21",
+      "deviceId": "a6000-workstation",
+      "modelId": "phi-4",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260621-a6000-qwen25-32b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 32B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 32B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 30.55 token/sn. İlk token süresi 194.8 ms. Ortalama güç 286.5 W. Ölçüm tarihi 2026-06-21. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-32b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-32b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-21",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-32b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260618-a6000-llama31-8b-f16",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama 3.1 8B Instruct, RTX A6000 48GB ワークステーション üzerinde F16 ile ölçüldü. Üretim hızı 43.12 token/sn. İlk token süresi 214 ms. Ortalama güç 281.5 W. Ölçüm tarihi 2026-06-18. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-18",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "F16",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260618-a6000-llama31-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama 3.1 8B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 111.22 token/sn. İlk token süresi 198.5 ms. Ortalama güç 240.3 W. Ölçüm tarihi 2026-06-18. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-18",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260618-a6000-llama31-8b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.1 8B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama 3.1 8B Instruct, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 73.64 token/sn. İlk token süresi 199.7 ms. Ortalama güç 261.4 W. Ölçüm tarihi 2026-06-18. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-8b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.1-8b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-18",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3.1-8b-instruct",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260618-a6000-qwen25-7b-f16",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 7B Instruct, RTX A6000 48GB ワークステーション üzerinde F16 ile ölçüldü. Üretim hızı 45.14 token/sn. İlk token süresi 171.9 ms. Ortalama güç 271.8 W. Ölçüm tarihi 2026-06-18. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-18",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "F16",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260618-a6000-qwen25-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 7B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 117.37 token/sn. İlk token süresi 151.3 ms. Ortalama güç 250.9 W. Ölçüm tarihi 2026-06-18. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-18",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260618-a6000-qwen25-7b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 7B Instruct, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 77.23 token/sn. İlk token süresi 160.9 ms. Ortalama güç 260.7 W. Ölçüm tarihi 2026-06-18. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-18",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-gemma3-1b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 1B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Gemma 3 1B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 245.43 token/sn. İlk token süresi 386.4 ms. Ortalama güç 134.5 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma3-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma3-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "gemma3-1b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-gemma4-e2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E2B (有効2B / 実5.1B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Gemma 4 E2B (有効2B / 実5.1B), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 166.49 token/sn. İlk token süresi 388.6 ms. Ortalama güç 169 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma4-e2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma4-e2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "gemma4-e2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-gemma4-e4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E4B (有効4B / 実8.0B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Gemma 4 E4B (有効4B / 実8.0B), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 110.49 token/sn. İlk token süresi 398 ms. Ortalama güç 220.7 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma4-e4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma4-e4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "gemma4-e4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-llama32-1b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 1B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama 3.2 1B Instruct, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 315.8 token/sn. İlk token süresi 181.7 ms. Ortalama güç 144.9 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.2-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.2-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3.2-1b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-llama32-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 3B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Llama 3.2 3B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 201.76 token/sn. İlk token süresi 192.8 ms. Ortalama güç 189.7 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/llama-3.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "llama-3.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-phi4-mini-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Phi-4-mini Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Phi-4-mini Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 166.8 token/sn. İlk token süresi 205.2 ms. Ortalama güç 225.5 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/phi-4-mini/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/phi-4-mini/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "phi-4-mini",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-qwen25-15b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 1.5B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 1.5B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 282.09 token/sn. İlk token süresi 153.4 ms. Ortalama güç 134.1 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-1.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-1.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-1.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-qwen25-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 3B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen2.5 3B Instruct, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 191.29 token/sn. İlk token süresi 154.1 ms. Ortalama güç 189.4 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-3b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen2.5-3b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen2.5-3b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-qwen3-17b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 1.7B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3 1.7B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 294.23 token/sn. İlk token süresi 152.7 ms. Ortalama güç 182.4 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3-1.7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-qwen35-08b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 0.8B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3.5 0.8B, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 266.93 token/sn. İlk token süresi 283.2 ms. Ortalama güç 143.5 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.5-0.8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.5-0.8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3.5-0.8b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-a6000-smollm2-17b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "SmolLM2 1.7B Instruct — RTX A6000 48GB ワークステーション",
+    "excerpt": "SmolLM2 1.7B Instruct, RTX A6000 48GB ワークステーション üzerinde Q8_0 ile ölçüldü. Üretim hızı 242.43 token/sn. İlk token süresi 68.3 ms. Ortalama güç 218.2 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/smollm2-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/smollm2-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "a6000-workstation",
+      "modelId": "smollm2-1.7b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-jons-qwen25-15b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 1.5B Instruct — Jetson Orin Nano Super 8GB",
+    "excerpt": "Qwen2.5 1.5B Instruct, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 35.61 token/sn. İlk token süresi 1243.4 ms. Ortalama güç 16.3 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.21.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen2.5-1.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen2.5-1.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "qwen2.5-1.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-jons-qwen35-08b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 0.8B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Qwen3.5 0.8B, Jetson Orin Nano Super 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 21.76 token/sn. İlk token süresi 1188 ms. Ortalama güç 11.6 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.21.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3.5-0.8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3.5-0.8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "qwen3.5-0.8b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-gemma4-e2b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E2B (有効2B / 実5.1B) — Mac mini M4 16GB",
+    "excerpt": "Gemma 4 E2B (有効2B / 実5.1B), Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 55.12 token/sn. İlk token süresi 309.1 ms. Ortalama güç 11.6 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma4-e2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma4-e2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "gemma4-e2b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-gemma4-e4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 E4B (有効4B / 実8.0B) — Mac mini M4 16GB",
+    "excerpt": "Gemma 4 E4B (有効4B / 実8.0B), Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 29.9 token/sn. İlk token süresi 361.9 ms. Ortalama güç 12.7 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma4-e4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/gemma4-e4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "gemma4-e4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-llama32-1b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 1B Instruct — Mac mini M4 16GB",
+    "excerpt": "Llama 3.2 1B Instruct, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 70.82 token/sn. İlk token süresi 132.7 ms. Ortalama güç 10.3 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.2-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.2-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llama-3.2-1b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-llama32-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Llama 3.2 3B Instruct — Mac mini M4 16GB",
+    "excerpt": "Llama 3.2 3B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 45.38 token/sn. İlk token süresi 140.9 ms. Ortalama güç 12.4 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.2-3b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/llama-3.2-3b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "llama-3.2-3b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-phi4-mini-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Phi-4-mini Instruct — Mac mini M4 16GB",
+    "excerpt": "Phi-4-mini Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 36.96 token/sn. İlk token süresi 155.5 ms. Ortalama güç 11.7 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/phi-4-mini/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/phi-4-mini/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "phi-4-mini",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-qwen25-3b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 3B Instruct — Mac mini M4 16GB",
+    "excerpt": "Qwen2.5 3B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 46.81 token/sn. İlk token süresi 121 ms. Ortalama güç 11.3 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-3b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-3b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen2.5-3b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-macm4-smollm2-17b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "SmolLM2 1.7B Instruct — Mac mini M4 16GB",
+    "excerpt": "SmolLM2 1.7B Instruct, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 50.91 token/sn. İlk token süresi 57.1 ms. Ortalama güç 10.5 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/smollm2-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/smollm2-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "mac-mini-m4",
+      "modelId": "smollm2-1.7b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-rpi5-gemma3-1b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 3 1B — Raspberry Pi 5 8GB",
+    "excerpt": "Gemma 3 1B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 10.84 token/sn. İlk token süresi 1217.1 ms. Ortalama güç 7.3 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/gemma3-1b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/gemma3-1b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "gemma3-1b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-rpi5-qwen25-15b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 1.5B Instruct — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen2.5 1.5B Instruct, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 10.62 token/sn. İlk token süresi 644.4 ms. Ortalama güç 7.9 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-1.5b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen2.5-1.5b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen2.5-1.5b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260616-rpi5-qwen3-17b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3 1.7B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen3 1.7B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 7.67 token/sn. İlk token süresi 687.7 ms. Ortalama güç 7.7 W. Ölçüm tarihi 2026-06-16. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3-1.7b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3-1.7b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-16",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen3-1.7b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260615-macm4-lfm25-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 8B A1B — Mac mini M4 16GB",
+    "excerpt": "LFM2.5 8B A1B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 80.15 token/sn. İlk token süresi 167.1 ms. Ortalama güç 11.7 W. Ölçüm tarihi 2026-06-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/lfm2.5-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/lfm2.5-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "lfm2.5-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260615-macm4-qwen25-7b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen2.5 7B Instruct — Mac mini M4 16GB",
+    "excerpt": "Qwen2.5 7B Instruct, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 22.21 token/sn. İlk token süresi 140 ms. Ortalama güç 12.8 W. Ölçüm tarihi 2026-06-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-7b-instruct/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen2.5-7b-instruct/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen2.5-7b-instruct",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260615-macm4-qwen35-2b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 2B — Mac mini M4 16GB",
+    "excerpt": "Qwen3.5 2B, Mac mini M4 16GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 42.09 token/sn. İlk token süresi 223.7 ms. Ortalama güç 9.2 W. Ölçüm tarihi 2026-06-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3.5-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3.5-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen3.5-2b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260615-macm4-qwen35-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 4B — Mac mini M4 16GB",
+    "excerpt": "Qwen3.5 4B, Mac mini M4 16GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 29.27 token/sn. İlk token süresi 268.7 ms. Ortalama güç 12.3 W. Ölçüm tarihi 2026-06-15. Runtime: ollama 0.30.8.",
+    "slug": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3.5-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/mac-mini-m4/qwen3.5-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-15",
+      "deviceId": "mac-mini-m4",
+      "modelId": "qwen3.5-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260614-jons-qwen35-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 4B — Jetson Orin Nano Super 8GB",
+    "excerpt": "Qwen3.5 4B, Jetson Orin Nano Super 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 12.56 token/sn. İlk token süresi 1536.3 ms. Ortalama güç 18.7 W. Ölçüm tarihi 2026-06-14. Runtime: ollama 0.21.2.",
+    "slug": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3.5-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/jetson-orin-nano-super/qwen3.5-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-14",
+      "deviceId": "jetson-orin-nano-super",
+      "modelId": "qwen3.5-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260614-rpi5-qwen35-2b-q80",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 2B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen3.5 2B, Raspberry Pi 5 8GB üzerinde Q8_0 ile ölçüldü. Üretim hızı 3.73 token/sn. İlk token süresi 4756.7 ms. Ortalama güç 6.9 W. Ölçüm tarihi 2026-06-14. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3.5-2b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3.5-2b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen3.5-2b",
+      "quantization": "Q8_0",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260614-rpi5-qwen35-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 4B — Raspberry Pi 5 8GB",
+    "excerpt": "Qwen3.5 4B, Raspberry Pi 5 8GB üzerinde Q4_K_M ile ölçüldü. Üretim hızı 2.24 token/sn. İlk token süresi 11261.1 ms. Ortalama güç 7.5 W. Ölçüm tarihi 2026-06-14. Runtime: ollama 0.24.0.",
+    "slug": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3.5-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/raspberry-pi-5-8gb/qwen3.5-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-14",
+      "deviceId": "raspberry-pi-5-8gb",
+      "modelId": "qwen3.5-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260612-a6000-gemma4-26b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Gemma 4 26B (A4B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Gemma 4 26B (A4B), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 99.61 token/sn. İlk token süresi 407.3 ms. Ortalama güç 203.6 W. Ölçüm tarihi 2026-06-12. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma4-26b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/gemma4-26b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-12",
+      "deviceId": "a6000-workstation",
+      "modelId": "gemma4-26b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260612-a6000-lfm25-8b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "LFM2.5 8B A1B — RTX A6000 48GB ワークステーション",
+    "excerpt": "LFM2.5 8B A1B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 283.87 token/sn. İlk token süresi 205.1 ms. Ortalama güç 191.6 W. Ölçüm tarihi 2026-06-12. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/lfm2.5-8b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/lfm2.5-8b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-12",
+      "deviceId": "a6000-workstation",
+      "modelId": "lfm2.5-8b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260612-a6000-qwen35-4b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.5 4B — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3.5 4B, RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 123.51 token/sn. İlk token süresi 312.9 ms. Ortalama güç 217.6 W. Ölçüm tarihi 2026-06-12. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.5-4b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.5-4b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-12",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3.5-4b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  },
+  {
+    "id": "ai-local-lab:20260612-a6000-qwen36-35b-q4km",
+    "kind": "external-ai-benchmark",
+    "title": "Qwen3.6 35B (A3B) — RTX A6000 48GB ワークステーション",
+    "excerpt": "Qwen3.6 35B (A3B), RTX A6000 48GB ワークステーション üzerinde Q4_K_M ile ölçüldü. Üretim hızı 122.06 token/sn. İlk token süresi 314.1 ms. Ortalama güç 195.2 W. Ölçüm tarihi 2026-06-12. Runtime: ollama 0.30.7.",
+    "slug": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.6-35b/",
+    "meta": {
+      "source": "https://ai-local-lab.com/data/",
+      "sourceRecordUrl": "https://ai-local-lab.com/benchmarks/a6000-workstation/qwen3.6-35b/",
+      "license": "CC BY 4.0",
+      "attribution": "Kaynak: ai-local-lab (https://ai-local-lab.com/data/) — CC BY 4.0",
+      "methodologyUrl": "https://ai-local-lab.com/articles/local-ai-measurement-protocol/",
+      "datasetVersion": "1.7.0",
+      "measuredAt": "2026-06-12",
+      "deviceId": "a6000-workstation",
+      "modelId": "qwen3.6-35b",
+      "quantization": "Q4_K_M",
+      "evidence": "measured"
+    }
+  }
+]

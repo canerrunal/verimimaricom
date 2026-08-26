@@ -1,0 +1,2886 @@
+{
+  "dataset_version": "1.7.0",
+  "schema_version": "1.1.0",
+  "released_at": "2026-07-17",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source": "https://ai-local-lab.com/data/",
+  "version_url": "https://ai-local-lab.com/data/releases/v1.7.0/",
+  "attribution": "ai-local-lab (https://ai-local-lab.com)",
+  "count": 100,
+  "feasibility": [
+    {
+      "id": "jetson-orin-nano-super--deepseek-r1-32b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "deepseek-r1-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=DeepSeek-R1 Distill Qwen 32B; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--falcon3-7b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "falcon3-7b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "要検証12件挑戦フェーズ、3連続OOM中の2件目。2回試行とも完全同一バイト数で再現。計測記録 §3(≈4.04GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 4338487296
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--gemma3-27b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "gemma3-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 3 27B; device_memory_gb=8.0 < mem_est_gb=18.29（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19638737961
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--gemma3-4b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "gemma3-4b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "fillgaps2-success",
+          "observed_at": "2026-07-15",
+          "evidence": "benchmark",
+          "confidence": "high",
+          "detail": "対応するbenchmarkレコードの計測に成功（フィルギャップ計測バッチ2、Jetson展示サービス停止後のクリーン環境。出所はsource_refs参照）。性能値はbenchmarkレコードを参照し複製しない。",
+          "source_refs": [
+            {
+              "kind": "benchmark",
+              "id": "20260715-jons-gemma3-4b-q4km",
+              "benchmark_id": "20260715-jons-gemma3-4b-q4km",
+              "raw_available": true
+            }
+          ],
+          "outcome": "loaded_success",
+          "benchmark_id": "20260715-jons-gemma3-4b-q4km"
+        },
+        {
+          "id": "switch-default-oom",
+          "observed_at": "2026-07-16",
+          "evidence": "measured",
+          "confidence": "medium",
+          "detail": "escalationペア（qwen2.5:0.5b×gemma3:4b）既定モード、cycle1・2ともgemma3:4bへのロードがHTTP 500で失敗（2/2。qwen2.5:0.5b方向は2/2成功）。journalctl診断（scriptのネイティブ出力とは別ソース、read-only取得）では、重み本体(3.1GB)ロード後のvision warmup用CUDAグラフキャプチャ段階でCUDA OOM。NvMapのタグ番号はバイト数ではないためmemoryはnullとした。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260716-jons-switch",
+              "raw_available": false
+            },
+            {
+              "kind": "measurement_note",
+              "id": "switch-phase0c-jetson-notes",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": null,
+          "failure_stage": "graph_capture"
+        },
+        {
+          "id": "switch-force-cold-oom",
+          "observed_at": "2026-07-16",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "escalationペア（qwen2.5:0.5b×gemma3:4b）force-coldモード、cycle1・2ともgemma3:4bへのロードがHTTP 500で失敗（2/2。qwen2.5:0.5b方向は2/2成功）。同一ペア・約90秒前の既定モード実行とは異なる失敗点——journalctl診断ではKVキャッシュ用バッファ確保（alloc_tensor_range）がsize=182452224（≈174MiB）でOOM。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260716-jons-switch",
+              "raw_available": false
+            },
+            {
+              "kind": "measurement_note",
+              "id": "switch-phase0c-jetson-notes",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 182452224
+          },
+          "failure_stage": "kv_cache"
+        }
+      ],
+      "assessment": "mixed_outcomes"
+    },
+    {
+      "id": "jetson-orin-nano-super--gemma4-26b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "gemma4-26b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 4 26B (A4B); device_memory_gb=8.0 < mem_est_gb=17.3（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--glm-ocr--f16",
+      "device": "jetson-orin-nano-super",
+      "model": "glm-ocr",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "R5セッション1番目。pull成功（2.2GB、想定Q8_0とは異なりF16・1.1Bパラメータ、architecture=glmocr）。1回試行でOOM（KVキャッシュ段階、alloc_tensor_range: failed to allocate CUDA0 buffer of size 268435456 bytes = 256MiB）。モデル本体は小さいがKVキャッシュ確保段階で断片化の影響を受けた例。未計測のため 検証DB には未反映。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260715-jons-r5",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 268435456
+          },
+          "failure_stage": "kv_cache"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--gpt-oss-20b--mxfp4",
+      "device": "jetson-orin-nano-super",
+      "model": "gpt-oss-20b",
+      "quant": "MXFP4",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=gpt-oss 20B (MoE); device_memory_gb=8.0 < mem_est_gb=14.26（mem_basis=approx(MXFP4~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 15311558410
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--llama-3.1-8b-instruct--f16",
+      "device": "jetson-orin-nano-super",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=8.0 < mem_est_gb=17.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--llama-3.1-8b-instruct--q8-0",
+      "device": "jetson-orin-nano-super",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=8.0 < mem_est_gb=10.1（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10844792422
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--llama-3.2-3b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "llama-3.2-3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "reachable(needs_verify)12件挑戦の前段、前回OOM9セルの再挑戦で発生。クリーン環境（展示サービス（無効化済み）停止後）でも2回試行とも完全同一バイト数(alloc_tensor_range: failed to allocate CUDA0 buffer of size 2011539712)で再現。計測記録 §3の要求バッファ表(≈1.87GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 2011539712
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--ministral-3-14b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "ministral-3-14b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Ministral 3 14B; device_memory_gb=8.0 < mem_est_gb=9.92（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10651518894
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--mistral-7b-instruct--f16",
+      "device": "jetson-orin-nano-super",
+      "model": "mistral-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral 7B Instruct v0.3; device_memory_gb=8.0 < mem_est_gb=15.7（mem_basis=approx(F16=2B/param)）; reach_class=reach1; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 16857746637
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--mistral-7b-instruct--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "mistral-7b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "要検証(needs_verify)12件挑戦フェーズ(mem_est_gb昇順)。3連続OOM中の1件目。2回試行とも完全同一バイト数で再現。計測記録 §3(≈4.00GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 4296556544
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--mistral-7b-instruct--q8-0",
+      "device": "jetson-orin-nano-super",
+      "model": "mistral-7b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral 7B Instruct v0.3; device_memory_gb=8.0 < mem_est_gb=9.22（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 9899899617
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--mistral-nemo--q4-0",
+      "device": "jetson-orin-nano-super",
+      "model": "mistral-nemo",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral Nemo (12B); device_memory_gb=8.0 < mem_est_gb=8.86（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 9513352561
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--mistral-small-3--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "mistral-small-3",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral Small 3 (24B); device_memory_gb=8.0 < mem_est_gb=15.93（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17104707256
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--mixtral-8x7b--q4-0",
+      "device": "jetson-orin-nano-super",
+      "model": "mixtral-8x7b",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mixtral 8x7B Instruct (MoE); device_memory_gb=8.0 < mem_est_gb=30.25（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 32480690176
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--nemotron-3-nano-4b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "nemotron-3-nano-4b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "R5セッション3番目。1回試行でOOM（重み本体、alloc_tensor_range: failed to allocate CUDA0 buffer of size 2546620288 bytes ≈ 2.37GiB）。20260710-jons-7b-oom.txtの初回実測と完全同一バイト数で再現。未計測のため 検証DB には未反映。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260715-jons-r5",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 2546620288
+          },
+          "failure_stage": "weights"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--phi-4--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "phi-4",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Phi-4; device_memory_gb=8.0 < mem_est_gb=10.41（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 11177652388
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--phi-4-mini--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "phi-4-mini",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "同上セッション(b-2)。2回試行とも完全同一バイト数で再現。計測記録 §3(≈2.31GiB)と一致。gemma3-4b(同程度サイズ)が同セッションで成功しており、OOMは固定閾値ではなくメモリ断片化に依存する動的現象と判明。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 2483623424
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-14b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-14b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 14B; device_memory_gb=8.0 < mem_est_gb=10.48（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 11252814316
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-32b-instruct--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-32b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 32B Instruct; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-3b-instruct--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-3b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "同上セッション(b-3)。2回試行とも完全同一バイト数で再現。計測記録 §3(≈1.79GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 1923955712
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-7b-instruct--f16",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=8.0 < mem_est_gb=16.5（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17716740096
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-7b-instruct--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "要検証12件挑戦フェーズ、3連続OOM中の3件目（打ち切り条件到達）。2回試行とも完全同一バイト数で再現。3日前の20260710-jons-7b-oom.txt初回実測と同一バイト数で再現——このモデルは初回セッションから一貫してOOM確定。計測記録 §3(≈4.07GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 4370558976
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-7b-instruct--q8-0",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=8.0 < mem_est_gb=9.66（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10372346020
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-coder-32b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-coder-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 Coder 32B Instruct; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen2.5-coder-7b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen2.5-coder-7b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "R5セッション4番目。1回試行でOOM（重み本体、alloc_tensor_range: failed to allocate CUDA0 buffer of size 4370558976 bytes ≈ 4.07GiB）。無印qwen2.5-7b-instructと完全同一バイト数。未計測のため 検証DB には未反映。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260715-jons-r5",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 4370558976
+          },
+          "failure_stage": "weights"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3-1.7b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3-1.7b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "fillgaps2-success",
+          "observed_at": "2026-07-15",
+          "evidence": "benchmark",
+          "confidence": "high",
+          "detail": "対応するbenchmarkレコードの計測に成功（フィルギャップ計測バッチ2、Jetson展示サービス停止後のクリーン環境。出所はsource_refs参照）。性能値はbenchmarkレコードを参照し複製しない。",
+          "source_refs": [
+            {
+              "kind": "benchmark",
+              "id": "20260715-jons-qwen3-17b-q4km",
+              "benchmark_id": "20260715-jons-qwen3-17b-q4km",
+              "raw_available": true
+            }
+          ],
+          "outcome": "loaded_success",
+          "benchmark_id": "20260715-jons-qwen3-17b-q4km"
+        },
+        {
+          "id": "switch-coexist-default-oom",
+          "observed_at": "2026-07-16",
+          "evidence": "measured",
+          "confidence": "medium",
+          "detail": "coexistペア（gemma3:1b×qwen3:1.7b）既定モード、cycle1のgemma3:1b→qwen3:1.7b遷移がHTTP 500で失敗（同cycle内qwen3:1.7b→gemma3:1b方向は成功）。journalctl診断（scriptのネイティブ出力とは別ソース、read-only取得）ではalloc_tensor_range: failed to allocate CUDA0 buffer of size 1178298368（≈1.10GiB）でOOMし、ollama内蔵スケジューラの自己修復ロジック（sched.go WARN \"evicting all other models and retrying once\"）が2回動作（1回目1178298368、2回目469762048≈448MiB）してもcudaMalloc failed: out of memoryが解消しなかった。複数の異なるバイト数にまたがる一連の失敗のため単一のmemory値としては記録せずnullとした。直後のcycle2では同一遷移（gemma3:1b→qwen3:1.7b）が成功（load_ms=6799.3、evicted=true）しており、同日中の既定/force-coldの他3試行（既定cycle1のqwen3:1.7b→gemma3:1b、force-cold cycle1・cycle2のqwen3:1.7b方向）も全て成功——一過性の失敗であり恒久的なロード不可ではない。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260716-jons-switch",
+              "raw_available": false
+            },
+            {
+              "kind": "measurement_note",
+              "id": "switch-phase0c-jetson-notes",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": null,
+          "failure_stage": "scheduler_evict_retry"
+        }
+      ],
+      "assessment": "mixed_outcomes"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3-30b-a3b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=8.0 < mem_est_gb=20.21（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 21700322263
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3-30b-a3b--q8-0",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=8.0 < mem_est_gb=34.85（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 37419902566
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3-vl-8b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3-vl-8b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "R5セッション5番目。1回試行でOOM（重み本体、alloc_tensor_range: failed to allocate CUDA0 buffer of size 3157740544 bytes ≈ 2.94GiB）。pull成功(6.1GB、architecture=qwen3vl・8.8Bパラメータ)後のロード時点で失敗。未計測のため 検証DB には未反映。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260715-jons-r5",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 3157740544
+          },
+          "failure_stage": "weights"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3.5-2b--q8-0",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3.5-2b",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "同上セッション(b-4)。2回試行とも完全同一バイト数で再現。計測記録 §3(≈1.92GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 2065714688
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3.6-27b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3.6-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 27B; device_memory_gb=8.0 < mem_est_gb=18.54（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19907173417
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--qwen3.6-35b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "qwen3.6-35b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 35B (A3B); device_memory_gb=8.0 < mem_est_gb=23.62（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 25361781883
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nano-super--sarashina2.2-3b--q4-k-m",
+      "device": "jetson-orin-nano-super",
+      "model": "sarashina2.2-3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "同上セッション(b-5)。2回試行とも完全同一バイト数で再現。計測記録 §3(≈1.78GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 1916372992
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--smollm2-1.7b--q8-0",
+      "device": "jetson-orin-nano-super",
+      "model": "smollm2-1.7b",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "同上セッション(b-6)。2回試行とも完全同一バイト数で再現。計測記録 §3(≈1.69GiB)と一致。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260714-jons-fillgaps2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": {
+            "kind": "failed_allocation_request",
+            "bytes": 1818632192
+          },
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nano-super--teuken-7b--f16",
+      "device": "jetson-orin-nano-super",
+      "model": "teuken-7b",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Teuken 7B Instruct (EU); device_memory_gb=8.0 < mem_est_gb=16.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17501991731
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--deepseek-r1-32b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "deepseek-r1-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=DeepSeek-R1 Distill Qwen 32B; device_memory_gb=16.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--gemma3-27b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "gemma3-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 3 27B; device_memory_gb=16.0 < mem_est_gb=18.29（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19638737961
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--gemma4-26b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "gemma4-26b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 4 26B (A4B); device_memory_gb=16.0 < mem_est_gb=17.3（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--llama-3.1-8b-instruct--f16",
+      "device": "mac-mini-m4",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=16.0 < mem_est_gb=17.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--mistral-7b-instruct--f16",
+      "device": "mac-mini-m4",
+      "model": "mistral-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-14",
+          "evidence": "legacy_curated",
+          "confidence": "low",
+          "detail": "約15.7GB相当（F16=2B/param換算、legacy gap分析のmem_basis=approx(F16=2B/param)）。16GB統合メモリでウォームアップ生成リクエストがtimeout。一次stderr未保存・計測記録による二次証拠（出所はsource_refs参照）——Step A設計書に、bench_llm.py実行時の収集セッションのstderrで`[bench] FAILED mistral:7b-instruct-v0.3-fp16: timed out`を確認した旨の記録があるが、この文言は生ログ本体（stdout側のRESULT:行のみ収録）には現れず、当該stderr自体は保存されていない（同一デバイスのQ4_K_M/Q8_0は同セッションで計測成功済み）。required_bytesはcudaMalloc等のバイト精度失敗ログではなく概算(約15.7GB)のため null とした。",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-router-phase0-macm4-f16-timeout",
+              "raw_available": false
+            }
+          ],
+          "outcome": "request_timeout"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "mac-mini-m4--mixtral-8x7b--q4-0",
+      "device": "mac-mini-m4",
+      "model": "mixtral-8x7b",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mixtral 8x7B Instruct (MoE); device_memory_gb=16.0 < mem_est_gb=30.25（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 32480690176
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen2.5-32b-instruct--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "qwen2.5-32b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 32B Instruct; device_memory_gb=16.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen2.5-7b-instruct--f16",
+      "device": "mac-mini-m4",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=16.0 < mem_est_gb=16.5（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17716740096
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen2.5-coder-32b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "qwen2.5-coder-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 Coder 32B Instruct; device_memory_gb=16.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen3-30b-a3b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=16.0 < mem_est_gb=20.21（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 21700322263
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen3-30b-a3b--q8-0",
+      "device": "mac-mini-m4",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=16.0 < mem_est_gb=34.85（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 37419902566
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen3.6-27b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "qwen3.6-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 27B; device_memory_gb=16.0 < mem_est_gb=18.54（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19907173417
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--qwen3.6-35b--q4-k-m",
+      "device": "mac-mini-m4",
+      "model": "qwen3.6-35b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 35B (A3B); device_memory_gb=16.0 < mem_est_gb=23.62（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 25361781883
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "mac-mini-m4--teuken-7b--f16",
+      "device": "mac-mini-m4",
+      "model": "teuken-7b",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Teuken 7B Instruct (EU); device_memory_gb=16.0 < mem_est_gb=16.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17501991731
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--deepseek-r1-32b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "deepseek-r1-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=DeepSeek-R1 Distill Qwen 32B; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--gemma3-27b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "gemma3-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 3 27B; device_memory_gb=8.0 < mem_est_gb=18.29（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19638737961
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--gemma4-26b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "gemma4-26b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 4 26B (A4B); device_memory_gb=8.0 < mem_est_gb=17.3（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--gemma4-e4b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "gemma4-e4b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "medium",
+          "detail": "実サイズ9.6GB（Q4_K_M想定の1.5倍相当）。ロードに約8.7GB要求 vs 実RAM 7.9GB、llama-serverがkillされる。有線化後のフィルギャップ完走セッションでreachable 19セル中唯一の未達・恒久OOMと判断（他18セルは完走）。cudaMalloc等のバイト精度エラーではなくOOM killer相当の失敗のため required_bytes は概算(約8.7GB)を detail に留め null とした。",
+          "source_refs": [
+            {
+              "kind": "measurement_note",
+              "id": "20260715-fillgaps-batch2",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": null,
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--gpt-oss-20b--mxfp4",
+      "device": "raspberry-pi-5-8gb",
+      "model": "gpt-oss-20b",
+      "quant": "MXFP4",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=gpt-oss 20B (MoE); device_memory_gb=8.0 < mem_est_gb=14.26（mem_basis=approx(MXFP4~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 15311558410
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--llama-3.1-8b-instruct--f16",
+      "device": "raspberry-pi-5-8gb",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=8.0 < mem_est_gb=17.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--llama-3.1-8b-instruct--q8-0",
+      "device": "raspberry-pi-5-8gb",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=8.0 < mem_est_gb=10.1（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10844792422
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--ministral-3-14b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "ministral-3-14b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Ministral 3 14B; device_memory_gb=8.0 < mem_est_gb=9.92（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10651518894
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--mistral-7b-instruct--f16",
+      "device": "raspberry-pi-5-8gb",
+      "model": "mistral-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral 7B Instruct v0.3; device_memory_gb=8.0 < mem_est_gb=15.7（mem_basis=approx(F16=2B/param)）; reach_class=reach1; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 16857746637
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--mistral-7b-instruct--q8-0",
+      "device": "raspberry-pi-5-8gb",
+      "model": "mistral-7b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral 7B Instruct v0.3; device_memory_gb=8.0 < mem_est_gb=9.22（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 9899899617
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--mistral-nemo--q4-0",
+      "device": "raspberry-pi-5-8gb",
+      "model": "mistral-nemo",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral Nemo (12B); device_memory_gb=8.0 < mem_est_gb=8.86（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 9513352561
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--mistral-small-3--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "mistral-small-3",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral Small 3 (24B); device_memory_gb=8.0 < mem_est_gb=15.93（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17104707256
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--mixtral-8x7b--q4-0",
+      "device": "raspberry-pi-5-8gb",
+      "model": "mixtral-8x7b",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mixtral 8x7B Instruct (MoE); device_memory_gb=8.0 < mem_est_gb=30.25（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 32480690176
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--phi-4--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "phi-4",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Phi-4; device_memory_gb=8.0 < mem_est_gb=10.41（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 11177652388
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen2.5-14b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen2.5-14b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 14B; device_memory_gb=8.0 < mem_est_gb=10.48（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 11252814316
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen2.5-32b-instruct--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen2.5-32b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 32B Instruct; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen2.5-7b-instruct--f16",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=8.0 < mem_est_gb=16.5（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17716740096
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen2.5-7b-instruct--q8-0",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=8.0 < mem_est_gb=9.66（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10372346020
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen2.5-coder-32b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen2.5-coder-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 Coder 32B Instruct; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen3-30b-a3b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=8.0 < mem_est_gb=20.21（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 21700322263
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen3-30b-a3b--q8-0",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=8.0 < mem_est_gb=34.85（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 37419902566
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen3.6-27b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen3.6-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 27B; device_memory_gb=8.0 < mem_est_gb=18.54（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19907173417
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--qwen3.6-35b--q4-k-m",
+      "device": "raspberry-pi-5-8gb",
+      "model": "qwen3.6-35b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 35B (A3B); device_memory_gb=8.0 < mem_est_gb=23.62（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 25361781883
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "raspberry-pi-5-8gb--teuken-7b--f16",
+      "device": "raspberry-pi-5-8gb",
+      "model": "teuken-7b",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Teuken 7B Instruct (EU); device_memory_gb=8.0 < mem_est_gb=16.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17501991731
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--deepseek-r1-32b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "deepseek-r1-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=DeepSeek-R1 Distill Qwen 32B; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--gemma3-27b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "gemma3-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 3 27B; device_memory_gb=8.0 < mem_est_gb=18.29（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19638737961
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--gemma4-26b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "gemma4-26b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Gemma 4 26B (A4B); device_memory_gb=8.0 < mem_est_gb=17.3（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--gpt-oss-20b--mxfp4",
+      "device": "rtx-4060-laptop",
+      "model": "gpt-oss-20b",
+      "quant": "MXFP4",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=gpt-oss 20B (MoE); device_memory_gb=8.0 < mem_est_gb=14.26（mem_basis=approx(MXFP4~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 15311558410
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--llama-3.1-8b-instruct--f16",
+      "device": "rtx-4060-laptop",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=8.0 < mem_est_gb=17.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 18575733555
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--llama-3.1-8b-instruct--q8-0",
+      "device": "rtx-4060-laptop",
+      "model": "llama-3.1-8b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Llama 3.1 8B Instruct; device_memory_gb=8.0 < mem_est_gb=10.1（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10844792422
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--ministral-3-14b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "ministral-3-14b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Ministral 3 14B; device_memory_gb=8.0 < mem_est_gb=9.92（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10651518894
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--ministral-3-8b--unknown",
+      "device": "rtx-4060-laptop",
+      "model": "ministral-3-8b",
+      "quant": null,
+      "runtime_tag": "ministral-3:8b",
+      "observations": [
+        {
+          "id": "carryover-offload-skip",
+          "observed_at": "2026-07-16",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "ollama ps PROCESSOR=8%/92% CPU/GPU（100% GPU未達のためオフロード検出）。protocol通りベンチ未実行のままSKIP。SKIP JSONのquantが\"unknown\"のため確定quantとして扱わずnullとした（計測文書はQ4_K_M記載だが当日のollama show等の裏取り証跡なし）（出所はsource_refs参照。GPUCHECK/SKIP行に基づく）。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260716-rtx4060l-carryover",
+              "raw_available": false
+            }
+          ],
+          "outcome": "partial_offload",
+          "processor_split": {
+            "cpu_percent": 8,
+            "gpu_percent": 92
+          }
+        }
+      ],
+      "assessment": "partial_offload_observed"
+    },
+    {
+      "id": "rtx-4060-laptop--mistral-7b-instruct--f16",
+      "device": "rtx-4060-laptop",
+      "model": "mistral-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral 7B Instruct v0.3; device_memory_gb=8.0 < mem_est_gb=15.7（mem_basis=approx(F16=2B/param)）; reach_class=reach1; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 16857746637
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--mistral-7b-instruct--q8-0",
+      "device": "rtx-4060-laptop",
+      "model": "mistral-7b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral 7B Instruct v0.3; device_memory_gb=8.0 < mem_est_gb=9.22（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 9899899617
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--mistral-nemo--q4-0",
+      "device": "rtx-4060-laptop",
+      "model": "mistral-nemo",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral Nemo (12B); device_memory_gb=8.0 < mem_est_gb=8.86（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 9513352561
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--mistral-small-3--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "mistral-small-3",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mistral Small 3 (24B); device_memory_gb=8.0 < mem_est_gb=15.93（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17104707256
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--mixtral-8x7b--q4-0",
+      "device": "rtx-4060-laptop",
+      "model": "mixtral-8x7b",
+      "quant": "Q4_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Mixtral 8x7B Instruct (MoE); device_memory_gb=8.0 < mem_est_gb=30.25（mem_basis=approx(Q4_0~=Q4_K_M formula)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 32480690176
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--phi-4--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "phi-4",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Phi-4; device_memory_gb=8.0 < mem_est_gb=10.41（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 11177652388
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen2.5-32b-instruct--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "qwen2.5-32b-instruct",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 32B Instruct; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen2.5-7b-instruct--f16",
+      "device": "rtx-4060-laptop",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=8.0 < mem_est_gb=16.5（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17716740096
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen2.5-7b-instruct--q8-0",
+      "device": "rtx-4060-laptop",
+      "model": "qwen2.5-7b-instruct",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 7B Instruct; device_memory_gb=8.0 < mem_est_gb=9.66（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 10372346020
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen2.5-coder-32b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "qwen2.5-coder-32b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen2.5 Coder 32B Instruct; device_memory_gb=8.0 < mem_est_gb=21.64（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 23235773071
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen3-30b-a3b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=8.0 < mem_est_gb=20.21（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 21700322263
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen3-30b-a3b--q8-0",
+      "device": "rtx-4060-laptop",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q8_0",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3 30B (A3B); device_memory_gb=8.0 < mem_est_gb=34.85（mem_basis=given(Q8_0)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 37419902566
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen3-vl-8b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "qwen3-vl-8b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "r5-offload-skip",
+          "observed_at": "2026-07-15",
+          "evidence": "measured",
+          "confidence": "high",
+          "detail": "ollama ps PROCESSOR=11%/89% CPU/GPU（100% GPU未達のためオフロード検出）。protocol通りベンチ未実行のままSKIP（出所はsource_refs参照。GPUCHECK/SKIP行に基づく）。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260715-rtx4060l-r5",
+              "raw_available": false
+            }
+          ],
+          "outcome": "partial_offload",
+          "processor_split": {
+            "cpu_percent": 11,
+            "gpu_percent": 89
+          }
+        }
+      ],
+      "assessment": "partial_offload_observed"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen3.6-27b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "qwen3.6-27b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 27B; device_memory_gb=8.0 < mem_est_gb=18.54（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 19907173417
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--qwen3.6-35b--q4-k-m",
+      "device": "rtx-4060-laptop",
+      "model": "qwen3.6-35b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Qwen3.6 35B (A3B); device_memory_gb=8.0 < mem_est_gb=23.62（mem_basis=given(Q4_K_M)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 25361781883
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    },
+    {
+      "id": "rtx-4060-laptop--teuken-7b--f16",
+      "device": "rtx-4060-laptop",
+      "model": "teuken-7b",
+      "quant": "F16",
+      "observations": [
+        {
+          "id": "legacy-draft",
+          "observed_at": "2026-07-15",
+          "evidence": "spec",
+          "confidence": "low",
+          "detail": "model_name=Teuken 7B Instruct (EU); device_memory_gb=8.0 < mem_est_gb=16.3（mem_basis=approx(F16=2B/param)）; reach_class=complete_within_feasible; compare_gap_data.json(scratchpad)のinfeasible_missing判定によるスペック理論値（未実測・ロード未試行）",
+          "source_refs": [
+            {
+              "kind": "legacy_analysis",
+              "id": "legacy-compare-gap-20260715",
+              "raw_available": false
+            }
+          ],
+          "outcome": "theoretical_no",
+          "memory": {
+            "kind": "estimated_total_requirement",
+            "bytes": 17501991731
+          }
+        }
+      ],
+      "assessment": "theoretical_limit"
+    }
+  ]
+}

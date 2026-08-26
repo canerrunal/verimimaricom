@@ -1,4 +1,5 @@
 import { getHomeCmsData } from '@/lib/cms'
+import { getAiLocalLabRagDocuments } from '@/lib/external/ai-local-lab'
 
 function normalize(value: string) {
   return String(value || '')
@@ -58,6 +59,14 @@ export async function buildRagCorpus() {
         trendScore: skill.trendScore,
         proficiencyLevel: skill.proficiencyLevel,
       },
+    })
+  }
+
+  for (const benchmark of getAiLocalLabRagDocuments()) {
+    documents.push({
+      ...benchmark,
+      searchable: `${benchmark.title || ''} ${benchmark.excerpt || ''}`,
+      tokens: tokenize(`${benchmark.title || ''} ${benchmark.excerpt || ''}`),
     })
   }
 

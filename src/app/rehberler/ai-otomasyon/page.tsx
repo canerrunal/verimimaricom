@@ -243,6 +243,9 @@ export default function AiAutomationPillarPage() {
             <a className="btn alt" href="/sablonlar">
               Şablon kütüphanesine geç →
             </a>
+            <a className="link ai-next-link" href="/yapay-zeka">
+              Çalışan AI sistemlerini inceleyin →
+            </a>
           </div>
         </div>
       </section>

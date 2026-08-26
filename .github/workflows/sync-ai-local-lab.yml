@@ -1,0 +1,69 @@
+name: AI Local Lab verisini güncelle
+
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-ai-local-lab
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Bağımlılıkları kur
+        run: npm ci
+
+      - name: Veri hattı testlerini çalıştır
+        run: node --test ./scripts/sync-ai-local-lab.test.mjs
+
+      - name: Veriyi doğrula ve güncelle
+        id: sync
+        run: node ./scripts/sync-ai-local-lab.mjs
+
+      - name: Değişiklik durumunu belirle
+        id: changes
+        run: |
+          if [ -z "$(git status --porcelain -- data/external/ai-local-lab)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Vektör RAG corpusunu besle
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ] || [ -z "$OPENAI_API_KEY" ]; then
+            echo "Vektör RAG secret'ları tanımlı değil; yerel corpus güncellendi, vektör yükleme atlandı."
+            exit 0
+          fi
+          npm run rag:vector:ingest
+
+      - name: Değişiklik varsa kaydet
+        run: |
+          if [ -z "$(git status --porcelain -- data/external/ai-local-lab)" ]; then
+            echo "Kaynak veri değişmedi."
+            exit 0
+          fi
+          git config user.name "veri-mimari-data-bot"
+          git config user.email "data-bot@verimimari.com"
+          git add data/external/ai-local-lab
+          git commit -m "data: AI Local Lab veri kümesini güncelle"
+          git push

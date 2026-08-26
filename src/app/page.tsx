@@ -6,6 +6,7 @@ import MarketPulseSection from '@/components/landing/MarketPulseSection'
 import ProblemSection from '@/components/landing/ProblemSection'
 import ToolsSection from '@/components/landing/ToolsSection'
 import GuidesSection from '@/components/landing/GuidesSection'
+import AiSystemsSection from '@/components/landing/AiSystemsSection'
 import ProjectsSection from '@/components/landing/ProjectsSection'
 import FounderExpertiseSection from '@/components/landing/FounderExpertiseSection'
 import ProofSection from '@/components/landing/ProofSection'
@@ -56,6 +57,7 @@ export default async function HomePage() {
       <ProblemSection t={t} />
       <ToolsSection t={t} />
       <GuidesSection t={t} />
+      <AiSystemsSection />
       <ProjectsSection t={t} />
       <FounderExpertiseSection />
       <ProofSection t={t} />

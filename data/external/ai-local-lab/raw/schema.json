@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-local-lab.com/data/releases/v1.7.0/schema.json",
+  "title": "ai-local-lab benchmark record",
+  "version": "1.1.0",
+  "type": "object",
+  "required": [
+    "id",
+    "device",
+    "model",
+    "quant",
+    "runtime",
+    "decode_tok_per_sec",
+    "ttft_ms",
+    "measured_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "device": {
+      "type": "string",
+      "description": "devices.jsonのid"
+    },
+    "model": {
+      "type": "string",
+      "description": "models.jsonのid"
+    },
+    "quant": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "string"
+    },
+    "decode_tok_per_sec": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ttft_ms": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "load_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cold_ttft_ms": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "total_duration_ms": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "input_tokens": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "output_tokens": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "temp_max_c": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 120
+    },
+    "power_w_avg": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "measured_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_run_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}
