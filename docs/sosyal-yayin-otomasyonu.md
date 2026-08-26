@@ -2,6 +2,8 @@
 
 Yeni bir kayıt `src/lib/announcements.ts` dosyasına eklenip `main` dalına ulaştığında GitHub Actions, canlı duyuru ve 1080×1350 JPEG sosyal kartı hazır olana kadar bekler. Ardından Instagram, Facebook, LinkedIn ve X için platforma özgü metinleri resmî API’lerle yayınlar.
 
+X gönderileri API maliyetini düşük tutmak için duyuru URL'sini içermez. Başlık, kısa özet, “Detaylar profil bağlantısında.” yönlendirmesi ve etiketlerle yayınlanır; bu nedenle X profilindeki web sitesi alanı `https://verimimari.com` olmalıdır.
+
 Başarılı her yayın `social/<platform>/<slug>` Git etiketiyle kaydedilir. Bir platform hata verirse başarılı olanlar tekrarlanmaz; iş akışı yeniden çalıştırıldığında yalnızca eksik yayın tamamlanır.
 
 ## Gerekli GitHub değişkenleri
