@@ -108,7 +108,9 @@ export function buildSocialContent(announcement, siteUrl = 'https://verimimari.c
 
   const xSuffix = `\n\nDetaylar profil bağlantısında.\n\n${tags}`
   const xLead = `${clean(announcement.title)} ${clean(announcement.excerpt)}`
-  const x = `${trimForX(xLead, 280 - xSuffix.length)}${xSuffix}`
+  // X ağırlıklı karakter sayımı bazı Unicode işaretlerini birden fazla sayabiliyor.
+  // 275 sınırı, API'nin 280 karakter limitinin altında güvenli bir pay bırakır.
+  const x = `${trimForX(xLead, 275 - xSuffix.length)}${xSuffix}`
 
   return {
     url,
