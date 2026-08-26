@@ -9,11 +9,17 @@ export function rankRagContext(candidates: any[]) {
   const blogHits = topByKind(candidates, 'blog', 3)
   const projectHits = topByKind(candidates, 'project', 3)
   const skillHits = topByKind(candidates, 'skill', 6)
+  const externalAiBenchmarkHits = topByKind(
+    candidates.filter((item: any) => Number(item._score || 0) > 0),
+    'external-ai-benchmark',
+    5,
+  )
 
   return {
     blogHits,
     projectHits,
     skillHits,
+    externalAiBenchmarkHits,
     diagnostics: {
       totalCandidates: (candidates || []).length,
       maxScore: Math.max(0, ...(candidates || []).map((x: any) => Number(x._score || 0))),

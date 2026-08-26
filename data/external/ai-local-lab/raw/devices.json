@@ -1,0 +1,207 @@
+{
+  "dataset_version": "1.7.0",
+  "schema_version": "1.1.0",
+  "released_at": "2026-07-17",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source": "https://ai-local-lab.com/data/",
+  "version_url": "https://ai-local-lab.com/data/releases/v1.7.0/",
+  "attribution": "ai-local-lab (https://ai-local-lab.com)",
+  "count": 13,
+  "devices": [
+    {
+      "id": "a6000-workstation",
+      "name": "RTX A6000 48GB ワークステーション",
+      "vendor": "NVIDIA",
+      "category": "gpu-pc",
+      "memory_gb": 48,
+      "power_w_max": 300,
+      "bandwidth_gbps": 768,
+      "spec_only": false,
+      "affiliate_ids": [
+        "a6000-amazon",
+        "a6000-rakuten",
+        "a6000-official"
+      ],
+      "notes": "memory_gb はVRAM容量。自宅GPU上限帯の比較基準として掲載"
+    },
+    {
+      "id": "amd-ryzen-ai-max-395",
+      "name": "AMD Ryzen AI Max+ 395（Strix Halo）128GB",
+      "vendor": "AMD",
+      "category": "mini-pc",
+      "memory_gb": 128,
+      "tops": 50,
+      "bandwidth_gbps": 256,
+      "spec_only": true,
+      "affiliate_ids": [
+        "ryzenaimax-amazon",
+        "ryzenaimax-rakuten"
+      ],
+      "notes": "Strix Halo APU。ユニファイド最大128GB（最大96GBをVRAM割当可）・帯域256GB/s・NPU 50TOPS（公称）。理論値（未計測）。出典 amd.com"
+    },
+    {
+      "id": "jetson-orin-nano-super",
+      "name": "Jetson Orin Nano Super 8GB",
+      "vendor": "NVIDIA",
+      "category": "jetson",
+      "memory_gb": 8,
+      "tops": 67,
+      "power_w_max": 25,
+      "bandwidth_gbps": 102,
+      "spec_only": false,
+      "affiliate_ids": [
+        "jons-amazon",
+        "jons-rakuten",
+        "jons-official"
+      ],
+      "notes": "8GB機。実用上限はメモリと速度——最新世代でも小型モデル（Llama 3.2 1B等）は動くが大型は載らない・遅い。旧ollamaでも最新モデルの取得・実行は可能だが、新アーキはGPUカーネル対応が版数依存で桁違いに遅くなり得る（LFM2.5はollama 0.21.2→0.31.1更新のみで7.3倍高速化・2026-07-02実測）。"
+    },
+    {
+      "id": "mac-mini-m4",
+      "name": "Mac mini M4 16GB",
+      "vendor": "Apple",
+      "category": "mini-pc",
+      "memory_gb": 16,
+      "tops": 38,
+      "power_w_max": 65,
+      "bandwidth_gbps": 120,
+      "spec_only": false,
+      "affiliate_ids": [
+        "macm4-amazon",
+        "macm4-rakuten",
+        "macm4-official"
+      ],
+      "notes": "Apple M4（無印）・ユニファイドメモリ16GB・帯域120GB/s。AI性能38 TOPSはNeural Engine値だがLLM推論はGPU(Metal)を使用。最大消費電力65W・アイドル4W（出典 Apple support 103253 / apple.com）。当サイトで実測。"
+    },
+    {
+      "id": "mac-mini-m4-pro",
+      "name": "Mac mini M4 Pro 64GB",
+      "vendor": "Apple",
+      "category": "mini-pc",
+      "memory_gb": 64,
+      "bandwidth_gbps": 273,
+      "spec_only": true,
+      "affiliate_ids": [
+        "macm4pro-amazon",
+        "macm4pro-rakuten",
+        "macm4pro-official"
+      ],
+      "notes": "Apple M4 Pro。ユニファイドメモリ最大64GB・帯域273GB/s（公称）。実使用はOS分を差し引く。理論値（未計測）。出典 apple.com"
+    },
+    {
+      "id": "mac-studio-m3-ultra",
+      "name": "Mac Studio M3 Ultra 512GB",
+      "vendor": "Apple",
+      "category": "mini-pc",
+      "memory_gb": 512,
+      "bandwidth_gbps": 819,
+      "spec_only": true,
+      "affiliate_ids": [
+        "macstudio-amazon",
+        "macstudio-rakuten",
+        "macstudio-official"
+      ],
+      "notes": "Apple M3 Ultra。ユニファイドメモリ最大512GB・帯域819GB/s（公称）。大規模モデル向け。理論値（未計測）。出典 apple.com"
+    },
+    {
+      "id": "n100-mini-pc",
+      "name": "Intel N100 ミニPC 16GB",
+      "vendor": "Intel (各社OEM)",
+      "category": "mini-pc",
+      "memory_gb": 16,
+      "power_w_max": 30,
+      "bandwidth_gbps": 38,
+      "spec_only": true,
+      "affiliate_ids": [
+        "n100-amazon",
+        "n100-rakuten"
+      ],
+      "notes": "メーカー公称値ベースの参考機材（spec_only）。bandwidth_gbpsはDDR5-4800単チャンネル概算で実機は未計測。"
+    },
+    {
+      "id": "nvidia-dgx-spark",
+      "name": "NVIDIA DGX Spark 128GB",
+      "vendor": "NVIDIA",
+      "category": "mini-pc",
+      "memory_gb": 128,
+      "tops": 1000,
+      "power_w_max": 240,
+      "bandwidth_gbps": 273,
+      "spec_only": true,
+      "affiliate_ids": [
+        "dgxspark-official"
+      ],
+      "notes": "GB10 Grace Blackwell。ユニファイドメモリ128GB・帯域273GB/s・FP4 1000TOPS（公称）。理論値（未計測）。出典 nvidia.com"
+    },
+    {
+      "id": "raspberry-pi-5-8gb",
+      "name": "Raspberry Pi 5 8GB",
+      "vendor": "Raspberry Pi",
+      "category": "sbc",
+      "memory_gb": 8,
+      "power_w_max": 27,
+      "bandwidth_gbps": 17,
+      "spec_only": false,
+      "affiliate_ids": [
+        "rpi5-amazon",
+        "rpi5-rakuten"
+      ],
+      "notes": "アクティブクーラー装着・公式27W USB-PD電源で計測。8GB機の実用上限はメモリと速度——最新世代でも小型モデル（Llama 3.2 1B等）は動くが大型は載らない・遅い。旧ollamaでも最新モデルの取得・実行は可能だが、新アーキはCPUカーネルも版数依存で速度が変わる（LFM2.5 230Mはollama 0.24.0→0.31.1更新のみで1.64倍・2026-07-02実測）。"
+    },
+    {
+      "id": "rtx-4060-laptop",
+      "name": "ノートPC RTX 4060 Laptop 8GB（i7-13700H/32GB）",
+      "vendor": "NVIDIA",
+      "category": "gpu-pc",
+      "memory_gb": 8,
+      "power_w_max": 115,
+      "bandwidth_gbps": 256,
+      "spec_only": false,
+      "affiliate_ids": [],
+      "notes": "ノートPC実機（GeForce RTX 4060 Laptop GPU 8GB VRAM・Intel Core i7-13700H・システムRAM32GB）。2026-06-22 SSH経由でA6000と同一プロトコル（ollama API・2回平均・num_predict=256）で実測。VRAM8GB超のモデル（14B級〜）はRAMオフロードで低速化。帯域・TGPは公称値（TGPは機種で可変）。"
+    },
+    {
+      "id": "rtx-4090",
+      "name": "NVIDIA GeForce RTX 4090 24GB",
+      "vendor": "NVIDIA",
+      "category": "gpu-pc",
+      "memory_gb": 24,
+      "power_w_max": 450,
+      "bandwidth_gbps": 1008,
+      "spec_only": true,
+      "affiliate_ids": [
+        "rtx4090-amazon",
+        "rtx4090-rakuten"
+      ],
+      "notes": "Ada Lovelace。VRAM 24GB GDDR6X・帯域1008GB/s（公称）。理論値（未計測）。出典 nvidia.com"
+    },
+    {
+      "id": "rtx-5090",
+      "name": "NVIDIA GeForce RTX 5090 32GB",
+      "vendor": "NVIDIA",
+      "category": "gpu-pc",
+      "memory_gb": 32,
+      "power_w_max": 575,
+      "bandwidth_gbps": 1792,
+      "spec_only": true,
+      "affiliate_ids": [
+        "rtx5090-amazon",
+        "rtx5090-rakuten"
+      ],
+      "notes": "Blackwell。VRAM 32GB GDDR7・帯域1792GB/s（公称）。理論値（未計測）。出典 nvidia.com"
+    },
+    {
+      "id": "rtx-pro-6000",
+      "name": "NVIDIA RTX PRO 6000 Blackwell 96GB",
+      "vendor": "NVIDIA",
+      "category": "gpu-pc",
+      "memory_gb": 96,
+      "power_w_max": 600,
+      "bandwidth_gbps": 1792,
+      "spec_only": true,
+      "affiliate_ids": [],
+      "notes": "RTX PRO 6000 Blackwell（A6000の後継）。VRAM 96GB GDDR7 ECC・帯域1792GB/s（公称）。理論値（未計測）。出典 nvidia.com"
+    }
+  ]
+}
