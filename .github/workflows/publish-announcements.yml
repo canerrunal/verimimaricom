@@ -59,6 +59,7 @@ jobs:
           INPUT_SLUG: ${{ inputs.slug }}
           INPUT_PLATFORMS: ${{ inputs.platforms }}
           INPUT_DRY_RUN: ${{ inputs.dry_run }}
+          SOCIAL_AUTO_PLATFORMS: ${{ vars.SOCIAL_AUTO_PLATFORMS || 'linkedin' }}
           SITE_URL: ${{ vars.SITE_URL || 'https://verimimari.com' }}
           SOCIAL_PUBLISH_ENABLED: ${{ vars.SOCIAL_PUBLISH_ENABLED || 'false' }}
           META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION || 'v26.0' }}
@@ -74,7 +75,7 @@ jobs:
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
         shell: bash
         run: |
-          args=(--platforms "${INPUT_PLATFORMS:-instagram,facebook,linkedin,x}")
+          args=(--platforms "${INPUT_PLATFORMS:-$SOCIAL_AUTO_PLATFORMS}")
           if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
             args+=(--slug "$INPUT_SLUG")
             if [[ "$INPUT_DRY_RUN" == "true" ]]; then
