@@ -131,7 +131,13 @@ async function readResponse(response, label) {
   }
 
   if (!response.ok) {
-    const detail = body?.error?.message ?? body?.message ?? body?.raw ?? response.statusText
+    const detail =
+      body?.error?.message ??
+      body?.errors?.[0]?.message ??
+      body?.detail ??
+      body?.message ??
+      body?.raw ??
+      response.statusText
     throw new Error(`${label} başarısız (${response.status}): ${detail}`)
   }
   return body

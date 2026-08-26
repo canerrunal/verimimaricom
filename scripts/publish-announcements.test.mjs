@@ -174,3 +174,16 @@ test('API hataları platform ve durum koduyla raporlanır', async () => {
     /X yayını başarısız \(403\)/,
   )
 })
+
+test('API hata ayrıntısını yanıtın detail alanından raporlar', async () => {
+  await assert.rejects(
+    () =>
+      publishX(buildSocialContent(announcement), {
+        env: xEnv,
+        oauth: { timestamp: 1_700_000_000, nonce: 'fixed-nonce' },
+        fetchImpl: async () =>
+          response({ detail: 'Bu işlem için yazma izni gerekiyor.' }, { status: 403 }),
+      }),
+    /Bu işlem için yazma izni gerekiyor\./,
+  )
+})
