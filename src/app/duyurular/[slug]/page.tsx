@@ -5,6 +5,7 @@ import Footer from '@/components/landing/Footer'
 import { announcements, getAnnouncement } from '@/lib/announcements'
 import { brandProfile, getSiteUrl } from '@/lib/seo'
 import { getDictionary } from '@/lib/i18n'
+import { getAnnouncementSocialImagePath } from '@/lib/social-announcement-image'
 
 type PageProps = { params: Promise<{ slug: string }> }
 
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const announcement = getAnnouncement(slug)
   if (!announcement) return {}
+  const socialImage = getAnnouncementSocialImagePath(announcement.slug)
 
   return {
     title: announcement.title,
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: announcement.title,
       description: announcement.excerpt,
       type: 'article',
-      images: [announcement.image],
+      images: [{ url: socialImage, width: 1080, height: 1350, alt: announcement.imageAlt }],
     },
   }
 }
@@ -37,12 +39,13 @@ export default async function AnnouncementDetailPage({ params }: PageProps) {
 
   const t = getDictionary('tr')
   const siteUrl = getSiteUrl()
+  const socialImage = getAnnouncementSocialImagePath(announcement.slug)
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: announcement.title,
     description: announcement.excerpt,
-    image: [`${siteUrl}${announcement.image}`],
+    image: [`${siteUrl}${socialImage}`],
     datePublished: announcement.publishedAt,
     dateModified: announcement.updatedAt,
     author: { '@type': 'Person', name: brandProfile.name, url: siteUrl },

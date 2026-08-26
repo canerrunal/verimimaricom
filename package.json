@@ -16,7 +16,9 @@
     "test:watch": "vitest",
     "smoke:test": "node ./scripts/smoke-test.mjs",
     "growth:weekly": "node ./scripts/growth-weekly-report.mjs",
-    "rag:vector:ingest": "node ./scripts/rag-vector-ingest.mjs"
+    "rag:vector:ingest": "node ./scripts/rag-vector-ingest.mjs",
+    "social:publish": "node ./scripts/publish-announcements.mjs",
+    "social:publish:test": "node --test ./scripts/publish-announcements.test.mjs"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.1.15",
@@ -28,7 +30,8 @@
     "next-sanity": "^11.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanity": "^4.10.1"
+    "sanity": "^4.10.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/node": "^25.2.3",
