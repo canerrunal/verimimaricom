@@ -44,6 +44,13 @@ export function toContextText(context: any) {
     )
     .join('\n')
 
+  const externalAiBenchmarkText = (context.externalAiBenchmarkHits || [])
+    .map(
+      (item: any) =>
+        `- AI Local Lab ölçümü: ${item.title} | ${item.excerpt} | kaynak: ${item.meta?.sourceRecordUrl || item.slug || '-'} | lisans: ${item.meta?.license || 'CC BY 4.0'} | ölçüm: ${item.meta?.measuredAt || '-'}`,
+    )
+    .join('\n')
+
   return `
 [BLOG HITS]
 ${blogText || '-'}
@@ -53,5 +60,8 @@ ${projectText || '-'}
 
 [SKILL HITS]
 ${skillText || '-'}
+
+[EXTERNAL AI BENCHMARK HITS]
+${externalAiBenchmarkText || '-'}
   `.trim()
 }

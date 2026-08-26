@@ -60,6 +60,9 @@ export default function FounderExpertiseSection() {
               <a className="link" href="/hakkinda">
                 Caner Ünal’ı tanıyın
               </a>
+              <a className="link" href="/yapay-zeka">
+                AI sistemlerini inceleyin
+              </a>
             </div>
             <small>TEŞHİS · MİMARİ · UYGULAMA · ÖLÇÜM</small>
           </article>
