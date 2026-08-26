@@ -47,7 +47,7 @@ function trimForX(text, maxLength = 280) {
 export function buildSocialContent(announcement, siteUrl = 'https://verimimari.com') {
   const baseUrl = siteUrl.replace(/\/$/, '')
   const url = `${baseUrl}/duyurular/${announcement.slug}`
-  const imageUrl = `${baseUrl}/api/social/announcements/${announcement.slug}/image`
+  const imageUrl = `${baseUrl}/api/social/announcements/${announcement.slug}/image?v=2`
   const stats = keyStats(announcement)
   const tags = hashtags(announcement)
   const closing = clean(
@@ -265,8 +265,9 @@ export async function publishLinkedIn(content, { env = process.env, fetchImpl = 
 }
 
 function xPercentEncode(value) {
-  return encodeURIComponent(String(value)).replace(/[!'()*]/g, (character) =>
-    `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
+  return encodeURIComponent(String(value)).replace(
+    /[!'()*]/g,
+    (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
   )
 }
 
@@ -275,7 +276,12 @@ export function createXOAuth1Header(
   env,
   { timestamp = Math.floor(Date.now() / 1000), nonce = randomBytes(16).toString('hex') } = {},
 ) {
-  requireEnv(env, ['X_CONSUMER_KEY', 'X_CONSUMER_SECRET', 'X_ACCESS_TOKEN', 'X_ACCESS_TOKEN_SECRET'])
+  requireEnv(env, [
+    'X_CONSUMER_KEY',
+    'X_CONSUMER_SECRET',
+    'X_ACCESS_TOKEN',
+    'X_ACCESS_TOKEN_SECRET',
+  ])
   const parameters = {
     oauth_consumer_key: env.X_CONSUMER_KEY,
     oauth_nonce: nonce,
@@ -286,7 +292,9 @@ export function createXOAuth1Header(
   }
   const parameterString = Object.entries(parameters)
     .map(([key, value]) => [xPercentEncode(key), xPercentEncode(value)])
-    .sort(([keyA, valueA], [keyB, valueB]) => keyA.localeCompare(keyB) || valueA.localeCompare(valueB))
+    .sort(
+      ([keyA, valueA], [keyB, valueB]) => keyA.localeCompare(keyB) || valueA.localeCompare(valueB),
+    )
     .map(([key, value]) => `${key}=${value}`)
     .join('&')
   const signatureBase = ['POST', xPercentEncode(url), xPercentEncode(parameterString)].join('&')
@@ -299,10 +307,7 @@ export function createXOAuth1Header(
     .join(', ')}`
 }
 
-export async function publishX(
-  content,
-  { env = process.env, fetchImpl = fetch, oauth = {} } = {},
-) {
+export async function publishX(content, { env = process.env, fetchImpl = fetch, oauth = {} } = {}) {
   const url = 'https://api.x.com/2/tweets'
   return readResponse(
     await fetchImpl(url, {

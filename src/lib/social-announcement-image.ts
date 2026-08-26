@@ -4,7 +4,7 @@ export const SOCIAL_ANNOUNCEMENT_IMAGE_WIDTH = 1080
 export const SOCIAL_ANNOUNCEMENT_IMAGE_HEIGHT = 1350
 
 export function getAnnouncementSocialImagePath(slug: string) {
-  return `/api/social/announcements/${encodeURIComponent(slug)}/image`
+  return `/api/social/announcements/${encodeURIComponent(slug)}/image?v=2`
 }
 
 function escapeXml(value: string) {
