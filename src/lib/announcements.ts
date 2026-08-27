@@ -39,6 +39,162 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026',
+    addedOrder: 9,
+    eyebrow: 'PAZAR NABZI / 27 AĞUSTOS 2026',
+    title: 'Türkiye’de e-ticaret erişimi: Trendyol lider, tablo tek başına yetmiyor.',
+    excerpt:
+      'Gemius’un 2026 ilk çeyrek verileri Trendyol, Hepsiburada ve Amazon’u ilk üçte gösteriyor. Benim için asıl mesele sıralama değil; ziyaretçi erişimini pazar payı, satış hacmi ve kanal kalitesiyle karıştırmamak.',
+    category: 'E-Ticaret ve Pazar Verisi',
+    publishedAt: '2026-08-27',
+    updatedAt: '2026-08-27',
+    readingTime: '11 dk',
+    image: '/api/social/announcements/turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026/image',
+    imageAlt:
+      'Türkiye’de e-ticaret platformlarının 2026 ziyaretçi erişimini ve veri yorumlama sınırlarını anlatan Veri Mimarı editoryal kartı',
+    source: 'Gemius Türkiye Q1 2026 · T.C. Ticaret Bakanlığı 2025 E-Ticaret Raporu',
+    sourceUrl: 'https://gemius.com/tr/blog/q1-2026-trafigin-ve-reklamin-nabzi/',
+    sourceNote:
+      'Gemius’un resmî Q1 2026 sayfasındaki Trendyol 48 milyon, Hepsiburada 38 milyon ve Amazon 34 milyon ziyaretçi verileri doğrulandı. Araştırma girdisindeki 2026 ilk yarı aylık ortalama tablosunun açık birincil metodoloji sayfasına ulaşılamadığı için 41,3 / 28,8 / 20,9 milyon değerleri ikincil tablo olarak ve açık sınırlamayla ele alındı. 2025 e-ticaret hacmi verileri T.C. Ticaret Bakanlığı’nın 12 Mayıs 2026 tarihli resmî rapor duyurusundan doğrulandı.',
+    stats: [
+      {
+        label: 'Q1 TRENDYOL',
+        value: '48 MN',
+        detail: 'Gemius’un resmî 2026 ilk çeyrek ziyaretçi verisi',
+      },
+      {
+        label: 'Q1 HEPSİBURADA',
+        value: '38 MN',
+        detail: 'İkinci sıradaki doğrulanmış ziyaretçi erişimi',
+      },
+      {
+        label: 'Q1 AMAZON',
+        value: '34 MN',
+        detail: 'Gemius verisinde üçüncü sıradaki platform',
+      },
+      {
+        label: '2025 E-TİCARET',
+        value: '4,57 TN TL',
+        detail: 'Ticaret Bakanlığı’nın açıkladığı toplam hacim',
+      },
+    ],
+    sections: [
+      {
+        id: 'resmi-veri-ne-diyor',
+        heading: 'Önce doğrulanmış tablo: ilk üç değişmiyor.',
+        paragraphs: [
+          'Gemius Türkiye’nin 2026’nın ilk çeyreğine ilişkin resmî yayınında Trendyol 48 milyon ziyaretçiyle ilk sırada. Hepsiburada 38 milyon, Amazon ise 34 milyon ziyaretçiyle onu izliyor.',
+          'Bu veri bana iki şey söylüyor: Trendyol genel erişimde liderliğini koruyor; Hepsiburada ve Amazon ise ikinci rekabet katmanını oluşturuyor. Ancak burada ölçülen şey satış, ciro veya kârlılık değil; ziyaretçi erişimi.',
+        ],
+      },
+      {
+        id: 'ilk-yari-tablosu',
+        heading: 'İlk yarı tablosunu nasıl okumak gerekiyor?',
+        paragraphs: [
+          'Araştırma girdisindeki 2026 ilk yarı aylık ortalama gerçek kullanıcı tablosu Trendyol’u 41,3 milyon, Hepsiburada’yı 28,8 milyon ve Amazon’u 20,9 milyon kullanıcıyla ilk üçte gösteriyor. Ardından n11 16,1 milyon, Migros 15,9 milyon, Yemeksepeti 14,2 milyon ve Getir 12,9 milyonla geliyor.',
+          'Bu sıralama ana yönü destekliyor; fakat açık birincil metodoloji sayfasına ulaşamadığım için değerleri resmî Q1 tablosuyla aynı kesinlikte sunmuyorum. Dönem, aylık ortalama, uygulama ve web kapsamı ile “gerçek kullanıcı” tanımı açıklanmadan iki tablo doğrudan karşılaştırılamaz.',
+        ],
+        bullets: [
+          'Trendyol: 41,3 milyon — ikincil tabloda aylık ortalama olarak belirtiliyor.',
+          'Hepsiburada: 28,8 milyon — Trendyol’un yaklaşık %69,7’si.',
+          'Amazon: 20,9 milyon — Trendyol’un yaklaşık %50,6’sı.',
+          'n11: 16,1 milyon; Migros: 15,9 milyon; Yemeksepeti: 14,2 milyon.',
+          'Getir: 12,9 milyon; Şok: 10,9 milyon; letgo: 10,7 milyon; Dolap: 10,4 milyon.',
+        ],
+      },
+      {
+        id: 'toplam-kullanici-degil',
+        heading: '48 + 38 + 34, farklı kişi sayısı değildir.',
+        paragraphs: [
+          'Aynı kullanıcı ay içinde Trendyol, Hepsiburada ve Amazon’u birlikte ziyaret edebilir. Bu yüzden platform erişimlerini toplamak, Türkiye’deki benzersiz e-ticaret kullanıcısı sayısını vermez.',
+          'Oturum, ziyaret, gerçek kullanıcı ve aktif müşteri farklı metriklerdir. Ziyaretçi sayısı ürün keşfini anlatabilir; sipariş sıklığı, sepet tutarı, dönüşüm oranı ve tekrar satın alma ise ticari kaliteyi gösterir.',
+        ],
+      },
+      {
+        id: 'tek-kategori-degil',
+        heading: 'Liste yalnızca pazaryerlerinden oluşmuyor.',
+        paragraphs: [
+          'Genel pazaryerleriyle market, yemek, seyahat, ikinci el ve marka mağazaları aynı erişim listesinde bulunuyor. Bu nedenle tabloyu “Türkiye’nin en büyük 30 pazaryeri” diye adlandırmak metodolojik olarak yanlış olur.',
+        ],
+        bullets: [
+          'Genel pazaryeri: Trendyol, Hepsiburada, Amazon ve n11.',
+          'Market ve hızlı ticaret: Migros, Getir, Şok, A101 ve CarrefourSA.',
+          'Yemek teslimatı: Yemeksepeti ve Trendyol Go.',
+          'İkinci el: letgo ve Dolap.',
+          'Seyahat ve bilet: obilet, Enuygun ve Biletinial.',
+          'Dikey marka ve perakende: LC Waikiki, MediaMarkt, Gratis, Apple, Samsung ve Boyner.',
+          'Sosyal ticaret altyapısı: Shopier.',
+        ],
+      },
+      {
+        id: 'market-hizli-ticaret',
+        heading: 'Market ve hızlı ticaret ayrı bir davranış ritmine sahip.',
+        paragraphs: [
+          'Migros, Getir, Şok ve A101 gibi oyuncuların yüksek erişimi; e-ticaretin yalnızca elektronik, moda veya ev yaşam siparişinden ibaret olmadığını gösteriyor. Günlük ihtiyaçlar daha küçük sepetlerle fakat daha yüksek tekrar sıklığıyla çalışabilir.',
+          'Ticaret Bakanlığı’na göre hızlı ticaret 2025’te %55,6 büyüyerek 388,7 milyar TL’ye ulaştı. Bu yüzden market uygulamalarını genel pazaryerleriyle yalnızca kullanıcı sayısı üzerinden kıyaslamak yanıltıcı olur.',
+        ],
+      },
+      {
+        id: 'temu-ve-alt-markalar',
+        heading: 'Temu ve alt markalar veri yorumunu zorlaştırıyor.',
+        paragraphs: [
+          'İkincil tabloda Temu’nun 9,1 milyon kullanıcıyla görünmesi düşük fiyatlı uluslararası rekabetin erişim ürettiğine işaret ediyor. Fakat erişim tek başına sürdürülebilir sipariş, teslimat kalitesi, tekrar satın alma veya Türkiye’deki gerçek kârlılığı kanıtlamaz.',
+          'Trendyol Milla ve Trendyol Go gibi alt markalar ayrıca raporlandığında aynı ekosistemde kullanıcı çakışması oluşabilir. Ana Trendyol erişimiyle alt marka erişimlerini basitçe toplamak doğru değildir.',
+        ],
+      },
+      {
+        id: 'ekonomik-buyuk-resim',
+        heading: 'Ziyaretçi yarışının arkasında 4,57 trilyon TL’lik pazar var.',
+        paragraphs: [
+          'T.C. Ticaret Bakanlığı’nın 2025 raporuna göre Türkiye’de toplam e-ticaret hacmi %52,2 artarak 4,57 trilyon TL’ye, perakende e-ticaret hacmi ise %51,8 artarak 2,46 trilyon TL’ye ulaştı.',
+          'Toplam işlem sayısı 5,94 milyar, perakende işlem sayısı 1,94 milyar oldu. E-ticaret GSYH’nin %6,9’una ve genel ticaretin %19,3’üne karşılık geldi.',
+          'Bu rakamlar dijital alışverişin ekonomik ağırlığını gösteriyor; yine de ziyaretçi sıralaması ile satış hacmi sıralaması aynı şey değil. Daha az ziyaret edilen yüksek sepetli bir kanal, daha çok ziyaret edilen düşük sepetli bir kanaldan daha fazla ciro üretebilir.',
+        ],
+      },
+      {
+        id: 'satici-kanal-stratejisi',
+        heading: 'Satıcı için doğru karar “hangi platform büyük?” sorusuyla bitmiyor.',
+        paragraphs: [
+          'Yüksek erişim keşif avantajı sağlar; ancak kanal seçiminde komisyon, reklam maliyeti, kategori rekabeti, iade, kargo, ödeme vadesi ve müşteri verisine erişim birlikte değerlendirilmelidir.',
+        ],
+        bullets: [
+          'Trendyol: geniş keşif, yüksek rekabet ve kampanya baskısı.',
+          'Hepsiburada: elektronik ve ev yaşam gibi bazı kategorilerde güçlü alternatif.',
+          'Amazon Türkiye: katalog standardı, arama niyeti ve lojistik disiplini.',
+          'n11: kategori bazında test edilmesi gereken ek kanal.',
+          'Shopier ve kendi site: topluluk, doğrudan ilişki ve marka kontrolü.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: erişimi kiralayın, müşteri varlığını kendiniz kurun.',
+        paragraphs: [
+          'Ben bu tabloyu “her yerde mağaza açın” çağrısı olarak okumuyorum. Bana göre doğru yaklaşım; pazaryerlerini keşif ve talep toplama kanalı, kendi siteyi ise marka, veri ve tekrar satış altyapısı olarak konumlandırmak.',
+          'Tek platforma bağımlılık kısa vadede operasyonu kolaylaştırabilir; fakat komisyon, görünürlük ve müşteri ilişkisi üzerindeki kontrolü azaltır. Sağlıklı model; merkezi stok, tutarlı katalog, ölçülen kanal kârlılığı, izinli CRM ve kendi e-ticaret sitesini aynı sistemde birleştirir.',
+          'Özetle liderlik tablosu önemli; fakat asıl karar metriği ziyaretçi sayısı değil, kanal başına gerçek katkı payı ve tekrar satış kapasitesi.',
+        ],
+      },
+      {
+        id: 'kontrol-listesi',
+        heading: 'Bu veriyi karar tablosuna çevirmek için beş kontrol.',
+        bullets: [
+          'Her platformda kategori bazlı erişim ve dönüşüm oranını ayrı ölçün.',
+          'Komisyon, reklam, kargo ve iadeden sonra sipariş başına katkı payını hesaplayın.',
+          'Aynı üründe platformlar arası fiyat ve stok tutarlılığını izleyin.',
+          'Pazaryeri performansını kendi site, CRM ve tekrar satın alma verisiyle birlikte okuyun.',
+          'Ziyaretçi verisini pazar payı veya satış hacmi diye etiketlemeyin.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'KANAL KARARINI VERİYLE KUR',
+      title: 'Trendyol Pazar Nabzı ile kategori ve ürün verisini izleyin.',
+      body: 'Erişim sıralamasını ürün, kategori, fiyat ve operasyon verisiyle birlikte okuyarak kanal kararını somutlaştırın.',
+      ctaLabel: 'Pazar Nabzı’nı aç →',
+      ctaHref: '/pazar-nabzi/trendyol',
+    },
+  },
+  {
     slug: 'apple-m6-m5-ultra-yerel-ai-hesaplama-2026',
     addedOrder: 8,
     eyebrow: 'APPLE SILICON / 25 AĞUSTOS 2026',
