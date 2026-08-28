@@ -49,7 +49,7 @@ test('platforma özgü metinleri ve 4:5 görsel adresini üretir', () => {
   assert.equal(content.url, 'https://verimimari.com/duyurular/ornek-duyuru')
   assert.equal(
     content.imageUrl,
-    'https://verimimari.com/api/social/announcements/ornek-duyuru/image?v=5',
+    'https://verimimari.com/api/social/announcements/ornek-duyuru/image?v=6',
   )
   assert.match(content.instagram, /#VeriMimarı/)
   assert.match(content.linkedin, /Benim için öne çıkan veriler/)
