@@ -50,7 +50,7 @@ export const announcements: Announcement[] = [
     updatedAt: '2026-08-27',
     readingTime: '11 dk',
     image:
-      '/api/social/announcements/turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026/image?v=7',
+      '/api/social/announcements/turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026/image?v=8',
     imageAlt:
       'Türkiye’de e-ticaret platformlarının 2026 ziyaretçi erişimini ve veri yorumlama sınırlarını anlatan Veri Mimarı editoryal kartı',
     source: 'Gemius Türkiye Q1 2026 · T.C. Ticaret Bakanlığı 2025 E-Ticaret Raporu',
