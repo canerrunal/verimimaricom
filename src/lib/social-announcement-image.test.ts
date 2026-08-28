@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import sharp from 'sharp'
 import type { Announcement } from '@/lib/announcements'
 import {
   renderAnnouncementSocialSvg,
@@ -41,5 +42,17 @@ describe('sosyal duyuru görseli', () => {
     expect(svg).toContain('Analizin tamamını oku')
     expect(svg).toContain('KAYNAK / VERİ MİMARI')
     expect(svg.match(/class="stat-value"/g)).toHaveLength(2)
+  })
+
+  it('Sharp üzerinde 4:5 raster çıktısı üretir', async () => {
+    const svg = renderAnnouncementSocialSvg(announcement)
+    const raster = await sharp(svg).png().toBuffer()
+    const metadata = await sharp(raster).metadata()
+
+    expect(metadata).toMatchObject({
+      format: 'png',
+      width: SOCIAL_ANNOUNCEMENT_IMAGE_WIDTH,
+      height: SOCIAL_ANNOUNCEMENT_IMAGE_HEIGHT,
+    })
   })
 })
