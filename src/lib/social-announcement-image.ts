@@ -1,7 +1,16 @@
 import type { Announcement } from '@/lib/announcements'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 export const SOCIAL_ANNOUNCEMENT_IMAGE_WIDTH = 1080
 export const SOCIAL_ANNOUNCEMENT_IMAGE_HEIGHT = 1350
+
+const interLatin = readFileSync(join(process.cwd(), 'public/fonts/inter-latin.woff2')).toString(
+  'base64',
+)
+const interLatinExtended = readFileSync(
+  join(process.cwd(), 'public/fonts/inter-latin-ext.woff2'),
+).toString('base64')
 
 export function getAnnouncementSocialImagePath(slug: string) {
   return `/api/social/announcements/${encodeURIComponent(slug)}/image`
@@ -75,12 +84,14 @@ export function renderAnnouncementSocialSvg(announcement: Announcement) {
   return Buffer.from(`
     <svg xmlns="http://www.w3.org/2000/svg" width="${SOCIAL_ANNOUNCEMENT_IMAGE_WIDTH}" height="${SOCIAL_ANNOUNCEMENT_IMAGE_HEIGHT}" viewBox="0 0 1080 1350">
       <style>
-        .sans { font-family: "Arial Black", "Liberation Sans", Inter, Arial, sans-serif; fill: #101411; }
-        .mono { font-family: SFMono-Regular, Consolas, monospace; fill: #101411; font-size: 22px; font-weight: 700; letter-spacing: 1.8px; }
-        .title { font-family: "Arial Black", "Liberation Sans", Inter, Arial, sans-serif; fill: #101411; font-weight: 900; letter-spacing: -5.6px; stroke: #101411; stroke-width: 1.5px; paint-order: stroke fill; }
-        .body { font-family: "Liberation Sans", Inter, Arial, sans-serif; fill: #3F453F; font-size: 28px; font-weight: 600; }
-        .stat-label { font-family: SFMono-Regular, Consolas, monospace; fill: #5F655F; font-size: 18px; font-weight: 700; letter-spacing: 1.2px; }
-        .stat-value { font-family: "Arial Black", "Liberation Sans", Inter, Arial, sans-serif; fill: #101411; font-size: 58px; font-weight: 900; letter-spacing: -3px; stroke: #101411; stroke-width: .7px; paint-order: stroke fill; }
+        @font-face { font-family: "VM Inter"; src: url(data:font/woff2;base64,${interLatin}) format("woff2"); font-weight: 100 900; }
+        @font-face { font-family: "VM Inter"; src: url(data:font/woff2;base64,${interLatinExtended}) format("woff2"); font-weight: 100 900; }
+        .sans { font-family: "VM Inter", sans-serif; fill: #101411; }
+        .mono { font-family: "VM Inter", sans-serif; fill: #101411; font-size: 22px; font-weight: 750; letter-spacing: 1.8px; }
+        .title { font-family: "VM Inter", sans-serif; fill: #101411; font-weight: 900; letter-spacing: -5.6px; stroke: #101411; stroke-width: 1.5px; paint-order: stroke fill; }
+        .body { font-family: "VM Inter", sans-serif; fill: #3F453F; font-size: 28px; font-weight: 600; }
+        .stat-label { font-family: "VM Inter", sans-serif; fill: #5F655F; font-size: 18px; font-weight: 750; letter-spacing: 1.2px; }
+        .stat-value { font-family: "VM Inter", sans-serif; fill: #101411; font-size: 58px; font-weight: 900; letter-spacing: -3px; stroke: #101411; stroke-width: .7px; paint-order: stroke fill; }
       </style>
       <rect width="1080" height="1350" fill="#F6F4ED"/>
       <g opacity="0.17" stroke="#C9CCC3" stroke-width="1">
@@ -116,8 +127,8 @@ export function renderAnnouncementSocialSvg(announcement: Announcement) {
       <g transform="translate(84 ${insightY})">
         <rect width="896" height="82" fill="#101411"/>
         <circle cx="32" cy="41" r="9" fill="#D6FF63"/>
-        <text x="58" y="51" fill="#FFFEF9" font-family="SFMono-Regular, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.8">${escapeXml(upperTr(insight))}</text>
-        <text x="862" y="51" fill="#D6FF63" font-family="SFMono-Regular, Consolas, monospace" font-size="22" font-weight="700" text-anchor="end">↗</text>
+        <text x="58" y="51" fill="#FFFEF9" font-family="VM Inter, sans-serif" font-size="22" font-weight="750" letter-spacing="1.8">${escapeXml(upperTr(insight))}</text>
+        <text x="862" y="51" fill="#D6FF63" font-family="VM Inter, sans-serif" font-size="22" font-weight="750" text-anchor="end">↗</text>
       </g>
 
       <g transform="translate(84 ${statsY})">
