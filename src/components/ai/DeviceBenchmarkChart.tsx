@@ -30,10 +30,11 @@ function pickComparison(benchmarks: AiLabBenchmark[]) {
   }
 
   const widestGroup = [...groups.values()].sort(
-    (a, b) => new Set(b.map((item) => item.deviceId)).size - new Set(a.map((item) => item.deviceId)).size,
+    (a, b) =>
+      new Set(b.map((item) => item.deviceId)).size - new Set(a.map((item) => item.deviceId)).size,
   )[0]
 
-  const source = preferred.length >= 2 ? preferred : widestGroup ?? []
+  const source = preferred.length >= 2 ? preferred : (widestGroup ?? [])
   const uniqueDevices = new Map<string, AiLabBenchmark>()
   for (const item of source) {
     const current = uniqueDevices.get(item.deviceId)
@@ -79,7 +80,9 @@ export default function DeviceBenchmarkChart({
         <div className="device-benchmark-card">
           <div className="device-benchmark-heading">
             <span>LABORATUVAR DURUMU</span>
-            <time dateTime={latestMeasurement}>Son ölçüm: {latestMeasurement.split('-').reverse().join('.')}</time>
+            <time dateTime={latestMeasurement}>
+              Son ölçüm: {latestMeasurement.split('-').reverse().join('.')}
+            </time>
           </div>
 
           <div className="device-benchmark-stats" aria-label="Model laboratuvarı özeti">

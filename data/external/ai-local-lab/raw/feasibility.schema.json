@@ -48,20 +48,11 @@
               },
               "evidence": {
                 "type": "string",
-                "enum": [
-                  "measured",
-                  "benchmark",
-                  "spec",
-                  "legacy_curated"
-                ]
+                "enum": ["measured", "benchmark", "spec", "legacy_curated"]
               },
               "confidence": {
                 "type": "string",
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
+                "enum": ["high", "medium", "low"]
               },
               "detail": {
                 "type": "string",
@@ -98,11 +89,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "kind",
-                    "id",
-                    "raw_available"
-                  ],
+                  "required": ["kind", "id", "raw_available"],
                   "additionalProperties": false
                 }
               },
@@ -130,12 +117,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "total",
-                  "succeeded",
-                  "failed",
-                  "skipped"
-                ],
+                "required": ["total", "succeeded", "failed", "skipped"],
                 "additionalProperties": false
               },
               "outcome": {
@@ -172,20 +154,11 @@
               },
               "evidence": {
                 "type": "string",
-                "enum": [
-                  "measured",
-                  "benchmark",
-                  "spec",
-                  "legacy_curated"
-                ]
+                "enum": ["measured", "benchmark", "spec", "legacy_curated"]
               },
               "confidence": {
                 "type": "string",
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
+                "enum": ["high", "medium", "low"]
               },
               "detail": {
                 "type": "string",
@@ -222,11 +195,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "kind",
-                    "id",
-                    "raw_available"
-                  ],
+                  "required": ["kind", "id", "raw_available"],
                   "additionalProperties": false
                 }
               },
@@ -254,12 +223,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "total",
-                  "succeeded",
-                  "failed",
-                  "skipped"
-                ],
+                "required": ["total", "succeeded", "failed", "skipped"],
                 "additionalProperties": false
               },
               "outcome": {
@@ -281,10 +245,7 @@
                         "maximum": 9007199254740991
                       }
                     },
-                    "required": [
-                      "kind",
-                      "bytes"
-                    ],
+                    "required": ["kind", "bytes"],
                     "additionalProperties": false
                   },
                   {
@@ -330,20 +291,11 @@
               },
               "evidence": {
                 "type": "string",
-                "enum": [
-                  "measured",
-                  "benchmark",
-                  "spec",
-                  "legacy_curated"
-                ]
+                "enum": ["measured", "benchmark", "spec", "legacy_curated"]
               },
               "confidence": {
                 "type": "string",
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
+                "enum": ["high", "medium", "low"]
               },
               "detail": {
                 "type": "string",
@@ -380,11 +332,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "kind",
-                    "id",
-                    "raw_available"
-                  ],
+                  "required": ["kind", "id", "raw_available"],
                   "additionalProperties": false
                 }
               },
@@ -412,12 +360,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "total",
-                  "succeeded",
-                  "failed",
-                  "skipped"
-                ],
+                "required": ["total", "succeeded", "failed", "skipped"],
                 "additionalProperties": false
               },
               "outcome": {
@@ -449,20 +392,11 @@
               },
               "evidence": {
                 "type": "string",
-                "enum": [
-                  "measured",
-                  "benchmark",
-                  "spec",
-                  "legacy_curated"
-                ]
+                "enum": ["measured", "benchmark", "spec", "legacy_curated"]
               },
               "confidence": {
                 "type": "string",
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
+                "enum": ["high", "medium", "low"]
               },
               "detail": {
                 "type": "string",
@@ -499,11 +433,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "kind",
-                    "id",
-                    "raw_available"
-                  ],
+                  "required": ["kind", "id", "raw_available"],
                   "additionalProperties": false
                 }
               },
@@ -531,12 +461,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "total",
-                  "succeeded",
-                  "failed",
-                  "skipped"
-                ],
+                "required": ["total", "succeeded", "failed", "skipped"],
                 "additionalProperties": false
               },
               "outcome": {
@@ -568,20 +493,11 @@
               },
               "evidence": {
                 "type": "string",
-                "enum": [
-                  "measured",
-                  "benchmark",
-                  "spec",
-                  "legacy_curated"
-                ]
+                "enum": ["measured", "benchmark", "spec", "legacy_curated"]
               },
               "confidence": {
                 "type": "string",
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
+                "enum": ["high", "medium", "low"]
               },
               "detail": {
                 "type": "string",
@@ -618,11 +534,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "kind",
-                    "id",
-                    "raw_available"
-                  ],
+                  "required": ["kind", "id", "raw_available"],
                   "additionalProperties": false
                 }
               },
@@ -650,12 +562,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "total",
-                  "succeeded",
-                  "failed",
-                  "skipped"
-                ],
+                "required": ["total", "succeeded", "failed", "skipped"],
                 "additionalProperties": false
               },
               "outcome": {
@@ -676,10 +583,7 @@
                     "maximum": 100
                   }
                 },
-                "required": [
-                  "cpu_percent",
-                  "gpu_percent"
-                ],
+                "required": ["cpu_percent", "gpu_percent"],
                 "additionalProperties": false
               }
             },
@@ -708,20 +612,11 @@
               },
               "evidence": {
                 "type": "string",
-                "enum": [
-                  "measured",
-                  "benchmark",
-                  "spec",
-                  "legacy_curated"
-                ]
+                "enum": ["measured", "benchmark", "spec", "legacy_curated"]
               },
               "confidence": {
                 "type": "string",
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
+                "enum": ["high", "medium", "low"]
               },
               "detail": {
                 "type": "string",
@@ -758,11 +653,7 @@
                       "type": "boolean"
                     }
                   },
-                  "required": [
-                    "kind",
-                    "id",
-                    "raw_available"
-                  ],
+                  "required": ["kind", "id", "raw_available"],
                   "additionalProperties": false
                 }
               },
@@ -790,12 +681,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "total",
-                  "succeeded",
-                  "failed",
-                  "skipped"
-                ],
+                "required": ["total", "succeeded", "failed", "skipped"],
                 "additionalProperties": false
               },
               "outcome": {
@@ -817,10 +703,7 @@
                         "maximum": 9007199254740991
                       }
                     },
-                    "required": [
-                      "kind",
-                      "bytes"
-                    ],
+                    "required": ["kind", "bytes"],
                     "additionalProperties": false
                   },
                   {
@@ -855,13 +738,6 @@
       ]
     }
   },
-  "required": [
-    "id",
-    "device",
-    "model",
-    "quant",
-    "observations",
-    "assessment"
-  ],
+  "required": ["id", "device", "model", "quant", "observations", "assessment"],
   "additionalProperties": false
 }
