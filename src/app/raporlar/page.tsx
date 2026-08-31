@@ -5,9 +5,9 @@ import { getDictionary } from '@/lib/i18n'
 import { benchmarkReports } from '@/lib/reports'
 
 export const metadata: Metadata = {
-  title: 'E-Ticaret Raporları ve Benchmark Notları',
+  title: 'Teknik Araştırma ve E-Ticaret Raporları',
   description:
-    'Açık yöntem, simülasyon etiketi ve sınırlamalarıyla e-ticaret kârlılığı benchmark raporları.',
+    'Açık yöntem, gerçek ölçüm, simülasyon etiketi ve sınırlamalarıyla teknik araştırma ve e-ticaret raporları.',
   alternates: { canonical: '/raporlar' },
 }
 
@@ -20,14 +20,14 @@ export default function ReportsPage() {
         <div className="wrap hero single">
           <div>
             <div className="crumb">
-              <i aria-hidden="true" /> RAPORLAR / AÇIK BENCHMARK
+              <i aria-hidden="true" /> RAPORLAR / AÇIK YÖNTEM
             </div>
             <h1>
-              Oranı değil, <span className="accent">varsayımı</span> karşılaştırın.
+              Sonucu değil, <span className="accent">kapsamı</span> okuyun.
             </h1>
             <p className="intro">
-              Benchmark notları tek bir “ideal” sayı vermek yerine formülü, veri kapsamını,
-              senaryoyu ve karara etkisini açıklar.
+              Teknik deneyler ve benchmark notları tek bir “ideal” sayı vermek yerine yöntemi,
+              ölçümü, veri kapsamını ve karara etkisini açıklar.
             </p>
           </div>
         </div>
@@ -43,17 +43,21 @@ export default function ReportsPage() {
           </div>
           <div className="head">
             <div>
-              <span className="eyebrow">RAPOR KÜTÜPHANESİ / {benchmarkReports.length}</span>
+              <span className="eyebrow">
+                RAPOR KÜTÜPHANESİ / {String(benchmarkReports.length).padStart(2, '0')}
+              </span>
               <h2>Karar vermeden önce kapsamı okuyun.</h2>
             </div>
-            <p>Raporlar; rehber, araç ve şablonlara bağlanan açık metodoloji notlarıdır.</p>
+            <p>Raporlar; rehber, araç ve deney notlarına bağlanan açık metodoloji yüzeyleridir.</p>
           </div>
           <div className="report-card-grid">
             {benchmarkReports.map((report, index) => (
               <a key={report.slug} href={`/raporlar/${report.slug}`} className="report-card">
                 <div>
                   <span>{String(index + 1).padStart(2, '0')}</span>
-                  <span className="tag">{report.status}</span>
+                  <span className="tag">
+                    {report.kind === 'technical' ? 'TEKNİK DENEY' : report.status}
+                  </span>
                 </div>
                 <h2>{report.title}</h2>
                 <p>{report.description}</p>
@@ -64,7 +68,7 @@ export default function ReportsPage() {
                   </div>
                   <div>
                     <dt>Güncellendi</dt>
-                    <dd>02 Ağustos 2026</dd>
+                    <dd>{report.reviewedAt.split('-').reverse().join('.')}</dd>
                   </div>
                 </dl>
                 <strong>Raporu ve yöntemi aç →</strong>
