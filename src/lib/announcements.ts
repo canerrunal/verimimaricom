@@ -39,6 +39,121 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'mega-eylul-satis-artirma-tavsiyeleri-2026',
+    addedOrder: 11,
+    eyebrow: 'TRENDYOL AKADEMİ / MEGA EYLÜL 2026',
+    title: 'Mega Eylül’de satış artırma tavsiyeleri: kampanyayı sepet ekonomisiyle kur.',
+    excerpt:
+      'Paylaşılan Trendyol Akademi görseli, Mega Eylül’de tek bir indirim yerine kupon, sepet ve görünürlük araçlarını birlikte kurgulamayı öneriyor. Benim eklediğim kritik katman ise şu: her promosyonu katkı payı, stok ve tekrar satın alma etkisiyle birlikte ölçmek.',
+    category: 'E-Ticaret ve Kampanya Stratejisi',
+    publishedAt: '2026-08-31',
+    updatedAt: '2026-08-31',
+    readingTime: '8 dk',
+    image: '/duyurular/mega-eylul-satis-artirma-tavsiyeleri-2026.png',
+    imageAlt:
+      'Mega Eylül kampanyasında kupon, indirim, görünürlük ve sepet büyüklüğü önerilerini anlatan Trendyol Akademi görseli',
+    source: 'Trendyol Akademi · Mega Eylül satış artırma tavsiyeleri · Paylaşılan görsel',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı Trendyol Akademi görselindeki kampanya önerilerinin Veri Mimarı formatında editoryal analizidir. Görselde açık kampanya tarihleri, indirim oranları veya garanti edilen satış artışı bulunmadığı için bu duyuruya yeni oran ve sonuç iddiası eklenmedi. Ek öneriler; promosyonları katkı payı, stok, dönüşüm ve tekrar satın alma metrikleriyle test etmeye yöneliktir.',
+    stats: [
+      {
+        label: 'KUPON KURGUSU',
+        value: '4 TÜR',
+        detail: 'Üründen Kazan, Takip Et Kazan, Hedef Kitle ve Yorum Yap Kazan',
+      },
+      {
+        label: 'SEPET ARAÇLARI',
+        value: '3 KATMAN',
+        detail: 'Net indirim, koşullu indirim ve Birlikte Al kurgusu',
+      },
+      {
+        label: 'GÖRÜNÜRLÜK',
+        value: '3 ETİKET',
+        detail: 'Flaş Ürünler, Avantajlı Ürün ve Trendyol Plus seçenekleri',
+      },
+      {
+        label: 'KONTROL',
+        value: '1 TABLO',
+        detail: 'Promosyon maliyetini katkı payı ve stokla birlikte izleyin',
+      },
+    ],
+    sections: [
+      {
+        id: 'gorsel-ne-oneriyor',
+        heading: 'Görselin ana fikri: tek indirim değil, promosyon bileşimi.',
+        paragraphs: [
+          'Görsel, Mega Eylül döneminde ürünleri daha cazip hale getirmek, sepet büyüklüğünü artırmak ve daha fazla müşteriye ulaşmak için üç ayrı kaldıraç gösteriyor: kuponlar, sepet odaklı indirimler ve görünürlük araçları.',
+          'Benim okumam şu: Bu araçlar birbirinin alternatifi değil; farklı karar anlarına dokunuyor. Kupon keşfi ve dönüşümü, sepet kurgusu sipariş değerini, görünürlük etiketleri ise erişimi etkiliyor. Hepsini aynı anda açmak ise otomatik olarak daha kârlı bir kampanya anlamına gelmiyor.',
+        ],
+      },
+      {
+        id: 'kuponu-amaca-gore-sec',
+        heading: 'Kuponu amaca göre seçin; herkese aynı indirimi vermeyin.',
+        paragraphs: [
+          'Üründen Kazan kuponu belirli ürünlerde ziyaretçiyi siparişe yaklaştırıyor. Takip Et Kazan mağaza kitlesini büyütmeye, Hedef Kitle Kuponu ilgisi yüksek segmenti yeniden yakalamaya, Yorum Yap Kazan ise sosyal kanıtı güçlendirmeye çalışıyor.',
+          'Bu dört kuponun maliyeti aynı değildir. Biri yeni siparişi, diğeri takipçi edinimini, bir başkası tekrar ziyareti veya yorum hacmini hedefler. Bu nedenle kupon performansını yalnızca kullanım sayısıyla değil, kupon sonrası katkı payı ve yeni müşteri oranıyla değerlendirmek gerekir.',
+        ],
+        bullets: [
+          'Yeni müşteri hedefleniyorsa ilk siparişteki indirim maliyetini ayrı izleyin.',
+          'Takipçi kuponunu mağaza ziyareti ve sonraki 30 gün siparişleriyle birlikte ölçün.',
+          'Yorum kuponunda yorum sayısı kadar içerik kalitesini ve dönüşüm etkisini kontrol edin.',
+          'Aynı müşterinin birden fazla kuponu üst üste kullanıp kullanamadığını baştan netleştirin.',
+        ],
+      },
+      {
+        id: 'sepeti-buyut-kari-koru',
+        heading: 'Sepeti büyütürken indirimin marjı eritmesine izin vermeyin.',
+        paragraphs: [
+          'Net indirim fiyatı doğrudan aşağı çeker; koşullu indirim belirli adet veya tutar eşiğiyle müşteriyi daha büyük siparişe taşır; Birlikte Al ise tamamlayıcı ürünleri aynı fırsat altında toplar. Üç yaklaşımın ortak amacı sepet değerini yükseltmek olsa da her birinin stok ve marj etkisi farklıdır.',
+          'Ben burada kampanya kararını şu tabloyla kurardım: satış fiyatı − ürün maliyeti − komisyon − kargo − indirim − reklam. Sepet büyüklüğü artarken sipariş başına katkı payı düşüyorsa, kampanya ciro üretiyor olabilir ama sağlıklı bir büyüme üretmiyor demektir.',
+        ],
+        bullets: [
+          'Koşullu indirimi, en çok tamamlayıcı ürün bulunan eşikte test edin.',
+          'Birlikte Al setlerinde yavaş dönen stoğu hızlı dönen ürünle rastgele eşleştirmeyin.',
+          'İndirim kodunu reklam mesajına eklemeden önce kodun gerçek maliyetini hesaplayın.',
+          'Minimum sepet eşiğini, ücretsiz kargo ve iade maliyetiyle birlikte değerlendirin.',
+        ],
+      },
+      {
+        id: 'gorunurlugu-veriyle-sec',
+        heading: 'Görünürlük etiketi bir sonuç değil, test hipotezidir.',
+        paragraphs: [
+          'Flaş Ürünler, Avantajlı Ürün ve Trendyol Plus seçenekleri ürünün daha fazla kullanıcıya görünmesine yardımcı olabilir. Fakat görünürlük artışı tek başına satış artışı değildir; stok, fiyat rekabeti, puan, teslimat vaadi ve ürün sayfası kalitesi aynı anda çalışır.',
+          'Bu yüzden her görünürlük aracında en azından gösterim, tıklama, dönüşüm, ortalama sepet, katkı payı ve stok tükenme hızını aynı dönemle karşılaştırın. Daha çok tıklama alıp daha düşük katkı bırakan bir ürün, pazarlama açısından başarılı görünürken ticari açıdan zayıflayabilir.',
+        ],
+      },
+      {
+        id: 'mega-eylul-test-plani',
+        heading: 'Mega Eylül için benim test planım.',
+        paragraphs: [
+          'Kampanyayı tek seferde tüm kataloğa açmak yerine ürünleri marj, stok ve geçmiş dönüşüm sinyaline göre gruplardım. Her grupta bir ana teklif seçer, diğer araçları kontrol grubu veya sınırlı varyant olarak tutardım.',
+        ],
+        bullets: [
+          'Önce son 14–28 günlük satış, dönüşüm, sepet ve katkı payı tabanını çıkarın.',
+          'Yüksek marjlı ve yeterli stoklu ürünleri ana kampanya grubuna alın.',
+          'Kupon, koşullu indirim ve görünürlük araçlarını aynı ürün üzerinde ayrı test hücrelerine bölün.',
+          'Günlük değil, kampanya sonunda net katkı ve stok devir hızıyla karar verin.',
+          'İndirim sonrası tekrar satın alma ve yeni müşteri maliyetini ayrıca raporlayın.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: kampanya heyecanı değil, karar sistemi kazandırır.',
+        paragraphs: [
+          'Mega Eylül görselindeki öneriler pratik ve uygulanabilir; fakat asıl farkı yaratacak şey hangi aracı açtığınız değil, onu hangi ürün ve hangi müşteri amacı için açtığınız. Kuponu edinim, sepet teklifini katkı ve görünürlük aracını erişim hipotezi olarak konumlandırdığınızda kampanya yönetilebilir bir deneye dönüşür.',
+          'Benim ek kuralım basit: İndirim yüzdesini değil, indirimden sonra kalan katkı payını ve oluşan müşteri varlığını raporlayın. Böylece Mega Eylül yalnızca kısa vadeli sipariş artışı değil, daha iyi bir kanal ve ürün karar sistemi bırakır.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'KAMPANYA KARARINI HESAPLA',
+      title: 'İndirimi açmadan önce gerçek katkı payını görün.',
+      body: 'Satış fiyatı, maliyet, komisyon, kargo ve indirim etkisini birlikte hesaplayarak kampanya eşiğini kendi ürün karmana göre belirle.',
+      ctaLabel: 'Kâr marjını hesapla →',
+      ctaHref: '/araclar/kar-marji-hesaplayici',
+    },
+  },
+  {
     slug: 'iki-mac-mini-m4-qwen38-27b-exo-mlx-2026',
     addedOrder: 10,
     eyebrow: 'AI LAB / 31 AĞUSTOS 2026',
