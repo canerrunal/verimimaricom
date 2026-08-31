@@ -39,6 +39,78 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'iki-mac-mini-m4-qwen38-27b-exo-mlx-2026',
+    addedOrder: 10,
+    eyebrow: 'AI LAB / 31 AĞUSTOS 2026',
+    title: 'İki Mac mini M4, 27B modeli çalıştırdı. Ama mesele hızdı.',
+    excerpt:
+      'İki base Mac mini M4 16 GB’ı Thunderbolt 4 ve EXO ile bağladık. Qwen3.8-27B 4-bit gerçekten iki node üzerinde çalıştı; fakat yaklaşık 6 tok/s, swap ve uzun yükte 90°C üzeri sıcaklıklar bunun günlük production sistemi olmadığını gösterdi.',
+    category: 'AI ve Teknik Deney',
+    publishedAt: '2026-08-31',
+    updatedAt: '2026-08-31',
+    readingTime: '5 dk',
+    image: '/api/social/announcements/iki-mac-mini-m4-qwen38-27b-exo-mlx-2026/image?v=8',
+    imageAlt:
+      'İki Mac mini M4 ile Qwen3.8-27B dağıtık inference testinin sonuçlarını gösteren Veri Mimarı teknik deney kartı',
+    source: 'Veri Mimarı saha testi · Qwen model kartı · Apple Support',
+    sourceUrl: 'https://huggingface.co/Qwen/Qwen3.8-27B',
+    sourceNote:
+      '6,0 tok/s, 37,7 Gbit/s, RAM, swap ve sıcaklık değerleri Veri Mimarı’nın 29–30 Ağustos 2026 tarihli gerçek cihaz gözlemleridir. Dış kaynaklar model ve donanım özellikleri için kullanılmıştır; sonuçlar akademik benchmark veya genellenebilir üst sınır değildir.',
+    stats: [
+      {
+        label: 'GENERATION',
+        value: '≈6,0 TOK/S',
+        detail: 'Kısa testlerde 5,9–6,1 tok/s bandı',
+      },
+      {
+        label: 'THUNDERBOLT 4',
+        value: '≈37,7 GBİT/S',
+        detail: 'Teorik 40 Gbit/s sınırının yaklaşık %94’ü',
+      },
+      {
+        label: 'UZUN YÜK',
+        value: '>90°C',
+        detail: 'Swap ve yüksek bellek baskısıyla birlikte',
+      },
+    ],
+    sections: [
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: çalışıyor olması yetmiyor.',
+        paragraphs: [
+          'Bu deneyin en değerli sonucu “iki Mac’i bağladık, her şey iki kat hızlandı” değil. Model gerçekten iki node’a shard edildi ve kullanılabilir cevaplar üretti; fakat fit, fast ve sustainable üç farklı soruya dönüştü.',
+          '6 tok/s, uzun promptlarda yaklaşık 83 saniyeye ulaşan TTFT, node başına 12,5–14+ GB RAM kullanımı, swap ve 90°C üzeri uzun yük sıcaklıkları birlikte okunduğunda sonuç net: başarılı bir proof-of-concept, zayıf bir 7/24 agent workstation.',
+        ],
+      },
+      {
+        id: 'ne-kanitlandi',
+        heading: 'Ne kanıtlandı?',
+        paragraphs: [
+          'İki base Mac mini M4 16 GB; EXO Pipeline Sharding + MLX Ring ile Qwen3.8-27B 4-bit modeli çalıştırabildi. İki GPU’nun da aktif olduğu cihaz seviyesinde telemetry ile doğrulandı.',
+        ],
+        bullets: [
+          'Model iki node’a gerçekten bölündü.',
+          'Thunderbolt bağlantısı düşük hız bahanesi değildi.',
+          'Pipeline sharding kapasite kazandırdı; tek akış hızını 2× yapmadı.',
+        ],
+      },
+      {
+        id: 'sonraki-mimari',
+        heading: 'Daha mantıklı sonraki mimari.',
+        paragraphs: [
+          'İki Mac’i tek 27B model için sıraya koymak yerine, bir node’u reasoning/ana agent, diğerini coding, scraping veya tool worker olarak kullanmak toplam sistem throughput’u açısından daha mantıklı olabilir.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'TÜM ÖLÇÜMLERİ OKU',
+      title: 'Testin yöntemini ve sınırlarını aç.',
+      body: 'Donanım, bağlantı, placement, bellek, sıcaklık, TTFT ve production kararını tek raporda incele.',
+      ctaLabel: 'Teknik raporu oku →',
+      ctaHref: '/raporlar/iki-mac-mini-m4-qwen38-27b-exo-mlx',
+    },
+  },
+  {
     slug: 'turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026',
     addedOrder: 9,
     eyebrow: 'PAZAR NABZI / 27 AĞUSTOS 2026',
