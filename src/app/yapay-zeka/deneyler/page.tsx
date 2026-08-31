@@ -54,7 +54,8 @@ const experiments = [
     number: '05',
     status: 'AÇIK TEKNİK RAPOR',
     title: 'İki Mac mini ile dağıtık Qwen inference',
-    question: 'İki ayrı 16 GB Apple Silicon node, tek bir 27B modeli gerçek iş yükünde taşıyabilir mi?',
+    question:
+      'İki ayrı 16 GB Apple Silicon node, tek bir 27B modeli gerçek iş yükünde taşıyabilir mi?',
     method: 'EXO · MLX Ring · Pipeline Sharding · Thunderbolt 4 · macmon',
     result:
       'Model iki node üzerinde çalıştı; yaklaşık 6 tok/s, swap ve termal yük birlikte ölçülerek production sınırı açıklandı.',

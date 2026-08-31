@@ -3,7 +3,12 @@ import { notFound } from 'next/navigation'
 import NavBar from '@/components/landing/NavBar'
 import Footer from '@/components/landing/Footer'
 import { getDictionary } from '@/lib/i18n'
-import { benchmarkReports, getBenchmarkReport, type BenchmarkReport, type TechnicalReport } from '@/lib/reports'
+import {
+  benchmarkReports,
+  getBenchmarkReport,
+  type BenchmarkReport,
+  type TechnicalReport,
+} from '@/lib/reports'
 import { brandProfile, getSiteUrl } from '@/lib/seo'
 
 type PageProps = { params: Promise<{ slug: string }> }
@@ -53,7 +58,9 @@ export default async function ReportDetailPage({ params }: PageProps) {
     },
   ]
   if (report.kind === 'technical' && report.technical) {
-    return <TechnicalReportView report={report} technical={report.technical} t={t} jsonLd={jsonLd} />
+    return (
+      <TechnicalReportView report={report} technical={report.technical} t={t} jsonLd={jsonLd} />
+    )
   }
   return (
     <main className="page">
@@ -299,13 +306,24 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
             <h1>{report.title}</h1>
             <p className="intro">{report.description}</p>
             <div className="signals">
-              <span className="tag"><i /> Gerçek dünya deneyi</span>
-              <span className="tag"><i /> {technical.testDate}</span>
-              <span className="tag"><i /> {technical.readingTime}</span>
-              <span className="tag"><i /> Açık sınırlamalar</span>
+              <span className="tag">
+                <i /> Gerçek dünya deneyi
+              </span>
+              <span className="tag">
+                <i /> {technical.testDate}
+              </span>
+              <span className="tag">
+                <i /> {technical.readingTime}
+              </span>
+              <span className="tag">
+                <i /> Açık sınırlamalar
+              </span>
             </div>
           </div>
-          <aside className="report-manifest technical-report-manifest" aria-label="Teknik rapor özeti">
+          <aside
+            className="report-manifest technical-report-manifest"
+            aria-label="Teknik rapor özeti"
+          >
             <span className="eyebrow">TEKNİK RAPOR MANİFESTOSU</span>
             <strong>6,0</strong>
             <small>TOK/S · TEMSİLÎ GENERATION</small>
@@ -367,7 +385,10 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
               <span className="eyebrow">SİSTEM TOPOLOJİSİ</span>
               <h2>İki Mac nasıl aynı isteği taşıdı?</h2>
             </div>
-            <p>Modelin tamamı iki makineye tek parça olarak yüklenmedi; katmanlar ve ara aktivasyonlar node’lar arasında ilerledi.</p>
+            <p>
+              Modelin tamamı iki makineye tek parça olarak yüklenmedi; katmanlar ve ara
+              aktivasyonlar node’lar arasında ilerledi.
+            </p>
           </div>
           <div className="technical-architecture-grid">
             {technical.architecture.map((step) => (
@@ -389,11 +410,15 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
           <div>
             <h3>Nasıl test edildi?</h3>
             <ul>
-              {technical.methodology.map((item) => <li key={item}>{item}</li>)}
+              {technical.methodology.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
             <h3>Sınırlamalar</h3>
             <ul>
-              {technical.limitations.map((item) => <li key={item}>{item}</li>)}
+              {technical.limitations.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -419,10 +444,14 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
               <article id={section.id} className="technical-report-section" key={section.id}>
                 <span className="eyebrow">{section.eyebrow}</span>
                 <h2>{section.title}</h2>
-                {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
                 {section.bullets ? (
                   <ul>
-                    {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                    {section.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
                   </ul>
                 ) : null}
               </article>
@@ -437,12 +466,30 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
               <span className="eyebrow">SON KARAR</span>
               <h2>Fit ≠ fast ≠ sustainable.</h2>
             </div>
-            <p>Bu deney kapasiteyi kanıtladı; günlük üretim sisteminin kararını ise başka metriklere bıraktı.</p>
+            <p>
+              Bu deney kapasiteyi kanıtladı; günlük üretim sisteminin kararını ise başka metriklere
+              bıraktı.
+            </p>
           </div>
           <div className="technical-conclusion-grid">
-            <article><span>EVET</span><h3>Model çalıştı.</h3><p>İki node shard’landı, iki GPU aktifti, kullanılabilir cevap ve kod üretildi.</p></article>
-            <article><span>EVET</span><h3>Bağlantı sağlıklıydı.</h3><p>37,7 Gbit/s ölçüm, Thunderbolt hattını ana şüpheli olmaktan çıkardı.</p></article>
-            <article><span>HAYIR</span><h3>7/24 ideal değil.</h3><p>6 tok/s, swap, yüksek TTFT ve uzun yük sıcaklıkları sürekli kullanım için zayıf sinyal.</p></article>
+            <article>
+              <span>EVET</span>
+              <h3>Model çalıştı.</h3>
+              <p>İki node shard’landı, iki GPU aktifti, kullanılabilir cevap ve kod üretildi.</p>
+            </article>
+            <article>
+              <span>EVET</span>
+              <h3>Bağlantı sağlıklıydı.</h3>
+              <p>37,7 Gbit/s ölçüm, Thunderbolt hattını ana şüpheli olmaktan çıkardı.</p>
+            </article>
+            <article>
+              <span>HAYIR</span>
+              <h3>7/24 ideal değil.</h3>
+              <p>
+                6 tok/s, swap, yüksek TTFT ve uzun yük sıcaklıkları sürekli kullanım için zayıf
+                sinyal.
+              </p>
+            </article>
           </div>
         </div>
       </section>
@@ -454,7 +501,9 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
             <ol className="report-sources">
               {technical.sources.map((source) => (
                 <li key={source.url}>
-                  <a href={source.url} target="_blank" rel="noopener noreferrer">{source.name} ↗</a>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer">
+                    {source.name} ↗
+                  </a>
                   <span>{source.note}</span>
                 </li>
               ))}
@@ -464,8 +513,16 @@ function TechnicalReportView({ report, technical, t, jsonLd }: TechnicalReportVi
             <span className="eyebrow">BİR SONRAKİ ADIM</span>
             <h2>Deneyi başka kullanım mimarileriyle karşılaştırın.</h2>
             <div className="report-links">
-              {technical.relatedTools.map((item) => <a key={item.href} href={item.href}>{item.title} →</a>)}
-              {technical.relatedGuides.map((item) => <a key={item.href} href={item.href}>{item.title} →</a>)}
+              {technical.relatedTools.map((item) => (
+                <a key={item.href} href={item.href}>
+                  {item.title} →
+                </a>
+              ))}
+              {technical.relatedGuides.map((item) => (
+                <a key={item.href} href={item.href}>
+                  {item.title} →
+                </a>
+              ))}
             </div>
           </div>
         </div>

@@ -43,7 +43,9 @@ export default function ReportsPage() {
           </div>
           <div className="head">
             <div>
-              <span className="eyebrow">RAPOR KÜTÜPHANESİ / {String(benchmarkReports.length).padStart(2, '0')}</span>
+              <span className="eyebrow">
+                RAPOR KÜTÜPHANESİ / {String(benchmarkReports.length).padStart(2, '0')}
+              </span>
               <h2>Karar vermeden önce kapsamı okuyun.</h2>
             </div>
             <p>Raporlar; rehber, araç ve deney notlarına bağlanan açık metodoloji yüzeyleridir.</p>
@@ -53,7 +55,9 @@ export default function ReportsPage() {
               <a key={report.slug} href={`/raporlar/${report.slug}`} className="report-card">
                 <div>
                   <span>{String(index + 1).padStart(2, '0')}</span>
-                  <span className="tag">{report.kind === 'technical' ? 'TEKNİK DENEY' : report.status}</span>
+                  <span className="tag">
+                    {report.kind === 'technical' ? 'TEKNİK DENEY' : report.status}
+                  </span>
                 </div>
                 <h2>{report.title}</h2>
                 <p>{report.description}</p>
