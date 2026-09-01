@@ -1,8 +1,6 @@
 # Sosyal yayın otomasyonu
 
-Yeni bir kayıt `src/lib/announcements.ts` dosyasına eklenip `main` dalına ulaştığında GitHub Actions, canlı duyuru ve 1080×1350 JPEG sosyal kartı hazır olana kadar bekler. Ardından Instagram, Facebook, LinkedIn ve X için platforma özgü metinleri resmî API’lerle yayınlar.
-
-X gönderileri API maliyetini düşük tutmak için duyuru URL'sini içermez. Başlık, kısa özet, “Detaylar profil bağlantısında.” yönlendirmesi ve etiketlerle yayınlanır; bu nedenle X profilindeki web sitesi alanı `https://verimimari.com` olmalıdır.
+Yeni bir kayıt `src/lib/announcements.ts` dosyasına eklenip `main` dalına ulaştığında GitHub Actions, canlı duyuru ve 1080×1350 JPEG sosyal kartı hazır olana kadar bekler. Ardından Instagram, Facebook, LinkedIn, X ve Threads için platforma özgü metinleri resmî API’lerle yayınlar. Threads gönderisi X ile aynı kısa metni kullanır ve görsel taşımaz.
 
 Başarılı her yayın `social/<platform>/<slug>` Git etiketiyle kaydedilir. Bir platform hata verirse başarılı olanlar tekrarlanmaz; iş akışı yeniden çalıştırıldığında yalnızca eksik yayın tamamlanır.
 
@@ -24,14 +22,15 @@ Başarılı her yayın `social/<platform>/<slug>` Git etiketiyle kaydedilir. Bir
 | `FACEBOOK_PAGE_ID`      | Facebook Sayfa kimliği                                                                        |
 | `LINKEDIN_ACCESS_TOKEN` | `w_organization_social` veya kişisel paylaşımda `w_member_social` yetkili OAuth 2.0 belirteci |
 | `LINKEDIN_AUTHOR_URN`   | `urn:li:organization:<id>` veya `urn:li:person:<id>`                                          |
-| `X_CONSUMER_KEY`        | X uygulamasının OAuth 1.0a Consumer Key değeri                                                |
-| `X_CONSUMER_SECRET`     | X uygulamasının OAuth 1.0a Consumer Secret değeri                                             |
-| `X_ACCESS_TOKEN`        | `@verimimari` hesabına bağlı okuma-yazma yetkili erişim belirteci                             |
-| `X_ACCESS_TOKEN_SECRET` | `@verimimari` erişim belirtecinin OAuth 1.0a sırrı                                            |
+| `X_USER_ACCESS_TOKEN`   | Gönderi yazma yetkili OAuth 2.0 kullanıcı erişim belirteci                                    |
+| `THREADS_ACCESS_TOKEN`  | Threads Graph API kullanıcı erişim belirteci                                                    |
+| `THREADS_USER_ID`       | Threads profilinin kullanıcı kimliği                                                            |
 
 Meta uygulamasında Instagram için `instagram_business_basic` ve `instagram_business_content_publish` (Instagram Login) veya `instagram_basic`, `instagram_content_publish` ve `pages_read_engagement` (Facebook Login) izinleri gerekir. Facebook Sayfası yayını için Page belirtecinin `pages_manage_posts`, `pages_read_engagement` ve ilgili sayfa görevlerini taşıması gerekir.
 
-LinkedIn şirket sayfasında belirteci üreten üye sayfada Administrator veya Content Admin rolünde olmalıdır. X projesinde OAuth 1.0a kullanıcı bağlamında `Read and write` izni ve aktif API erişimi gerekir.
+Threads için Threads uygulamasından alınan kullanıcı erişim belirteci ve `threads_basic` ile `threads_content_publish` kapsamları gerekir. Metin gönderisi iki adımda oluşturulur: `/{threads-user-id}/threads` üzerinde `media_type=TEXT`, ardından dönen konteyner kimliğiyle `/{threads-user-id}/threads_publish`.
+
+LinkedIn şirket sayfasında belirteci üreten üye sayfada Administrator veya Content Admin rolünde olmalıdır. X projesinde kullanıcı bağlamında gönderi yazma izni ve aktif API erişimi gerekir.
 
 ## Güvenli açılış sırası
 

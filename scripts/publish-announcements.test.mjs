@@ -7,6 +7,7 @@ import {
   publishFacebook,
   publishInstagram,
   publishLinkedIn,
+  publishThreads,
   publishX,
 } from './social-publisher-core.mjs'
 
@@ -57,6 +58,7 @@ test('platforma özgü metinleri ve 4:5 görsel adresini üretir', () => {
   assert.match(content.x, /Detaylar profil bağlantısında\./)
   assert.match(content.x, /#VeriMimarı/)
   assert.doesNotMatch(content.x, /https?:\/\//)
+  assert.equal(content.threads, content.x)
 })
 
 test('Instagram medya konteynerini hazırlayıp yayınlar', async () => {
@@ -161,6 +163,30 @@ test('X gönderisini OAuth 1.0a kullanıcı anahtarlarıyla oluşturur', async (
   assert.match(call.options.headers.Authorization, /^OAuth oauth_consumer_key=/)
   assert.match(call.options.headers.Authorization, /oauth_token="access-token"/)
   assert.equal(JSON.parse(call.options.body).text, content.x)
+})
+
+test('Threads için görselsiz metin konteyneri hazırlayıp yayınlar', async () => {
+  const calls = []
+  const content = buildSocialContent(announcement)
+  const result = await publishThreads(content, {
+    env: {
+      THREADS_ACCESS_TOKEN: 'secret',
+      THREADS_USER_ID: 'threads-user-1',
+      THREADS_CONTAINER_WAIT_MS: '0',
+    },
+    fetchImpl: async (url, options = {}) => {
+      calls.push({ url: String(url), options })
+      if (String(url).endsWith('/threads')) return response({ id: 'threads-container-1' })
+      return response({ id: 'threads-post-1' })
+    },
+  })
+  assert.equal(result.id, 'threads-post-1')
+  assert.equal(calls.length, 2)
+  assert.match(calls[0].url, /graph\.threads\.com\/v1\.0\/threads-user-1\/threads$/)
+  assert.equal(calls[0].options.body.get('media_type'), 'TEXT')
+  assert.equal(calls[0].options.body.get('text'), content.threads)
+  assert.match(calls[1].url, /threads-user-1\/threads_publish$/)
+  assert.equal(calls[1].options.body.get('creation_id'), 'threads-container-1')
 })
 
 test('API hataları platform ve durum koduyla raporlanır', async () => {

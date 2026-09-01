@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { createHmac, randomBytes } from 'node:crypto'
 import ts from 'typescript'
 
-export const SOCIAL_PLATFORMS = ['instagram', 'facebook', 'linkedin', 'x']
+export const SOCIAL_PLATFORMS = ['instagram', 'facebook', 'linkedin', 'x', 'threads']
 
 export async function loadAnnouncementsFromSource(source) {
   const transpiled = ts.transpileModule(source, {
@@ -120,6 +120,9 @@ export function buildSocialContent(announcement, siteUrl = 'https://verimimari.c
     facebook,
     linkedin,
     x,
+    // Threads metin gönderisi görsel taşımaz; X için üretilen kısa metin aynı
+    // karakter güvenlik payıyla Threads'te de kullanılabilir.
+    threads: x,
   }
 }
 
@@ -330,11 +333,47 @@ export async function publishX(content, { env = process.env, fetchImpl = fetch, 
   )
 }
 
+export async function publishThreads(content, { env = process.env, fetchImpl = fetch } = {}) {
+  requireEnv(env, ['THREADS_ACCESS_TOKEN', 'THREADS_USER_ID'])
+  const version = env.THREADS_GRAPH_VERSION || 'v1.0'
+  const graph = `https://graph.threads.com/${version}`
+  const created = await readResponse(
+    await fetchImpl(`${graph}/${env.THREADS_USER_ID}/threads`, {
+      method: 'POST',
+      body: new URLSearchParams({
+        media_type: 'TEXT',
+        text: content.threads,
+        access_token: env.THREADS_ACCESS_TOKEN,
+      }),
+    }),
+    'Threads medya hazırlığı',
+  )
+  if (!created.id) throw new Error('Threads medya konteyneri kimliği döndürmedi.')
+
+  // Meta, konteynerin sunucu tarafında hazırlanması için ortalama 30 saniye
+  // beklenmesini öneriyor. Testlerde bu süre THREADS_CONTAINER_WAIT_MS=0 ile
+  // devre dışı bırakılabilir.
+  const waitMs = Number(env.THREADS_CONTAINER_WAIT_MS ?? 30000)
+  if (waitMs > 0) await new Promise((resolve) => setTimeout(resolve, waitMs))
+
+  return readResponse(
+    await fetchImpl(`${graph}/${env.THREADS_USER_ID}/threads_publish`, {
+      method: 'POST',
+      body: new URLSearchParams({
+        creation_id: created.id,
+        access_token: env.THREADS_ACCESS_TOKEN,
+      }),
+    }),
+    'Threads yayını',
+  )
+}
+
 export const platformPublishers = {
   instagram: publishInstagram,
   facebook: publishFacebook,
   linkedin: publishLinkedIn,
   x: publishX,
+  threads: publishThreads,
 }
 
 export async function waitForLiveAnnouncement(content, { fetchImpl = fetch } = {}) {
