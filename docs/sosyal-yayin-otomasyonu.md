@@ -22,7 +22,10 @@ Başarılı her yayın `social/<platform>/<slug>` Git etiketiyle kaydedilir. Bir
 | `FACEBOOK_PAGE_ID`      | Facebook Sayfa kimliği                                                                        |
 | `LINKEDIN_ACCESS_TOKEN` | `w_organization_social` veya kişisel paylaşımda `w_member_social` yetkili OAuth 2.0 belirteci |
 | `LINKEDIN_AUTHOR_URN`   | `urn:li:organization:<id>` veya `urn:li:person:<id>`                                          |
-| `X_USER_ACCESS_TOKEN`   | Gönderi yazma yetkili OAuth 2.0 kullanıcı erişim belirteci                                    |
+| `X_CONSUMER_KEY`        | X uygulamasının OAuth 1.0a consumer key'i                                                     |
+| `X_CONSUMER_SECRET`     | X uygulamasının OAuth 1.0a consumer secret'ı                                                  |
+| `X_ACCESS_TOKEN`        | X hesabının OAuth 1.0a access token'ı                                                         |
+| `X_ACCESS_TOKEN_SECRET` | X hesabının OAuth 1.0a access token secret'ı                                                  |
 | `THREADS_ACCESS_TOKEN`  | Threads Graph API kullanıcı erişim belirteci                                                  |
 | `THREADS_USER_ID`       | Threads profilinin kullanıcı kimliği                                                          |
 
