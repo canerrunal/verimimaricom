@@ -24,6 +24,7 @@ export type Announcement = {
   image: string
   imageAlt: string
   source: string
+  sourceUrl?: string
   sourceNote: string
   stats: AnnouncementStat[]
   sections: AnnouncementSection[]
@@ -37,6 +38,582 @@ export type Announcement = {
 }
 
 export const announcements: Announcement[] = [
+  {
+    slug: 'claude-fable-5-1-performans-bilim-maliyet-2026',
+    addedOrder: 12,
+    eyebrow: 'AI / ANTHROPIC / 1 EYLÜL 2026',
+    title: 'Claude Fable 5.1 çıktı: bilimsel ajanlarda sıçrama, maliyette disiplin.',
+    excerpt:
+      'Anthropic’in yeni Fable 5.1 modeli; uzun bağlam, araç kullanan ajanlar ve bilimsel iş akışlarında iddialı sonuçlar açıklıyor. Benim okumam: fark yalnızca benchmark skorunda değil, aynı işi daha az gecikme ve daha kontrollü maliyetle sürdürebilme ihtimalinde.',
+    category: 'Yapay Zekâ ve Model Analizi',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '10 dk',
+    image: '/api/social/announcements/claude-fable-5-1-performans-bilim-maliyet-2026/image?v=8',
+    imageAlt:
+      'Claude Fable 5.1 modelinin benchmark, bilimsel araştırma ve API maliyet göstergelerini özetleyen Veri Mimarı duyuru kartı',
+    source: 'Anthropic · Introducing Claude Fable 5.1 and Claude Mythos 5.1 · 1 Eylül 2026',
+    sourceUrl: 'https://www.anthropic.com/claude-fable-and-mythos-5-1',
+    sourceNote:
+      'Bu duyuru Anthropic’in 1 Eylül 2026 tarihli model duyurusu ve resmî Claude Platform dokümantasyonu temel alınarak hazırlandı. Benchmark skorları ve bilimsel sonuçlar Anthropic’in paylaştığı test koşullarına aittir; bağımsız tekrar veya her üretim iş yükü için garanti değildir. Kullanıcı notlarında yer alan, resmî kaynakta doğrulanmayan skorlar bu yayına eklenmedi.',
+    stats: [
+      {
+        label: 'TERMINAL-BENCH-SCIENCE',
+        value: '%52,6',
+        detail: 'Terminal-Bench-Science 0.1; Fable 5’te %24,7 idi',
+      },
+      {
+        label: 'TERMINAL-BENCH 4.0',
+        value: '%55,8',
+        detail: 'Araç kullanan terminal görevlerinde açıklanan skor',
+      },
+      {
+        label: 'AUTOMATIONBENCH',
+        value: '%31,4',
+        detail: 'Fable 5’in %17,1 skoruna göre belirgin artış',
+      },
+      {
+        label: 'CACHE READ',
+        value: '$0,25/M',
+        detail: 'Bir milyon token başına cache okuma fiyatı',
+      },
+    ],
+    sections: [
+      {
+        id: 'ne-duyuruldu',
+        heading: 'Fable 5.1, Mythos çizgisindeki kapasiteyi daha geniş kullanıma açıyor.',
+        paragraphs: [
+          'Anthropic, Claude Fable 5.1’i 1 Eylül 2026’da duyurdu. Model; 1 milyon token bağlam penceresi, 128 bin token’a kadar çıktı ve Claude platformunda üretim kullanımı için erişilebilir bir API modeli olarak konumlanıyor.',
+          'Anthropic’in ifadesine göre Fable 5.1, Project Glasswing’e özel tutulan Mythos 5.1 ile aynı temel yetenekleri paylaşıyor. Aradaki asıl fark, erişim modelinde: Fable geliştiricilerin ve ekiplerin genel kullanımına açılırken Mythos araştırma programıyla sınırlı kalıyor.',
+        ],
+      },
+      {
+        id: 'benchmarkleri-nasil-okuyorum',
+        heading: 'Benchmark tablosu güçlü; ama puanları görev türüyle birlikte okumak gerekiyor.',
+        paragraphs: [
+          'Anthropic’in yayımladığı tabloda Fable 5.1, Terminal-Bench-Science 0.1’de %52,6; Terminal-Bench 4.0’da %55,8; AutomationBench’te %31,4 ve CursorBench 3.2.0’da %73,4 skor gösteriyor. OSWorld 2.0’da kısmi başarı %77,9, katı başarı ise %41,7 olarak veriliyor.',
+          'Bu sonuçların ortak sinyali, modelin yalnızca metin üretmekten çok araç çağırma, terminal etkileşimi ve çok adımlı iş akışlarında değerlendirildiği. Yine de benchmark skoru, kendi veri setinizdeki hata maliyetini veya entegrasyon sürtünmesini tek başına tahmin etmez. Üretim kararı için görev bazlı küçük bir deneme şart.',
+        ],
+        bullets: [
+          'Terminal ve ajan görevlerinde başarıyı, insan müdahalesi ve yeniden deneme sayısıyla birlikte ölçün.',
+          'Kod benchmarkını gerçek depo, test süresi ve geri alma maliyetiyle karşılaştırın.',
+          'Uzun bağlam iddiasını kendi dokümanlarınızda doğruluk ve gecikme birlikteyken test edin.',
+        ],
+      },
+      {
+        id: 'bilimsel-is-akislari',
+        heading: 'Bilimsel tarafta model, cevap veren asistandan araştırma ortağına yaklaşıyor.',
+        paragraphs: [
+          'Anthropic, Fable 5.1’in 12 hedef üzerinde protein bağlayıcı tasarımında yaklaşık %50 isabet oranına ulaştığını; Venüs haritalama çalışmasında ise 2–3 kilometre çözünürlüğe ve bazı yüksekliklerde %25’e kadar daha iyi doğruluğa katkı verdiğini bildiriyor.',
+          'Ayrıca yedi açık kaynak protein ve genomik modelinin H100 üzerinde 2,5 kata kadar daha hızlı çalıştırıldığını ve tahmini GPU maliyetlerinin %30–60 azaldığını açıklıyor. Bunlar ilginç sonuçlar; fakat Anthropic’in kendi araştırma örnekleri oldukları için bağımsız laboratuvar tekrarı ve yöntem ayrıntıları görülmeden genellenmemeli.',
+        ],
+      },
+      {
+        id: 'maliyet-ve-performans',
+        heading: 'Ekonomik fark, token fiyatından çok tekrarlanan ajan işlerinde ortaya çıkabilir.',
+        paragraphs: [
+          'Claude Platform dokümantasyonunda Fable 5.1 için giriş fiyatı milyon token başına 10 dolar, çıkış fiyatı 50 dolar ve cache read fiyatı 0,25 dolar olarak veriliyor. Anthropic tipik iş yüklerinde yaklaşık %25, yoğun ajan kullanımında ise %45’e kadar maliyet düşüşü bildirse de gerçek fatura; bağlam tekrarları, araç çağrıları ve çıktı uzunluğuna bağlı.',
+          'Benim önerim, yalnızca milyon token fiyatını değil, görev başına toplam maliyeti hesaplamak: başarılı görev sayısı, insan düzeltmesi, gecikme, araç çağrısı ve tekrar deneme dahil. Ucuz görünen bir model, başarısız görevleri çoğaltıyorsa pahalıya gelebilir.',
+        ],
+        bullets: [
+          'Aynı görevi Fable 5.1 ve mevcut modelinizle sabit bir örneklemde çalıştırın.',
+          'Başarı başına maliyeti ve insanın harcadığı dakikayı ayrı raporlayın.',
+          'Cache kullanımını ve uzun bağlamı ölçmeden fiyat avantajı varsaymayın.',
+        ],
+      },
+      {
+        id: 'guvenlik-ve-sinirlari',
+        heading: 'Daha az yanlış güvenlik müdahalesi, daha az güvenlik anlamına gelmiyor.',
+        paragraphs: [
+          'Anthropic, Fable 5.1’de siber güvenlik görevlerinde yanlış pozitif müdahalelerin %60; zararsız biyoloji taleplerindeki gereksiz engellemelerin %85 azaldığını açıklıyor. Bu, araştırmacıların meşru iş akışında daha az sürtünme yaşayabileceğine işaret ediyor; ancak güvenlik katmanlarının kaldırıldığı anlamına gelmiyor.',
+          'Özellikle müşteri verisi, otomasyon yetkisi ve üretim sistemlerine erişim söz konusu olduğunda modelin güvenlik değerlendirmesi tek başına yeterli değil. Yetki kapsamı, denetim izi, insan onayı ve geri alma planı uygulamanın parçası olmalı.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: Fable 5.1’in asıl testi, ölçülebilir ajan iş akışında.',
+        paragraphs: [
+          'Fable 5.1’i yalnızca “daha zeki model” diye okumuyorum. Uzun bağlam, araç kullanımı, bilimsel araştırma ve cache ekonomisi aynı modelde birleştiğinde; katalog analizi, rapor hazırlama, kod inceleme ve operasyon otomasyonu gibi tekrarlanan işlerde daha iyi bir maliyet–kalite dengesi kurulabilir.',
+          'Fakat duyurudaki skorlar üretim garantisi değil, güçlü bir başlangıç sinyali. Veri Mimarı açısından doğru test; kendi e-ticaret verinizde görev başarı oranını, insan müdahalesini, gecikmeyi ve görev başı maliyeti aynı panelde izlemek. Fable 5.1 gerçekten fark yaratıyorsa bunu benchmarkta değil, bu dört ölçümün birlikte iyileşmesinde görmeliyiz.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'MODEL SEÇİMİNİ ÖLÇ',
+      title: 'Ajan iş akışını kendi verinle karşılaştır.',
+      body: 'Modeli değiştirmeden önce görev setini, başarı eşiğini, insan müdahalesini ve görev başı maliyeti tanımla; sonra sonucu ölçerek karar ver.',
+      ctaLabel: 'AI otomasyon rehberini incele →',
+      ctaHref: '/rehberler/ai-otomasyon',
+    },
+  },
+  {
+    slug: 'mega-eylul-satis-artirma-tavsiyeleri-2026',
+    addedOrder: 11,
+    eyebrow: 'TRENDYOL AKADEMİ / MEGA EYLÜL 2026',
+    title: 'Mega Eylül’de satış artırma tavsiyeleri: kampanyayı sepet ekonomisiyle kur.',
+    excerpt:
+      'Paylaşılan Trendyol Akademi görseli, Mega Eylül’de tek bir indirim yerine kupon, sepet ve görünürlük araçlarını birlikte kurgulamayı öneriyor. Benim eklediğim kritik katman ise şu: her promosyonu katkı payı, stok ve tekrar satın alma etkisiyle birlikte ölçmek.',
+    category: 'E-Ticaret ve Kampanya Stratejisi',
+    publishedAt: '2026-08-31',
+    updatedAt: '2026-08-31',
+    readingTime: '8 dk',
+    image: '/duyurular/mega-eylul-satis-artirma-tavsiyeleri-2026.png',
+    imageAlt:
+      'Mega Eylül kampanyasında kupon, indirim, görünürlük ve sepet büyüklüğü önerilerini anlatan Trendyol Akademi görseli',
+    source: 'Trendyol Akademi · Mega Eylül satış artırma tavsiyeleri · Paylaşılan görsel',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı Trendyol Akademi görselindeki kampanya önerilerinin Veri Mimarı formatında editoryal analizidir. Görselde açık kampanya tarihleri, indirim oranları veya garanti edilen satış artışı bulunmadığı için bu duyuruya yeni oran ve sonuç iddiası eklenmedi. Ek öneriler; promosyonları katkı payı, stok, dönüşüm ve tekrar satın alma metrikleriyle test etmeye yöneliktir.',
+    stats: [
+      {
+        label: 'KUPON KURGUSU',
+        value: '4 TÜR',
+        detail: 'Üründen Kazan, Takip Et Kazan, Hedef Kitle ve Yorum Yap Kazan',
+      },
+      {
+        label: 'SEPET ARAÇLARI',
+        value: '3 KATMAN',
+        detail: 'Net indirim, koşullu indirim ve Birlikte Al kurgusu',
+      },
+      {
+        label: 'GÖRÜNÜRLÜK',
+        value: '3 ETİKET',
+        detail: 'Flaş Ürünler, Avantajlı Ürün ve Trendyol Plus seçenekleri',
+      },
+      {
+        label: 'KONTROL',
+        value: '1 TABLO',
+        detail: 'Promosyon maliyetini katkı payı ve stokla birlikte izleyin',
+      },
+    ],
+    sections: [
+      {
+        id: 'gorsel-ne-oneriyor',
+        heading: 'Görselin ana fikri: tek indirim değil, promosyon bileşimi.',
+        paragraphs: [
+          'Görsel, Mega Eylül döneminde ürünleri daha cazip hale getirmek, sepet büyüklüğünü artırmak ve daha fazla müşteriye ulaşmak için üç ayrı kaldıraç gösteriyor: kuponlar, sepet odaklı indirimler ve görünürlük araçları.',
+          'Benim okumam şu: Bu araçlar birbirinin alternatifi değil; farklı karar anlarına dokunuyor. Kupon keşfi ve dönüşümü, sepet kurgusu sipariş değerini, görünürlük etiketleri ise erişimi etkiliyor. Hepsini aynı anda açmak ise otomatik olarak daha kârlı bir kampanya anlamına gelmiyor.',
+        ],
+      },
+      {
+        id: 'kuponu-amaca-gore-sec',
+        heading: 'Kuponu amaca göre seçin; herkese aynı indirimi vermeyin.',
+        paragraphs: [
+          'Üründen Kazan kuponu belirli ürünlerde ziyaretçiyi siparişe yaklaştırıyor. Takip Et Kazan mağaza kitlesini büyütmeye, Hedef Kitle Kuponu ilgisi yüksek segmenti yeniden yakalamaya, Yorum Yap Kazan ise sosyal kanıtı güçlendirmeye çalışıyor.',
+          'Bu dört kuponun maliyeti aynı değildir. Biri yeni siparişi, diğeri takipçi edinimini, bir başkası tekrar ziyareti veya yorum hacmini hedefler. Bu nedenle kupon performansını yalnızca kullanım sayısıyla değil, kupon sonrası katkı payı ve yeni müşteri oranıyla değerlendirmek gerekir.',
+        ],
+        bullets: [
+          'Yeni müşteri hedefleniyorsa ilk siparişteki indirim maliyetini ayrı izleyin.',
+          'Takipçi kuponunu mağaza ziyareti ve sonraki 30 gün siparişleriyle birlikte ölçün.',
+          'Yorum kuponunda yorum sayısı kadar içerik kalitesini ve dönüşüm etkisini kontrol edin.',
+          'Aynı müşterinin birden fazla kuponu üst üste kullanıp kullanamadığını baştan netleştirin.',
+        ],
+      },
+      {
+        id: 'sepeti-buyut-kari-koru',
+        heading: 'Sepeti büyütürken indirimin marjı eritmesine izin vermeyin.',
+        paragraphs: [
+          'Net indirim fiyatı doğrudan aşağı çeker; koşullu indirim belirli adet veya tutar eşiğiyle müşteriyi daha büyük siparişe taşır; Birlikte Al ise tamamlayıcı ürünleri aynı fırsat altında toplar. Üç yaklaşımın ortak amacı sepet değerini yükseltmek olsa da her birinin stok ve marj etkisi farklıdır.',
+          'Ben burada kampanya kararını şu tabloyla kurardım: satış fiyatı − ürün maliyeti − komisyon − kargo − indirim − reklam. Sepet büyüklüğü artarken sipariş başına katkı payı düşüyorsa, kampanya ciro üretiyor olabilir ama sağlıklı bir büyüme üretmiyor demektir.',
+        ],
+        bullets: [
+          'Koşullu indirimi, en çok tamamlayıcı ürün bulunan eşikte test edin.',
+          'Birlikte Al setlerinde yavaş dönen stoğu hızlı dönen ürünle rastgele eşleştirmeyin.',
+          'İndirim kodunu reklam mesajına eklemeden önce kodun gerçek maliyetini hesaplayın.',
+          'Minimum sepet eşiğini, ücretsiz kargo ve iade maliyetiyle birlikte değerlendirin.',
+        ],
+      },
+      {
+        id: 'gorunurlugu-veriyle-sec',
+        heading: 'Görünürlük etiketi bir sonuç değil, test hipotezidir.',
+        paragraphs: [
+          'Flaş Ürünler, Avantajlı Ürün ve Trendyol Plus seçenekleri ürünün daha fazla kullanıcıya görünmesine yardımcı olabilir. Fakat görünürlük artışı tek başına satış artışı değildir; stok, fiyat rekabeti, puan, teslimat vaadi ve ürün sayfası kalitesi aynı anda çalışır.',
+          'Bu yüzden her görünürlük aracında en azından gösterim, tıklama, dönüşüm, ortalama sepet, katkı payı ve stok tükenme hızını aynı dönemle karşılaştırın. Daha çok tıklama alıp daha düşük katkı bırakan bir ürün, pazarlama açısından başarılı görünürken ticari açıdan zayıflayabilir.',
+        ],
+      },
+      {
+        id: 'mega-eylul-test-plani',
+        heading: 'Mega Eylül için benim test planım.',
+        paragraphs: [
+          'Kampanyayı tek seferde tüm kataloğa açmak yerine ürünleri marj, stok ve geçmiş dönüşüm sinyaline göre gruplardım. Her grupta bir ana teklif seçer, diğer araçları kontrol grubu veya sınırlı varyant olarak tutardım.',
+        ],
+        bullets: [
+          'Önce son 14–28 günlük satış, dönüşüm, sepet ve katkı payı tabanını çıkarın.',
+          'Yüksek marjlı ve yeterli stoklu ürünleri ana kampanya grubuna alın.',
+          'Kupon, koşullu indirim ve görünürlük araçlarını aynı ürün üzerinde ayrı test hücrelerine bölün.',
+          'Günlük değil, kampanya sonunda net katkı ve stok devir hızıyla karar verin.',
+          'İndirim sonrası tekrar satın alma ve yeni müşteri maliyetini ayrıca raporlayın.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: kampanya heyecanı değil, karar sistemi kazandırır.',
+        paragraphs: [
+          'Mega Eylül görselindeki öneriler pratik ve uygulanabilir; fakat asıl farkı yaratacak şey hangi aracı açtığınız değil, onu hangi ürün ve hangi müşteri amacı için açtığınız. Kuponu edinim, sepet teklifini katkı ve görünürlük aracını erişim hipotezi olarak konumlandırdığınızda kampanya yönetilebilir bir deneye dönüşür.',
+          'Benim ek kuralım basit: İndirim yüzdesini değil, indirimden sonra kalan katkı payını ve oluşan müşteri varlığını raporlayın. Böylece Mega Eylül yalnızca kısa vadeli sipariş artışı değil, daha iyi bir kanal ve ürün karar sistemi bırakır.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'KAMPANYA KARARINI HESAPLA',
+      title: 'İndirimi açmadan önce gerçek katkı payını görün.',
+      body: 'Satış fiyatı, maliyet, komisyon, kargo ve indirim etkisini birlikte hesaplayarak kampanya eşiğini kendi ürün karmana göre belirle.',
+      ctaLabel: 'Kâr marjını hesapla →',
+      ctaHref: '/araclar/kar-marji-hesaplayici',
+    },
+  },
+  {
+    slug: 'iki-mac-mini-m4-qwen38-27b-exo-mlx-2026',
+    addedOrder: 10,
+    eyebrow: 'AI LAB / 31 AĞUSTOS 2026',
+    title: 'İki Mac mini M4, 27B modeli çalıştırdı. Ama mesele hızdı.',
+    excerpt:
+      'İki base Mac mini M4 16 GB’ı Thunderbolt 4 ve EXO ile bağladık. Qwen3.8-27B 4-bit gerçekten iki node üzerinde çalıştı; fakat yaklaşık 6 tok/s, swap ve uzun yükte 90°C üzeri sıcaklıklar bunun günlük production sistemi olmadığını gösterdi.',
+    category: 'AI ve Teknik Deney',
+    publishedAt: '2026-08-31',
+    updatedAt: '2026-08-31',
+    readingTime: '5 dk',
+    image: '/api/social/announcements/iki-mac-mini-m4-qwen38-27b-exo-mlx-2026/image?v=8',
+    imageAlt:
+      'İki Mac mini M4 ile Qwen3.8-27B dağıtık inference testinin sonuçlarını gösteren Veri Mimarı teknik deney kartı',
+    source: 'Veri Mimarı saha testi · Qwen model kartı · Apple Support',
+    sourceUrl: 'https://huggingface.co/Qwen/Qwen3.8-27B',
+    sourceNote:
+      '6,0 tok/s, 37,7 Gbit/s, RAM, swap ve sıcaklık değerleri Veri Mimarı’nın 29–30 Ağustos 2026 tarihli gerçek cihaz gözlemleridir. Dış kaynaklar model ve donanım özellikleri için kullanılmıştır; sonuçlar akademik benchmark veya genellenebilir üst sınır değildir.',
+    stats: [
+      {
+        label: 'GENERATION',
+        value: '≈6,0 TOK/S',
+        detail: 'Kısa testlerde 5,9–6,1 tok/s bandı',
+      },
+      {
+        label: 'THUNDERBOLT 4',
+        value: '≈37,7 GBİT/S',
+        detail: 'Teorik 40 Gbit/s sınırının yaklaşık %94’ü',
+      },
+      {
+        label: 'UZUN YÜK',
+        value: '>90°C',
+        detail: 'Swap ve yüksek bellek baskısıyla birlikte',
+      },
+    ],
+    sections: [
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: çalışıyor olması yetmiyor.',
+        paragraphs: [
+          'Bu deneyin en değerli sonucu “iki Mac’i bağladık, her şey iki kat hızlandı” değil. Model gerçekten iki node’a shard edildi ve kullanılabilir cevaplar üretti; fakat fit, fast ve sustainable üç farklı soruya dönüştü.',
+          '6 tok/s, uzun promptlarda yaklaşık 83 saniyeye ulaşan TTFT, node başına 12,5–14+ GB RAM kullanımı, swap ve 90°C üzeri uzun yük sıcaklıkları birlikte okunduğunda sonuç net: başarılı bir proof-of-concept, zayıf bir 7/24 agent workstation.',
+        ],
+      },
+      {
+        id: 'ne-kanitlandi',
+        heading: 'Ne kanıtlandı?',
+        paragraphs: [
+          'İki base Mac mini M4 16 GB; EXO Pipeline Sharding + MLX Ring ile Qwen3.8-27B 4-bit modeli çalıştırabildi. İki GPU’nun da aktif olduğu cihaz seviyesinde telemetry ile doğrulandı.',
+        ],
+        bullets: [
+          'Model iki node’a gerçekten bölündü.',
+          'Thunderbolt bağlantısı düşük hız bahanesi değildi.',
+          'Pipeline sharding kapasite kazandırdı; tek akış hızını 2× yapmadı.',
+        ],
+      },
+      {
+        id: 'sonraki-mimari',
+        heading: 'Daha mantıklı sonraki mimari.',
+        paragraphs: [
+          'İki Mac’i tek 27B model için sıraya koymak yerine, bir node’u reasoning/ana agent, diğerini coding, scraping veya tool worker olarak kullanmak toplam sistem throughput’u açısından daha mantıklı olabilir.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'TÜM ÖLÇÜMLERİ OKU',
+      title: 'Testin yöntemini ve sınırlarını aç.',
+      body: 'Donanım, bağlantı, placement, bellek, sıcaklık, TTFT ve production kararını tek raporda incele.',
+      ctaLabel: 'Teknik raporu oku →',
+      ctaHref: '/raporlar/iki-mac-mini-m4-qwen38-27b-exo-mlx',
+    },
+  },
+  {
+    slug: 'turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026',
+    addedOrder: 9,
+    eyebrow: 'PAZAR NABZI / 27 AĞUSTOS 2026',
+    title: 'Türkiye’de e-ticaret erişimi: Trendyol lider, tablo tek başına yetmiyor.',
+    excerpt:
+      'Gemius’un 2026 ilk çeyrek verileri Trendyol, Hepsiburada ve Amazon’u ilk üçte gösteriyor. Benim için asıl mesele sıralama değil; ziyaretçi erişimini pazar payı, satış hacmi ve kanal kalitesiyle karıştırmamak.',
+    category: 'E-Ticaret ve Pazar Verisi',
+    publishedAt: '2026-08-27',
+    updatedAt: '2026-08-27',
+    readingTime: '11 dk',
+    image:
+      '/api/social/announcements/turkiye-e-ticaret-platformlari-ziyaretci-erisim-2026/image?v=8',
+    imageAlt:
+      'Türkiye’de e-ticaret platformlarının 2026 ziyaretçi erişimini ve veri yorumlama sınırlarını anlatan Veri Mimarı editoryal kartı',
+    source: 'Gemius Türkiye Q1 2026 · T.C. Ticaret Bakanlığı 2025 E-Ticaret Raporu',
+    sourceUrl: 'https://gemius.com/tr/blog/q1-2026-trafigin-ve-reklamin-nabzi/',
+    sourceNote:
+      'Gemius’un resmî Q1 2026 sayfasındaki Trendyol 48 milyon, Hepsiburada 38 milyon ve Amazon 34 milyon ziyaretçi verileri doğrulandı. Araştırma girdisindeki 2026 ilk yarı aylık ortalama tablosunun açık birincil metodoloji sayfasına ulaşılamadığı için 41,3 / 28,8 / 20,9 milyon değerleri ikincil tablo olarak ve açık sınırlamayla ele alındı. 2025 e-ticaret hacmi verileri T.C. Ticaret Bakanlığı’nın 12 Mayıs 2026 tarihli resmî rapor duyurusundan doğrulandı.',
+    stats: [
+      {
+        label: 'Q1 TRENDYOL',
+        value: '48 MN',
+        detail: 'Gemius’un resmî 2026 ilk çeyrek ziyaretçi verisi',
+      },
+      {
+        label: 'Q1 HEPSİBURADA',
+        value: '38 MN',
+        detail: 'İkinci sıradaki doğrulanmış ziyaretçi erişimi',
+      },
+      {
+        label: 'Q1 AMAZON',
+        value: '34 MN',
+        detail: 'Gemius verisinde üçüncü sıradaki platform',
+      },
+      {
+        label: '2025 E-TİCARET',
+        value: '4,57 TN TL',
+        detail: 'Ticaret Bakanlığı’nın açıkladığı toplam hacim',
+      },
+    ],
+    sections: [
+      {
+        id: 'resmi-veri-ne-diyor',
+        heading: 'Önce doğrulanmış tablo: ilk üç değişmiyor.',
+        paragraphs: [
+          'Gemius Türkiye’nin 2026’nın ilk çeyreğine ilişkin resmî yayınında Trendyol 48 milyon ziyaretçiyle ilk sırada. Hepsiburada 38 milyon, Amazon ise 34 milyon ziyaretçiyle onu izliyor.',
+          'Bu veri bana iki şey söylüyor: Trendyol genel erişimde liderliğini koruyor; Hepsiburada ve Amazon ise ikinci rekabet katmanını oluşturuyor. Ancak burada ölçülen şey satış, ciro veya kârlılık değil; ziyaretçi erişimi.',
+        ],
+      },
+      {
+        id: 'ilk-yari-tablosu',
+        heading: 'İlk yarı tablosunu nasıl okumak gerekiyor?',
+        paragraphs: [
+          'Araştırma girdisindeki 2026 ilk yarı aylık ortalama gerçek kullanıcı tablosu Trendyol’u 41,3 milyon, Hepsiburada’yı 28,8 milyon ve Amazon’u 20,9 milyon kullanıcıyla ilk üçte gösteriyor. Ardından n11 16,1 milyon, Migros 15,9 milyon, Yemeksepeti 14,2 milyon ve Getir 12,9 milyonla geliyor.',
+          'Bu sıralama ana yönü destekliyor; fakat açık birincil metodoloji sayfasına ulaşamadığım için değerleri resmî Q1 tablosuyla aynı kesinlikte sunmuyorum. Dönem, aylık ortalama, uygulama ve web kapsamı ile “gerçek kullanıcı” tanımı açıklanmadan iki tablo doğrudan karşılaştırılamaz.',
+        ],
+        bullets: [
+          'Trendyol: 41,3 milyon — ikincil tabloda aylık ortalama olarak belirtiliyor.',
+          'Hepsiburada: 28,8 milyon — Trendyol’un yaklaşık %69,7’si.',
+          'Amazon: 20,9 milyon — Trendyol’un yaklaşık %50,6’sı.',
+          'n11: 16,1 milyon; Migros: 15,9 milyon; Yemeksepeti: 14,2 milyon.',
+          'Getir: 12,9 milyon; Şok: 10,9 milyon; letgo: 10,7 milyon; Dolap: 10,4 milyon.',
+        ],
+      },
+      {
+        id: 'toplam-kullanici-degil',
+        heading: '48 + 38 + 34, farklı kişi sayısı değildir.',
+        paragraphs: [
+          'Aynı kullanıcı ay içinde Trendyol, Hepsiburada ve Amazon’u birlikte ziyaret edebilir. Bu yüzden platform erişimlerini toplamak, Türkiye’deki benzersiz e-ticaret kullanıcısı sayısını vermez.',
+          'Oturum, ziyaret, gerçek kullanıcı ve aktif müşteri farklı metriklerdir. Ziyaretçi sayısı ürün keşfini anlatabilir; sipariş sıklığı, sepet tutarı, dönüşüm oranı ve tekrar satın alma ise ticari kaliteyi gösterir.',
+        ],
+      },
+      {
+        id: 'tek-kategori-degil',
+        heading: 'Liste yalnızca pazaryerlerinden oluşmuyor.',
+        paragraphs: [
+          'Genel pazaryerleriyle market, yemek, seyahat, ikinci el ve marka mağazaları aynı erişim listesinde bulunuyor. Bu nedenle tabloyu “Türkiye’nin en büyük 30 pazaryeri” diye adlandırmak metodolojik olarak yanlış olur.',
+        ],
+        bullets: [
+          'Genel pazaryeri: Trendyol, Hepsiburada, Amazon ve n11.',
+          'Market ve hızlı ticaret: Migros, Getir, Şok, A101 ve CarrefourSA.',
+          'Yemek teslimatı: Yemeksepeti ve Trendyol Go.',
+          'İkinci el: letgo ve Dolap.',
+          'Seyahat ve bilet: obilet, Enuygun ve Biletinial.',
+          'Dikey marka ve perakende: LC Waikiki, MediaMarkt, Gratis, Apple, Samsung ve Boyner.',
+          'Sosyal ticaret altyapısı: Shopier.',
+        ],
+      },
+      {
+        id: 'market-hizli-ticaret',
+        heading: 'Market ve hızlı ticaret ayrı bir davranış ritmine sahip.',
+        paragraphs: [
+          'Migros, Getir, Şok ve A101 gibi oyuncuların yüksek erişimi; e-ticaretin yalnızca elektronik, moda veya ev yaşam siparişinden ibaret olmadığını gösteriyor. Günlük ihtiyaçlar daha küçük sepetlerle fakat daha yüksek tekrar sıklığıyla çalışabilir.',
+          'Ticaret Bakanlığı’na göre hızlı ticaret 2025’te %55,6 büyüyerek 388,7 milyar TL’ye ulaştı. Bu yüzden market uygulamalarını genel pazaryerleriyle yalnızca kullanıcı sayısı üzerinden kıyaslamak yanıltıcı olur.',
+        ],
+      },
+      {
+        id: 'temu-ve-alt-markalar',
+        heading: 'Temu ve alt markalar veri yorumunu zorlaştırıyor.',
+        paragraphs: [
+          'İkincil tabloda Temu’nun 9,1 milyon kullanıcıyla görünmesi düşük fiyatlı uluslararası rekabetin erişim ürettiğine işaret ediyor. Fakat erişim tek başına sürdürülebilir sipariş, teslimat kalitesi, tekrar satın alma veya Türkiye’deki gerçek kârlılığı kanıtlamaz.',
+          'Trendyol Milla ve Trendyol Go gibi alt markalar ayrıca raporlandığında aynı ekosistemde kullanıcı çakışması oluşabilir. Ana Trendyol erişimiyle alt marka erişimlerini basitçe toplamak doğru değildir.',
+        ],
+      },
+      {
+        id: 'ekonomik-buyuk-resim',
+        heading: 'Ziyaretçi yarışının arkasında 4,57 trilyon TL’lik pazar var.',
+        paragraphs: [
+          'T.C. Ticaret Bakanlığı’nın 2025 raporuna göre Türkiye’de toplam e-ticaret hacmi %52,2 artarak 4,57 trilyon TL’ye, perakende e-ticaret hacmi ise %51,8 artarak 2,46 trilyon TL’ye ulaştı.',
+          'Toplam işlem sayısı 5,94 milyar, perakende işlem sayısı 1,94 milyar oldu. E-ticaret GSYH’nin %6,9’una ve genel ticaretin %19,3’üne karşılık geldi.',
+          'Bu rakamlar dijital alışverişin ekonomik ağırlığını gösteriyor; yine de ziyaretçi sıralaması ile satış hacmi sıralaması aynı şey değil. Daha az ziyaret edilen yüksek sepetli bir kanal, daha çok ziyaret edilen düşük sepetli bir kanaldan daha fazla ciro üretebilir.',
+        ],
+      },
+      {
+        id: 'satici-kanal-stratejisi',
+        heading: 'Satıcı için doğru karar “hangi platform büyük?” sorusuyla bitmiyor.',
+        paragraphs: [
+          'Yüksek erişim keşif avantajı sağlar; ancak kanal seçiminde komisyon, reklam maliyeti, kategori rekabeti, iade, kargo, ödeme vadesi ve müşteri verisine erişim birlikte değerlendirilmelidir.',
+        ],
+        bullets: [
+          'Trendyol: geniş keşif, yüksek rekabet ve kampanya baskısı.',
+          'Hepsiburada: elektronik ve ev yaşam gibi bazı kategorilerde güçlü alternatif.',
+          'Amazon Türkiye: katalog standardı, arama niyeti ve lojistik disiplini.',
+          'n11: kategori bazında test edilmesi gereken ek kanal.',
+          'Shopier ve kendi site: topluluk, doğrudan ilişki ve marka kontrolü.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: erişimi kiralayın, müşteri varlığını kendiniz kurun.',
+        paragraphs: [
+          'Ben bu tabloyu “her yerde mağaza açın” çağrısı olarak okumuyorum. Bana göre doğru yaklaşım; pazaryerlerini keşif ve talep toplama kanalı, kendi siteyi ise marka, veri ve tekrar satış altyapısı olarak konumlandırmak.',
+          'Tek platforma bağımlılık kısa vadede operasyonu kolaylaştırabilir; fakat komisyon, görünürlük ve müşteri ilişkisi üzerindeki kontrolü azaltır. Sağlıklı model; merkezi stok, tutarlı katalog, ölçülen kanal kârlılığı, izinli CRM ve kendi e-ticaret sitesini aynı sistemde birleştirir.',
+          'Özetle liderlik tablosu önemli; fakat asıl karar metriği ziyaretçi sayısı değil, kanal başına gerçek katkı payı ve tekrar satış kapasitesi.',
+        ],
+      },
+      {
+        id: 'kontrol-listesi',
+        heading: 'Bu veriyi karar tablosuna çevirmek için beş kontrol.',
+        bullets: [
+          'Her platformda kategori bazlı erişim ve dönüşüm oranını ayrı ölçün.',
+          'Komisyon, reklam, kargo ve iadeden sonra sipariş başına katkı payını hesaplayın.',
+          'Aynı üründe platformlar arası fiyat ve stok tutarlılığını izleyin.',
+          'Pazaryeri performansını kendi site, CRM ve tekrar satın alma verisiyle birlikte okuyun.',
+          'Ziyaretçi verisini pazar payı veya satış hacmi diye etiketlemeyin.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'KANAL KARARINI VERİYLE KUR',
+      title: 'Trendyol Pazar Nabzı ile kategori ve ürün verisini izleyin.',
+      body: 'Erişim sıralamasını ürün, kategori, fiyat ve operasyon verisiyle birlikte okuyarak kanal kararını somutlaştırın.',
+      ctaLabel: 'Pazar Nabzı’nı aç →',
+      ctaHref: '/pazar-nabzi/trendyol',
+    },
+  },
+  {
+    slug: 'apple-m6-m5-ultra-yerel-ai-hesaplama-2026',
+    addedOrder: 8,
+    eyebrow: 'APPLE SILICON / 25 AĞUSTOS 2026',
+    title: 'Apple M6 ve M5 Ultra: asıl sıçrama yerel AI tarafında.',
+    excerpt:
+      'Benim bu duyuruda asıl dikkatimi çeken şey yalnızca daha hızlı CPU ve GPU değil; Apple’ın kişisel bilgisayarı yeniden ciddi bir yerel AI makinesi olarak konumlandırması.',
+    category: 'AI ve Teknoloji',
+    publishedAt: '2026-08-25',
+    updatedAt: '2026-08-26',
+    readingTime: '9 dk',
+    image: '/duyurular/apple-m6-m5-ultra-yerel-ai-2026.svg',
+    imageAlt:
+      'Apple M6 ve M5 Ultra çiplerinin yerel yapay zekâ kapasitesini karşılaştıran Veri Mimarı editoryal görseli',
+    source: 'Apple Newsroom · M6 ve M5 Ultra basın duyurusu · 25 Ağustos 2026',
+    sourceUrl:
+      'https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/',
+    sourceNote:
+      'Bu yorum, Apple’ın 25 Ağustos 2026 tarihli resmî basın duyurusuna dayanıyor. Performans oranları Apple’ın ön üretim cihazlar ve seçili testlerle elde ettiği sonuçlardır; bağımsız incelemeler yayımlanmadan gerçek uygulama performansı olarak okunmamalıdır. “Yüz milyarlarca parametreli model” ifadesi de modelin belleğe sığmasını anlatır; kalite, hız ve kullanılabilirlik garantisi değildir.',
+    stats: [
+      {
+        label: 'M6 ÜRETİM SÜRECİ',
+        value: '2 NM',
+        detail: 'Apple’ın bu ölçekteki ilk çipi olarak duyuruldu',
+      },
+      {
+        label: 'M6 BELLEK BANTI',
+        value: '170 GB/S',
+        detail: '32 GB’a kadar birleşik bellek ile birlikte',
+      },
+      {
+        label: 'M5 ULTRA BELLEK',
+        value: '512 GB',
+        detail: 'Büyük yerel modeller için asıl kritik kapasite',
+      },
+      {
+        label: 'M5 ULTRA BANT',
+        value: '1,2 TB/S',
+        detail: 'M3 Ultra’dan yüzde 50 daha yüksek olduğu belirtiliyor',
+      },
+    ],
+    sections: [
+      {
+        id: 'ne-duyuruldu',
+        heading: 'Apple iki farklı AI bilgisayarı tarif ediyor.',
+        paragraphs: [
+          'Apple, 25 Ağustos 2026’da yeni Mac mini için M6’yı, yeni Mac Studio için de M5 Ultra’yı tanıttı. İlk bakışta isim sırası kafa karıştırabilir: M6 daha yeni nesil ve daha geniş kullanıcı kitlesine yönelik; M5 Ultra ise önceki mimarinin çok daha büyük, profesyonel ve yüksek bellekli tepe modeli.',
+          'Ben bu ikiliyi aynı performans yarışının iki basamağı gibi görmüyorum. M6; geliştirici, öğrenci, küçük ekip ve günlük üretim için yerel AI’ı standartlaştırmaya çalışıyor. M5 Ultra ise büyük model, bilimsel hesaplama, 3D, video ve yoğun veri işlerinde masaüstünün sınırını yukarı taşıyor.',
+        ],
+        bullets: [
+          'M6: 12 çekirdek CPU, 12 çekirdek GPU ve çift 16 çekirdek Neural Engine.',
+          'M5 Ultra: 36 çekirdeğe kadar CPU, 80 çekirdeğe kadar GPU ve 32 çekirdek Neural Engine.',
+          'M6 yeni Mac mini’de, M5 Ultra yeni Mac Studio’da konumlanıyor.',
+        ],
+      },
+      {
+        id: 'm6-gunluk-yerel-ai',
+        heading: 'M6’nın mesajı net: yerel AI artık yan özellik değil.',
+        paragraphs: [
+          'M6, Apple’ın 2 nm üretim süreciyle hazırladığı ilk çip. İki süper, dört performans ve altı verimlilik çekirdeğinden oluşan 12 çekirdekli CPU’ya; her çekirdeğinde Neural Accelerator bulunan 12 çekirdekli GPU’ya sahip. Apple, çok çekirdekli CPU performansının M5’e göre 1,2 kata, M1’e göre 2,4 kata kadar çıktığını söylüyor.',
+          'AI tarafındaki daha önemli değişiklik çift 16 çekirdekli Neural Engine. Apple’a göre önceki nesle kıyasla tepe hesaplama gücü iki kata kadar yükseliyor. GPU’nun AI hesaplama gücü de M5’e göre yaklaşık yüzde 30, M1’e göre sekiz kattan fazla artıyor. 170 GB/sn bellek bant genişliği bu birimlerin aynı veri havuzuna daha hızlı ulaşmasını sağlıyor.',
+          'Benim için buradaki pratik anlam; kod yardımcısı, belge analizi, görsel üretim, kişisel arama ve sınırlı kapsamlı ajan işlerinin buluta daha az bağımlı çalışabilmesi. Ancak 32 GB bellek tavanı M6’nın sınırını da açıkça gösteriyor: Bu, dev modeller için değil; iyi optimize edilmiş küçük ve orta ölçekli modeller için güçlü bir günlük çalışma makinesi.',
+        ],
+      },
+      {
+        id: 'm5-ultra-bellek-esigi',
+        heading: 'M5 Ultra’da asıl başlık 80 GPU çekirdeği değil, 512 GB bellek.',
+        paragraphs: [
+          'M5 Ultra, iki adet çift kalıplı M5 Max yapısını UltraFusion ile birleştirerek Apple Silicon tarafındaki ilk dört kalıplı mimariyi kuruyor. Apple, kalıplar arası bağlantının 4,4 TB/sn üzerine çıktığını ve dört parçanın tek işlemci gibi çalışabildiğini belirtiyor.',
+          'Elbette 36 çekirdeğe kadar CPU ve 80 çekirdeğe kadar GPU etkileyici. Apple’ın iddiasına göre GPU’nun AI tepe hesaplama gücü M3 Ultra’nın 4,5 katına, M1 Ultra’nın ise altı katından fazlasına çıkıyor. Fakat benim gözüm doğrudan 512 GB birleşik belleğe ve 1,2 TB/sn bant genişliğine gidiyor.',
+          'Çünkü büyük dil modellerinde yalnızca ham işlem gücü değil, modelin tamamını hızlı bellekte tutabilmek belirleyici. Apple da yüz milyarlarca parametreli modellerin tamamen cihaz üzerinde çalıştırılabileceğini söylüyor. Bu, masaüstü sınıfında yerel model deneyi, kurum içi prototipleme ve hassas veriyle çalışma için ciddi bir eşik.',
+        ],
+      },
+      {
+        id: 'neden-onemli',
+        heading: 'Bence asıl dönüşüm, AI hesabının yeniden bilgisayara dönmesi.',
+        paragraphs: [
+          'Son birkaç yılda AI denince varsayılan model buluttaki API oldu. Bu yaklaşım hızlı başlatıyor ama kullanım arttıkça maliyet, gecikme, veri gizliliği ve sağlayıcı bağımlılığı büyüyor. Güçlü yerel donanım bu sorunların tamamını tek başına çözmez; fakat ekiplerin yeni bir hibrit mimari kurmasına imkân verir.',
+          'Hassas veriyi cihazda hazırlayıp yalnızca gereken kısmı buluta göndermek, tekrarlanan görevleri yerel modelde çalıştırmak veya internet bağlantısından bağımsız bir ajan kullanmak daha gerçekçi hale geliyor. Özellikle Core AI, Core ML, Metal ve Xcode aynı donanım havuzuna göre optimize edildiğinde Apple’ın avantajı yalnızca çip değil, donanım ile yazılımın birlikte tasarlanması oluyor.',
+          'Yine de donanım kapasitesi ile kullanılabilir ürün arasında mesafe var. Model desteği, nicemleme kalitesi, uygulama optimizasyonu, enerji tüketimi ve geliştirici araçları gerçek sonucu belirleyecek. Kâğıt üzerindeki TOPS ya da tepe GPU gücü tek başına iyi bir AI iş akışı kurmuyor.',
+        ],
+      },
+      {
+        id: 'e-ticaret-ve-otomasyon',
+        heading: 'E-ticaret ekipleri için değer, veriyi dışarı çıkarmadan işlemekte.',
+        paragraphs: [
+          'Bu gelişmeyi yalnızca çip meraklılarının haberi olarak okumuyorum. Ürün maliyeti, fiyatlama, müşteri yorumu, satış geçmişi ve kampanya verisi aynı akışta işlendiğinde gizlilik ve kontrol önemli hale geliyor. Yerel modeller; katalog sınıflandırma, yorum özetleme, ürün metni taslağı, görsel varyasyon ve şirket içi rapor sorgulama gibi tekrarlanan işlerde anlamlı olabilir.',
+          'Örneğin bir ekip, hassas satış dosyasını cihazdan çıkarmadan analiz eden bir ajan kurabilir; yalnızca anonimleştirilmiş sonucu başka bir servise gönderebilir. Bu hem veri yüzeyini küçültür hem de sürekli API maliyeti doğuran görevleri ayırmaya yardımcı olur.',
+          'Fakat çoğu e-ticaret ekibinin M5 Ultra’ya ihtiyacı olmayacak. İş yükü ölçülmeden alınan pahalı donanım, verimsiz bir kapasite yatırımına dönüşür. Önce model boyutunu, günlük sorgu sayısını, beklenen yanıt hızını ve bulut maliyetini ölçmek; ardından M6, M5 Pro, M5 Max veya M5 Ultra arasında karar vermek daha doğru.',
+        ],
+        bullets: [
+          'Hangi verinin cihazdan çıkmaması gerektiğini sınıflandırın.',
+          'Yerelde çalışacak görevleri model boyutu ve günlük kullanım adediyle listeleyin.',
+          'Donanım bedelini 24–36 aylık API maliyetiyle karşılaştırın.',
+          'Yedekleme, erişim yetkisi ve cihaz güvenliğini mimarinin parçası yapın.',
+        ],
+      },
+      {
+        id: 'iddialari-nasil-okuyorum',
+        heading: 'Rakamlar güçlü; ama şimdilik Apple’ın kendi ölçümü.',
+        paragraphs: [
+          'Duyurudaki performans karşılaştırmaları Apple’ın Ağustos 2026’da ön üretim Mac mini ve Mac Studio sistemleriyle yaptığı seçili testlere dayanıyor. Bu yüzden “1,2 kat”, “4,5 kat” veya “sekiz kattan fazla” ifadelerini tüm uygulamalarda görülecek sabit hız artışı olarak okumamak gerekiyor.',
+          'Tepe AI hesaplama gücü; model yükleme süresini, token hızını, uzun bağlam performansını veya enerji tüketimini tek başına açıklamaz. Ayrıca bir modelin 512 GB belleğe sığması, aynı modelin iyi nicemlendiği, hızlı çalıştığı ya da buluttaki en güçlü modellerle aynı kaliteyi verdiği anlamına gelmez.',
+          'Bağımsız testlerde özellikle token/sn, ilk token gecikmesi, uzun süreli yük altında performans, güç tüketimi ve farklı model formatlarının desteğine bakacağım. Satın alma kararı için basın bülteninden daha anlamlı veriler bunlar olacak.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: Apple bilgisayarı yeniden hesaplama merkezine çeviriyor.',
+        paragraphs: [
+          'Ben bu duyuruyu “yeni çipler biraz daha hızlandı” diye özetlemem. M6, yerel AI’ı geniş kullanıcı kitlesinin günlük iş akışına taşımaya çalışıyor. M5 Ultra ise yüksek bellekli bir Mac’i, yalnızca yaratıcı profesyonel bilgisayarı olmaktan çıkarıp masaüstü bir AI geliştirme istasyonuna yaklaştırıyor.',
+          'Bana göre en önemli sinyal, Apple’ın CPU, GPU, Neural Engine ve birleşik belleği tek bir AI hikâyesinde birleştirmesi. Önümüzdeki dönemde farkı yalnızca en büyük modeli çalıştıran cihaz değil; doğru görevi yerel, özel bulut ve genel bulut arasında en verimli şekilde dağıtan sistem yaratacak.',
+          'Kısacası heyecan verici bir donanım sıçraması var; fakat gerçek başarı bağımsız testler ve bu kapasiteyi işe dönüştüren yazılımlarla belli olacak. Benim takip edeceğim yer tam olarak burası.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'SONRAKİ ADIM',
+      title: 'Yerel AI kapasitesini gerçek bir iş akışına bağlayın.',
+      body: 'Model seçimi, veri gizliliği ve otomasyon adımlarını donanımdan önce tanımlayın; sonra hangi kapasiteye gerçekten ihtiyaç duyduğunuzu ölçün.',
+      ctaLabel: 'AI otomasyon rehberini incele →',
+      ctaHref: '/rehberler/ai-otomasyon',
+    },
+  },
   {
     slug: 'trendyol-agustos-2026-avantajli-komisyon-guncellemesi',
     addedOrder: 7,
