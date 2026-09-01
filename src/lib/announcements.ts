@@ -39,6 +39,114 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'claude-fable-5-1-performans-bilim-maliyet-2026',
+    addedOrder: 12,
+    eyebrow: 'AI / ANTHROPIC / 1 EYLÜL 2026',
+    title: 'Claude Fable 5.1 çıktı: bilimsel ajanlarda sıçrama, maliyette disiplin.',
+    excerpt:
+      'Anthropic’in yeni Fable 5.1 modeli; uzun bağlam, araç kullanan ajanlar ve bilimsel iş akışlarında iddialı sonuçlar açıklıyor. Benim okumam: fark yalnızca benchmark skorunda değil, aynı işi daha az gecikme ve daha kontrollü maliyetle sürdürebilme ihtimalinde.',
+    category: 'Yapay Zekâ ve Model Analizi',
+    publishedAt: '2026-09-01',
+    updatedAt: '2026-09-01',
+    readingTime: '10 dk',
+    image: '/api/social/announcements/claude-fable-5-1-performans-bilim-maliyet-2026/image?v=8',
+    imageAlt:
+      'Claude Fable 5.1 modelinin benchmark, bilimsel araştırma ve API maliyet göstergelerini özetleyen Veri Mimarı duyuru kartı',
+    source: 'Anthropic · Introducing Claude Fable 5.1 and Claude Mythos 5.1 · 1 Eylül 2026',
+    sourceUrl: 'https://www.anthropic.com/claude-fable-and-mythos-5-1',
+    sourceNote:
+      'Bu duyuru Anthropic’in 1 Eylül 2026 tarihli model duyurusu ve resmî Claude Platform dokümantasyonu temel alınarak hazırlandı. Benchmark skorları ve bilimsel sonuçlar Anthropic’in paylaştığı test koşullarına aittir; bağımsız tekrar veya her üretim iş yükü için garanti değildir. Kullanıcı notlarında yer alan, resmî kaynakta doğrulanmayan skorlar bu yayına eklenmedi.',
+    stats: [
+      {
+        label: 'TERMINAL-BENCH-SCIENCE',
+        value: '%52,6',
+        detail: 'Terminal-Bench-Science 0.1; Fable 5’te %24,7 idi',
+      },
+      {
+        label: 'TERMINAL-BENCH 4.0',
+        value: '%55,8',
+        detail: 'Araç kullanan terminal görevlerinde açıklanan skor',
+      },
+      {
+        label: 'AUTOMATIONBENCH',
+        value: '%31,4',
+        detail: 'Fable 5’in %17,1 skoruna göre belirgin artış',
+      },
+      {
+        label: 'CACHE READ',
+        value: '$0,25/M',
+        detail: 'Bir milyon token başına cache okuma fiyatı',
+      },
+    ],
+    sections: [
+      {
+        id: 'ne-duyuruldu',
+        heading: 'Fable 5.1, Mythos çizgisindeki kapasiteyi daha geniş kullanıma açıyor.',
+        paragraphs: [
+          'Anthropic, Claude Fable 5.1’i 1 Eylül 2026’da duyurdu. Model; 1 milyon token bağlam penceresi, 128 bin token’a kadar çıktı ve Claude platformunda üretim kullanımı için erişilebilir bir API modeli olarak konumlanıyor.',
+          'Anthropic’in ifadesine göre Fable 5.1, Project Glasswing’e özel tutulan Mythos 5.1 ile aynı temel yetenekleri paylaşıyor. Aradaki asıl fark, erişim modelinde: Fable geliştiricilerin ve ekiplerin genel kullanımına açılırken Mythos araştırma programıyla sınırlı kalıyor.',
+        ],
+      },
+      {
+        id: 'benchmarkleri-nasil-okuyorum',
+        heading: 'Benchmark tablosu güçlü; ama puanları görev türüyle birlikte okumak gerekiyor.',
+        paragraphs: [
+          'Anthropic’in yayımladığı tabloda Fable 5.1, Terminal-Bench-Science 0.1’de %52,6; Terminal-Bench 4.0’da %55,8; AutomationBench’te %31,4 ve CursorBench 3.2.0’da %73,4 skor gösteriyor. OSWorld 2.0’da kısmi başarı %77,9, katı başarı ise %41,7 olarak veriliyor.',
+          'Bu sonuçların ortak sinyali, modelin yalnızca metin üretmekten çok araç çağırma, terminal etkileşimi ve çok adımlı iş akışlarında değerlendirildiği. Yine de benchmark skoru, kendi veri setinizdeki hata maliyetini veya entegrasyon sürtünmesini tek başına tahmin etmez. Üretim kararı için görev bazlı küçük bir deneme şart.',
+        ],
+        bullets: [
+          'Terminal ve ajan görevlerinde başarıyı, insan müdahalesi ve yeniden deneme sayısıyla birlikte ölçün.',
+          'Kod benchmarkını gerçek depo, test süresi ve geri alma maliyetiyle karşılaştırın.',
+          'Uzun bağlam iddiasını kendi dokümanlarınızda doğruluk ve gecikme birlikteyken test edin.',
+        ],
+      },
+      {
+        id: 'bilimsel-is-akislari',
+        heading: 'Bilimsel tarafta model, cevap veren asistandan araştırma ortağına yaklaşıyor.',
+        paragraphs: [
+          'Anthropic, Fable 5.1’in 12 hedef üzerinde protein bağlayıcı tasarımında yaklaşık %50 isabet oranına ulaştığını; Venüs haritalama çalışmasında ise 2–3 kilometre çözünürlüğe ve bazı yüksekliklerde %25’e kadar daha iyi doğruluğa katkı verdiğini bildiriyor.',
+          'Ayrıca yedi açık kaynak protein ve genomik modelinin H100 üzerinde 2,5 kata kadar daha hızlı çalıştırıldığını ve tahmini GPU maliyetlerinin %30–60 azaldığını açıklıyor. Bunlar ilginç sonuçlar; fakat Anthropic’in kendi araştırma örnekleri oldukları için bağımsız laboratuvar tekrarı ve yöntem ayrıntıları görülmeden genellenmemeli.',
+        ],
+      },
+      {
+        id: 'maliyet-ve-performans',
+        heading: 'Ekonomik fark, token fiyatından çok tekrarlanan ajan işlerinde ortaya çıkabilir.',
+        paragraphs: [
+          'Claude Platform dokümantasyonunda Fable 5.1 için giriş fiyatı milyon token başına 10 dolar, çıkış fiyatı 50 dolar ve cache read fiyatı 0,25 dolar olarak veriliyor. Anthropic tipik iş yüklerinde yaklaşık %25, yoğun ajan kullanımında ise %45’e kadar maliyet düşüşü bildirse de gerçek fatura; bağlam tekrarları, araç çağrıları ve çıktı uzunluğuna bağlı.',
+          'Benim önerim, yalnızca milyon token fiyatını değil, görev başına toplam maliyeti hesaplamak: başarılı görev sayısı, insan düzeltmesi, gecikme, araç çağrısı ve tekrar deneme dahil. Ucuz görünen bir model, başarısız görevleri çoğaltıyorsa pahalıya gelebilir.',
+        ],
+        bullets: [
+          'Aynı görevi Fable 5.1 ve mevcut modelinizle sabit bir örneklemde çalıştırın.',
+          'Başarı başına maliyeti ve insanın harcadığı dakikayı ayrı raporlayın.',
+          'Cache kullanımını ve uzun bağlamı ölçmeden fiyat avantajı varsaymayın.',
+        ],
+      },
+      {
+        id: 'guvenlik-ve-sinirlari',
+        heading: 'Daha az yanlış güvenlik müdahalesi, daha az güvenlik anlamına gelmiyor.',
+        paragraphs: [
+          'Anthropic, Fable 5.1’de siber güvenlik görevlerinde yanlış pozitif müdahalelerin %60; zararsız biyoloji taleplerindeki gereksiz engellemelerin %85 azaldığını açıklıyor. Bu, araştırmacıların meşru iş akışında daha az sürtünme yaşayabileceğine işaret ediyor; ancak güvenlik katmanlarının kaldırıldığı anlamına gelmiyor.',
+          'Özellikle müşteri verisi, otomasyon yetkisi ve üretim sistemlerine erişim söz konusu olduğunda modelin güvenlik değerlendirmesi tek başına yeterli değil. Yetki kapsamı, denetim izi, insan onayı ve geri alma planı uygulamanın parçası olmalı.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: Fable 5.1’in asıl testi, ölçülebilir ajan iş akışında.',
+        paragraphs: [
+          'Fable 5.1’i yalnızca “daha zeki model” diye okumuyorum. Uzun bağlam, araç kullanımı, bilimsel araştırma ve cache ekonomisi aynı modelde birleştiğinde; katalog analizi, rapor hazırlama, kod inceleme ve operasyon otomasyonu gibi tekrarlanan işlerde daha iyi bir maliyet–kalite dengesi kurulabilir.',
+          'Fakat duyurudaki skorlar üretim garantisi değil, güçlü bir başlangıç sinyali. Veri Mimarı açısından doğru test; kendi e-ticaret verinizde görev başarı oranını, insan müdahalesini, gecikmeyi ve görev başı maliyeti aynı panelde izlemek. Fable 5.1 gerçekten fark yaratıyorsa bunu benchmarkta değil, bu dört ölçümün birlikte iyileşmesinde görmeliyiz.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'MODEL SEÇİMİNİ ÖLÇ',
+      title: 'Ajan iş akışını kendi verinle karşılaştır.',
+      body: 'Modeli değiştirmeden önce görev setini, başarı eşiğini, insan müdahalesini ve görev başı maliyeti tanımla; sonra sonucu ölçerek karar ver.',
+      ctaLabel: 'AI otomasyon rehberini incele →',
+      ctaHref: '/rehberler/ai-otomasyon',
+    },
+  },
+  {
     slug: 'mega-eylul-satis-artirma-tavsiyeleri-2026',
     addedOrder: 11,
     eyebrow: 'TRENDYOL AKADEMİ / MEGA EYLÜL 2026',
