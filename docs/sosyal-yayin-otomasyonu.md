@@ -23,8 +23,8 @@ Başarılı her yayın `social/<platform>/<slug>` Git etiketiyle kaydedilir. Bir
 | `LINKEDIN_ACCESS_TOKEN` | `w_organization_social` veya kişisel paylaşımda `w_member_social` yetkili OAuth 2.0 belirteci |
 | `LINKEDIN_AUTHOR_URN`   | `urn:li:organization:<id>` veya `urn:li:person:<id>`                                          |
 | `X_USER_ACCESS_TOKEN`   | Gönderi yazma yetkili OAuth 2.0 kullanıcı erişim belirteci                                    |
-| `THREADS_ACCESS_TOKEN`  | Threads Graph API kullanıcı erişim belirteci                                                    |
-| `THREADS_USER_ID`       | Threads profilinin kullanıcı kimliği                                                            |
+| `THREADS_ACCESS_TOKEN`  | Threads Graph API kullanıcı erişim belirteci                                                  |
+| `THREADS_USER_ID`       | Threads profilinin kullanıcı kimliği                                                          |
 
 Meta uygulamasında Instagram için `instagram_business_basic` ve `instagram_business_content_publish` (Instagram Login) veya `instagram_basic`, `instagram_content_publish` ve `pages_read_engagement` (Facebook Login) izinleri gerekir. Facebook Sayfası yayını için Page belirtecinin `pages_manage_posts`, `pages_read_engagement` ve ilgili sayfa görevlerini taşıması gerekir.
 
