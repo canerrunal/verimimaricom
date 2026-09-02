@@ -39,6 +39,108 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'haftanin-analizi-trendyol-firsat-radari-2026-09-02',
+    addedOrder: 13,
+    eyebrow: 'PAZAR NABZI / HAFTANIN ANALİZİ / 2 EYLÜL 2026',
+    title: 'Haftanın Analizi: Fırsat sinyalini kategoriyle birlikte okuyun.',
+    excerpt:
+      'Trendyol Fırsat Radarı’nın 2 Eylül 2026 tarihli görünümünde 177 sonuç, 36 fiyat düşüşü ve 14 stok riski öne çıkıyor. Bu haftanın sorusu “en çok indirim hangisinde?” değil; hangi sinyalin aynı kategori içinde araştırmaya değer olduğudur.',
+    category: 'E-Ticaret ve Pazar Analizi',
+    publishedAt: '2026-09-02',
+    updatedAt: '2026-09-02',
+    readingTime: '7 dk',
+    image: '/api/social/announcements/haftanin-analizi-trendyol-firsat-radari-2026-09-02/image?v=8',
+    imageAlt:
+      'Trendyol Fırsat Radarı verilerini 177 sonuç, 36 fiyat düşüşü ve 14 stok riskiyle özetleyen Veri Mimarı analiz kartı',
+    source: 'Veri Mimarı · Trendyol Pazar Nabzı · Fırsat Radarı · 2 Eylül 2026',
+    sourceUrl:
+      'https://verimimari.com/pazar-nabzi/trendyol?kategori=genel-cok-satanlar&gorunum=firsat-radari#radar',
+    sourceNote:
+      'Bu haftanın analizi, Trendyol Pazar Nabzı’ndaki Fırsat Radarı’nın 2 Eylül 2026 tarihli canlı görünümünden hazırlanmış bir editoryal değerlendirmedir. Radar; herkese açık listeleme ve ürün sayfası alanlarından fiyat, sıralama ve stok sinyallerini araştırma önceliğine dönüştürür. Sonuçlar satış veya yatırım tavsiyesi değildir; veri ve sıralamalar güncellenebilir.',
+    stats: [
+      {
+        label: 'RADAR SONUCU',
+        value: '177',
+        detail: 'Fırsat Radarı’nda gösterilen mevcut sonuç',
+      },
+      {
+        label: 'FİYATI DÜŞEN',
+        value: '36',
+        detail: 'Aynı ürün ve satıcı teklifinde düşüş görülen',
+      },
+      {
+        label: 'STOK RİSKİ',
+        value: '14',
+        detail: 'Açık stok uyarısı görülen',
+      },
+      {
+        label: 'ÜRÜN EVRENİ',
+        value: '67.974',
+        detail: 'Son başarılı günlük koşudaki benzersiz ürün',
+      },
+    ],
+    sections: [
+      {
+        id: 'radar-ne-gosteriyor',
+        heading: 'Radar, “fırsat” kelimesini tek bir indirim oranına indirmiyor.',
+        paragraphs: [
+          '2 Eylül 2026 tarihli görünümde Fırsat Radarı 177 sonucu öne çıkarıyor. Bu sayı, Genel görünümde araştırma önceliği verilen mevcut ürünleri ifade ediyor; tek başına 177 ürünün satacağı veya aynı performansı sürdüreceği anlamına gelmiyor.',
+          'Radarın güçlü tarafı, geniş ürün evrenini tek ekranda taranabilir bir kısa listeye çevirmesi. Karar vermeden önce ürün sayfasını, kategori bağlamını ve sinyalin güncelliğini açıp doğrulamak gerekiyor.',
+        ],
+      },
+      {
+        id: 'fiyat-ve-sira-sinyali',
+        heading: 'Fiyat düşüşü ile sıralama hareketini aynı cümlede okuyun.',
+        paragraphs: [
+          'Listede Parmend Life katlanır yelpazede %32, THE BATH FACTORY Liberty Body Spray’de %29 fiyat düşüşü gibi belirgin hareketler görülüyor. Ancak fiyatın gerilemesi talebin arttığını kanıtlamaz; marj, kupon, kargo ve rakip teklifleri kontrol edilmeden “fırsat” kararı verilmemeli.',
+          'Sıralama sinyali de aynı şekilde göreli bir göstergedir. Ürün aynı kategori ve arama kapsamındaki konumunu koruyor mu, yoksa kısa süreli bir sıçrama mı yaşadı? Haftalık takipte asıl değer bu ayrımı tekrar ölçebilmektir.',
+        ],
+      },
+      {
+        id: 'stok-riski-ve-firsat',
+        heading: 'Stok riski, kıtlık alarmıdır; gerçek envanter sayacı değildir.',
+        paragraphs: [
+          '14 sonuçta açık stok uyarısı bulunuyor. Bu uyarı, ürünün veya teklifin erişilebilirliğinin izlenmesi gerektiğini söyler; depodaki kesin adet, tedarik süresi ya da yeniden stok garantisi değildir.',
+          'Stok sinyalini fiyat ve sıralama ile birlikte inceleyin. Yüksek talep ihtimali olan üründe tedarik gecikmesi, iade oranı ve teslimat sözü marj hesabını hızla değiştirebilir.',
+        ],
+      },
+      {
+        id: 'kategori-karisimi',
+        heading: 'Kategoriler karıştığında karşılaştırma hatası büyür.',
+        paragraphs: [
+          'Radar; kırtasiye ve ofis, hobi, süpermarket, kozmetik ve kişisel bakım, ev ve mobilya gibi farklı alanlardan sinyalleri aynı yüzeyde topluyor. Bir kozmetik ürünündeki fiyat hareketini aksesuar veya kırtasiye ürünüyle doğrudan kıyaslamak doğru bir benchmark üretmez.',
+          'İlk filtreyi kategori içinde yapın. Sonra benzer fiyat bandı, teslimat koşulu, değerlendirme eşiği ve satıcı sayısını eşleyerek ikinci bir kısa liste çıkarın.',
+        ],
+      },
+      {
+        id: 'haftalik-karar-plani',
+        heading: 'Bu haftanın kısa karar planı: önce doğrula, sonra küçük test yap.',
+        bullets: [
+          'Radar kartını açıp ürün ve kategori sayfasındaki güncel fiyatı doğrulayın.',
+          'Aynı sinyali en az iki gözlemde karşılaştırın; tek anlık görüntüyü trend saymayın.',
+          'Komisyon, kargo, indirim, iade ve tedarik maliyetini katkı payına birlikte yazın.',
+          'Rakip teklifleri ve teslimat sözünü kontrol etmeden kampanya veya stok kararı vermeyin.',
+          'Sonucu bütün kataloğa yaymadan önce küçük bir ürün grubunda ölçülebilir test başlatın.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: Radarın değeri, neyi araştıracağını seçtirmesinde.',
+        paragraphs: [
+          'Bu haftanın verisi bana şunu söylüyor: indirim yüzdesi dikkat çeker, fakat karar kalitesini kategori bağlamı ve tekrar gözlem belirler. 177 sonucu bir satın alma listesi gibi değil, ekipçe incelenecek bir öncelik kuyruğu gibi kullanmak daha sağlıklı.',
+          'En iyi kullanım senaryosu, aynı ürün için fiyat, sıralama, stok ve katkı payını haftalık olarak yan yana izlemek. Sinyal birkaç ölçüm boyunca tutarlı kalıyorsa test bütçesi ayırın; kalmıyorsa bunu da öğrenme olarak kaydedin.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'CANLI RADARI AÇ',
+      title: 'Bu haftanın kısa listesini kendin doğrula.',
+      body: 'Kategori, fiyat ve sıralama sinyallerini aynı ekranda incele; karar vermeden önce ürün sayfasındaki güncel koşulları kontrol et.',
+      ctaLabel: 'Fırsat Radarı’nı aç →',
+      ctaHref: '/pazar-nabzi/trendyol?kategori=genel-cok-satanlar&gorunum=firsat-radari#radar',
+    },
+  },
+  {
     slug: 'claude-fable-5-1-performans-bilim-maliyet-2026',
     addedOrder: 12,
     eyebrow: 'AI / ANTHROPIC / 1 EYLÜL 2026',
