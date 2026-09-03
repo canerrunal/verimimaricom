@@ -39,6 +39,129 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'gemini-3-8-flash-ajanlik-muhakeme-atif-guvenilirligi-2026',
+    addedOrder: 14,
+    eyebrow: 'AI / GOOGLE / 3 EYLÜL 2026',
+    title: 'Gemini 3.8 Flash: Daha güçlü ajan, otomatik olarak daha güvenilir kaynak değil.',
+    excerpt:
+      'Gemini 3.8 Flash; uzun bağlam, Search grounding ve çok adımlı ajan görevlerinde iddialı bir güncelleme. Fakat model yeteneği ile atıf doğruluğunu aynı şey saymamak gerekiyor: kaynak kalitesi, modelin yanında arama, seçim, sentez ve arayüz katmanlarının birlikte sonucu.',
+    category: 'Yapay Zekâ ve Model Analizi',
+    publishedAt: '2026-09-03',
+    updatedAt: '2026-09-03',
+    readingTime: '11 dk',
+    image:
+      '/api/social/announcements/gemini-3-8-flash-ajanlik-muhakeme-atif-guvenilirligi-2026/image?v=8',
+    imageAlt:
+      'Gemini 3.8 Flash’ın ajanlık gücü ile atıf güvenilirliği arasındaki farkı açıklayan Veri Mimarı analiz kartı',
+    source: 'Google Gemini 3.8 Flash duyurusu ve kullanıcının araştırma notları · 3 Eylül 2026',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı araştırma ve değerlendirme notlarının Veri Mimarı formatında editoryal derlemesidir. Google’ın model ve API açıklamaları ile notlarda aktarılan üçüncü taraf çalışmalar ayrı kanıt katmanlarıdır; model-bazlı bağımsız bir atıf doğruluğu benchmark’ı olmadığı için bu analiz, kesin performans hükmü yerine denetlenebilirlik çerçevesi sunar. Üçüncü taraf örneklem oranları kendi yöntem ve kapsamları içinde okunmalıdır.',
+    stats: [
+      {
+        label: 'GİRİŞ BAĞLAMI',
+        value: '1.048.576',
+        detail: 'Gemini 3.8 Flash için açıklanan token bağlamı',
+      },
+      {
+        label: 'URL ÖRTÜŞMESİ',
+        value: '≈%13',
+        detail: 'AI Mode ve AI Overviews için aktarılan Ahrefs örneklemi',
+      },
+      {
+        label: 'DESTEKLENMEYEN İDDİA',
+        value: '%11',
+        detail: '55.393 trend sorguluk 2026 çalışmasında raporlanan oran',
+      },
+      {
+        label: 'DÜŞÜNME SEÇENEĞİ',
+        value: '3',
+        detail: 'Düşük, orta ve yüksek thinking seviyeleri',
+      },
+    ],
+    sections: [
+      {
+        id: 'kapsam-ve-ana-bulgu',
+        heading: '3.8 Flash’ın güçlü modeli, güçlü bir kaynak zinciriyle karıştırılmamalı.',
+        paragraphs: [
+          'Google, Gemini 3.8 Flash’ı uzun soluklu yazılım geliştirme, otonom ajanlar ve çok adımlı uzman muhakeme için en yetenekli Flash modeli olarak konumlandırıyor. 1.048.576 token giriş bağlamı, Google Search grounding, URL context ve üç thinking seviyesi geliştiriciye geniş bir çalışma alanı açıyor.',
+          'Ancak daha iyi kod veya ajan performansı; her iddianın doğru kaynağa bağlandığını, bağlantının iddiayı gerçekten desteklediğini ya da kaynakların birincil olduğunu garanti etmez. Bu duyurunun ana ayrımı burada: model kabiliyeti ile atıf sadakati ayrı ölçülmeli.',
+        ],
+      },
+      {
+        id: 'api-ve-ai-mode',
+        heading: 'API ile AI Mode aynı kaynak deneyimi değil.',
+        paragraphs: [
+          'Gemini API’de geliştirici Search grounding’i etkinleştirdiğinde groundingMetadata içinde arama sorguları, kaynak URL’leri, metin parçaları ve segment-kaynak eşleşmeleri dönebiliyor. Uygulama bu veriyi groundingSupports ile cümle seviyesinde görünür bir atıf akışına çevirebilir.',
+          'AI Mode ise soruyu alt aramalara bölüp birçok kaynağı paralel tarayan kapalı bir ürün yüzeyi. Kullanıcı bağlantıları görse de ham iddia-kaynak eşleşmesini aynı ayrıntıyla denetleyemiyor. Bu yüzden API tarafında uygulanabilen kaynak politikası, AI Mode davranışının doğal garantisi sayılmamalı.',
+        ],
+      },
+      {
+        id: 'model-yetenegi-ve-atif',
+        heading: '“Search grounding var” bir 3.8 Flash ayrıcalığı değil; fark denetimde.',
+        paragraphs: [
+          'Google dokümantasyonu Search grounding desteğini 3.8 Flash’ın yanı sıra 3.7, 3.6, 3.5 ve 2.5 ailesindeki farklı Gemini modelleri için de gösteriyor. Dolayısıyla ürün seçiminde yalnızca grounding desteğine bakmak, 3.8’in atıf kalitesini kanıtlamıyor.',
+          'Bağımsız değerlendirmelerde görülen Intelligence Index veya ajan benchmark skorları da citation fidelity ölçümü değildir. Model seçimini kendi görev setinizde doğruluk, kaynak doğrudanlığı, gecikme ve görev başı maliyetle birlikte test etmek gerekir.',
+        ],
+      },
+      {
+        id: 'ampirik-riskler',
+        heading: 'Atıf bulunması, iddianın desteklendiği anlamına gelmiyor.',
+        paragraphs: [
+          'Paylaşılan araştırma notları iki uyarı veriyor. Ahrefs’in aktarılan örnekleminde AI Mode ve AI Overviews yanıtlarının URL atıfları yaklaşık %13 örtüşüyor; bazı yanıtlarda hiç kaynak görünmüyor. Washington University çalışmasında ise 55.393 trend sorguda incelenen 98.020 atomik iddianın %11’inin atıf verilen sayfalarca desteklenmediği bildiriliyor.',
+          'Bu oranlar 3.8 Flash’a bire bir model skoru olarak aktarılmamalı. Yine de sistemik riski net gösteriyor: kartın sonunda birkaç bağlantı olması, karttaki her cümle için kanıt zinciri kurulduğu anlamına gelmiyor.',
+        ],
+        bullets: [
+          'Doğrudan çelişen ve kaynakta hiç bulunmayan iddiaları ayrı hata sınıfları olarak izleyin.',
+          'Kaynağın ilk arama sonuçlarında görünmesi, seçimin neden doğru olduğunu tek başına açıklamaz.',
+          'Birincil kaynak, güncellik, bölge ve koşul bilgisini iddia seviyesinde gösterin.',
+        ],
+      },
+      {
+        id: 'fan-out-ve-arayuz',
+        heading: 'Fan-out kapsamı büyütürken hata yüzeyini de büyütür.',
+        paragraphs: [
+          'AI Mode’nin fan-out yaklaşımı tek soruyu birçok alt aramaya böler. Bu yöntem daha zengin bir sentez üretebilir; aynı zamanda farklı tarih, tanım veya coğrafyadaki bilgileri birleştirme, koşullu bir ifadeyi kesin sonuç gibi sunma ve kaynaklar arası çelişkiyi gizleme riski taşır.',
+          'Arayüzde uzun sentez yanıtı öne çıkıp bağlantılar arka planda kaldığında kullanıcı önce sonucu kabul etmeye, sonra nadiren kaynağı açmaya yönelir. Güvenilir akış bunun tersidir: kritik iddiayı seç, dayanak metni aç, tarihi ve kapsamı kontrol et.',
+        ],
+      },
+      {
+        id: 'gelistirici-kontrol-listesi',
+        heading: '3.8 Flash kullanan ekipler için minimum denetim katmanı.',
+        bullets: [
+          'groundingMetadata, groundingSupports ve groundingChunks verisini saklayın; yalnızca “Kaynaklar” listesi göstermeyin.',
+          'Finans, sağlık, hukuk ve kamu içerikleri için resmi veya birincil alan adlarını allowlist ile önceliklendirin.',
+          'Her atomik iddia için doğrudan destekleyici pasaj yoksa sonucu “doğrulanamadı” durumuna düşürün.',
+          'Kaynak tarihi, erişim zamanı, bölge ve geçerlilik koşullarını zaman duyarlı yanıtlarda zorunlu tutun.',
+          'Model sürümü, thinking seviyesi, arama sorguları, URL’ler ve iddia-kaynak haritasını loglayın.',
+        ],
+      },
+      {
+        id: 'kullanici-kontrol-listesi',
+        heading: 'Kullanıcı tarafında doğru varsayım: başlangıç noktası, nihai kanıt değil.',
+        paragraphs: [
+          'Sağlık, hukuk, vergi, finans, satın alma ve güncel haber yanıtlarını başlangıç noktası olarak kullanın. Her önemli cümlede kurumun resmi sayfasını, mevzuat metnini, üretici dokümanını veya birincil araştırmayı ayrıca açın.',
+          'Aynı soruyu kısa ve net biçimde yeniden sorduğunuzda sonuç veya kaynaklar ciddi biçimde değişiyorsa, yanıtın kararlı bir kanıt zinciri olmadığını varsayın. Fiyat, stok, teslimat, garanti ve ülke uygunluğu gibi koşulları kaynak sayfasında tek tek teyit edin.',
+        ],
+      },
+      {
+        id: 'son-degerlendirme',
+        heading:
+          'Son değerlendirme: Daha zeki Flash, otomatik olarak daha güvenilir atıf motoru değil.',
+        paragraphs: [
+          'Gemini 3.8 Flash; maliyet, bağlam, arama entegrasyonu ve ajanlık ekseninde güçlü bir altyapı güncellemesi olabilir. Fakat kaynak güveni, model benchmark’ından çok kaynak seçiminin şeffaflığı, cümle seviyesinde atıf, birincil kaynak tercihi, tarih ve bağlam kontrolüyle belirlenir.',
+          'Veri Mimarı açısından doğru üretim standardı basit: cevap yalnızca akıcı değil, denetlenebilir de olmalı. Modelin ne bildiğini değil, hangi iddiayı hangi kaynakla desteklediğini görünür kılabildiğiniz ölçüde güven kazanırsınız.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'KAYNAK ZİNCİRİNİ TEST ET',
+      title: 'Model seçimini kendi görevlerinle ölç.',
+      body: 'Aynı soruları sabit bir örneklemde çalıştır; doğruluk, kaynak desteği, gecikme ve görev başı maliyeti birlikte kaydet.',
+      ctaLabel: 'AI araçlarını incele →',
+      ctaHref: '/yapay-zeka',
+    },
+  },
+  {
     slug: 'haftanin-analizi-trendyol-firsat-radari-2026-09-02',
     addedOrder: 13,
     eyebrow: 'PAZAR NABZI / HAFTANIN ANALİZİ / 2 EYLÜL 2026',
