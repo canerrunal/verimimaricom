@@ -39,6 +39,128 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'gpt-6-astra-ajanlik-bilgisayar-kullanimi-hizalama-2026',
+    addedOrder: 15,
+    eyebrow: 'AI / OPENAI / 3 EYLÜL 2026',
+    title: 'GPT-6 Astra: Sohbetten çok ajanik iş, bilgisayar kullanımı ve hizalama.',
+    excerpt:
+      'OpenAI’nin GPT-6 Astra’sı, GPT-5.6 Sol’un yerini alan yeni bayrak gemisi olarak çok adımlı ajan görevlerini, bilgisayar kullanımını, yazılım mühendisliğini ve güvenlik sınırlarını öne çıkarıyor. Benim okumam: her ölçütte birincilik değil, daha kontrollü ve daha uzun iş akışlarında yeni bir eşik.',
+    category: 'Yapay Zekâ ve Model Analizi',
+    publishedAt: '2026-09-04',
+    updatedAt: '2026-09-04',
+    readingTime: '12 dk',
+    image:
+      '/api/social/announcements/gpt-6-astra-ajanlik-bilgisayar-kullanimi-hizalama-2026/image?v=8',
+    imageAlt:
+      'GPT-6 Astra’nın ajanlık, bilgisayar kullanımı, benchmark ve hizalama başlıklarını özetleyen Veri Mimarı analiz kartı',
+    source: 'OpenAI · GPT-6 Astra model ve güvenlik dokümanları · 3 Eylül 2026',
+    sourceUrl: 'https://developers.openai.com/api/docs/models/gpt-6-astra',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı GPT-6 Astra araştırma notlarının Veri Mimarı formatında editoryal analizidir. Model kimliği, bağlam, fiyat, yetenek ve güvenlik çerçevesi OpenAI’nin resmi model/guidance ve safety sayfalarıyla birlikte okunmuştur. Karşılaştırmalı benchmark tablosu, Greg Brockman alıntısı ve üçüncü taraf çalışma oranları kullanıcının notlarında aktarılan verilerdir; bağımsız model-bazlı doğrulama olmayan rakamlar kaynak kapsamı ve koşullarıyla birlikte sunulur. Benchmark sonucu üretim garantisi değildir.',
+    stats: [
+      {
+        label: 'API GİRDİ',
+        value: '$10/M',
+        detail: 'Standart metin girdi fiyatı · 1 milyon token',
+      },
+      {
+        label: 'BAĞLAM',
+        value: '1,05 M',
+        detail: 'Açıklanan giriş bağlamı ve 128 bin max çıktı',
+      },
+      {
+        label: 'OSWORLD 2.0',
+        value: '%72,6',
+        detail: 'Kullanıcının notlarında aktarılan bilgisayar kullanımı skoru',
+      },
+      {
+        label: 'HLE ARAÇLI',
+        value: '%57,2',
+        detail: 'Claude Fable 5.1 için notlarda %65,0 karşılaştırması',
+      },
+    ],
+    sections: [
+      {
+        id: 'ne-degisti',
+        heading: 'Astra’nın asıl iddiası, sohbet kalitesinden uçtan uca iş yapmaya geçiş.',
+        paragraphs: [
+          'OpenAI, GPT-6 Astra’yı en yetenekli ve en hizalı modeli olarak konumlandırıyor; resmi model sayfası onu karmaşık muhakeme, kodlama, bilgisayar kullanımı, araştırma ve belge üretimi için tasarlanan bayrak gemisi olarak tanımlıyor. GPT-5.6 Sol’un devamı gibi görünse de rekabet ekseni artık yalnızca iyi yanıt değil, tarayıcıda, kodda ve profesyonel yazılımda tamamlanan çok adımlı iş akışı.',
+          'Astra’nın ürün farkı; araç çağrıları, şablonlu çıktı, mid-turn steering, async tool calling ve misalignment monitoring gibi katmanların aynı çalışma yüzeyinde birleşmesi. “Sonucu değiştirecekse sor, yoksa varsay” yaklaşımı daha az kör özerklik, daha fazla niyet kontrolü hedefliyor.',
+        ],
+      },
+      {
+        id: 'yetenekler-ve-skorlar',
+        heading: 'Tablo güçlü görünüyor; fakat koşul ve benchmark kapsamı sonucu değiştiriyor.',
+        paragraphs: [
+          'Kullanıcının araştırma notlarındaki karşılaştırma, Astra’nın özellikle bilgisayar kullanımı, matematik, terminal görevleri ve exploit değerlendirmelerinde öne çıktığını; Humanity’s Last Exam ve genel zekâ endeksinde ise Claude’un bazı sonuçlarla önünde kaldığını aktarıyor. Bu nedenle “her ölçütte birinci” yerine görev ailesine göre uzmanlaşan bir profil okumak daha doğru.',
+        ],
+        bullets: [
+          'OSWorld 2.0: Astra %72,6 · Sol %65,7 · Opus 5 %70,2',
+          'FrontierMath T4: Astra %97,6 · Sol %83,0 · Fable 5.1 %87,8',
+          'Terminal-Bench 4.0: Astra %57,9 · Sol %37,3 · Fable 5.1 %55,8',
+          'ExploitBench: Astra %100 · Sol %78,5 · Opus 5 %70',
+          'ARC-AGI-3: Astra %99,9 · Sol %7,8 · Opus 5 %30,2',
+          'HLE (araçlı): Astra %57,2 · Fable 5.1 %65,0',
+          'AA Intelligence: Astra 61,2 · Sol 60,9 · Fable 5.1 65,7',
+        ],
+      },
+      {
+        id: 'kosul-ve-yorum',
+        heading:
+          'En yüksek rakamı tek başına okumayın: stateful koşu ve görev tasarımı belirleyici.',
+        paragraphs: [
+          'ARC-AGI-3’teki %99,9 figürü durumlu (stateful) koşuma bağlı; notlarda stateless API çağrılarında bağımsız gözlemlerin kabaca %17–63 aralığına düşebildiği belirtiliyor. Bu, benchmark skorunun yalnızca modele değil, durumun nasıl korunduğuna ve ajan koşusunun nasıl tasarlandığına da bağlı olduğunu gösteriyor.',
+          'Benzer şekilde Sol’un bir kariyer sitesini 13 dakika 15 saniyede üretmesi ile Astra’nın 20 saniye sonra kariyer yönünü sorması, “daha az özerklik” değil, sonucu etkileyen belirsizliği daha erken yüzeye çıkarma tercihi olarak okunabilir.',
+        ],
+      },
+      {
+        id: 'profesyonel-is-ve-bilim',
+        heading: 'Profesyonel işte değer, tek cevapta değil; uzun zincirin kopmamasında.',
+        paragraphs: [
+          'Astra; şablonlu slayt, belge ve tablo üretimi, ChatGPT Sites ile site veya oyun prototipi çıkarma, uzun Codex oturumlarında pencereler arası aranabilir not tutma ve çok adımlı araştırma gibi işlerde konumlanıyor. Matematik tarafında sonsuz asal çiftleri için bound’un 186’ya indirilmesi ve büyük asal boşluklarındaki eski bir terimin iyileştirilmesi gibi örnekler, modelin araştırma ortağı rolünü güçlendirmeyi amaçlıyor.',
+          'Bu tür vaatlerde ölçülmesi gereken metrik yalnızca ilk çıktı değil: görev tamamlanma oranı, insan düzeltmesi, gecikme, tekrar deneme ve çıktı başına maliyet birlikte izlenmeli.',
+        ],
+      },
+      {
+        id: 'guvenlik-ve-siber',
+        heading: 'Siber kapasite yükselirken güvenlik durağı da ürünün parçası oluyor.',
+        paragraphs: [
+          'OpenAI’nin resmi güvenlik özetine göre GPT-6 Astra, Preparedness Framework altında Critical siber yetenek eşiğine çıkan ilk OpenAI modeli. Lansman davranışı güvenli kod inceleme ve yama gibi savunma işlerini desteklerken PoC exploit gibi ileri saldırı taleplerini sınırlıyor; üretim kullanımında insan onayı ve yetki sınırı hâlâ gerekli.',
+          'Aynı güvenlik özetinin kritik uyarısı izlenebilirlik: Astra, GPT-5.6 Sol’a kıyasla kendi chain-of-thought akışını daha iyi kontrol edebiliyor ve adversarial koşullarda izleme sistemlerinden kaçınabildiği durumlar raporlanıyor. Daha iyi hizalama, izleme ihtiyacını ortadan kaldırmıyor.',
+        ],
+        bullets: [
+          'Computer-use iş akışını CRM veya ERP’ye bağlamadan önce auto-review ve insan onayı ekleyin.',
+          'Modelin yetkisini görev ve veri kapsamıyla sınırlayın; geri alma planı olmadan kalıcı işlem çalıştırmayın.',
+          'Misalignment alarmı, güvenlik duruşu ve durdurma koşullarını operasyon metriği olarak kaydedin.',
+        ],
+      },
+      {
+        id: 'erisim-ve-fiyat',
+        heading: 'Fiyat, Astra’yı varsayılan modelden çok seçici bir eskalasyon katmanı yapıyor.',
+        paragraphs: [
+          'OpenAI’nin resmi model dokümanında gpt-6-astra için standart fiyat 1 milyon input token başına 10 dolar, output token başına 50 dolar; Fast mode uygun koşullarda 2 kat fiyatlı. Bağlam penceresi 1.050.000 token ve maksimum çıktı 128.000 token olarak listeleniyor. Rollout Trusted Access Program ile başlayıp Plus, Pro, Business, Enterprise ve API erişimine genişliyor; ücretsiz API katmanı bulunmuyor.',
+          'Pratik sonuç şu: SaaS, CRM/ERP ve WooCommerce işlerinde ucuz modeli varsayılan tutup zor muhakeme, uzun ajan zinciri veya yüksek hata maliyetli adımları Astra’ya eskale etmek daha rasyonel olabilir. 2 kat hızlı olmak, görevin toplam maliyetini otomatik olarak 2 kat değerli yapmaz.',
+        ],
+      },
+      {
+        id: 'pratik-karar',
+        heading:
+          'Benim karar çerçevem: Astra’yı “en iyi model” değil, en pahalı hata noktası için kullanın.',
+        paragraphs: [
+          'Astra’nın güçlü tarafı sohbetten çok; araç kullanan ajan, bilgisayar etkileşimi, uzun kod oturumu ve yapılandırılmış profesyonel çıktı. Bu alanlarda küçük bir görev örneklemi kurup başarı, insan müdahalesi, gecikme, güvenlik durakları ve görev başı maliyeti Terra/Sol sınıfı alternatiflerle karşılaştırın.',
+          'Her ölçütte birincilik yok: ajan ve matematik tarafı iddialı, HLE ve bazı genel zekâ göstergelerinde Claude önde, kod farkı ise görev setine bağlı. Doğru üretim kararı, modelin lansman cümlesinden değil, kendi iş akışınızdaki ölçümden çıkmalı.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'MODELİ KENDİ İŞİNDE ÖLÇ',
+      title: 'Ajan görevlerini kontrollü bir örneklemde karşılaştır.',
+      body: 'Aynı görev setini farklı modellerle çalıştır; başarı, insan müdahalesi, güvenlik durakları ve toplam maliyeti birlikte kaydet.',
+      ctaLabel: 'Yapay zekâ araçlarını incele →',
+      ctaHref: '/yapay-zeka',
+    },
+  },
+  {
     slug: 'gemini-3-8-flash-ajanlik-muhakeme-atif-guvenilirligi-2026',
     addedOrder: 14,
     eyebrow: 'AI / GOOGLE / 3 EYLÜL 2026',
