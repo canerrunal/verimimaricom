@@ -39,6 +39,135 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'igexx-2026-e-ihracat-6-milyar-dolar-ekip-analizi-2026',
+    addedOrder: 16,
+    eyebrow: 'E-TİCARET / E-İHRACAT / 5 EYLÜL 2026',
+    title: 'IGEXX 2026: 6 milyar dolarlık hedef, e-ihracatın yeni çalışma masası.',
+    excerpt:
+      'IGEXX 2026’da açıklanan 6 milyar doların üzerindeki 2026 e-ihracat hedefi, Türkiye’de dijital satışın ek gelir kanalından ihracat altyapısına geçtiğini gösteriyor. Bu analiz, hedefi E-KİP, lojistik, pazar seçimi ve yazılım entegrasyonları açısından okuyor.',
+    category: 'E-Ticaret ve Pazar Analizi',
+    publishedAt: '2026-09-05',
+    updatedAt: '2026-09-05',
+    readingTime: '10 dk',
+    image:
+      '/api/social/announcements/igexx-2026-e-ihracat-6-milyar-dolar-ekip-analizi-2026/image?v=8',
+    imageAlt:
+      'IGEXX 2026 e-ihracat hedefi, E-Kolay İhracat Platformu ve hedef pazarları özetleyen Veri Mimarı analiz kartı',
+    source: 'T.C. Ticaret Bakanlığı · IGEXX 2026 ve E-Kolay İhracat Platformu · 3–5 Eylül 2026',
+    sourceUrl:
+      'https://ticaret.gov.tr/haberler/ticaret-bakani-omer-bolat-istanbul-kuresel-e-ihracat-zirvesinin-acilisinda-konustu',
+    sourceNote:
+      'Bu duyuru, kullanıcının araştırma notlarının Veri Mimarı formatında editoryal analizidir. Zirvenin tarih/yer/6 milyar dolar hedefi ve E-KİP’in 12 modülü resmi Ticaret Bakanlığı ve Kolay İhracat sayfalarıyla kontrol edildi. Notlarda yer alan üçüncü taraf veya medya kaynaklı rakamlar (Bloomberg HT, küresel e-ticaret tahminleri vb.) ilgili kurumların yöntem ve tarihleriyle okunmalıdır; burada bağımsız bir istatistik üretimi yapılmıyor. Destek ve mevzuat koşulları değişebilir; içerik yatırım, hukuk veya ihracat danışmanlığı değildir.',
+    stats: [
+      {
+        label: 'E-İHRACAT HEDEFİ',
+        value: '$6 MİLYAR+',
+        detail: '2026 sonu için Ticaret Bakanlığı hedefi',
+      },
+      {
+        label: 'HEDEF PAZAR',
+        value: '26 → 35',
+        detail: 'Genişletilmesi planlanan ülke kapsamı',
+      },
+      {
+        label: 'E-KİP',
+        value: '12 MODÜL',
+        detail: 'Resmi E-Kolay İhracat Platformu',
+      },
+      {
+        label: 'E-TİCARET HACMİ',
+        value: '₺4,57 TRİLYON',
+        detail: '2025’te açıklanan Türkiye e-ticaret hacmi',
+      },
+    ],
+    sections: [
+      {
+        id: 'igexx-ne-anlatiyor',
+        heading: 'IGEXX 2026, bir zirveden çok yeni bir ihracat çalışma masası kuruyor.',
+        paragraphs: [
+          'İstanbul Küresel E-İhracat Zirvesi (IGEXX 2026), 3–5 Eylül’de Haliç Kongre Merkezi’nde Ticaret Bakanlığı himayesinde ve TİM organizasyonunda düzenlendi. Programda 50 küresel pazar yeri, 110’dan fazla konuşmacı, 50’den fazla oturum, yedi atölye ve 2.500’ün üzerinde B2B görüşmesi yer aldı.',
+          'Bu ölçek önemli; çünkü e-ihracatı yalnızca ürün listeleme işi olmaktan çıkarıp pazar yeri, ödeme, lojistik, mevzuat ve tanıtımı aynı masada buluşturan bir operasyon olarak tarif ediyor. KOBİ için soru artık “yurt dışına satış mümkün mü?” değil, “hangi pazarda, hangi marjla ve hangi teslimat sözüyle ölçeklenebilir?”',
+        ],
+      },
+      {
+        id: 'hedef-ve-rakamlar',
+        heading:
+          '6 milyar dolarlık hedef, pazar kapsamını ve şirket tabanını birlikte büyütmeyi gerektiriyor.',
+        paragraphs: [
+          'Ticaret Bakanlığı, 2026 sonunda e-ihracat hacminin 6 milyar doların üzerine çıkarılmasını hedeflediğini açıkladı. Araştırma notlarında hedef pazar sayısının 26’dan 35’e genişletilmesi ve yıllık 10 bin doların üzerinde e-ihracat yapan firma sayısının 2022’deki 8.132 seviyesinden 2025 sonunda 11.420’ye yükselmesi birlikte okunuyor.',
+          'Notlarda ayrıca Türkiye e-ticaret hacminin 2025’te 4,57 trilyon TL’ye ulaştığı ve genel ticaret içindeki payının %19,3 olduğu aktarılıyor. Bu rakamların dönem, tanım ve kaynak yöntemleri farklı olabilir; karar verirken tek bir toplamı değil, hedef pazar, kategori, teslimat ve katkı payını aynı veri setinde izlemek gerekir.',
+        ],
+        bullets: [
+          'Pazar sayısı artarken her ülke için vergi, iade, teslimat ve ödeme maliyetini ayrı hesaplayın.',
+          'Ciro hedefini sipariş başı katkı payı ve tekrar satın alma oranıyla birlikte izleyin.',
+          'Ülke seçimini yalnızca talep değil, operasyonu sürdürebilme kapasitesiyle puanlayın.',
+        ],
+      },
+      {
+        id: 'destek-ve-sinir',
+        heading:
+          'Destek mekanizmaları var; fakat mevzuat ve teslimat ayrıntısı hâlâ oyunun kendisi.',
+        paragraphs: [
+          'Zirve mesajında finansman, lojistik, pazar yeri ve tanıtım destekleri öne çıkıyor. Avrupa Birliği’ne gönderilerde A.TR dolaşım belgesinin sadeleştirilmesi de vergi ve gümrük sürecindeki yükü azaltabilecek bir kolaylık olarak anılıyor.',
+          'Bu başlıklar fırsat yaratıyor ama otomatik kârlılık sağlamıyor. Ürünün GTİP’i, menşe ve vergi uygulaması, iade akışı, taşıma süresi ve pazar yerinin kesintileri ülkeye göre değişebilir. Kampanya veya fiyat kararı vermeden önce güncel koşulları ilgili resmi kaynaktan doğrulamak gerekir.',
+        ],
+      },
+      {
+        id: 'ekip-ve-yapay-zeka',
+        heading: 'E-KİP, e-ihracat kararını günlük bir veri işine çevirmeyi hedefliyor.',
+        paragraphs: [
+          'E-Kolay İhracat Platformu, 2020’de başlayan Kolay İhracat altyapısının üzerine kurulan ve 2024’te devreye alınan E-KİP ile 12 modülü bir araya getiriyor. Platformda hedef ülke ve sektör analizleri, pazar yeri bilgileri, eğitim ve rehberler ile yenilenen Akıllı E-İhracat Robotu bulunuyor.',
+          'Platformun ücretsiz olması, ilk pazar araştırması için giriş maliyetini düşürüyor. Benim önerim, E-KİP’i bir “rapor indir” noktası gibi değil, ürün marjı, teslimat sözü ve yerel müşteri edinme maliyetiyle birlikte kullanılan bir karar masası gibi ele almak.',
+        ],
+        bullets: [
+          'Önce iki hedef ülkeyi seçin; ülke, kategori ve kanal verisini aynı tabloda karşılaştırın.',
+          'Rehberdeki mevzuat bilgisini ödeme, kargo ve iade akışınızla eşleştirin.',
+          'Küçük bir ürün grubunda test yapıp dönüşüm, iade ve katkı payını ölçmeden ölçeklemeyin.',
+        ],
+      },
+      {
+        id: 'kobi-icin-pratik-okuma',
+        heading: 'KOBİ için pratik plan: pazarı seç, teklifi yerelleştir, küçük testle kanıtla.',
+        paragraphs: [
+          'E-ihracatın ilk adımı her ülkeye açılmak değil, ürününüzün güçlü olduğu bir pazarda tekrar edilebilir bir teklif kurmak. Ürün sayfasının dili, fiyatın para birimi, ödeme yöntemi, teslimat süresi ve iade sözü birlikte düşünülmeli.',
+          'İlk 30 günlük testte başarıyı yalnızca sipariş sayısıyla ölçmeyin. Ziyaret–sepete ekleme–sipariş dönüşümü, reklam ve komisyon maliyeti, teslimat süresi, iade oranı ve sipariş başı katkı payı aynı kontrol paneline girmeli.',
+        ],
+      },
+      {
+        id: 'yazilim-ve-entegrasyon-firsati',
+        heading: 'Yeni fırsat yalnızca satıcıda değil, e-ihracatın yazılım katmanında da.',
+        paragraphs: [
+          'Pazar yeri entegrasyonları, çoklu para birimi ve dil, ödeme mutabakatı, lojistik seçimi, iade takibi ve operasyon panelleri büyüyen pazarın doğal ihtiyaçları. Fark yaratacak ürün, yalnızca sipariş aktaran bir konektör değil; ülke bazlı marjı ve teslimat sözünü görünür kılan bir karar katmanı olur.',
+          'Veri Mimarı açısından bu, e-ticaret verisini dış pazara taşırken kaynağı, zamanı ve sınırı birlikte gösteren araçlar için açık bir alan. Özellikle küçük ekipler için “hangi ülkeye ne zaman açılmalıyım?” sorusunu ölçülebilir hale getiren basit akışlar, büyük platform özelliklerinden daha değerli olabilir.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: altyapı hazır; rekabet hız ve ölçüm disiplinine kayıyor.',
+        paragraphs: [
+          'Birinci sonuç, zamanlama. 26’dan 35’e genişleyen hedef pazar çerçevesi, artan destekler ve E-KİP’in rehberleri KOBİ’lere araştırmayı ertelemek için daha az sebep bırakıyor. İkinci sonuç, yapay zekânın e-ihracatta günlük karar yardımcısına dönüşmesi: doğru ülke, doğru kanal ve doğru teklif birlikte okunmalı.',
+          'Üçüncü sonuç, entegrasyon fırsatı. Pazar yeri, ödeme, lojistik ve çok dilli içerik katmanlarını tek operasyon akışında birleştiren yazılımlar; ihracat hedefini gerçek sipariş ekonomisine çevirebilir. Fakat benim için iyi bir testin ölçütü hâlâ aynı: daha yüksek ciro değil, ölçülebilir biçimde daha sağlıklı katkı payı ve daha az operasyon sürtünmesi.',
+        ],
+      },
+      {
+        id: 'karar',
+        heading:
+          '“Doğru zaman mı?” sorusu geride kaldı; şimdi “ne kadar hızlı ve kontrollü ölçeklerim?” zamanı.',
+        paragraphs: [
+          'IGEXX 2026’nın en güçlü mesajı, e-ihracatın tek seferlik kampanya değil, sürekli çalışan bir iş sistemi olduğuna dair. İlk adım olarak E-KİP’te bir hedef pazar seçin; ardından ürün marjı, teslimat, ödeme ve iade varsayımlarınızı küçük bir testle sınayın. Sonuçları görünür kılmadan ülke sayısını artırmayın.',
+          'Bu metin resmi duyuru yerine geçmez ve satış sonucu garanti etmez. E-ihracat destekleri ile gümrük/vergilendirme kuralları değişebileceği için uygulama öncesinde güncel resmi kaynakları kontrol edin.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'E-KOLAY İHRACAT’I İNCELE',
+      title: 'İlk hedef pazarı veriyle seç.',
+      body: 'E-KİP’te ülke, sektör, pazar yeri ve rehberleri aç; sonra ürününün marjı ve teslimat sözüyle küçük bir test tasarla.',
+      ctaLabel: 'E-Kolay İhracat Platformuna git →',
+      ctaHref: 'https://www.kolayihracat.gov.tr/e-ihracat',
+    },
+  },
+  {
     slug: 'gpt-6-astra-ajanlik-bilgisayar-kullanimi-hizalama-2026',
     addedOrder: 15,
     eyebrow: 'AI / OPENAI / 3 EYLÜL 2026',
