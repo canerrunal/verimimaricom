@@ -10,6 +10,7 @@ import {
 } from './trendyol-market'
 
 const base = {
+  metrics: {},
   profileSlug: 'cocuk',
   productId: '1',
   merchantId: '10',

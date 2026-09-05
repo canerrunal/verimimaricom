@@ -389,7 +389,7 @@
   }
 
   .chart {
-    width: 720px;
+    width: 100%;
     min-height: 280px;
   }
 
@@ -413,4 +413,34 @@
   .trigger {
     transition: none;
   }
+}
+
+.toolbar {
+  flex-wrap: wrap;
+}
+.summary strong {
+  overflow-wrap: anywhere;
+}
+
+.details {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.details th,
+.details td {
+  padding: 12px;
+  border: 1px solid var(--line);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.details caption {
+  text-align: left;
+  margin-bottom: 12px;
+  color: var(--muted);
 }

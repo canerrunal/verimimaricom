@@ -1,3 +1,4 @@
+import { normalizeProductMetrics, type ProductMetrics } from './trendyol-product-metrics'
 import { createServiceClient, supabase } from '@/lib/supabase'
 
 const REPOSITORY_RAW_ROOT = 'https://raw.githubusercontent.com/caner8047-coder/Trendyol/main'
@@ -89,6 +90,7 @@ export const MARKET_VIEWS = [
 export type MarketViewSlug = (typeof MARKET_VIEWS)[number]['slug']
 
 export type MarketProduct = {
+  metrics: ProductMetrics
   profileSlug: MarketProfileSlug
   productId: string
   merchantId: string | null
@@ -316,6 +318,7 @@ export function normalizeMarketProduct(
       : null)
 
   return {
+    metrics: normalizeProductMetrics(row.metrics ?? row),
     profileSlug,
     productId,
     merchantId,
