@@ -121,7 +121,7 @@ export async function POST(request: Request) {
         profile_slug: profileSlug,
         observed_date: observedDate,
         captured_at: capturedAt,
-        status: 'PASS',
+        status: 'FAIL',
         product_count: productCount,
         detail_success_rate: Number(quality.detailSuccessRate || 0),
         coverage,
@@ -202,6 +202,7 @@ export async function POST(request: Request) {
     currency: product.currency,
     trend_score: product.trendScore,
     opportunity_score: product.opportunityScore,
+    metrics: product.metrics,
     stock_status: product.stockStatus,
     stock_signal: product.stockSignal,
     sales_signal: product.salesSignal,
@@ -228,6 +229,12 @@ export async function POST(request: Request) {
     }
   }
 
+  const { error: finalizeError } = await database
+    .from('market_pipeline_runs')
+    .update({ status: 'PASS' })
+    .eq('id', run.id)
+  if (finalizeError)
+    return NextResponse.json({ ok: false, error: 'run-finalize-failed' }, { status: 500 })
   revalidateTag('trendyol-market')
   revalidatePath('/pazar-nabzi/trendyol')
 

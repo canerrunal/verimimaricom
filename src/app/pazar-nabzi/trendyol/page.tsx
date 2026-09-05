@@ -751,13 +751,17 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
             <article>
               <span>03</span>
               <h3>Satış sinyali</h3>
-              <p>“500+ satıldı” alt sınırdır; gerçek sipariş adedi veya ciro değildir.</p>
+              <p>
+                “500+ satıldı” etiketi alt sınırdır. Stok azalışından hesaplanan satış tahmini ayrı
+                gösterilir; satıcı ve varyant aynı kalmalı, ölçüm aralığı yeterli olmalıdır.
+              </p>
             </article>
             <article>
               <span>04</span>
               <h3>Stok sinyali</h3>
               <p>
-                Stokta, stok dışı veya görünür uyarı izlenir; kesin envanter miktarı tahmin edilmez.
+                Stok durumu ve varsa seçili satıcı/varyantın bildirdiği stok adedi izlenir. Eksik
+                miktar sıfır sayılmaz; satın alma limiti stok adedi olarak kullanılmaz.
               </p>
             </article>
             <article>

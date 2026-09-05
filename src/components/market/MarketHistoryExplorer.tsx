@@ -3,7 +3,17 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import styles from './MarketHistoryExplorer.module.css'
 
-export type MarketHistoryMetric = 'price' | 'stock' | 'sales'
+export type MarketHistoryMetric =
+  | 'price'
+  | 'stock'
+  | 'sales'
+  | 'quantity'
+  | 'estimatedSales'
+  | 'score'
+  | 'ratings'
+  | 'reviews'
+  | 'questions'
+  | 'sellers'
 
 export type MarketHistoryRequest = {
   source: 'profile' | 'taxonomy'
@@ -21,6 +31,17 @@ type HistoryPayload = {
   source: 'profile' | 'taxonomy'
   productId: string
   history: {
+    inventoryLabel?: string | null
+    salesWindows?: { daily: number | null; weekly: number | null; monthly: number | null }
+    quantity: NumericPoint[]
+    estimatedSales: NumericPoint[]
+    sellerDetails?: Record<string, unknown>[]
+    variantDetails?: Record<string, unknown>[]
+    score: NumericPoint[]
+    ratings: NumericPoint[]
+    reviews: NumericPoint[]
+    questions: NumericPoint[]
+    sellers: NumericPoint[]
     price: NumericPoint[]
     stock: NumericPoint[]
     sales: NumericPoint[]
@@ -39,7 +60,14 @@ const PERIODS = [
 const METRICS: Array<{ id: MarketHistoryMetric; label: string }> = [
   { id: 'price', label: 'Fiyat' },
   { id: 'stock', label: 'Stok durumu' },
-  { id: 'sales', label: 'Günlük satış hızı' },
+  { id: 'quantity', label: 'Stok adedi' },
+  { id: 'estimatedSales', label: 'Satış tahmini' },
+  { id: 'sales', label: 'Satış etiketi' },
+  { id: 'score', label: 'Ürün puanı' },
+  { id: 'ratings', label: 'Değerlendirme' },
+  { id: 'reviews', label: 'Yorum' },
+  { id: 'questions', label: 'Soru-cevap' },
+  { id: 'sellers', label: 'Satıcılar' },
 ]
 
 function formatNumber(value: number, maximumFractionDigits = 1) {
@@ -55,6 +83,9 @@ function formatMetric(metric: MarketHistoryMetric, value: number) {
     }).format(value)
   }
   if (metric === 'sales') return `≥ ${formatNumber(value)} / gün`
+  if (metric === 'estimatedSales') return `≈ ${formatNumber(value)} / gün`
+  if (metric === 'score') return `${formatNumber(value, 2)} / 5`
+  if (metric !== 'stock') return `${formatNumber(value, 0)} adet`
   if (value <= 0) return 'Stok dışı'
   if (value < 1) return 'Tükeniyor'
   return 'Stokta'
@@ -102,7 +133,16 @@ export function MarketHistoryTrigger({
 
 function HistoryChart({ metric, points }: { metric: MarketHistoryMetric; points: NumericPoint[] }) {
   const [activeIndex, setActiveIndex] = useState(Math.max(points.length - 1, 0))
-  const width = 760
+  const chartRef = useRef<SVGSVGElement>(null)
+  const [width, setWidth] = useState(760)
+  useEffect(() => {
+    if (!chartRef.current) return
+    const observer = new ResizeObserver((entries) =>
+      setWidth(Math.max(280, entries[0].contentRect.width)),
+    )
+    observer.observe(chartRef.current)
+    return () => observer.disconnect()
+  }, [])
   const height = 286
   const left = 76
   const right = 24
@@ -116,11 +156,16 @@ function HistoryChart({ metric, points }: { metric: MarketHistoryMetric; points:
   const spread = rawMax - rawMin || Math.max(Math.abs(rawMax) * 0.1, 1)
   const min = metric === 'stock' ? 0 : Math.max(0, rawMin - spread * 0.12)
   const max = metric === 'stock' ? 1 : rawMax + spread * 0.12
+  const times = points.map((point) => Date.parse(point.date))
+  const span = (times.at(-1) || 0) - (times[0] || 0)
   const x = (index: number) =>
-    points.length === 1 ? left + plotWidth / 2 : left + (index / (points.length - 1)) * plotWidth
+    span > 0 ? left + ((times[index] - times[0]) / span) * plotWidth : left + plotWidth / 2
   const y = (value: number) => top + ((max - value) / (max - min || 1)) * plotHeight
   const linePath = points
-    .map((point, index) => `${index ? 'L' : 'M'} ${x(index)} ${y(point.value)}`)
+    .map(
+      (point, index) =>
+        `${index && !(['quantity', 'estimatedSales'].includes(metric) && times[index] - times[index - 1] > 36 * 3600000) ? 'L' : 'M'} ${x(index)} ${y(point.value)}`,
+    )
     .join(' ')
   const stepPath = points
     .map((point, index) => {
@@ -141,7 +186,10 @@ function HistoryChart({ metric, points }: { metric: MarketHistoryMetric; points:
     if (points.length < 2) return
     const bounds = event.currentTarget.getBoundingClientRect()
     const cursor = ((event.clientX - bounds.left) / bounds.width) * width
-    const index = Math.round(((cursor - left) / plotWidth) * (points.length - 1))
+    const index = points.reduce(
+      (best, _, i) => (Math.abs(x(i) - cursor) < Math.abs(x(best) - cursor) ? i : best),
+      0,
+    )
     setActiveIndex(Math.max(0, Math.min(points.length - 1, index)))
   }
 
@@ -153,6 +201,7 @@ function HistoryChart({ metric, points }: { metric: MarketHistoryMetric; points:
         {active?.label ? <small>{active.label}</small> : null}
       </div>
       <svg
+        ref={chartRef}
         className={styles.chart}
         viewBox={`0 0 ${width} ${height}`}
         role="img"
@@ -227,25 +276,32 @@ function Summary({ metric, points }: { metric: MarketHistoryMetric; points: Nume
             change === null ? '—' : `${change > 0 ? '+' : ''}${formatNumber(change)}%`,
           ],
         ]
-      : metric === 'stock'
+      : metric !== 'stock' && metric !== 'sales'
         ? [
-            ['GÜNCEL', formatMetric(metric, current)],
-            ['STOKTA GÖRÜLEN', `${inStockDays}/${values.length} gün`],
-            ['DURUM DEĞİŞİMİ', `${stockChanges} kez`],
-            ['KAPSAM', `${values.length} başarılı gün`],
-          ]
-        : [
-            ['GÜNCEL ALT SINIR', formatMetric(metric, current)],
+            ['SON GÖZLEM', formatMetric(metric, current)],
+            ['DÖNEM EN DÜŞÜK', formatMetric(metric, Math.min(...values))],
             ['DÖNEM EN YÜKSEK', formatMetric(metric, Math.max(...values))],
-            [
-              'DÖNEM ORTALAMASI',
-              formatMetric(
-                metric,
-                values.reduce((total, value) => total + value, 0) / values.length,
-              ),
-            ],
-            ['KAPSAM', `${values.length} etiketli gün`],
+            ['KAPSAM', `${values.length} gözlem`],
           ]
+        : metric === 'stock'
+          ? [
+              ['GÜNCEL', formatMetric(metric, current)],
+              ['STOKTA GÖRÜLEN', `${inStockDays}/${values.length} gün`],
+              ['DURUM DEĞİŞİMİ', `${stockChanges} kez`],
+              ['KAPSAM', `${values.length} başarılı gün`],
+            ]
+          : [
+              ['GÜNCEL ALT SINIR', formatMetric(metric, current)],
+              ['DÖNEM EN YÜKSEK', formatMetric(metric, Math.max(...values))],
+              [
+                'DÖNEM ORTALAMASI',
+                formatMetric(
+                  metric,
+                  values.reduce((total, value) => total + value, 0) / values.length,
+                ),
+              ],
+              ['KAPSAM', `${values.length} etiketli gün`],
+            ]
 
   return (
     <div className={styles.summary}>
@@ -340,12 +396,11 @@ export function MarketHistoryModal() {
         </header>
 
         <div className={styles.toolbar}>
-          <div role="tablist" aria-label="Grafik metriği">
+          <div role="group" aria-label="Grafik metriği">
             {METRICS.map((item) => (
               <button
                 type="button"
-                role="tab"
-                aria-selected={metric === item.id}
+                aria-pressed={metric === item.id}
                 key={item.id}
                 onClick={() => setMetric(item.id)}
               >
@@ -368,12 +423,94 @@ export function MarketHistoryModal() {
         </div>
 
         <div className={styles.body}>
+          {payload?.history.inventoryLabel &&
+          (metric === 'quantity' || metric === 'estimatedSales') ? (
+            <p className={styles.notice}>{payload.history.inventoryLabel}</p>
+          ) : null}
+          {metric === 'estimatedSales' && payload?.history.salesWindows ? (
+            <div className={styles.summary}>
+              {(['daily', 'weekly', 'monthly'] as const).map((key, index) => (
+                <div key={key}>
+                  <span>{['GÜNLÜK TAHMİN', 'SON 7 GÜN TAHMİNİ', 'SON 30 GÜN TAHMİNİ'][index]}</span>
+                  <strong>
+                    {payload.history.salesWindows?.[key] == null
+                      ? 'Yeterli gözlem yok'
+                      : `≈ ${formatNumber(payload.history.salesWindows[key]!)} adet`}
+                  </strong>
+                </div>
+              ))}
+            </div>
+          ) : null}
+          {metric === 'sellers' && payload?.history.sellerDetails?.length ? (
+            <div className={styles.details}>
+              <table>
+                <caption>Sayfada görülen satıcılar</caption>
+                <thead>
+                  <tr>
+                    <th>Satıcı</th>
+                    <th>Puan</th>
+                    <th>Fiyat</th>
+                    <th>Bildirilen stok</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {payload.history.sellerDetails.map((seller, i) => (
+                    <tr key={i}>
+                      <td>{String(seller.name || seller.merchant_id || '—')}</td>
+                      <td>{seller.score == null ? '—' : String(seller.score)}</td>
+                      <td>
+                        {seller.price == null ? '—' : formatMetric('price', Number(seller.price))}
+                      </td>
+                      <td>
+                        {seller.stock_quantity == null
+                          ? 'Bilinmiyor'
+                          : String(seller.stock_quantity)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+          {metric === 'quantity' && payload?.history.variantDetails?.length ? (
+            <div className={styles.details}>
+              <table>
+                <caption>Seçili satıcının varyantları</caption>
+                <thead>
+                  <tr>
+                    <th>Varyant</th>
+                    <th>Durum</th>
+                    <th>Bildirilen adet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {payload.history.variantDetails.map((variant, i) => (
+                    <tr key={i}>
+                      <td>{String(variant.label || variant.variant_id || '—')}</td>
+                      <td>
+                        {variant.in_stock === true
+                          ? 'Stokta'
+                          : variant.in_stock === false
+                            ? 'Stok dışı'
+                            : 'Bilinmiyor'}
+                      </td>
+                      <td>
+                        {variant.stock_quantity == null
+                          ? 'Bilinmiyor'
+                          : String(variant.stock_quantity)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
           {loading ? <div className={styles.state}>Geçmiş gözlemler hazırlanıyor…</div> : null}
           {error ? <div className={`${styles.state} ${styles.error}`}>{error}</div> : null}
           {!loading && !error && payload ? (
             points.length ? (
               <>
-                <Summary metric={metric} points={points} />
+                {metric !== 'estimatedSales' ? <Summary metric={metric} points={points} /> : null}
                 <HistoryChart metric={metric} points={points} />
                 {points.length < 2 ? (
                   <p className={styles.notice}>

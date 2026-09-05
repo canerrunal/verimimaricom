@@ -11,6 +11,7 @@ import {
 
 function product(overrides: Partial<MarketProduct> = {}): MarketProduct {
   return {
+    metrics: {},
     profileSlug: 'kozmetik',
     productId: '1',
     merchantId: '10',
