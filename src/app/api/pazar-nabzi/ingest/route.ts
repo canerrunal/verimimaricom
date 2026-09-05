@@ -229,8 +229,12 @@ export async function POST(request: Request) {
     }
   }
 
-  const { error: finalizeError } = await database.from('market_pipeline_runs').update({ status: 'PASS' }).eq('id', run.id)
-  if (finalizeError) return NextResponse.json({ ok: false, error: 'run-finalize-failed' }, { status: 500 })
+  const { error: finalizeError } = await database
+    .from('market_pipeline_runs')
+    .update({ status: 'PASS' })
+    .eq('id', run.id)
+  if (finalizeError)
+    return NextResponse.json({ ok: false, error: 'run-finalize-failed' }, { status: 500 })
   revalidateTag('trendyol-market')
   revalidatePath('/pazar-nabzi/trendyol')
 
