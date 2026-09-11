@@ -255,6 +255,15 @@ Kartlar arasında üçüncü bir rastgele stil oluşturulmaz. Kart başlığı, 
 - Koyu panel üzerinde lime/cyan yalnızca kritik değerlerde kullanılır.
 - Grafikler mevcut renk tokenlarını kullanır ve açıklayıcı metne sahiptir.
 
+### Filtrelenebilir veri tabloları
+
+- Listeleme arketipinde mevcut panel, form ve pill filtreler birlikte kullanılır; aktif filtre lime olur.
+- Geniş veri tablolarında kategori seçimi üstte, metrik tablosu içerik kabuğunun tam genişliğinde yer alabilir.
+- Sıralanabilir başlıklar düğme ve `aria-sort` taşır. Eksik değerler her yönde sona gider; sıfır ile bilinmeyen ayrılır.
+- Her metrik açık bir tarihçe düğmesi taşır. Grafik yanında erişilebilir günlük kayıt tablosu sunulur.
+- Mobilde satırlar etiketli iki kolonlu metrik kartlarına dönüşür; sayfa yatay taşmaz. Filtre kapsamı, sonuç sayısı ve sıfırlama görünürdür.
+- Tarihçe seçilen rapor tarihini aşmaz. CSV mevcut filtre ve sıralamayla eşleşir; tahminler açıkça etiketlenir.
+
 ### Newsletter
 
 - Lime tam genişlikte bir dönüşüm bandıdır.

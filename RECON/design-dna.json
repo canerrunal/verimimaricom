@@ -72,7 +72,8 @@
       "card_style": "flat grid cells or 14px outlined panels with hard drop shadow",
       "navigation_pattern": "72px sticky translucent editorial bar",
       "list_style": "bordered grid cells with mono index",
-      "component_notes": "Interactive calculators retain their behavior; only presentation changes."
+      "component_notes": "Interactive calculators retain their behavior; only presentation changes.",
+      "data_table": "Full-width outlined panel with lime filter pills, labeled fields, sortable accessible headers, per-metric history actions and daily records; mobile rows become labeled metric cards. Unknowns remain distinct from zero; history is bounded by report date."
     },
     "social_media": {
       "canonical_reference": "docs/sosyal-medya-tasarim-sistemi.md",

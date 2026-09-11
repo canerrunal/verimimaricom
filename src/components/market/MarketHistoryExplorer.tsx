@@ -20,6 +20,7 @@ export type MarketHistoryRequest = {
   metric: MarketHistoryMetric
   productId: string
   title: string
+  observedDate?: string
   productKey?: string
   offerKey?: string
   profileSlug?: string
@@ -321,6 +322,7 @@ export function MarketHistoryModal() {
   const [metric, setMetric] = useState<MarketHistoryMetric>('price')
   const [period, setPeriod] = useState(30)
   const [payload, setPayload] = useState<HistoryPayload | null>(null)
+  const [display, setDisplay] = useState<'chart' | 'table'>('chart')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -330,6 +332,7 @@ export function MarketHistoryModal() {
       setRequest(detail)
       setMetric(detail.metric)
       setPeriod(30)
+      setDisplay('chart')
       setPayload(null)
       setError('')
       if (!dialogRef.current?.open) dialogRef.current?.showModal()
@@ -345,6 +348,7 @@ export function MarketHistoryModal() {
       source: request.source,
       productId: request.productId,
     })
+    if (request.observedDate) params.set('date', request.observedDate)
     if (request.productKey) params.set('productKey', request.productKey)
     if (request.offerKey) params.set('offerKey', request.offerKey)
     if (request.profileSlug) params.set('profileSlug', request.profileSlug)
@@ -354,13 +358,15 @@ export function MarketHistoryModal() {
       .then(async (response) => {
         const data = await response.json()
         if (!response.ok) throw new Error(data?.error || 'Ürün geçmişi alınamadı.')
-        setPayload(data as HistoryPayload)
+        if (!controller.signal.aborted) setPayload(data as HistoryPayload)
       })
       .catch((reason) => {
         if (reason instanceof DOMException && reason.name === 'AbortError') return
         setError(reason instanceof Error ? reason.message : 'Ürün geçmişi alınamadı.')
       })
-      .finally(() => setLoading(false))
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false)
+      })
     return () => controller.abort()
   }, [request])
 
@@ -407,6 +413,22 @@ export function MarketHistoryModal() {
                 {item.label}
               </button>
             ))}
+          </div>
+          <div aria-label="Geçmiş görünümü">
+            <button
+              type="button"
+              aria-pressed={display === 'chart'}
+              onClick={() => setDisplay('chart')}
+            >
+              Grafik
+            </button>
+            <button
+              type="button"
+              aria-pressed={display === 'table'}
+              onClick={() => setDisplay('table')}
+            >
+              Günlük kayıtlar
+            </button>
           </div>
           <div aria-label="Grafik dönemi">
             {PERIODS.map((item) => (
@@ -511,7 +533,31 @@ export function MarketHistoryModal() {
             points.length ? (
               <>
                 {metric !== 'estimatedSales' ? <Summary metric={metric} points={points} /> : null}
-                <HistoryChart metric={metric} points={points} />
+                {display === 'chart' ? (
+                  <HistoryChart metric={metric} points={points} />
+                ) : (
+                  <div className={styles.details}>
+                    <table>
+                      <caption>Seçilen dönemin günlük kayıtları</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Tarih</th>
+                          <th scope="col">{METRICS.find((item) => item.id === metric)?.label}</th>
+                          <th scope="col">Gözlem notu</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[...points].reverse().map((point) => (
+                          <tr key={point.date}>
+                            <th scope="row">{formatDate(point.date, true)}</th>
+                            <td>{formatMetric(metric, point.value)}</td>
+                            <td>{point.label || 'Başarılı günlük gözlem'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
                 {points.length < 2 ? (
                   <p className={styles.notice}>
                     Trend çizgisi için en az iki başarılı gün gerekir. Mevcut tek gözlem noktası

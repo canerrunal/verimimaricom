@@ -4,7 +4,8 @@ import NavBar from '@/components/landing/NavBar'
 import NewsletterSection from '@/components/landing/NewsletterSection'
 import Footer from '@/components/landing/Footer'
 import { MarketHistoryModal, MarketHistoryTrigger } from '@/components/market/MarketHistoryExplorer'
-import productStyles from './TrendyolProductImage.module.css'
+import MarketProductTable from '@/components/market/MarketProductTable'
+import tableStyles from '@/components/market/MarketProductTable.module.css'
 import { getDictionary } from '@/lib/i18n'
 import { getSiteUrl } from '@/lib/seo'
 import {
@@ -54,9 +55,11 @@ function marketHref(profile: MarketProfileSlug, view: MarketViewSlug, query = ''
   return `/pazar-nabzi/trendyol?${params.toString()}#radar`
 }
 
-function taxonomyHref(categoryId: number, date = '') {
+function taxonomyHref(categoryId: number, date = '', query = '', rootId: number | null = null) {
   const params = new URLSearchParams({ 'kategori-id': String(categoryId) })
   if (date) params.set('tarih', date)
+  if (query) params.set('taksonomi-arama', query)
+  if (rootId) params.set('ana-kategori', String(rootId))
   return `/pazar-nabzi/trendyol?${params.toString()}#kategori-evreni`
 }
 
@@ -100,18 +103,19 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
     getMarketTaxonomyOverview(),
     getMarketTaxonomyDates(),
   ])
-  const defaultCategoryId = taxonomyOverview?.roots[0]?.categoryId || 0
+  const rootId = Number.isInteger(requestedRootId) && requestedRootId > 0 ? requestedRootId : null
+  const taxonomyCategories = await getMarketTaxonomyCategories(
+    taxonomyQuery,
+    rootId,
+    taxonomyQuery || rootId ? 60 : 19,
+  )
   const taxonomyCategoryId =
     Number.isInteger(requestedCategoryId) && requestedCategoryId > 0
       ? requestedCategoryId
-      : defaultCategoryId
-  const rootId = Number.isInteger(requestedRootId) && requestedRootId > 0 ? requestedRootId : null
-  const [taxonomyCategories, taxonomySnapshot] = await Promise.all([
-    getMarketTaxonomyCategories(taxonomyQuery, rootId, taxonomyQuery || rootId ? 60 : 19),
-    taxonomyCategoryId
-      ? getMarketTaxonomySnapshot(taxonomyCategoryId, requestedDate || null)
-      : Promise.resolve({ category: null, products: [], observedDate: null }),
-  ])
+      : taxonomyCategories[0]?.categoryId || rootId || taxonomyOverview?.roots[0]?.categoryId || 0
+  const taxonomySnapshot = taxonomyCategoryId
+    ? await getMarketTaxonomySnapshot(taxonomyCategoryId, requestedDate || null)
+    : { category: null, products: [], observedDate: null, metricsUnavailable: false }
   const filtered = selectMarketProducts(snapshot.products, view, query)
   const products = filtered.slice(0, 40)
   const summary = summarizeMarketProducts(snapshot.products)
@@ -229,7 +233,11 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
 
           {taxonomyOverview ? (
             <>
-              <form className="market-taxonomy-search panel" action="/pazar-nabzi/trendyol">
+              <form
+                className="market-taxonomy-search panel"
+                action="/pazar-nabzi/trendyol#kategori-evreni"
+              >
+                {requestedDate ? <input type="hidden" name="tarih" value={requestedDate} /> : null}
                 <div>
                   <label htmlFor="taxonomy-root">Ana kategori</label>
                   <select id="taxonomy-root" name="ana-kategori" defaultValue={rootId || ''}>
@@ -257,7 +265,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                 </button>
               </form>
 
-              <div className="market-taxonomy-layout">
+              <div className={`market-taxonomy-layout ${tableStyles.layout}`}>
                 <aside className="market-taxonomy-categories" aria-label="Kategori sonuçları">
                   <div>
                     <span>KATEGORİ SONUÇLARI</span>
@@ -267,7 +275,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                     {taxonomyCategories.map((item) => (
                       <a
                         key={item.pathKey}
-                        href={taxonomyHref(item.categoryId, requestedDate)}
+                        href={taxonomyHref(item.categoryId, requestedDate, taxonomyQuery, rootId)}
                         className={
                           item.categoryId === taxonomySnapshot.category?.categoryId
                             ? 'active'
@@ -297,8 +305,10 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                       <span className="eyebrow">SEÇİLİ KATEGORİ</span>
                       <h3>{taxonomySnapshot.category?.path || 'Kategori seçin'}</h3>
                     </div>
-                    <form action="/pazar-nabzi/trendyol">
+                    <form action="/pazar-nabzi/trendyol#kategori-evreni">
                       <input type="hidden" name="kategori-id" value={taxonomyCategoryId} />
+                      <input type="hidden" name="taksonomi-arama" value={taxonomyQuery} />
+                      <input type="hidden" name="ana-kategori" value={rootId || ''} />
                       <label htmlFor="taxonomy-date">Rapor tarihi</label>
                       <select
                         id="taxonomy-date"
@@ -321,131 +331,13 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
                     </form>
                   </div>
 
-                  {taxonomySnapshot.products.length ? (
-                    <div className="market-table-shell market-taxonomy-table-shell">
-                      <table
-                        className={`market-table market-taxonomy-table ${productStyles.productTable}`}
-                      >
-                        <caption>
-                          {taxonomySnapshot.category?.path} için{' '}
-                          {formatMarketDate(taxonomySnapshot.observedDate)} tarihli çok satanlar
-                        </caption>
-                        <thead>
-                          <tr>
-                            <th scope="col">Sıra</th>
-                            <th scope="col">Ürün</th>
-                            <th scope="col">Fiyat</th>
-                            <th scope="col">Günlük hareket</th>
-                            <th scope="col">Stok / puan</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {taxonomySnapshot.products.map((product) => (
-                            <tr key={`${product.rank}-${product.productKey}`}>
-                              <td data-label="Sıra">
-                                <strong className="market-rank">{product.rank}</strong>
-                              </td>
-                              <th scope="row" data-label="Ürün">
-                                <div className={productStyles.productCell}>
-                                  <a
-                                    className={`${productStyles.productImage}${product.imageUrl ? '' : ` ${productStyles.isEmpty}`}`}
-                                    href={product.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer nofollow"
-                                    aria-label={`${product.title} ürününü Trendyol'da aç`}
-                                  >
-                                    {product.imageUrl ? (
-                                      <img
-                                        src={product.imageUrl}
-                                        alt={`${product.title} ürün görseli`}
-                                        width="64"
-                                        height="78"
-                                        loading="lazy"
-                                        decoding="async"
-                                        referrerPolicy="no-referrer"
-                                      />
-                                    ) : (
-                                      <span aria-hidden="true">GÖRSEL YOK</span>
-                                    )}
-                                  </a>
-                                  <div>
-                                    <a
-                                      href={product.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer nofollow"
-                                    >
-                                      {product.title}
-                                    </a>
-                                    <span className={productStyles.productMeta}>
-                                      {product.brand || 'Marka belirtilmedi'} · Ürün #
-                                      {product.productId}
-                                    </span>
-                                  </div>
-                                </div>
-                              </th>
-                              <td data-label="Fiyat">
-                                <MarketHistoryTrigger
-                                  request={{
-                                    source: 'taxonomy',
-                                    metric: 'price',
-                                    productId: product.productId,
-                                    productKey: product.productKey,
-                                    merchantId: product.merchantId,
-                                    title: product.title,
-                                  }}
-                                  primary={formatMarketMoney(product.price)}
-                                  secondary={product.promotions[0] || 'Kampanya etiketi yok'}
-                                />
-                              </td>
-                              <td data-label="Günlük hareket">
-                                <strong
-                                  className={
-                                    (product.rankDelta || 0) > 0
-                                      ? 'signal-up'
-                                      : (product.rankDelta || 0) < 0
-                                        ? 'signal-down'
-                                        : undefined
-                                  }
-                                >
-                                  {product.rankDelta === null
-                                    ? 'İlk gözlem'
-                                    : product.rankDelta === 0
-                                      ? 'Sıra değişmedi'
-                                      : `${product.rankDelta > 0 ? '+' : ''}${product.rankDelta} sıra`}
-                                </strong>
-                                <span>Fiyat {percent(product.priceDeltaPercent)}</span>
-                              </td>
-                              <td data-label="Stok ve puan">
-                                <MarketHistoryTrigger
-                                  request={{
-                                    source: 'taxonomy',
-                                    metric: 'stock',
-                                    productId: product.productId,
-                                    productKey: product.productKey,
-                                    merchantId: product.merchantId,
-                                    title: product.title,
-                                  }}
-                                  primary={
-                                    product.inStock === false
-                                      ? 'Stok dışı'
-                                      : product.runningOut
-                                        ? 'Tükeniyor'
-                                        : 'Stokta'
-                                  }
-                                  secondary={`${product.rating ? `${product.rating.toFixed(1)} puan` : 'Puan yok'} · ${compact(product.ratingCount)}`}
-                                />
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : (
-                    <div className="market-empty" role="status">
-                      <strong>Bu kategori ve tarih için ürün kaydı yok.</strong>
-                      <p>Kategori başarılı ancak boş dönmüş olabilir; başka bir kategori seçin.</p>
-                    </div>
-                  )}
+                  <MarketProductTable
+                    key={`${taxonomyCategoryId}-${taxonomySnapshot.observedDate}`}
+                    products={taxonomySnapshot.products}
+                    category={taxonomySnapshot.category?.path || 'Kategori'}
+                    date={taxonomySnapshot.observedDate}
+                    metricsUnavailable={taxonomySnapshot.metricsUnavailable}
+                  />
                 </div>
               </div>
             </>

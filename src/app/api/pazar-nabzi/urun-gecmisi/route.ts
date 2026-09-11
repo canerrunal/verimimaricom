@@ -21,6 +21,10 @@ export async function GET(request: Request) {
   const productId = clean(url.searchParams.get('productId'), 80)
   const productKey = clean(url.searchParams.get('productKey'))
   const offerKey = clean(url.searchParams.get('offerKey'))
+  const dateValue = clean(url.searchParams.get('date'), 10)
+  const cutoff = /^\d{4}-\d{2}-\d{2}$/.test(dateValue)
+    ? dateValue
+    : new Date().toISOString().slice(0, 10)
   const profileSlug = clean(url.searchParams.get('profileSlug'), 80)
 
   if (!validSource(sourceValue) || !productId) {
@@ -45,6 +49,7 @@ export async function GET(request: Request) {
       'observed_date,captured_at,price,stock_status,stock_signal,sales_signal_daily_min,sales_signal,metrics,rating,rating_count,review_count,question_count',
     )
     .eq('product_id', productId)
+    .lte('observed_date', cutoff)
     .order('observed_date', { ascending: false })
     .order('captured_at', { ascending: false })
     .limit(400)
@@ -67,6 +72,7 @@ export async function GET(request: Request) {
             'observed_date,captured_at,price,in_stock,running_out,metrics,rating,rating_count',
           )
           .eq('product_key', productKey)
+          .lte('observed_date', cutoff)
           .order('observed_date', { ascending: false })
           .order('captured_at', { ascending: false })
           .limit(400)
