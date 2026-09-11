@@ -39,6 +39,127 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'haftanin-e-ticaret-gundemi-yeni-kurallar-firsatlar-donusum-eylul-2026',
+    addedOrder: 17,
+    eyebrow: 'E-TİCARET GÜNDEMİ / TÜRKİYE / 11 EYLÜL 2026',
+    title: 'E-ticaret gündemi: Yeni kurallar, fırsatlar ve sektörün dönüşümü.',
+    excerpt:
+      'Yurt dışı alışverişte gümrük ve ürün güvenliği adımları, platformlarda şeffaflık baskısı, kadın kooperatiflerine yeni destekler ve yapay zekâ destekli alışveriş aynı haftanın gündeminde buluşuyor. Bu analiz, başlıkların işletme kararına etkisini birlikte okuyor.',
+    category: 'E-Ticaret ve Pazar Analizi',
+    publishedAt: '2026-09-11',
+    updatedAt: '2026-09-11',
+    readingTime: '9 dk',
+    image:
+      '/api/social/announcements/haftanin-e-ticaret-gundemi-yeni-kurallar-firsatlar-donusum-eylul-2026/image?v=8',
+    imageAlt:
+      'Türkiye e-ticaret gündemindeki gümrük kuralları, büyüme, kooperatif desteği ve yapay zekâ trendlerini özetleyen Veri Mimarı analiz kartı',
+    source: 'T.C. Ticaret Bakanlığı · GİB · Türkiye’de E-Ticaretin Görünümü 2025 · Eylül 2026',
+    sourceUrl:
+      'https://ticaret.gov.tr/duyurular/turkiyede-e-ticaretin-gorunumu-raporu-yayinlandi-12-05-2026',
+    sourceNote:
+      'Bu duyuru, kullanıcının haftalık gündem notlarının Veri Mimarı formatında editoryal analizidir. E-ticaret hacmi, ürün güvenliği ve basitleştirilmiş gümrük beyannamesi değişikliği Ticaret Bakanlığı kaynaklarıyla; platformların bildirim yükümlülükleri GİB kaynaklarıyla; kadın kooperatifi komisyon desteği ise 7 Eylül 2026 tarihli Bakanlık duyurusuyla kontrol edildi. Kullanıcının notlarında yer alan BKM, TESK, üçüncü taraf platform sözleşmeleri ve küresel agentic commerce yorumları ayrıca bağımsız doğrulama gerektirir. Vergi, gümrük ve komisyon koşulları değişebilir; içerik hukuki, mali veya ihracat danışmanlığı değildir.',
+    stats: [
+      {
+        label: '2025 E-TİCARET',
+        value: '₺4,57 TRİLYON',
+        detail: 'Türkiye’de açıklanan toplam e-ticaret hacmi',
+      },
+      {
+        label: 'YILLIK BÜYÜME',
+        value: '%52,2',
+        detail: '2025 hacminin bir önceki yıla göre artışı',
+      },
+      {
+        label: 'KOOPERATİF DESTEĞİ',
+        value: '%0 → %1',
+        detail: 'İlk 6 ay ve sonraki 4,5 yıl için komisyon oranı',
+      },
+      {
+        label: 'E-İTHALAT',
+        value: '1 ŞUBAT 2026',
+        detail: 'BGB kapsamındaki yeni ürün güvenliği dönemi',
+      },
+    ],
+    sections: [
+      {
+        id: 'yurt-disi-e-ticaret-kurallari',
+        heading: 'Yurt dışı e-ticarette ürün güvenliği ve gümrük, büyüme kadar önemli.',
+        paragraphs: [
+          '2026 gündeminin en somut başlığı, yurt dışı e-ticaret platformlarından Türkiye’ye gelen ürünlerin ürün güvenliği ve ithalat prosedürleriyle daha yakından izlenmesi. Ticaret Bakanlığı, 1 Şubat 2026’dan itibaren basitleştirilmiş gümrük beyannamesi kapsamını geniş ölçüde sonlandırdı; belirli istisnalar dışında normal ithalat prosedürleri devreye girdi.',
+          'AB’ye 150 avro altı e-ihracat gönderilerinde elektronik A.TR dolaşım belgesinin BGB verilerinden otomatik oluşturulması ise ihracat tarafında ayrı bir kolaylaştırma. İthalat ve ihracat başlıklarını birbirine karıştırmadan, ürünün GTİP’i, menşei, vergi ve iade akışıyla birlikte modellemek gerekiyor.',
+        ],
+        bullets: [
+          'Dropshipping ve yurt dışı tedarik planlarında yeni ithalat sürecini birim maliyete ekleyin.',
+          'Ürün güvenliği, uygunluk işareti ve Türkiye’deki iktisadi işletme/temas noktası bilgilerini kontrol edin.',
+          'AB’ye satışta A.TR kolaylığının güncel koşullarını yetkili kargo operatörüyle doğrulayın.',
+        ],
+      },
+      {
+        id: 'platform-seffafligi-ve-vergi',
+        heading: 'Platform denetimi arttıkça kayıt, fatura ve kampanya dili rekabet unsuru oluyor.',
+        paragraphs: [
+          'GİB’in e-ticaret faaliyetlerini izlemeye yönelik çerçevesinde aracı hizmet sağlayıcılar, sosyal ağ sağlayıcıları ve ilan platformları için bildirim yükümlülükleri bulunuyor. Bu, sosyal medya üzerinden satış yapan küçük işletmelerin de sipariş, fatura ve müşteri kayıtlarını düzenli tutmasını gerektiriyor.',
+          'Ticaret Bakanlığı’nın ürün güvenliği ve aldatıcı ticari uygulamalara ilişkin yaklaşımı da ürün bilgisi, fiyatın karşılaştırma biçimi, kampanya şartları ve teslimat sözünün açık yazılmasını daha kritik hale getiriyor. Şeffaflık artık yalnızca uyum başlığı değil, güven ve dönüşüm metriği.',
+        ],
+      },
+      {
+        id: 'kadin-kooperatifleri-destegi',
+        heading: 'Kadın kooperatifleri için beş yıllık dijital kanal penceresi açılıyor.',
+        paragraphs: [
+          'Ticaret Bakanlığı ile Hepsiburada, N11, PTTAVM, Pazarama ve Trendyol arasında imzalanan protokol; kadın kooperatiflerine ücretsiz kayıt, ilk altı ay %0 ve sonraki 4,5 yıl %1 komisyon, “Kooperatif Ürünleri” etiketi ve görünürlük alanları sağlıyor.',
+          'Bu paket yalnızca bir komisyon indirimi değil. Yerel üretim yapan kooperatiflerin fotoğraf, stok, kargo, ürün hikâyesi ve müşteri hizmeti kapasitesini aynı anda geliştirmesi gerekiyor. Markalar için de kooperatiflerle çalışmak, sosyal fayda anlatısını gerçek tedarik ve kalite standardıyla birleştirme fırsatı yaratıyor.',
+        ],
+        bullets: [
+          'Komisyon avantajını net marj, kargo ve iade maliyetiyle birlikte hesaplayın.',
+          'Ürün hikâyesini doğrulanabilir üretim, içerik ve kalite bilgisiyle destekleyin.',
+          'Görünürlük kampanyasını yalnızca erişim değil, tekrar satın alma ve müşteri edinme maliyetiyle ölçün.',
+        ],
+      },
+      {
+        id: 'buyume-ve-komisyon-baskisi',
+        heading:
+          'Pazar büyüyor; fakat komisyon ve operasyon baskısı büyümenin kalitesini belirliyor.',
+        paragraphs: [
+          'Ticaret Bakanlığı’nın 2025 görünüm raporuna göre Türkiye’de e-ticaret hacmi %52,2 artışla 4,57 trilyon TL’ye, dolar bazında 115,43 milyar dolara ulaştı; e-ticaretin GSYH içindeki payı %6,9, genel ticarete oranı %19,3 olarak açıklandı. Bu ölçek, e-ticareti artık “ek kanal” diye yönetmenin zorlaştığını gösteriyor.',
+          'Aynı anda esnaf ve platformlar arasında komisyon, hizmet bedeli ve pazaryeri bağımlılığı tartışması sürüyor. Hangi oranı ödediğiniz kadar, sipariş başına katkı payının reklam, kargo, iade ve müşteri hizmeti sonrası hâlâ pozitif kalıp kalmadığı önemli.',
+        ],
+        bullets: [
+          'Pazaryeri komisyonunu kendi site, sosyal satış ve CRM kanallarının maliyetiyle karşılaştırın.',
+          'Ciro yerine katkı payı, iade oranı ve tekrar satın alma oranını haftalık izleyin.',
+          'Tek platform riskini azaltmak için ürün, müşteri ve içerik verinizin sahipliğini koruyun.',
+        ],
+      },
+      {
+        id: 'agentic-commerce',
+        heading: 'Agentic commerce, ürün keşfinden iadeye kadar yeni bir arayüz öneriyor.',
+        paragraphs: [
+          'Yapay zekâ ajanlarının ürün keşfi, karşılaştırma, satın alma, teslimat ve iade adımlarında rol aldığı “agentic commerce” yaklaşımı küresel gündemde öne çıkıyor. Bu dönüşüm, markaları yalnızca arama sonuçlarına değil, yapay zekâ ajanlarının okuyup güvenebileceği ürün beslemelerine, yapılandırılmış veriye ve net politika metinlerine yatırım yapmaya itiyor.',
+          'Ancak otomatik sipariş, yetki ve ödeme akışı insan onayı olmadan tasarlanmamalı. Ajanın neyi hangi sınırla yapabildiği, hangi durumda duracağı ve hatalı işlemde nasıl geri alınacağı ürün deneyiminin parçası olmalı.',
+        ],
+      },
+      {
+        id: 'veri-mimari-pratik-plan',
+        heading: 'Veri Mimarı penceresinden pratik plan: uyumu kur, marjı ölç, sonra ölçekle.',
+        paragraphs: [
+          'Bu haftanın ortak mesajı şu: regülasyon, büyüme ve yapay zekâ ayrı projeler değil, aynı işletme sisteminin parçaları. Önce satış yaptığınız ülke ve kanalların güncel kurallarını kayıt altına alın; sonra ürün beslemesi, fiyat, kargo, iade ve müşteri hizmeti verisini tek akışta birleştirin.',
+          'Benim önerdiğim ilk test küçük olmalı: bir ülke, bir ürün grubu ve bir kanal. Başarı eşiğini sipariş sayısıyla değil, ürün güvenliği uyumu, teslimat sözü, katkı payı ve tekrar satın alma ile tanımlayın. Bu dört ölçüm birlikte iyileşiyorsa ölçekleme kararı anlamlıdır.',
+        ],
+        bullets: [
+          'Mevzuat kontrol listesi: ürün, ülke, vergi, gümrük, iade ve temsilci bilgisi.',
+          'Kanal kontrol listesi: komisyon, reklam, ödeme, kargo ve müşteri verisi sahipliği.',
+          'AI kontrol listesi: kaynak, yetki, insan onayı, kayıt ve geri alma akışı.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'HAFTALIK KONTROLÜ KUR',
+      title: 'E-ticaret gündemini karar tablosuna çevir.',
+      body: 'Her hafta kural, kanal, marj ve otomasyon etkisini aynı tabloda güncelle; küçük testin sonucunu görmeden ölçekleme yapma.',
+      ctaLabel: 'Pazar Nabzı’nı incele →',
+      ctaHref: '/pazar-nabzi/trendyol',
+    },
+  },
+  {
     slug: 'igexx-2026-e-ihracat-6-milyar-dolar-ekip-analizi-2026',
     addedOrder: 16,
     eyebrow: 'E-TİCARET / E-İHRACAT / 5 EYLÜL 2026',
