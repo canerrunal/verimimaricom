@@ -145,9 +145,7 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
           <div>
             <span>KATEGORİ EVRENİ</span>
             <strong>{fullCount(taxonomyOverview?.totalCategories || 0)}</strong>
-            <small>
-              {fullCount(taxonomyOverview?.totalCategoryPaths || 0)} kategori yolu
-            </small>
+            <small>{fullCount(taxonomyOverview?.totalCategoryPaths || 0)} kategori yolu</small>
           </div>
           <div>
             <span>BENZERSİZ ÜRÜN</span>
