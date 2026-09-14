@@ -127,7 +127,6 @@ export function MarketHistoryTrigger({
     >
       <strong>{primary}</strong>
       {secondary ? <span>{secondary}</span> : null}
-      <small>Grafiği aç ↗</small>
     </button>
   )
 }

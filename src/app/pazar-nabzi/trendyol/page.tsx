@@ -184,112 +184,124 @@ export default async function TrendyolMarketPage({ searchParams }: PageProps) {
 
           {taxonomyOverview ? (
             <>
-              <form
-                className="market-taxonomy-search panel"
-                action="/pazar-nabzi/trendyol#kategori-evreni"
+              <details
+                className={`market-taxonomy-picker ${tableStyles.layout}`}
+                open={Boolean(taxonomyQuery || rootId)}
               >
-                {requestedDate ? <input type="hidden" name="tarih" value={requestedDate} /> : null}
-                <div>
-                  <label htmlFor="taxonomy-root">Ana kategori</label>
-                  <select id="taxonomy-root" name="ana-kategori" defaultValue={rootId || ''}>
-                    <option value="">Tüm ana kategoriler</option>
-                    {taxonomyOverview.roots.map((root) => (
-                      <option key={root.categoryId} value={root.categoryId}>
-                        {root.name} ({root.totalCategories})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="market-taxonomy-query">
-                  <label htmlFor="taxonomy-query">Kategori yolu ara</label>
-                  <input
-                    id="taxonomy-query"
-                    className="search"
-                    type="search"
-                    name="taksonomi-arama"
-                    defaultValue={taxonomyQuery}
-                    placeholder="Örn. robot süpürge, kahve, bebek bezi"
-                  />
-                </div>
-                <button className="btn" type="submit">
-                  Kategorileri bul
-                </button>
-              </form>
-
-              <div className={`market-taxonomy-layout ${tableStyles.layout}`}>
-                <aside className="market-taxonomy-categories" aria-label="Kategori sonuçları">
-                  <div>
-                    <span>KATEGORİ SONUÇLARI</span>
-                    <strong>{taxonomyCategories.length}</strong>
-                  </div>
-                  <nav>
-                    {taxonomyCategories.map((item) => (
-                      <a
-                        key={item.pathKey}
-                        href={taxonomyHref(item.categoryId, requestedDate, taxonomyQuery, rootId)}
-                        className={
-                          item.categoryId === taxonomySnapshot.category?.categoryId
-                            ? 'active'
-                            : undefined
-                        }
-                        aria-current={
-                          item.categoryId === taxonomySnapshot.category?.categoryId
-                            ? 'page'
-                            : undefined
-                        }
-                      >
-                        <span>{item.path}</span>
-                        <small>
-                          Seviye {item.level + 1} · #{item.categoryId}
-                        </small>
-                      </a>
-                    ))}
-                  </nav>
-                  {!taxonomyCategories.length ? (
-                    <p>Bu aramayla eşleşen kategori yolu bulunamadı.</p>
-                  ) : null}
-                </aside>
-
-                <div className="market-taxonomy-results">
-                  <div className="market-table-head">
+                <summary>
+                  <span>Kategori değiştir</span>
+                  <strong>{taxonomySnapshot.category?.path || 'Kategori seçin'}</strong>
+                  <small>{fullCount(taxonomyOverview.totalCategories)} kategori içinde ara</small>
+                </summary>
+                <div className="market-taxonomy-picker-body">
+                  <form
+                    className="market-taxonomy-search"
+                    action="/pazar-nabzi/trendyol#kategori-evreni"
+                  >
+                    {requestedDate ? (
+                      <input type="hidden" name="tarih" value={requestedDate} />
+                    ) : null}
                     <div>
-                      <span className="eyebrow">SEÇİLİ KATEGORİ</span>
-                      <h3>{taxonomySnapshot.category?.path || 'Kategori seçin'}</h3>
-                    </div>
-                    <form action="/pazar-nabzi/trendyol#kategori-evreni">
-                      <input type="hidden" name="kategori-id" value={taxonomyCategoryId} />
-                      <input type="hidden" name="taksonomi-arama" value={taxonomyQuery} />
-                      <input type="hidden" name="ana-kategori" value={rootId || ''} />
-                      <label htmlFor="taxonomy-date">Rapor tarihi</label>
-                      <select
-                        id="taxonomy-date"
-                        name="tarih"
-                        defaultValue={
-                          taxonomySnapshot.observedDate ||
-                          requestedDate ||
-                          taxonomyOverview.observedDate
-                        }
-                      >
-                        {taxonomyDates.map((date) => (
-                          <option key={date} value={date}>
-                            {formatMarketDate(date)}
+                      <label htmlFor="taxonomy-root">Ana kategori</label>
+                      <select id="taxonomy-root" name="ana-kategori" defaultValue={rootId || ''}>
+                        <option value="">Tüm ana kategoriler</option>
+                        {taxonomyOverview.roots.map((root) => (
+                          <option key={root.categoryId} value={root.categoryId}>
+                            {root.name} ({root.totalCategories})
                           </option>
                         ))}
                       </select>
-                      <button className="btn alt" type="submit">
-                        Tarihi getir
-                      </button>
-                    </form>
-                  </div>
+                    </div>
+                    <div className="market-taxonomy-query">
+                      <label htmlFor="taxonomy-query">Kategori yolu ara</label>
+                      <input
+                        id="taxonomy-query"
+                        className="search"
+                        type="search"
+                        name="taksonomi-arama"
+                        defaultValue={taxonomyQuery}
+                        placeholder="Örn. robot süpürge, kahve, bebek bezi"
+                      />
+                    </div>
+                    <button className="btn" type="submit">
+                      Kategorileri bul
+                    </button>
+                  </form>
 
-                  <MarketProductTable
-                    key={`${taxonomyCategoryId}-${taxonomySnapshot.observedDate}`}
-                    products={taxonomySnapshot.products}
-                    category={taxonomySnapshot.category?.path || 'Kategori'}
-                    date={taxonomySnapshot.observedDate}
-                    metricsUnavailable={taxonomySnapshot.metricsUnavailable}
-                  />
+                  <aside className="market-taxonomy-categories" aria-label="Kategori sonuçları">
+                    <div>
+                      <span>KATEGORİ SONUÇLARI</span>
+                      <strong>{taxonomyCategories.length}</strong>
+                    </div>
+                    <nav>
+                      {taxonomyCategories.map((item) => (
+                        <a
+                          key={item.pathKey}
+                          href={taxonomyHref(item.categoryId, requestedDate, taxonomyQuery, rootId)}
+                          className={
+                            item.categoryId === taxonomySnapshot.category?.categoryId
+                              ? 'active'
+                              : undefined
+                          }
+                          aria-current={
+                            item.categoryId === taxonomySnapshot.category?.categoryId
+                              ? 'page'
+                              : undefined
+                          }
+                        >
+                          <span>{item.path}</span>
+                          <small>
+                            Seviye {item.level + 1} · #{item.categoryId}
+                          </small>
+                        </a>
+                      ))}
+                    </nav>
+                    {!taxonomyCategories.length ? (
+                      <p>Bu aramayla eşleşen kategori yolu bulunamadı.</p>
+                    ) : null}
+                  </aside>
                 </div>
+              </details>
+
+              <div className="market-taxonomy-results">
+                <div className="market-table-head">
+                  <div>
+                    <span className="eyebrow">SEÇİLİ KATEGORİ</span>
+                    <h3>{taxonomySnapshot.category?.path || 'Kategori seçin'}</h3>
+                  </div>
+                  <form action="/pazar-nabzi/trendyol#kategori-evreni">
+                    <input type="hidden" name="kategori-id" value={taxonomyCategoryId} />
+                    <input type="hidden" name="taksonomi-arama" value={taxonomyQuery} />
+                    <input type="hidden" name="ana-kategori" value={rootId || ''} />
+                    <label htmlFor="taxonomy-date">Rapor tarihi</label>
+                    <select
+                      id="taxonomy-date"
+                      name="tarih"
+                      defaultValue={
+                        taxonomySnapshot.observedDate ||
+                        requestedDate ||
+                        taxonomyOverview.observedDate
+                      }
+                    >
+                      {taxonomyDates.map((date) => (
+                        <option key={date} value={date}>
+                          {formatMarketDate(date)}
+                        </option>
+                      ))}
+                    </select>
+                    <button className="btn alt" type="submit">
+                      Tarihi getir
+                    </button>
+                  </form>
+                </div>
+
+                <MarketProductTable
+                  key={`${taxonomyCategoryId}-${taxonomySnapshot.observedDate}`}
+                  products={taxonomySnapshot.products}
+                  category={taxonomySnapshot.category?.path || 'Kategori'}
+                  date={taxonomySnapshot.observedDate}
+                  metricsUnavailable={taxonomySnapshot.metricsUnavailable}
+                />
               </div>
             </>
           ) : (

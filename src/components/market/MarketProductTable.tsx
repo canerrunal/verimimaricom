@@ -26,13 +26,15 @@ const money = (n: number | null) =>
         currency: 'TRY',
         maximumFractionDigits: 2,
       }).format(n)
-const presets: { id: QuickFilter; label: string }[] = [
+const primaryPresets: { id: QuickFilter; label: string }[] = [
   { id: 'all', label: 'Tüm ürünler' },
   { id: 'rising', label: 'Yükselenler' },
   { id: 'drops', label: 'Fiyatı düşenler' },
+]
+const advancedPresets: { id: QuickFilter; label: string }[] = [
   { id: 'risk', label: 'Stok riski' },
-  { id: 'rated', label: '4,5+ puan · 100+ değerlendirme' },
-  { id: 'inventory', label: 'Stok adedi bilinen' },
+  { id: 'rated', label: 'Yüksek puanlı' },
+  { id: 'inventory', label: 'Stok verisi olan' },
 ]
 const sorts: { id: SortKey; label: string }[] = [
   { id: 'rank', label: 'Kategori sırası' },
@@ -57,7 +59,8 @@ export default function MarketProductTable({
 }) {
   const [filters, setFilters] = useState(defaultTableFilters)
   const [page, setPage] = useState(1)
-  const [expanded, setExpanded] = useState(false)
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
+  const [showExtraMetrics, setShowExtraMetrics] = useState(false)
   const brands = useMemo(
     () =>
       [...new Set(products.flatMap((p) => (p.brand ? [p.brand] : [])))].sort((a, b) =>
@@ -66,6 +69,12 @@ export default function MarketProductTable({
     [products],
   )
   const filtered = useMemo(() => selectTableProducts(products, filters), [products, filters])
+  const hasActiveFilters =
+    filters.quick !== 'all' ||
+    Boolean(filters.query || filters.brand || filters.min || filters.max || filters.stock)
+  const advancedFilterCount =
+    Number(advancedPresets.some((preset) => preset.id === filters.quick)) +
+    [filters.brand, filters.min, filters.max, filters.stock].filter(Boolean).length
   const update = (patch: Partial<typeof filters>) => {
     setFilters((f) => ({ ...f, ...patch }))
     setPage(1)
@@ -76,6 +85,13 @@ export default function MarketProductTable({
   }
   const pages = Math.max(1, Math.ceil(filtered.length / 20))
   const visible = filtered.slice((page - 1) * 20, page * 20)
+  const displayDate = date
+    ? new Intl.DateTimeFormat('tr-TR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format(new Date(`${date}T12:00:00+03:00`))
+    : 'Tarih yok'
   const sort = (key: SortKey) =>
     update({
       sort: key,
@@ -168,89 +184,113 @@ export default function MarketProductTable({
     <div className={styles.workspace}>
       <div className={styles.summary}>
         <div>
-          <span>KATEGORİDEKİ ÜRÜN</span>
           <strong>{products.length}</strong>
+          <span>ürün</span>
         </div>
         <div>
-          <span>YÜKSELEN</span>
           <strong>{products.filter((p) => matchesQuick(p, 'rising')).length}</strong>
+          <span>yükselen</span>
         </div>
         <div>
-          <span>FİYATI DÜŞEN</span>
           <strong>{products.filter((p) => matchesQuick(p, 'drops')).length}</strong>
+          <span>fiyatı düşen</span>
         </div>
         <div>
-          <span>STOK ADEDİ BİLİNEN</span>
-          <strong>
-            {products.filter((p) => quantity(p) !== null).length}
-            <small> / {products.length}</small>
-          </strong>
+          <strong>{products.filter((p) => quantity(p) !== null).length}</strong>
+          <span>stok verili</span>
         </div>
       </div>
       <div className={styles.filters}>
-        <div className={styles.quick} role="group" aria-label="Akıllı filtreler">
-          {presets.map((p) => (
-            <button
-              key={p.id}
-              aria-pressed={filters.quick === p.id}
-              onClick={() => update({ quick: p.id })}
-            >
-              {p.label}
-              <b>{products.filter((item) => matchesQuick(item, p.id)).length}</b>
-            </button>
-          ))}
-        </div>
-        <div className={styles.fields}>
-          <label>
-            Ürün, marka veya ürün no
+        <div className={styles.primaryFilters}>
+          <label className={styles.searchField}>
+            <span>Ürün ara</span>
             <input
               type="search"
               value={filters.query}
               onChange={(e) => update({ query: e.target.value })}
-              placeholder="Örn. siyah çanta"
+              placeholder="Ürün, marka veya ürün no"
             />
           </label>
-          <label>
-            Marka
-            <select value={filters.brand} onChange={(e) => update({ brand: e.target.value })}>
-              <option value="">Tüm markalar</option>
-              {brands.map((b) => (
-                <option key={b}>{b}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            En az fiyat (₺)
-            <input
-              type="number"
-              min="0"
-              value={filters.min}
-              onChange={(e) => update({ min: e.target.value })}
-              placeholder="0"
-            />
-          </label>
-          <label>
-            En çok fiyat (₺)
-            <input
-              type="number"
-              min="0"
-              value={filters.max}
-              onChange={(e) => update({ max: e.target.value })}
-              placeholder="Üst sınır yok"
-            />
-          </label>
-          <label>
-            Stok durumu
-            <select value={filters.stock} onChange={(e) => update({ stock: e.target.value })}>
-              <option value="">Tümü</option>
-              <option value="in">Stokta</option>
-              <option value="out">Stok dışı</option>
-              <option value="unknown">Bilinmiyor</option>
-            </select>
-          </label>
+          <div className={styles.quick} role="group" aria-label="Hızlı filtreler">
+            {primaryPresets.map((p) => (
+              <button
+                key={p.id}
+                aria-pressed={filters.quick === p.id}
+                onClick={() => update({ quick: p.id })}
+              >
+                {p.label}
+                <b>{products.filter((item) => matchesQuick(item, p.id)).length}</b>
+              </button>
+            ))}
+          </div>
+          <button
+            className={styles.filterToggle}
+            aria-expanded={showAdvancedFilters}
+            aria-controls="advanced-market-filters"
+            onClick={() => setShowAdvancedFilters((value) => !value)}
+          >
+            Detaylı filtreler{advancedFilterCount ? ` · ${advancedFilterCount}` : ''}{' '}
+            <span aria-hidden="true">{showAdvancedFilters ? '−' : '+'}</span>
+          </button>
         </div>
-        {filters.min && filters.max && Number(filters.min) > Number(filters.max) ? (
-          <p role="alert">En az fiyat, en çok fiyattan büyük olamaz. Fiyat aralığını düzeltin.</p>
+        {showAdvancedFilters ? (
+          <div className={styles.advancedFilters} id="advanced-market-filters">
+            <div className={styles.quick} role="group" aria-label="Özel sinyal filtreleri">
+              {advancedPresets.map((p) => (
+                <button
+                  key={p.id}
+                  aria-pressed={filters.quick === p.id}
+                  onClick={() => update({ quick: p.id })}
+                >
+                  {p.label}
+                  <b>{products.filter((item) => matchesQuick(item, p.id)).length}</b>
+                </button>
+              ))}
+            </div>
+            <div className={styles.fields}>
+              <label>
+                Marka
+                <select value={filters.brand} onChange={(e) => update({ brand: e.target.value })}>
+                  <option value="">Tüm markalar</option>
+                  {brands.map((b) => (
+                    <option key={b}>{b}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                En az fiyat (₺)
+                <input
+                  type="number"
+                  min="0"
+                  value={filters.min}
+                  onChange={(e) => update({ min: e.target.value })}
+                  placeholder="0"
+                />
+              </label>
+              <label>
+                En çok fiyat (₺)
+                <input
+                  type="number"
+                  min="0"
+                  value={filters.max}
+                  onChange={(e) => update({ max: e.target.value })}
+                  placeholder="Üst sınır yok"
+                />
+              </label>
+              <label>
+                Stok durumu
+                <select value={filters.stock} onChange={(e) => update({ stock: e.target.value })}>
+                  <option value="">Tümü</option>
+                  <option value="in">Stokta</option>
+                  <option value="out">Stok dışı</option>
+                  <option value="unknown">Bilinmiyor</option>
+                </select>
+              </label>
+            </div>
+            {filters.min && filters.max && Number(filters.min) > Number(filters.max) ? (
+              <p role="alert">En az fiyat, en çok fiyattan büyük olamaz.</p>
+            ) : null}
+          </div>
         ) : null}
       </div>
       <div className={styles.toolbar}>
@@ -277,22 +317,23 @@ export default function MarketProductTable({
           </button>
         </div>
         <div>
-          <button className="btn alt" onClick={reset}>
-            Filtreleri temizle
-          </button>
+          {hasActiveFilters ? (
+            <button className="btn alt" onClick={reset}>
+              Temizle
+            </button>
+          ) : null}
           <button className="btn" onClick={exportCsv} disabled={!filtered.length}>
             CSV indir ↓
           </button>
         </div>
       </div>
       <div className={styles.note}>
-        <p>
-          Değerlerin üzerine tıklayarak tarihçeyi açın. “Veri yok” sıfır anlamına gelmez. Stok
-          seçili satıcı/varyantın bildirdiği adettir; satış tahmini kesin sipariş değildir.
-        </p>
-        <button aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>
-          {expanded ? 'Ek metrikleri gizle' : 'Yorum, soru ve satıcıları göster'}{' '}
-          {expanded ? '−' : '+'}
+        <p>Fiyat, stok ve puan değerlerine tıklayarak günlük geçmişi açın.</p>
+        <button
+          aria-expanded={showExtraMetrics}
+          onClick={() => setShowExtraMetrics(!showExtraMetrics)}
+        >
+          {showExtraMetrics ? 'Ek metrikleri gizle' : 'Ek metrikler'} {showExtraMetrics ? '−' : '+'}
         </button>
       </div>
       {metricsUnavailable ? (
@@ -303,7 +344,7 @@ export default function MarketProductTable({
       ) : null}
       <table className={styles.table}>
         <caption>
-          {category} · {date} tarihli gözlem · en fazla 200 ürün
+          {category} · {displayDate} · {filtered.length} ürün
         </caption>
         <thead>
           <tr>
@@ -397,7 +438,7 @@ export default function MarketProductTable({
                   'ratings',
                   `${number(p.ratingCount)}${p.ratingCount === null ? '' : ' değerlendirme'}`,
                 )}
-                {expanded ? (
+                {showExtraMetrics ? (
                   <>
                     {metric(p, 'reviews', `${number(metricNumber(p, 'review_count'))} · yorum`)}
                     {metric(

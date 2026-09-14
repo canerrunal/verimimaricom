@@ -31,41 +31,55 @@
   border-bottom: 1px solid var(--ink);
 }
 .summary > div {
-  padding: 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 13px 20px;
   border-right: 1px solid var(--line);
 }
 .summary > div:last-child {
   border-right: 0;
 }
 .summary span {
-  display: block;
   color: var(--muted);
-  font: 750 9px/1.4 var(--mono);
+  font-size: 11px;
+  font-weight: 680;
 }
 .summary strong {
-  display: block;
-  margin-top: 12px;
-  font-size: 28px;
-  letter-spacing: -0.055em;
-}
-.summary small {
-  font-size: 14px;
-  color: var(--muted);
+  font-size: 20px;
+  letter-spacing: -0.04em;
 }
 .filters {
-  padding: 20px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--ink);
   background: var(--paper);
 }
+.primaryFilters {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) auto auto;
+  align-items: end;
+  gap: 12px;
+}
+.searchField {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.searchField span {
+  color: var(--muted);
+  font: 750 9px/1.4 var(--mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
 .quick {
   display: flex;
-  flex-wrap: wrap;
+  min-width: 0;
   gap: 8px;
-  margin-bottom: 20px;
 }
 .quick button,
-.note button {
-  min-height: 42px;
+.note button,
+.filterToggle {
+  min-height: 40px;
   padding: 8px 12px;
   border: 1px solid var(--ink);
   border-radius: 999px;
@@ -82,9 +96,30 @@
   margin-left: 8px;
   font-family: var(--mono);
 }
+.filterToggle {
+  white-space: nowrap;
+  cursor: pointer;
+}
+.filterToggle span {
+  margin-left: 5px;
+  font-family: var(--mono);
+}
+.advancedFilters {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.advancedFilters .quick {
+  margin-bottom: 14px;
+}
+.advancedFilters > p {
+  margin: 12px 0 0;
+  color: var(--orange);
+  font-size: 12px;
+}
 .fields {
   display: grid;
-  grid-template-columns: 2fr 1.3fr 1fr 1fr 1fr;
+  grid-template-columns: 1.35fr repeat(3, 1fr);
   gap: 12px;
 }
 .fields label,
@@ -97,6 +132,7 @@
 }
 .fields input,
 .fields select,
+.searchField input,
 .toolbar select {
   width: 100%;
   min-width: 0;
@@ -128,7 +164,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
-  padding: 20px;
+  padding: 14px 20px;
   border-bottom: 1px solid var(--line);
 }
 .toolbar > div,
@@ -148,7 +184,7 @@
   gap: 20px;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
+  padding: 10px 20px;
   background: var(--paper-deep);
   border-bottom: 1px solid var(--line);
 }
@@ -160,7 +196,7 @@
   line-height: 1.6;
 }
 .note p {
-  max-width: 680px;
+  max-width: 620px;
 }
 .note button {
   flex-shrink: 0;
@@ -184,7 +220,7 @@
 }
 .table th,
 .table td {
-  padding: 12px 8px;
+  padding: 10px 8px;
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid var(--line);
@@ -242,8 +278,8 @@
 }
 .rank {
   display: block;
-  margin: 7px 0 12px;
-  font: 850 24px/1 var(--mono);
+  margin: 5px 0 9px;
+  font: 850 22px/1 var(--mono);
 }
 .movement {
   color: var(--muted);
@@ -290,11 +326,14 @@
   font-size: 12px;
 }
 @media (max-width: 980px) {
+  .primaryFilters {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .searchField {
+    grid-column: 1 / -1;
+  }
   .fields {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .fields label:first-child {
-    grid-column: 1 / -1;
   }
   .note {
     align-items: flex-start;
@@ -325,7 +364,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .summary > div {
-    padding: 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--line);
   }
   .filters,
@@ -335,6 +374,26 @@
   }
   .quick button {
     text-align: left;
+  }
+  .primaryFilters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .searchField {
+    grid-column: auto;
+  }
+  .quick {
+    overflow-x: auto;
+    padding: 2px 2px 6px;
+    scrollbar-width: thin;
+  }
+  .quick button {
+    flex: 0 0 auto;
+  }
+  .filterToggle {
+    width: 100%;
+  }
+  .fields {
+    grid-template-columns: minmax(0, 1fr);
   }
   .toolbar > div {
     width: 100%;
