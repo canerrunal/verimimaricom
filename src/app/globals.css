@@ -128,6 +128,16 @@
 
 .market-taxonomy-workspace {
   scroll-margin-top: 80px;
+  padding-top: 56px;
+  padding-bottom: 72px;
+}
+
+.market-taxonomy-workspace .market-head {
+  margin-bottom: 28px;
+}
+
+.market-taxonomy-workspace .market-head h2 {
+  font-size: clamp(38px, 5vw, 58px);
 }
 
 .market-taxonomy-search {
@@ -135,7 +145,7 @@
   grid-template-columns: minmax(210px, 0.7fr) minmax(320px, 1.3fr) auto;
   gap: 16px;
   align-items: end;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding: 20px;
   border: 1px solid var(--ink);
   border-radius: 14px;
@@ -916,6 +926,11 @@
   .market-taxonomy-search,
   .market-taxonomy-layout {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .market-taxonomy-workspace {
+    padding-top: 40px;
+    padding-bottom: 56px;
   }
 
   .market-taxonomy-search .btn {
