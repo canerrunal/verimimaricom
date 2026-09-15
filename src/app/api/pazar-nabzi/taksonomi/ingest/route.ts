@@ -1,3 +1,4 @@
+import { normalizeProductMetrics } from '@/lib/trendyol-product-metrics'
 import { timingSafeEqual } from 'node:crypto'
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextResponse } from 'next/server'
@@ -293,6 +294,7 @@ export async function POST(request: Request) {
         price: number(row.price),
         original_price: number(row.originalPrice),
         currency: text(row.currency, 8) || 'TRY',
+        metrics: normalizeProductMetrics(row.metrics),
         in_stock: boolean(row.inStock),
         running_out: boolean(row.runningOut),
         rating: number(row.rating),
