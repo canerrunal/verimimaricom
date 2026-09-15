@@ -1,0 +1,215 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {
+  buildSocialContent,
+  createXOAuth1Header,
+  loadAnnouncementsFromSource,
+  publishFacebook,
+  publishInstagram,
+  publishLinkedIn,
+  publishThreads,
+  publishX,
+} from './social-publisher-core.mjs'
+
+const announcement = {
+  slug: 'ornek-duyuru',
+  addedOrder: 1,
+  category: 'AI ve Teknoloji',
+  title: 'Yeni bir veri sistemi duyuruldu.',
+  excerpt: 'Benim için asıl önemli taraf, veriyi cihazdan çıkarmadan işleyebilmek.',
+  imageAlt: 'Yeni veri sistemini açıklayan Veri Mimarı kartı',
+  stats: [
+    { label: 'HIZ', value: '2×', detail: 'Önceki sürüme göre' },
+    { label: 'BELLEK', value: '64 GB', detail: 'Birleşik kapasite' },
+  ],
+  sections: [
+    {
+      id: 'benim-yorumum',
+      paragraphs: ['Ben bunu yalnızca bir hız artışı olarak okumuyorum.'],
+    },
+  ],
+}
+
+function response(body = {}, { status = 200, headers = {} } = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json', ...headers },
+  })
+}
+
+test('TypeScript duyuru kaynağını ek bağımlı runtime olmadan yükler', async () => {
+  const items = await loadAnnouncementsFromSource(`
+    export type Item = { slug: string }
+    export const announcements: Item[] = [{ slug: 'bir' }]
+  `)
+  assert.deepEqual(items, [{ slug: 'bir' }])
+})
+
+test('platforma özgü metinleri ve 4:5 görsel adresini üretir', () => {
+  const content = buildSocialContent(announcement, 'https://verimimari.com/')
+  assert.equal(content.url, 'https://verimimari.com/duyurular/ornek-duyuru')
+  assert.equal(
+    content.imageUrl,
+    'https://verimimari.com/api/social/announcements/ornek-duyuru/image?v=8',
+  )
+  assert.match(content.instagram, /#VeriMimarı/)
+  assert.match(content.linkedin, /Benim için öne çıkan veriler/)
+  assert.ok(content.x.length <= 275)
+  assert.match(content.x, /Detaylar profil bağlantısında\./)
+  assert.match(content.x, /#VeriMimarı/)
+  assert.doesNotMatch(content.x, /https?:\/\//)
+  assert.equal(content.threads, content.x)
+})
+
+test('Instagram medya konteynerini hazırlayıp yayınlar', async () => {
+  const calls = []
+  const fetchImpl = async (url, options = {}) => {
+    calls.push({ url: String(url), options })
+    if (String(url).endsWith('/media')) return response({ id: 'container-1' })
+    if (String(url).includes('container-1?')) return response({ status_code: 'FINISHED' })
+    return response({ id: 'ig-post-1' })
+  }
+  const content = buildSocialContent(announcement)
+  const result = await publishInstagram(content, {
+    env: { META_ACCESS_TOKEN: 'secret', INSTAGRAM_ACCOUNT_ID: 'ig-1' },
+    fetchImpl,
+  })
+  assert.equal(result.id, 'ig-post-1')
+  assert.equal(calls.length, 3)
+  assert.match(calls[0].url, /graph\.facebook\.com\/v26\.0\/ig-1\/media$/)
+  assert.equal(calls[0].options.body.get('image_url'), content.imageUrl)
+  assert.equal(calls[0].options.body.get('alt_text'), content.imageAlt)
+})
+
+test('Facebook sayfa gönderisini bağlantıyla oluşturur', async () => {
+  let call
+  const content = buildSocialContent(announcement)
+  const result = await publishFacebook(content, {
+    env: { META_ACCESS_TOKEN: 'secret', FACEBOOK_PAGE_ID: 'page-1' },
+    fetchImpl: async (url, options) => {
+      call = { url: String(url), options }
+      return response({ id: 'fb-post-1' })
+    },
+  })
+  assert.equal(result.id, 'fb-post-1')
+  assert.match(call.url, /page-1\/feed$/)
+  assert.equal(call.options.body.get('link'), content.url)
+})
+
+test('LinkedIn görselini yükleyip Posts API ile yayınlar', async () => {
+  const calls = []
+  const content = buildSocialContent(announcement)
+  const fetchImpl = async (url, options = {}) => {
+    calls.push({ url: String(url), options })
+    if (String(url).includes('initializeUpload')) {
+      return response({
+        value: { uploadUrl: 'https://upload.linkedin.test/image', image: 'urn:li:image:1' },
+      })
+    }
+    if (String(url) === content.imageUrl) {
+      return new Response(new Uint8Array([1, 2, 3]), {
+        headers: { 'content-type': 'image/jpeg' },
+      })
+    }
+    if (String(url).includes('upload.linkedin.test')) return new Response('', { status: 201 })
+    return response({}, { status: 201, headers: { 'x-restli-id': 'urn:li:share:1' } })
+  }
+  const result = await publishLinkedIn(content, {
+    env: {
+      LINKEDIN_ACCESS_TOKEN: 'secret',
+      LINKEDIN_AUTHOR_URN: 'urn:li:organization:1',
+      LINKEDIN_VERSION: '202608',
+    },
+    fetchImpl,
+  })
+  assert.equal(result.id, 'urn:li:share:1')
+  const post = calls.find((call) => call.url.endsWith('/rest/posts'))
+  const body = JSON.parse(post.options.body)
+  assert.equal(body.content.media.id, 'urn:li:image:1')
+  assert.equal(body.content.media.altText, content.imageAlt)
+})
+
+const xEnv = {
+  X_CONSUMER_KEY: 'consumer-key',
+  X_CONSUMER_SECRET: 'consumer-secret',
+  X_ACCESS_TOKEN: 'access-token',
+  X_ACCESS_TOKEN_SECRET: 'access-secret',
+}
+
+test('X OAuth 1.0a imzasını deterministik üretir', () => {
+  const header = createXOAuth1Header('https://api.x.com/2/tweets', xEnv, {
+    timestamp: 1_700_000_000,
+    nonce: 'fixed-nonce',
+  })
+  assert.equal(
+    header,
+    'OAuth oauth_consumer_key="consumer-key", oauth_nonce="fixed-nonce", oauth_signature="j3NoV0%2FjiMd%2B7hgeJNOGyLtj%2Fhc%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1700000000", oauth_token="access-token", oauth_version="1.0"',
+  )
+})
+
+test('X gönderisini OAuth 1.0a kullanıcı anahtarlarıyla oluşturur', async () => {
+  let call
+  const content = buildSocialContent(announcement)
+  const result = await publishX(content, {
+    env: xEnv,
+    oauth: { timestamp: 1_700_000_000, nonce: 'fixed-nonce' },
+    fetchImpl: async (url, options) => {
+      call = { url: String(url), options }
+      return response({ data: { id: 'x-post-1' } }, { status: 201 })
+    },
+  })
+  assert.equal(result.data.id, 'x-post-1')
+  assert.equal(call.url, 'https://api.x.com/2/tweets')
+  assert.match(call.options.headers.Authorization, /^OAuth oauth_consumer_key=/)
+  assert.match(call.options.headers.Authorization, /oauth_token="access-token"/)
+  assert.equal(JSON.parse(call.options.body).text, content.x)
+})
+
+test('Threads için görselsiz metin konteyneri hazırlayıp yayınlar', async () => {
+  const calls = []
+  const content = buildSocialContent(announcement)
+  const result = await publishThreads(content, {
+    env: {
+      THREADS_ACCESS_TOKEN: 'secret',
+      THREADS_USER_ID: 'threads-user-1',
+      THREADS_CONTAINER_WAIT_MS: '0',
+    },
+    fetchImpl: async (url, options = {}) => {
+      calls.push({ url: String(url), options })
+      if (String(url).endsWith('/threads')) return response({ id: 'threads-container-1' })
+      return response({ id: 'threads-post-1' })
+    },
+  })
+  assert.equal(result.id, 'threads-post-1')
+  assert.equal(calls.length, 2)
+  assert.match(calls[0].url, /graph\.threads\.com\/v1\.0\/threads-user-1\/threads$/)
+  assert.equal(calls[0].options.body.get('media_type'), 'TEXT')
+  assert.equal(calls[0].options.body.get('text'), content.threads)
+  assert.match(calls[1].url, /threads-user-1\/threads_publish$/)
+  assert.equal(calls[1].options.body.get('creation_id'), 'threads-container-1')
+})
+
+test('API hataları platform ve durum koduyla raporlanır', async () => {
+  await assert.rejects(
+    () =>
+      publishX(buildSocialContent(announcement), {
+        env: xEnv,
+        oauth: { timestamp: 1_700_000_000, nonce: 'fixed-nonce' },
+        fetchImpl: async () => response({ detail: 'forbidden' }, { status: 403 }),
+      }),
+    /X yayını başarısız \(403\)/,
+  )
+})
+
+test('API hata ayrıntısını yanıtın detail alanından raporlar', async () => {
+  await assert.rejects(
+    () =>
+      publishX(buildSocialContent(announcement), {
+        env: xEnv,
+        oauth: { timestamp: 1_700_000_000, nonce: 'fixed-nonce' },
+        fetchImpl: async () =>
+          response({ detail: 'Bu işlem için yazma izni gerekiyor.' }, { status: 403 }),
+      }),
+    /Bu işlem için yazma izni gerekiyor\./,
+  )
+})
