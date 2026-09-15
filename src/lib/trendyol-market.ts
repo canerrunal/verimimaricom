@@ -1,7 +1,6 @@
-import { normalizeProductMetrics, type ProductMetrics } from './trendyol-product-metrics'
 import { createServiceClient, supabase } from '@/lib/supabase'
 
-const REPOSITORY_RAW_ROOT = 'https://raw.githubusercontent.com/caner8047-coder/Trendyol/main'
+const REPOSITORY_RAW_ROOT = 'https://raw.githubusercontent.com/canerrunal/Trendyol/main'
 
 export type MarketProfile = {
   slug: string
@@ -90,7 +89,6 @@ export const MARKET_VIEWS = [
 export type MarketViewSlug = (typeof MARKET_VIEWS)[number]['slug']
 
 export type MarketProduct = {
-  metrics: ProductMetrics
   profileSlug: MarketProfileSlug
   productId: string
   merchantId: string | null
@@ -174,7 +172,6 @@ export type MarketTaxonomyCategory = {
 }
 
 export type MarketTaxonomyProduct = {
-  metrics: ProductMetrics
   observedDate: string
   capturedAt: string
   categoryId: number
@@ -206,7 +203,6 @@ export type MarketTaxonomySnapshot = {
   category: MarketTaxonomyCategory | null
   products: MarketTaxonomyProduct[]
   observedDate: string | null
-  metricsUnavailable?: boolean
 }
 
 type UnknownRecord = Record<string, unknown>
@@ -320,7 +316,6 @@ export function normalizeMarketProduct(
       : null)
 
   return {
-    metrics: normalizeProductMetrics(row.metrics ?? row),
     profileSlug,
     productId,
     merchantId,
@@ -451,7 +446,7 @@ async function getSupabaseQuality(profile: MarketProfile) {
     .from('market_pipeline_runs')
     .select('status,product_count,detail_success_rate,coverage,captured_at,observed_date')
     .eq('profile_slug', profile.slug)
-    .eq('status', 'PASS')
+    .in('status', ['PASS', 'PARTIAL'])
     .order('captured_at', { ascending: false })
     .limit(1)
     .maybeSingle()
@@ -505,7 +500,7 @@ export async function getMarketTaxonomyOverview(): Promise<MarketTaxonomyOvervie
     .from('market_taxonomy_runs')
     .select('*')
     .eq('marketplace', 'trendyol')
-    .eq('status', 'PASS')
+    .in('status', ['PASS', 'PARTIAL'])
     .order('observed_date', { ascending: false })
     .order('captured_at', { ascending: false })
     .limit(1)
@@ -542,7 +537,7 @@ export async function getMarketTaxonomyDates(limit = 30): Promise<string[]> {
     .from('market_taxonomy_runs')
     .select('observed_date')
     .eq('marketplace', 'trendyol')
-    .eq('status', 'PASS')
+    .in('status', ['PASS', 'PARTIAL'])
     .order('observed_date', { ascending: false })
     .limit(Math.min(Math.max(limit, 1), 90))
   if (error || !data) return []
@@ -610,43 +605,15 @@ export async function getMarketTaxonomySnapshot(
     database.rpc('get_market_category_rankings', {
       p_category_id: categoryId,
       p_observed_date: observedDate,
-      p_limit: 200,
+      p_limit: 40,
     }),
   ])
   if (response.error || !response.data) return { category, products: [], observedDate: null }
-  // Read metrics from the exact successful run used by the ranking RPC.
-  // The RPC predates the metrics column and does not return it.
-  const firstRow = asRecord(response.data[0])
-  const run = firstRow.observed_date
-    ? await database
-        .from('market_taxonomy_runs')
-        .select('id')
-        .eq('marketplace', 'trendyol')
-        .eq('status', 'PASS')
-        .eq('observed_date', String(firstRow.observed_date))
-        .eq('captured_at', String(firstRow.captured_at))
-        .limit(1)
-        .maybeSingle()
-    : null
-  const details = run?.data?.id
-    ? await database
-        .from('market_taxonomy_product_observations')
-        .select('product_key,metrics')
-        .eq('run_id', run.data.id)
-        .in(
-          'product_key',
-          response.data.map((value: unknown) => String(asRecord(value).product_key)),
-        )
-    : null
-  const metricsByKey = new Map(
-    (details?.data || []).map((row) => [row.product_key, normalizeProductMetrics(row.metrics)]),
-  )
   const products = response.data.map((value: unknown) => {
     const row = asRecord(value)
     return {
       observedDate: String(row.observed_date || ''),
       capturedAt: String(row.captured_at || ''),
-      metrics: metricsByKey.get(String(row.product_key)) || {},
       categoryId: Number(row.category_id),
       rank: Number(row.rank),
       previousRank: asNumber(row.previous_rank),
@@ -672,12 +639,7 @@ export async function getMarketTaxonomySnapshot(
       rushDeliveryHours: asNumber(row.rush_delivery_hours),
     } satisfies MarketTaxonomyProduct
   })
-  return {
-    category,
-    products,
-    observedDate: products[0]?.observedDate || observedDate,
-    metricsUnavailable: Boolean(products.length && (!run?.data || !details || details.error)),
-  }
+  return { category, products, observedDate: products[0]?.observedDate || observedDate }
 }
 
 function includesSearch(product: MarketProduct, query: string) {

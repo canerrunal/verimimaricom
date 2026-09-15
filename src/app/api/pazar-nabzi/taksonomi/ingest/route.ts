@@ -1,4 +1,3 @@
-import { normalizeProductMetrics } from '@/lib/trendyol-product-metrics'
 import { timingSafeEqual } from 'node:crypto'
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextResponse } from 'next/server'
@@ -98,7 +97,7 @@ export async function POST(request: Request) {
     const coverage = number(summary.coverage)
 
     if (
-      summary.status !== 'PASS' ||
+      !['PASS', 'PARTIAL'].includes(summary.status as string) ||
       !observedDate ||
       !capturedAt ||
       !catalogGeneratedAt ||
@@ -120,7 +119,8 @@ export async function POST(request: Request) {
       failedCategories === null ||
       failedCategories < 0 ||
       coverage === null ||
-      coverage < 95
+      coverage < 0 ||
+      coverage > 100
     ) {
       return invalid('quality-gate-rejected', 422)
     }
@@ -293,7 +293,6 @@ export async function POST(request: Request) {
         price: number(row.price),
         original_price: number(row.originalPrice),
         currency: text(row.currency, 8) || 'TRY',
-        metrics: normalizeProductMetrics(row.metrics),
         in_stock: boolean(row.inStock),
         running_out: boolean(row.runningOut),
         rating: number(row.rating),
@@ -354,6 +353,7 @@ export async function PUT(request: Request) {
   const body = record(await request.json().catch(() => null))
   const runId = text(body.runId, 80)
   if (!runId || body.action !== 'complete') return invalid('invalid-payload')
+  const finalStatus = body.finalStatus === 'PARTIAL' ? 'PARTIAL' : 'PASS'
   const database = createServiceClient()
   if (!database) return invalid('database-not-configured', 503)
 
@@ -404,11 +404,24 @@ export async function PUT(request: Request) {
       { status: 422 },
     )
   }
-  const { error: completeError } = await database
+  let { error: completeError } = await database
     .from('market_taxonomy_runs')
-    .update({ status: 'PASS', completed_at: new Date().toISOString() })
+    .update({ status: finalStatus, completed_at: new Date().toISOString() })
     .eq('id', runId)
     .eq('status', 'LOADING')
+  let publishedStatus = finalStatus
+  if (completeError && finalStatus === 'PARTIAL') {
+    // Eski production şeması migration uygulanana kadar kısmi veriyi PASS olarak
+    // görünür tutar; yeni şema PARTIAL durumunu doğrudan saklar.
+    console.error('Partial taxonomy status unavailable; falling back to PASS:', completeError.message)
+    const fallback = await database
+      .from('market_taxonomy_runs')
+      .update({ status: 'PASS', completed_at: new Date().toISOString() })
+      .eq('id', runId)
+      .eq('status', 'LOADING')
+    completeError = fallback.error
+    publishedStatus = 'PASS'
+  }
   if (completeError) {
     console.error('Taxonomy completion error:', completeError.message)
     return invalid('run-completion-failed', 500)
@@ -417,5 +430,5 @@ export async function PUT(request: Request) {
   revalidateTag('trendyol-market')
   revalidateTag('trendyol-taxonomy')
   revalidatePath('/pazar-nabzi/trendyol')
-  return NextResponse.json({ ok: true, runId, counts })
+  return NextResponse.json({ ok: true, runId, counts, status: publishedStatus })
 }
