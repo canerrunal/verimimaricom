@@ -39,6 +39,109 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'trendyol-satici-protokolu-komisyon-kargo-gel-al-2026',
+    addedOrder: 13,
+    eyebrow: 'TRENDYOL / SATICI PROTOKOLÜ / 15 EYLÜL 2026',
+    title:
+      'Trendyol satıcı protokolünü güncelledi: komisyon, kargo ve Gel-Al tarafında kritik tarihler var.',
+    excerpt:
+      'Trendyol’un satıcılara gönderdiği değişiklik protokolünde komisyon bedelinin kapsamı, iade süreci, Horoz kargo tarifesi, Gel-Al teslimatı ve mikro ihracat kuralları yeniden düzenleniyor. Benim okumam: değişiklikleri tek bir oran gibi değil, sipariş başına katkı ve operasyon riski olarak birlikte modellemek gerekiyor.',
+    category: 'Pazaryeri ve Satıcı Operasyonu',
+    publishedAt: '2026-09-15',
+    updatedAt: '2026-09-15',
+    readingTime: '9 dk',
+    image:
+      '/api/social/announcements/trendyol-satici-protokolu-komisyon-kargo-gel-al-2026/image?v=8',
+    imageAlt:
+      'Trendyol satıcı değişiklik protokolündeki komisyon, kargo, Gel-Al ve mikro ihracat başlıklarını özetleyen Veri Mimarı duyuru kartı',
+    source:
+      'Trendyol · Elektronik Ticaret Aracılık Sözleşmesi Değişiklik Protokolü (57) · 8 Eylül 2026',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı “Elektronik Ticaret Aracılık Sözleşmesi Değişiklik Protokolü (57)” PDF’sindeki değişikliklerin satıcı kararları açısından editoryal özetidir. PDF üzerinde “Confidential” ibaresi bulunduğu için belge yeniden yayımlanmadı; komisyon tablosundaki kategori ve marka satırlarının tamamı ayrıca kontrol edilmeden tek bir genel oran iddiası kurulmadı. Satıcılar kendi sözleşmelerini, panel bildirimlerini ve kategori satırlarını esas almalıdır.',
+    stats: [
+      {
+        label: '08.09.2026',
+        value: 'AKTİF',
+        detail: 'Komisyon kapsamı, iade süresi, Horoz kargo tablosu ve ilgili maliyetler',
+      },
+      {
+        label: '08.10.2026',
+        value: 'GEL-AL',
+        detail: 'Trendyol Öder kapsamındaki satıcılarda varsayılan olarak aktif olacak',
+      },
+      {
+        label: '12.10.2026',
+        value: 'KOMİSYON',
+        detail: 'Ek 1’deki kategori ve marka komisyon tablosu kendiliğinden yürürlüğe girecek',
+      },
+    ],
+    sections: [
+      {
+        id: 'ne-degisiyor',
+        heading:
+          'Bu bir “tek oran değişti” duyurusu değil; sözleşmenin birkaç maliyet ve operasyon katmanı aynı anda güncelleniyor.',
+        paragraphs: [
+          'Protokol, mevcut Elektronik Ticaret Aracılık Sözleşmesi’ne ekleniyor. Belgenin en önemli tarafı, komisyon oranı tablosunun yanında komisyon bedelinin hangi hizmet ve maliyetleri kapsadığını, teslimat tercihlerini, iadeyi ve mikro ihracatta satıcının sorumluluğunu da yeniden tarif etmesi.',
+          'Bu yüzden satıcı panelindeki oranı kontrol etmek yetmez. Ürün bazında net katkı hesabına komisyonu, kargo maliyetini, iade riskini, promosyonu ve gerekiyorsa ihracat uygunluk maliyetini birlikte eklemek gerekiyor.',
+        ],
+      },
+      {
+        id: '08-eylul-yururlukleri',
+        heading:
+          '8 Eylül itibarıyla yürürlükte olan maddeler sipariş ekonomisini doğrudan etkiliyor.',
+        paragraphs: [
+          'Komisyon bedeli; aksi ayrıca kararlaştırılmadıkça aracılık ve diğer hizmet bedellerinin yanı sıra alışveriş kredisi, taşımaya ilişkin bazı faturalandırılmamış maliyetler, ihtilaflı iadelerde kargo ve bedel iadesi, kargo barem desteği, iletişim hizmetleri ile fatura edilmeyen ödeme hizmeti komisyonlarını da içerecek şekilde KDV dahil satış bedeli üzerinden tahsil edilecek şekilde düzenlenmiş.',
+          'Aynı tarihte 216 saat / 9 gün ifadesi 9 iş günü olarak değişiyor. İade sürecindeki müşterinin teslimden sonraki 2 yıl içinde ileri sürebileceği iade sebeplerine ilişkin ifade de güncelleniyor. Horoz kargo tablosunda ise 0–45 desi/kg aralığı 679,75 TL; 46 desi/kg’dan itibaren artan bir tarife ve ek maliyetler yer alıyor.',
+        ],
+        bullets: [
+          'Ürün kârlılık modelindeki komisyon kalemini yalnızca “kategori yüzdesi” olarak bırakmayın.',
+          '9 iş günlük operasyon penceresini stok, tedarik ve müşteri hizmetleri planına ekleyin.',
+          'Horoz kullananlarda 46 desi/kg üzeri gönderileri ve başarısız teslimat / tekrar sevk maliyetlerini ayrı izleyin.',
+        ],
+      },
+      {
+        id: '08-ekim-operasyon',
+        heading:
+          '8 Ekim’de Gel-Al varsayılanı ve mikro ihracat sorumluluğu operasyonu değiştiriyor.',
+        paragraphs: [
+          'Trendyol Öder programı kargo anlaşması kapsamında faaliyet gösteren satıcılarda Gel-Al (PUDO) teslimat modeli platform genelinde varsayılan olarak aktif statüye getirilecek. Satıcı panelindeki Kargo İşlemleri alanından aktif veya pasif tercihi yönetilebilecek; alan açılana kadar destek talebi kullanılabilecek.',
+          'Gel-Al siparişleri, sipariş oluşturulurken seçilen kargo partneriyle gönderilmeli. Satıcı tarafından iptal edilen Gel-Al siparişleri tedarik edilememiş kabul edilecek.',
+          'Mikro ihracatta ürün seçimi ve ülke bazlı otomatik satışa açılma ihtimali genişliyor; ancak ürünün güvenliği, izinleri, orijinalliği, içeriği ve Türkiye’de serbest dolaşım statüsünü kanıtlama sorumluluğu satıcıda kalıyor. Trendyol’un denetim yapması bu sorumluluğu üzerine almıyor.',
+        ],
+      },
+      {
+        id: '12-ekim-komisyon-tablosu',
+        heading:
+          '12 Ekim’de yürürlüğe girecek komisyon tablosunu kategori ve marka bazında kontrol edin.',
+        paragraphs: [
+          'Ek 1, yüzlerce kategori, alt kategori, ürün grubu, vade, satıcı seviyesi, özel grup, kadın girişimci ve seçili marka satırını içeriyor. Genel bir “komisyon arttı” veya “komisyon düştü” cümlesi bu tabloyu doğru anlatmaz; etki, ürünün kategori–marka–satıcı seviyesi kombinasyonuna göre değişebilir.',
+          'Benim önerim, 12 Ekim’den önce son 90 gündeki siparişleri yeni tabloyla yeniden hesaplamak. Etkiyi yalnızca ciroda değil; sipariş başına katkı payında, iade sonrası katkıda ve reklam için kalan bütçede ölçün.',
+        ],
+        bullets: [
+          'En yüksek ciroyu değil, en yüksek sipariş adedini de ayrıca kontrol edin.',
+          'Marka satırı olan ürünleri genel kategori oranıyla eşleştirmeyin.',
+          'Seviye 5, Seviye 4, Seviye 3 ve özel komisyon koşullarını ürün bazında doğrulayın.',
+          'Yeni kâr hesabını reklam ve kampanya bütçesine bağlamadan önce paneldeki güncel oranı teyit edin.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: 12 Ekim’i beklemeden ürün karmasının yeni net katkısını çıkarın.',
+        paragraphs: [
+          'Bu protokolü yalnızca bir sözleşme güncellemesi olarak değil, satıcıların karar modelini yenilemesi gereken bir sinyal olarak okuyorum. Komisyon tablosu, Horoz kargo maliyeti, iade süresi, Gel-Al tercihi ve mikro ihracat uygunluğu aynı siparişin gerçek sonucunu etkiliyor.',
+          'Bugün yapılacak en doğru iş şu: en çok satan 20 ürününüzü seçin; eski ve yeni komisyonu, kargo, iade, indirim ve reklam maliyetini aynı tabloda karşılaştırın. Sonra hangi ürünün kampanyada kalacağına, hangisinin fiyatının güncelleneceğine ve hangisinin mikro ihracata açılacağına veriye göre karar verin.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'YENİ NET KATKIYI HESAPLA',
+      title: 'Komisyonu güncelle. Kâr marjını yeniden gör.',
+      body: 'Ürün maliyeti, komisyon, kargo, indirim, reklam ve iade etkisini aynı sipariş hesabında birleştir; 12 Ekim kararını sezgiyle değil, ürün bazlı katkıyla ver.',
+      ctaLabel: 'Kâr marjını hesapla →',
+      ctaHref: '/araclar/kar-marji-hesaplayici',
+    },
+  },
+  {
     slug: 'claude-fable-5-1-performans-bilim-maliyet-2026',
     addedOrder: 12,
     eyebrow: 'AI / ANTHROPIC / 1 EYLÜL 2026',

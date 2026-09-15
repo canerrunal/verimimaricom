@@ -1,0 +1,89 @@
+name: Publish announcements to social media
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/lib/announcements.ts
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: Yayınlanacak duyuru slug değeri
+        required: true
+        type: string
+      platforms:
+        description: Virgülle ayrılmış platformlar
+        required: false
+        default: instagram,facebook,linkedin,x,threads
+        type: string
+      dry_run:
+        description: Göndermeden yalnızca metinleri üret
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-announcement-publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || vars.SOCIAL_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout with publication tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify publisher
+        run: npm run social:publish:test
+
+      - name: Publish new announcement
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          INPUT_SLUG: ${{ inputs.slug }}
+          INPUT_PLATFORMS: ${{ inputs.platforms }}
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://verimimari.com' }}
+          SOCIAL_PUBLISH_ENABLED: ${{ vars.SOCIAL_PUBLISH_ENABLED || 'false' }}
+          META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION || 'v26.0' }}
+          THREADS_GRAPH_VERSION: ${{ vars.THREADS_GRAPH_VERSION || 'v1.0' }}
+          LINKEDIN_VERSION: ${{ vars.LINKEDIN_VERSION || '202608' }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+        shell: bash
+        run: |
+          args=(--platforms "${INPUT_PLATFORMS:-instagram,facebook,linkedin,x,threads}")
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            args+=(--slug "$INPUT_SLUG")
+            if [[ "$INPUT_DRY_RUN" == "true" ]]; then
+              args+=(--dry-run)
+            fi
+          else
+            args+=(--changed-since "$BEFORE_SHA")
+          fi
+          npm run social:publish -- "${args[@]}"
