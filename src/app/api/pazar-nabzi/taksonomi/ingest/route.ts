@@ -413,7 +413,10 @@ export async function PUT(request: Request) {
   if (completeError && finalStatus === 'PARTIAL') {
     // Eski production şeması migration uygulanana kadar kısmi veriyi PASS olarak
     // görünür tutar; yeni şema PARTIAL durumunu doğrudan saklar.
-    console.error('Partial taxonomy status unavailable; falling back to PASS:', completeError.message)
+    console.error(
+      'Partial taxonomy status unavailable; falling back to PASS:',
+      completeError.message,
+    )
     const fallback = await database
       .from('market_taxonomy_runs')
       .update({ status: 'PASS', completed_at: new Date().toISOString() })
