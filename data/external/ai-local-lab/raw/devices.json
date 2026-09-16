@@ -1,13 +1,13 @@
 {
-  "dataset_version": "1.7.0",
+  "dataset_version": "1.8.0",
   "schema_version": "1.1.0",
-  "released_at": "2026-07-17",
+  "released_at": "2026-09-15",
   "license": "CC BY 4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "source": "https://ai-local-lab.com/data/",
-  "version_url": "https://ai-local-lab.com/data/releases/v1.7.0/",
+  "version_url": "https://ai-local-lab.com/data/releases/v1.8.0/",
   "attribution": "ai-local-lab (https://ai-local-lab.com)",
-  "count": 13,
+  "count": 14,
   "devices": [
     {
       "id": "a6000-workstation",
@@ -18,7 +18,11 @@
       "power_w_max": 300,
       "bandwidth_gbps": 768,
       "spec_only": false,
-      "affiliate_ids": ["a6000-amazon", "a6000-rakuten", "a6000-official"],
+      "affiliate_ids": [
+        "a6000-amazon",
+        "a6000-rakuten",
+        "a6000-official"
+      ],
       "notes": "memory_gb はVRAM容量。自宅GPU上限帯の比較基準として掲載"
     },
     {
@@ -30,7 +34,10 @@
       "tops": 50,
       "bandwidth_gbps": 256,
       "spec_only": true,
-      "affiliate_ids": ["ryzenaimax-amazon", "ryzenaimax-rakuten"],
+      "affiliate_ids": [
+        "ryzenaimax-amazon",
+        "ryzenaimax-rakuten"
+      ],
       "notes": "Strix Halo APU。ユニファイド最大128GB（最大96GBをVRAM割当可）・帯域256GB/s・NPU 50TOPS（公称）。理論値（未計測）。出典 amd.com"
     },
     {
@@ -43,8 +50,25 @@
       "power_w_max": 25,
       "bandwidth_gbps": 102,
       "spec_only": false,
-      "affiliate_ids": ["jons-amazon", "jons-rakuten", "jons-official"],
+      "affiliate_ids": [
+        "jons-amazon",
+        "jons-rakuten",
+        "jons-official"
+      ],
       "notes": "8GB機。実用上限はメモリと速度——最新世代でも小型モデル（Llama 3.2 1B等）は動くが大型は載らない・遅い。旧ollamaでも最新モデルの取得・実行は可能だが、新アーキはGPUカーネル対応が版数依存で桁違いに遅くなり得る（LFM2.5はollama 0.21.2→0.31.1更新のみで7.3倍高速化・2026-07-02実測）。"
+    },
+    {
+      "id": "jetson-orin-nx-super",
+      "name": "Jetson Orin NX Super 16GB",
+      "vendor": "NVIDIA",
+      "category": "jetson",
+      "memory_gb": 16,
+      "tops": 157,
+      "power_w_max": 40,
+      "bandwidth_gbps": 102,
+      "spec_only": false,
+      "affiliate_ids": [],
+      "notes": "16GB機・Nanoとは別機体。JetPack6.2/L4T R36.4.3/CUDA12.6、電力モードMAXN_SUPER、ollama0.34.0で実測。Q4_K_Mで14Bクラス(qwen3:14b 7.4/gemma3:12b 8.7 tok/s)まで実用。tops=157はSuperモードのINT8 sparse公称値（dense 78）で、Nano機の67と同じsparse基準。gpt-oss:20b/qwen3:30b-a3bはGPUロードでサーバークラッシュ→CPU/mmapのみ低速稼働。feasibility参照。"
     },
     {
       "id": "mac-mini-m4",
@@ -56,7 +80,11 @@
       "power_w_max": 65,
       "bandwidth_gbps": 120,
       "spec_only": false,
-      "affiliate_ids": ["macm4-amazon", "macm4-rakuten", "macm4-official"],
+      "affiliate_ids": [
+        "macm4-amazon",
+        "macm4-rakuten",
+        "macm4-official"
+      ],
       "notes": "Apple M4（無印）・ユニファイドメモリ16GB・帯域120GB/s。AI性能38 TOPSはNeural Engine値だがLLM推論はGPU(Metal)を使用。最大消費電力65W・アイドル4W（出典 Apple support 103253 / apple.com）。当サイトで実測。"
     },
     {
@@ -67,7 +95,11 @@
       "memory_gb": 64,
       "bandwidth_gbps": 273,
       "spec_only": true,
-      "affiliate_ids": ["macm4pro-amazon", "macm4pro-rakuten", "macm4pro-official"],
+      "affiliate_ids": [
+        "macm4pro-amazon",
+        "macm4pro-rakuten",
+        "macm4pro-official"
+      ],
       "notes": "Apple M4 Pro。ユニファイドメモリ最大64GB・帯域273GB/s（公称）。実使用はOS分を差し引く。理論値（未計測）。出典 apple.com"
     },
     {
@@ -78,7 +110,11 @@
       "memory_gb": 512,
       "bandwidth_gbps": 819,
       "spec_only": true,
-      "affiliate_ids": ["macstudio-amazon", "macstudio-rakuten", "macstudio-official"],
+      "affiliate_ids": [
+        "macstudio-amazon",
+        "macstudio-rakuten",
+        "macstudio-official"
+      ],
       "notes": "Apple M3 Ultra。ユニファイドメモリ最大512GB・帯域819GB/s（公称）。大規模モデル向け。理論値（未計測）。出典 apple.com"
     },
     {
@@ -90,7 +126,10 @@
       "power_w_max": 30,
       "bandwidth_gbps": 38,
       "spec_only": true,
-      "affiliate_ids": ["n100-amazon", "n100-rakuten"],
+      "affiliate_ids": [
+        "n100-amazon",
+        "n100-rakuten"
+      ],
       "notes": "メーカー公称値ベースの参考機材（spec_only）。bandwidth_gbpsはDDR5-4800単チャンネル概算で実機は未計測。"
     },
     {
@@ -103,7 +142,9 @@
       "power_w_max": 240,
       "bandwidth_gbps": 273,
       "spec_only": true,
-      "affiliate_ids": ["dgxspark-official"],
+      "affiliate_ids": [
+        "dgxspark-official"
+      ],
       "notes": "GB10 Grace Blackwell。ユニファイドメモリ128GB・帯域273GB/s・FP4 1000TOPS（公称）。理論値（未計測）。出典 nvidia.com"
     },
     {
@@ -115,7 +156,10 @@
       "power_w_max": 27,
       "bandwidth_gbps": 17,
       "spec_only": false,
-      "affiliate_ids": ["rpi5-amazon", "rpi5-rakuten"],
+      "affiliate_ids": [
+        "rpi5-amazon",
+        "rpi5-rakuten"
+      ],
       "notes": "アクティブクーラー装着・公式27W USB-PD電源で計測。8GB機の実用上限はメモリと速度——最新世代でも小型モデル（Llama 3.2 1B等）は動くが大型は載らない・遅い。旧ollamaでも最新モデルの取得・実行は可能だが、新アーキはCPUカーネルも版数依存で速度が変わる（LFM2.5 230Mはollama 0.24.0→0.31.1更新のみで1.64倍・2026-07-02実測）。"
     },
     {
@@ -139,7 +183,10 @@
       "power_w_max": 450,
       "bandwidth_gbps": 1008,
       "spec_only": true,
-      "affiliate_ids": ["rtx4090-amazon", "rtx4090-rakuten"],
+      "affiliate_ids": [
+        "rtx4090-amazon",
+        "rtx4090-rakuten"
+      ],
       "notes": "Ada Lovelace。VRAM 24GB GDDR6X・帯域1008GB/s（公称）。理論値（未計測）。出典 nvidia.com"
     },
     {
@@ -151,7 +198,10 @@
       "power_w_max": 575,
       "bandwidth_gbps": 1792,
       "spec_only": true,
-      "affiliate_ids": ["rtx5090-amazon", "rtx5090-rakuten"],
+      "affiliate_ids": [
+        "rtx5090-amazon",
+        "rtx5090-rakuten"
+      ],
       "notes": "Blackwell。VRAM 32GB GDDR7・帯域1792GB/s（公称）。理論値（未計測）。出典 nvidia.com"
     },
     {

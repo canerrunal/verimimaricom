@@ -1,13 +1,13 @@
 {
-  "dataset_version": "1.7.0",
+  "dataset_version": "1.8.0",
   "schema_version": "1.1.0",
-  "released_at": "2026-07-17",
+  "released_at": "2026-09-15",
   "license": "CC BY 4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "source": "https://ai-local-lab.com/data/",
-  "version_url": "https://ai-local-lab.com/data/releases/v1.7.0/",
+  "version_url": "https://ai-local-lab.com/data/releases/v1.8.0/",
   "attribution": "ai-local-lab (https://ai-local-lab.com)",
-  "count": 100,
+  "count": 102,
   "feasibility": [
     {
       "id": "jetson-orin-nano-super--deepseek-r1-32b--q4-k-m",
@@ -1150,6 +1150,68 @@
         }
       ],
       "assessment": "theoretical_limit"
+    },
+    {
+      "id": "jetson-orin-nx-super--gpt-oss-20b--mxfp4",
+      "device": "jetson-orin-nx-super",
+      "model": "gpt-oss-20b",
+      "quant": "MXFP4",
+      "observations": [
+        {
+          "id": "gpu-oom-cpu-fallback",
+          "observed_at": "2026-09-14",
+          "evidence": "measured",
+          "confidence": "medium",
+          "detail": "MAXN_SUPER電力モードでgpt-oss:20b（20.9B, MXFP4）をGPU/ユニファイドメモリ経路でロードするとOllamaサーバーがクラッシュ（プロセス切断、systemdが約3秒後に自動再起動。クラッシュ側の実行ログは空で出力なし）。16GB統合メモリ超過によるOOMとみられるが、クラッシュのため失敗確保バイト数・失敗段階は未取得（memory/failure_stageは不明として記録）。ワークアラウンドとしてCPU強制実行（num_gpu=0, mmap, num_ctx=2048, num_predict=128）に切り替えたところロード・生成に成功し、decode 4.60 tok/s、ttft 231ms、power_w_avg 14.3W、temp_max_c 58℃（runs=2、runtime ollama 0.34.0、2026-09-14計測）を記録。標準計測11本（num_predict=256・GPU経路）とは実行経路・出力長が異なる別プロトコルのためcontent/benchmarksには含めない。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260914-jonxs-limit-cpu",
+              "raw_available": false
+            },
+            {
+              "kind": "measurement_note",
+              "id": "jonxs-limit-notes-20260914",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": null,
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
+    },
+    {
+      "id": "jetson-orin-nx-super--qwen3-30b-a3b--q4-k-m",
+      "device": "jetson-orin-nx-super",
+      "model": "qwen3-30b-a3b",
+      "quant": "Q4_K_M",
+      "observations": [
+        {
+          "id": "gpu-oom-cpu-fallback",
+          "observed_at": "2026-09-14",
+          "evidence": "measured",
+          "confidence": "medium",
+          "detail": "MAXN_SUPER電力モードでqwen3:30b-a3b（30.5B総パラメータ・MoEアクティブ3B, Q4_K_M）をGPU/ユニファイドメモリ経路でロードするとOllamaサーバーがクラッシュ（プロセス切断、systemdが約3秒後に自動再起動。クラッシュ側の実行ログは空で出力なし）。16GB統合メモリ超過によるOOMとみられるが、クラッシュのため失敗確保バイト数・失敗段階は未取得（memory/failure_stageは不明として記録）。ワークアラウンドとしてCPU強制実行（num_gpu=0, mmap, num_ctx=2048, num_predict=128）に切り替えたところロード・生成に成功し、decode 2.23 tok/s、ttft 2691ms、power_w_avg 11.3W、temp_max_c 58℃（runs=2、runtime ollama 0.34.0、2026-09-14計測）を記録。標準計測11本（num_predict=256・GPU経路）とは実行経路・出力長が異なる別プロトコルのためcontent/benchmarksには含めない。",
+          "source_refs": [
+            {
+              "kind": "raw_log",
+              "id": "20260914-jonxs-limit-cpu",
+              "raw_available": false
+            },
+            {
+              "kind": "measurement_note",
+              "id": "jonxs-limit-notes-20260914",
+              "raw_available": false
+            }
+          ],
+          "outcome": "oom",
+          "memory": null,
+          "failure_stage": "unknown"
+        }
+      ],
+      "assessment": "failure_observed"
     },
     {
       "id": "mac-mini-m4--deepseek-r1-32b--q4-k-m",

@@ -1,13 +1,13 @@
 {
-  "dataset_version": "1.7.0",
+  "dataset_version": "1.8.0",
   "schema_version": "1.1.0",
-  "released_at": "2026-07-17",
+  "released_at": "2026-09-15",
   "license": "CC BY 4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "source": "https://ai-local-lab.com/data/",
-  "version_url": "https://ai-local-lab.com/data/releases/v1.7.0/",
+  "version_url": "https://ai-local-lab.com/data/releases/v1.8.0/",
   "attribution": "ai-local-lab (https://ai-local-lab.com)",
-  "count": 58,
+  "count": 62,
   "models": [
     {
       "id": "command-r7b-12-2024",
@@ -42,6 +42,14 @@
       "source_url": "https://huggingface.co/google/gemma-2-2b-it"
     },
     {
+      "id": "gemma3-12b",
+      "name": "Gemma 3 12B",
+      "params_b": 12.2,
+      "license": "Gemma Terms of Use",
+      "commercial_ok": true,
+      "source_url": "https://huggingface.co/google/gemma-3-12b-it"
+    },
+    {
       "id": "gemma3-1b",
       "name": "Gemma 3 1B",
       "params_b": 1,
@@ -53,7 +61,7 @@
       "id": "gemma3-27b",
       "name": "Gemma 3 27B",
       "params_b": 27.4,
-      "license": "Gemma",
+      "license": "Gemma Terms of Use",
       "commercial_ok": true,
       "source_url": "https://huggingface.co/google/gemma-3-27b-it"
     },
@@ -370,12 +378,28 @@
       "source_url": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct"
     },
     {
+      "id": "qwen2.5-vl-3b",
+      "name": "Qwen2.5-VL 3B",
+      "params_b": 3.75,
+      "license": "Apache-2.0",
+      "commercial_ok": true,
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct"
+    },
+    {
       "id": "qwen3-1.7b",
       "name": "Qwen3 1.7B",
       "params_b": 1.7,
       "license": "Apache-2.0",
       "commercial_ok": true,
       "source_url": "https://huggingface.co/Qwen/Qwen3-1.7B"
+    },
+    {
+      "id": "qwen3-14b",
+      "name": "Qwen3 14B",
+      "params_b": 14.8,
+      "license": "Apache-2.0",
+      "commercial_ok": true,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-14B"
     },
     {
       "id": "qwen3-30b-a3b",
@@ -392,6 +416,14 @@
       "license": "Apache-2.0",
       "commercial_ok": true,
       "source_url": "https://huggingface.co/Qwen/Qwen3-32B"
+    },
+    {
+      "id": "qwen3-8b",
+      "name": "Qwen3 8B",
+      "params_b": 8.2,
+      "license": "Apache-2.0",
+      "commercial_ok": true,
+      "source_url": "https://huggingface.co/Qwen/Qwen3-8B"
     },
     {
       "id": "qwen3-vl-2b",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ai-local-lab.com/data/releases/v1.7.0/switch.schema.json",
+  "$id": "https://ai-local-lab.com/data/releases/v1.8.0/switch.schema.json",
   "title": "ai-local-lab switch session",
   "version": "1.1.0",
   "type": "object",
@@ -21,7 +21,10 @@
       "properties": {
         "execution": {
           "type": "string",
-          "enum": ["on-device", "on-host"]
+          "enum": [
+            "on-device",
+            "on-host"
+          ]
         },
         "runtime": {
           "type": "object",
@@ -35,7 +38,10 @@
               "minLength": 1
             }
           },
-          "required": ["name", "version"],
+          "required": [
+            "name",
+            "version"
+          ],
           "additionalProperties": false
         },
         "power_mode": {
@@ -51,7 +57,9 @@
               "maximum": 9007199254740991
             }
           },
-          "required": ["name"],
+          "required": [
+            "name"
+          ],
           "additionalProperties": false
         },
         "background_services": {
@@ -100,14 +108,20 @@
           "properties": {
             "algorithm": {
               "type": "string",
-              "enum": ["md5", "sha256"]
+              "enum": [
+                "md5",
+                "sha256"
+              ]
             },
             "value": {
               "type": "string",
               "minLength": 1
             }
           },
-          "required": ["algorithm", "value"],
+          "required": [
+            "algorithm",
+            "value"
+          ],
           "additionalProperties": false
         },
         "source_refs": {
@@ -141,12 +155,20 @@
                 "type": "boolean"
               }
             },
-            "required": ["kind", "id", "raw_available"],
+            "required": [
+              "kind",
+              "id",
+              "raw_available"
+            ],
             "additionalProperties": false
           }
         }
       },
-      "required": ["execution", "runtime", "source_refs"],
+      "required": [
+        "execution",
+        "runtime",
+        "source_refs"
+      ],
       "additionalProperties": false
     },
     "runs": {
@@ -163,7 +185,10 @@
             "anyOf": [
               {
                 "type": "string",
-                "enum": ["escalation", "coexist"]
+                "enum": [
+                  "escalation",
+                  "coexist"
+                ]
               },
               {
                 "type": "null"
@@ -195,7 +220,11 @@
                     ]
                   }
                 },
-                "required": ["model", "tag", "quant"],
+                "required": [
+                  "model",
+                  "tag",
+                  "quant"
+                ],
                 "additionalProperties": false
               },
               "b": {
@@ -220,16 +249,26 @@
                     ]
                   }
                 },
-                "required": ["model", "tag", "quant"],
+                "required": [
+                  "model",
+                  "tag",
+                  "quant"
+                ],
                 "additionalProperties": false
               }
             },
-            "required": ["a", "b"],
+            "required": [
+              "a",
+              "b"
+            ],
             "additionalProperties": false
           },
           "mode": {
             "type": "string",
-            "enum": ["default", "force_cold"]
+            "enum": [
+              "default",
+              "force_cold"
+            ]
           },
           "cycles": {
             "type": "integer",
@@ -256,7 +295,10 @@
                 "type": "number"
               }
             },
-            "required": ["num_predict", "temperature"],
+            "required": [
+              "num_predict",
+              "temperature"
+            ],
             "additionalProperties": false
           },
           "capture": {
@@ -264,13 +306,19 @@
             "properties": {
               "method": {
                 "type": "string",
-                "enum": ["native", "legacy_backfill"]
+                "enum": [
+                  "native",
+                  "legacy_backfill"
+                ]
               },
               "complete": {
                 "type": "boolean"
               }
             },
-            "required": ["method", "complete"],
+            "required": [
+              "method",
+              "complete"
+            ],
             "additionalProperties": false
           },
           "attempts": {
@@ -319,7 +367,10 @@
                       "properties": {
                         "capture": {
                           "type": "string",
-                          "enum": ["observed", "unavailable"]
+                          "enum": [
+                            "observed",
+                            "unavailable"
+                          ]
                         },
                         "evicted": {
                           "type": "boolean"
@@ -340,7 +391,9 @@
                           }
                         }
                       },
-                      "required": ["capture"],
+                      "required": [
+                        "capture"
+                      ],
                       "additionalProperties": false
                     }
                   },
@@ -401,7 +454,12 @@
                         },
                         "kind": {
                           "type": "string",
-                          "enum": ["http_error", "timeout", "connection_error", "other"]
+                          "enum": [
+                            "http_error",
+                            "timeout",
+                            "connection_error",
+                            "other"
+                          ]
                         },
                         "message": {
                           "type": "string",
@@ -417,7 +475,11 @@
                           "maxLength": 8192
                         }
                       },
-                      "required": ["stage", "kind", "message"],
+                      "required": [
+                        "stage",
+                        "kind",
+                        "message"
+                      ],
                       "additionalProperties": false
                     }
                   },
@@ -490,6 +552,12 @@
       }
     }
   },
-  "required": ["id", "device", "measured_at", "context", "runs"],
+  "required": [
+    "id",
+    "device",
+    "measured_at",
+    "context",
+    "runs"
+  ],
   "additionalProperties": false
 }
