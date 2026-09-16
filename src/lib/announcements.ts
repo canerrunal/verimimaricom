@@ -39,6 +39,116 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'trendyol-satici-paneli-ek-hizmetler-sozlesmesi-2026',
+    addedOrder: 14,
+    eyebrow: 'TRENDYOL / EK HİZMETLER SÖZLEŞMESİ / 16 EYLÜL 2026',
+    title:
+      'Trendyol’un ek hizmet sözleşmesi: bakiye, içerik hakları ve veri güvenliği tarafında dikkat edilmesi gerekenler.',
+    excerpt:
+      'Satıcı Paneli Ek Hizmetler Sözleşmesi; ek hizmetlerin talep ve kabul koşullarını, ön ödemeli bakiyeleri, hizmetin durdurulmasını, içerik ve marka kullanımını, veri ihlali bildirimini ve fesih sürelerini düzenliyor. Benim okumam: hizmeti açmadan önce sadece faydayı değil, geri dönüşü olmayan maliyet ve yetki maddelerini de kontrol etmek gerekiyor.',
+    category: 'Pazaryeri ve Sözleşme Analizi',
+    publishedAt: '2026-09-16',
+    updatedAt: '2026-09-16',
+    readingTime: '8 dk',
+    image:
+      '/api/social/announcements/trendyol-satici-paneli-ek-hizmetler-sozlesmesi-2026/image?v=8',
+    imageAlt:
+      'Trendyol Satıcı Paneli Ek Hizmetler Sözleşmesi içindeki bakiye, içerik hakkı, veri güvenliği ve fesih maddelerini özetleyen Veri Mimarı duyuru kartı',
+    source: 'DSM · Satıcı Paneli Ek Hizmetler Sözleşmesi · Satıcı tarafından paylaşılan metin',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı Satıcı Paneli Ek Hizmetler Sözleşmesi metninin satıcı kararları açısından editoryal özetidir. Metindeki adres, banka hesabı, IBAN ve diğer ödeme bilgileri yayımlanmadı. Bu içerik hukuki görüş değildir; sözleşmeyi onaylamadan önce kendi hukuk ve mali müşavirinizle, ayrıca Satıcı Paneli’nde size özel gösterilen hizmet koşullarıyla birlikte kontrol etmeniz gerekir.',
+    stats: [
+      {
+        label: '24 SAAT',
+        value: 'BİLDİRİM',
+        detail:
+          'Kişisel veri veya bilgi güvenliği ihlali öğrenildiğinde DSM’ye kapsamlı bildirim süresi',
+      },
+      {
+        label: 'ÖN ÖDEME',
+        value: 'İADE YOK',
+        detail: 'Satın alınan hizmet bakiyesi kullanılmasa da iade talep edilemiyor',
+      },
+      {
+        label: 'FESİH',
+        value: '30 GÜN',
+        detail:
+          'Satıcının, şartları yerine getirmesi halinde sözleşmeyi bildirimle sonlandırma süresi',
+      },
+    ],
+    sections: [
+      {
+        id: 'sozlesme-ne-getiriyor',
+        heading:
+          'Bu metin, ek hizmeti otomatik bir hak olarak değil; talep, kriter ve DSM onayı üzerinden çalışan bir hizmet ilişkisi olarak kuruyor.',
+        paragraphs: [
+          'Sözleşme, DSM tarafından sunulacak ek hizmetlerin Satıcı’nın talebi ve DSM’nin belirlediği koşulların sağlanması halinde Satıcı Paneli üzerinden sunulmasını düzenliyor. Hizmetlerin kapsamı, bedeli, süresi ve katılım koşulları e-posta veya Platform üzerinden ayrıca bildirilebiliyor.',
+          'Buradaki kritik nokta şu: sözleşmeyi onaylamak tek başına belirli bir hizmetin kesin olarak verileceği anlamına gelmiyor. DSM, talebi değerlendirme, hizmeti kısmen verme veya hiç vermeme hakkını saklı tutuyor; hizmet koşulları da tek taraflı değiştirilebiliyor.',
+        ],
+      },
+      {
+        id: 'maliyet-ve-bakiye-riski',
+        heading: 'En görünür finansal risk, kullanılmayan ön ödemeli bakiyenin iade edilmemesi.',
+        paragraphs: [
+          'Metne göre Satıcı’nın hizmet kapsamında bir bakiye satın alması halinde, hizmet kullanılsa da kullanılmasa da bu bakiyenin iadesi yapılmıyor. Bu nedenle ek hizmet bütçesini kampanya bütçesinden ayrı, kullanım planı ve son kullanma riskiyle birlikte takip etmek gerekiyor.',
+          'Ödemeler kredi kartı, DSM nezdindeki cari hesaptan mahsup veya bildirilen banka hesabına nakit ödeme yoluyla yapılabiliyor. Gecikme halinde ticari temerrüt faizi uygulanabileceği, hizmetin durdurulabileceği ve sözleşmenin haklı nedenle sona erdirilebileceği düzenleniyor.',
+        ],
+        bullets: [
+          'Bakiye satın almadan önce hizmetin hangi ürün, kampanya veya hedef için kullanılacağını yazılı hale getirin.',
+          'Kullanım oranını ve kalan bakiyeyi aylık değil, hizmet bazında izleyin.',
+          'Cari hesaptan mahsup ve satış ödemelerinden kesinti ihtimalini nakit akış modeline ekleyin.',
+        ],
+      },
+      {
+        id: 'hizmetin-durdurulmasi',
+        heading: 'Hizmet “olduğu gibi” sunuluyor; satış veya performans garantisi verilmiyor.',
+        paragraphs: [
+          'DSM, Platform ve ek hizmetleri mevcut haliyle sağladığını; süreklilik, eksiksizlik, işlevsellik veya Satıcı’nın elde edeceği ticari getiri için ayrıca garanti vermediğini belirtiyor. DSM ayrıca sebep göstermeksizin ve ön bildirim yapmadan hizmet üyeliğini veya hizmeti iptal edebiliyor.',
+          'Katılım kriterleri, operasyonel standartlar veya teknik/idari koşullar sağlanmazsa hizmet derhal durdurulabiliyor, askıya alınabiliyor veya yeniden aktifleştirilmeyebiliyor. Bu yüzden hizmetten beklenen geliri sabit varsaymak yerine, hizmet kesilse de çalışacak temel operasyon planını korumak gerekiyor.',
+        ],
+      },
+      {
+        id: 'icerik-ve-marka-haklari',
+        heading:
+          'İçerik ve marka maddeleri, hizmet kapsamında kullanılan varlıklar için geniş yetkiler tanımlıyor.',
+        paragraphs: [
+          'Sözleşme, hizmet kapsamında ortaya çıkan veya DSM’nin ve varsa personelinin katkıda bulunduğu içeriklere ilişkin işleme, çoğaltma, yayma, temsil, umuma iletim ve benzeri hakları çok geniş bir kapsamda DSM’ye bırakacak şekilde düzenlenmiş. Satıcı da içerik ve materyaller üzerinde gerekli haklara sahip olduğunu ve üçüncü kişi haklarını ihlal etmediğini taahhüt ediyor.',
+          'Ayrıca Satıcı’nın Platform’da kullanılan markalarının, logolarının ve marka ibarelerinin hizmet kapsamında sosyal medya ve fiziksel mecralar dahil olmak üzere süre ve yer sınırlaması olmadan, bedelsiz, devredilebilir ve alt lisanslanabilir şekilde kullanılabileceği yazıyor. Bu, hizmete görsel veya marka materyali göndermeden önce yetki zincirinin kontrol edilmesini gerektiriyor.',
+        ],
+        bullets: [
+          'Ajans, fotoğrafçı, tasarımcı veya marka sahibi üçüncü kişilerin lisans kapsamını yazılı doğrulayın.',
+          'Hangi görselin, videonun, logonun ve metnin hizmete verildiğini kayıt altına alın.',
+          'Hizmetten ayrıldıktan sonra içerik ve marka kullanımının devam edip etmediğini ayrıca sorun.',
+        ],
+      },
+      {
+        id: 'veri-guvenligi-ve-gizlilik',
+        heading:
+          'Veri tarafında iki ayrı yükümlülük var: sınırlı kullanım ve hızlı olay bildirimi.',
+        paragraphs: [
+          'Satıcı, kişisel verileri yalnızca sözleşmede belirtilen hizmet amacıyla işlemek ve üçüncü taraflarla paylaşımda güvenliği sağlamakla yükümlü. İlgili kişi taleplerinin aynı gün, mümkün değilse gerekçesiyle takip eden iş günü içinde karşılanması; doğrudan Satıcı’ya gelen taleplerin de DSM’ye derhal ve en geç ertesi iş günü bildirilmesi isteniyor.',
+          'Kişisel verilerin hukuka aykırı elde edilmesi veya bilgi güvenliği ihlali/riskinin ortaya çıkması halinde DSM’ye en geç 24 saat içinde kapsamlı bilgi verilmesi gerekiyor. Bu nedenle ek hizmet akışlarına bir veri olay müdahale kişisi, kayıt formatı ve eskalasyon kanalı eklenmeli.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading:
+          'Benim yorumum: hizmeti açmadan önce “ne kazanırım?” kadar “neyi geri alamam?” sorusunu da sorun.',
+        paragraphs: [
+          'Bu sözleşmenin satıcı açısından ana mesajı, ek hizmetlerin yalnızca bir büyüme fırsatı olmadığı. Ön ödeme iadesi yok, hizmet performansı garanti edilmiyor, koşullar değişebiliyor, hizmet durdurulabiliyor ve içerik/marka hakları geniş biçimde düzenleniyor. Bunların her biri tek başına yönetilebilir; birlikte olduğunda ise onay öncesi kontrol listesi gerektiriyor.',
+          'Ben olsam hizmeti açmadan önce dört şeyi yazılı netleştirirdim: hizmetin ölçülecek çıktısı, satın alınacak bakiyenin kullanım planı, paylaşılacak içerik ve marka varlıklarının hak kapsamı, veri ihlali halinde 24 saatlik bildirim akışı. Bu dört cevap yoksa hizmeti değil, belirsizliği satın almış olursunuz.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'ONAYLAMADAN ÖNCE KONTROL ET',
+      title: 'Hizmet bedelini değil, toplam riski modelle.',
+      body: 'Beklenen katkıyı; bakiye iadesi, hizmet kesintisi, içerik hakları, veri güvenliği ve nakit akışı koşullarıyla birlikte değerlendir. Gerekirse sözleşme metnini hukuk danışmanınla incele.',
+      ctaLabel: 'Kâr marjını hesapla →',
+      ctaHref: '/araclar/kar-marji-hesaplayici',
+    },
+  },
+  {
     slug: 'trendyol-satici-protokolu-komisyon-kargo-gel-al-2026',
     addedOrder: 13,
     eyebrow: 'TRENDYOL / SATICI PROTOKOLÜ / 15 EYLÜL 2026',
