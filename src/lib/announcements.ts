@@ -39,6 +39,88 @@ export type Announcement = {
 
 export const announcements: Announcement[] = [
   {
+    slug: 'e-ticarette-rekor-buyume-457-trilyon-tl-hacim-2026',
+    addedOrder: 15,
+    eyebrow: 'E-TİCARET / ETBİS / 17 EYLÜL 2026',
+    title: 'E-ticarette rekor büyüme: 4,57 trilyon TL hacim ve %20’ye yaklaşan pay.',
+    excerpt:
+      'Türkiye’de e-ticaret hacmi 2025’te %52,2 artışla 4,57 trilyon TL’ye ulaştı. Benim okumam: e-ticaret artık ek bir kanal değil; büyümeyi taşıyacak sipariş, stok, ödeme, lojistik ve veri altyapısını birlikte kurmayı gerektiren ana ticaret katmanı.',
+    category: 'E-Ticaret ve Pazar Analizi',
+    publishedAt: '2026-09-17',
+    updatedAt: '2026-09-17',
+    readingTime: '6 dk',
+    image: '/api/social/announcements/e-ticarette-rekor-buyume-457-trilyon-tl-hacim-2026/image?v=8',
+    imageAlt:
+      'Türkiye e-ticaret hacminin 4,57 trilyon TL’ye ulaşmasını ve toplam ticarette yüzde 20’ye yaklaşan payını özetleyen Veri Mimarı duyuru kartı',
+    source: 'T.C. Ticaret Bakanlığı / ETBİS · 2025 e-ticaret görünümü · Bakan açıklaması',
+    sourceNote:
+      'Bu duyuru, kullanıcının paylaştığı araştırma çıktısındaki T.C. Ticaret Bakanlığı ve ETBİS verilerinin editoryal özetidir. 4,57 trilyon TL, %52,2 ve %19,3 oranları kamuya açık haber ve bakanlık açıklaması aktarımlarında yer alan değerlerdir; sektör karşılaştırması yapılırken raporun kapsamı, hesaplama dönemi ve güncel resmî veri ayrıca kontrol edilmelidir. Bu içerik yatırım, hukuk veya vergi görüşü değildir.',
+    stats: [
+      {
+        label: '2025 HACMİ',
+        value: '4,57 TRİLYON TL',
+        detail: 'Türkiye’de açıklanan toplam e-ticaret hacmi',
+      },
+      {
+        label: 'YILLIK ARTIŞ',
+        value: '%52,2',
+        detail: 'Bir önceki yıla göre açıklanan büyüme',
+      },
+      {
+        label: 'TİCARET PAYI',
+        value: '%19,3',
+        detail: 'Toplam ticaret içindeki e-ticaret payı',
+      },
+    ],
+    sections: [
+      {
+        id: 'rekorun-ozeti',
+        heading: 'Rakam büyüyor; asıl değişim e-ticaretin ticaret içindeki ağırlığında.',
+        paragraphs: [
+          'Ticaret Bakanı Ömer Bolat’ın açıkladığı ETBİS verilerine göre Türkiye’de e-ticaret hacmi 2025’te %52,2 artışla 4,57 trilyon TL’ye ulaştı. Dolar bazında karşılığı 115,5 milyar dolar olarak aktarılırken, e-ticaretin toplam ticaret içindeki payı %20’ye yaklaşmış durumda.',
+          'Bu tabloyu yalnızca “daha çok online satış” diye okumuyorum. Dijital kanal, artık fiyatlama, müşteri edinimi, ödeme, teslimat ve tekrar satın alma kararlarının birlikte yönetildiği ana ticaret altyapılarından biri.',
+        ],
+      },
+      {
+        id: 'isletmeler-icin-anlami',
+        heading: 'Hacim artışı, işletmeler için aynı anda kapasite ve kontrol ihtiyacı yaratıyor.',
+        paragraphs: [
+          'Büyüyen hacim, sipariş sayısını artırırken operasyonun hata maliyetini de görünür hale getiriyor. Pazaryeri, kendi site ve sosyal medya siparişleri farklı akışlarda tutulduğunda stok, fatura, iade ve müşteri hizmeti verileri kısa sürede birbirinden kopuyor.',
+        ],
+        bullets: [
+          'Sipariş, stok, fatura ve iade verisini tek bir karar görünümünde birleştirin.',
+          'Ciroyu kanal bazında değil, komisyon ve operasyon maliyeti sonrası katkıyla karşılaştırın.',
+          'Ödeme, teslimat ve müşteri hizmeti kapasitesini büyüme planına satış hedefi kadar erken ekleyin.',
+          'Dijital reklam ve satış faaliyetleri için kayıt, fatura ve veri akışını düzenli tutun.',
+        ],
+      },
+      {
+        id: 'altyapi-karari',
+        heading:
+          'Doğru soru “ne kadar büyüdük?” değil, “bu büyümeyi ne kadar kontrollü taşıyoruz?”',
+        paragraphs: [
+          'E-ticaret hacmi büyürken manuel tablolar bir süre daha çalışıyor gibi görünebilir. Ancak kanal sayısı, ürün çeşidi ve sipariş hacmi arttıkça aynı veriyi farklı yerlerde güncellemek karar kalitesini düşürür. Modüler bir CRM/ERP ve e-ticaret otomasyon katmanı burada yalnızca verimlilik değil, görünürlük ve geri alma kapasitesi sağlar.',
+          'Özellikle pazaryeri bağımlılığı yüksek işletmeler için kendi kanalı güçlendirmek; yalnızca komisyonu azaltmak değil, müşteri ilişkisini ve tekrar satış verisini sahiplenmek anlamına gelir.',
+        ],
+      },
+      {
+        id: 'benim-yorumum',
+        heading: 'Benim yorumum: rekorun kazananı, en çok satan değil en iyi ölçen işletme olacak.',
+        paragraphs: [
+          '4,57 trilyon TL’lik hacim büyük bir fırsat; fakat her büyüme aynı kalitede değildir. Sipariş artarken katkı payı, teslimat performansı ve tekrar satın alma düşüyorsa işletme yalnızca daha hızlı değil, daha pahalı büyüyor olabilir.',
+          'Ben olsam ilk adımda son 90 günlük kanal, ürün ve müşteri verisini aynı tabloda toplardım. Hangi kanalın ciroyu, hangisinin katkıyı, hangisinin tekrar satın almayı taşıdığını görmeden yeni bütçe veya yeni kanal kararı vermezdim.',
+        ],
+      },
+    ],
+    nextStep: {
+      eyebrow: 'BÜYÜMEYİ KONTROL ET',
+      title: 'Satış kanalını değil, karar sistemini büyüt.',
+      body: 'Mevcut sipariş akışlarını, veri kopukluklarını ve otomasyon fırsatlarını birlikte gözden geçirerek işletmen için uygulanabilir bir yol haritası çıkaralım.',
+      ctaLabel: 'Danışmanlığı incele →',
+      ctaHref: '/e-ticaret-danismani',
+    },
+  },
+  {
     slug: 'haftanin-e-ticaret-gundemi-yeni-kurallar-firsatlar-donusum-eylul-2026',
     addedOrder: 17,
     eyebrow: 'E-TİCARET GÜNDEMİ / TÜRKİYE / 11 EYLÜL 2026',
