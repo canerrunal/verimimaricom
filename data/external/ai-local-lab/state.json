@@ -1,9 +1,9 @@
 {
   "source": "https://ai-local-lab.com/data/manifest.json",
-  "datasetVersion": "1.8.0",
-  "schemaVersion": "1.1.0",
-  "manifestSha256": "1b3dbe2ab3a34484df5c6522c1ae5727d17136b42af8bcfd480190848e4474cd",
-  "syncedAt": "2026-09-16T09:18:24.247Z",
+  "datasetVersion": "1.9.0",
+  "schemaVersion": "1.2.0",
+  "manifestSha256": "1e596853b6a10302cef7c2fa958f1c76a2045335b3ff4b59d30b108265ad97d5",
+  "syncedAt": "2026-09-17T09:27:11.513Z",
   "counts": {
     "benchmarks": 189,
     "devices": 14,

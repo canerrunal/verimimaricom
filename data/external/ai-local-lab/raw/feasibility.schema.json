@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ai-local-lab.com/data/releases/v1.8.0/feasibility.schema.json",
+  "$id": "https://ai-local-lab.com/data/releases/v1.9.0/feasibility.schema.json",
   "title": "ai-local-lab feasibility record",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "object",
   "properties": {
     "id": {

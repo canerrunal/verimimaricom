@@ -1,11 +1,11 @@
 {
-  "dataset_version": "1.8.0",
-  "schema_version": "1.1.0",
+  "dataset_version": "1.9.0",
+  "schema_version": "1.2.0",
   "released_at": "2026-09-15",
   "license": "CC BY 4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "source": "https://ai-local-lab.com/data/",
-  "version_url": "https://ai-local-lab.com/data/releases/v1.8.0/",
+  "version_url": "https://ai-local-lab.com/data/releases/v1.9.0/",
   "attribution": "ai-local-lab (https://ai-local-lab.com)",
   "title": "ai-local-lab ローカルAI実測データセット",
   "counts": {
@@ -21,6 +21,7 @@
     "switch_failures": 5
   },
   "changelog": [
+    "benchmarksにoptional列 bench_protocol・stream・prompt_cached_tokens・model_digest・num_ctx の5つを追加（schema 1.2.0）。既存189件のレコード内容は不変でbackfillはしない。既存レコードのttft_msは同一プロンプトを繰り返す計測でプロンプトキャッシュが効いた状態のwarm値。今後の新規レコードは bench_protocol=cache-busted-v2（各リクエストで一意nonceを付与してキャッシュを無効化・無効化をキャッシュ命中数または評価時間比で検証・num_ctx明示）で区別できる。読者向けbench_ollama.pyも同方式に更新（--prompt-cache busted既定・prompt_cached_tokensを記録・キャッシュ命中数が不明または2以上のrunではprefill_tok_per_secを出さない）",
     "新機材 Jetson Orin NX Super 16GB を追加（Nano 8GBとは別機体）。GPU標準計測11件（ollama 0.34.0・num_predict=256・warm）でベンチ計測を178件→189件に拡充、モデルマスタに Qwen3 8B・Qwen3 14B・Gemma 3 12B・Qwen2.5-VL 3B の4本を追加。feasibilityに20B/30B限界域2観測（gpt-oss:20b・qwen3:30b-a3b はGPU/統合メモリでOOMクラッシュ→CPU強制で低速稼働）を追加し 100件・103観測→102件・105観測に更新",
     "feasibility（100件・103観測）とswitch（3セッション・12run・48試行）の新規データセットを追加（ルーター企画 Phase 0 Step B）。benchmarksはoptional列load_ms・cold_ttft_msの前方宣言のみで既存178件のレコード内容は不変",
     "ベンチ計測を177件→178件に拡充（RTX 4060 Laptop持ち越し分のLLM-jp-4 8Bを追加、同機材の持ち越しをゼロに確定）",
@@ -43,156 +44,156 @@
     {
       "file": "benchmarks.csv",
       "media_type": "text/csv",
-      "bytes": 50019,
-      "sha256": "27b612fff038dc5d4017a5b5a2424878ad1b2b3ec1af106dd62f16b40ecdc71e",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/benchmarks.csv"
+      "bytes": 51028,
+      "sha256": "7f52ad7b322c5eb8c3d101882359e5d2f0831d39ecf74abf095644c6b96ff77f",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/benchmarks.csv"
     },
     {
       "file": "benchmarks.json",
       "media_type": "application/json",
       "bytes": 110038,
-      "sha256": "99337b659a514d4fd38d30c533797396e55ef0b308ffed2022f17da07376b06b",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/benchmarks.json"
+      "sha256": "4ccd6f357784ccea6e83ed6f69c9e9d8bddb8b738cbf2d2a47235d911f4a617d",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/benchmarks.json"
     },
     {
       "file": "devices.json",
       "media_type": "application/json",
       "bytes": 8294,
-      "sha256": "43dd18a858b066e35a3a43fec21ce29bf15fc5e01415562b9154755da7cf721c",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/devices.json"
+      "sha256": "0e5b20929c5a44e27440bb97b5390bf49f0a3293ba337c3fcd2bfaad94b958bd",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/devices.json"
     },
     {
       "file": "models.json",
       "media_type": "application/json",
       "bytes": 14879,
-      "sha256": "ff60e42afca310f543544a07b1d9e42e6d81be636e300dee168bf04865604a2d",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/models.json"
+      "sha256": "c4c5f913e53f519766e6be65a3915b64dfc61246744b1081ab346a837c90b5c2",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/models.json"
     },
     {
       "file": "schema.json",
       "media_type": "application/json",
-      "bytes": 1584,
-      "sha256": "7b12b7ecf147b99d6118c2a10279048918f6a467b7c7fe818e4bd000a65294e8",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/schema.json"
+      "bytes": 2251,
+      "sha256": "491cfa408b2c6fc242d06866d69f72208dc965a86771ea2c9a8a4a21f9c8fd6b",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/schema.json"
     },
     {
       "file": "feasibility.json",
       "media_type": "application/json",
       "bytes": 111694,
-      "sha256": "89cd8f56eaf89086e02e26895ddd4906a76680d6d66bbc6eb0a0c98e1a9911d9",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/feasibility.json"
+      "sha256": "09e52591b05ae34ee9d809f1448435b13b8a782e281cfc0d20db4fb345ae9cee",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/feasibility.json"
     },
     {
       "file": "switch.json",
       "media_type": "application/json",
       "bytes": 38597,
-      "sha256": "90a4aae95c7152df2e037cd679bf7e4a9f6d087450d9cdae4f336c7992f7f764",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/switch.json"
+      "sha256": "2968dc14feb9b140002aea5a335678fd3297e630252b02b53fdb0faeacc3efd3",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/switch.json"
     },
     {
       "file": "feasibility.schema.json",
       "media_type": "application/json",
       "bytes": 25607,
-      "sha256": "91f2ddcebfbfb568632bd1fc6488aa4e9a2318ec78d05258379d3145c8dfc5fb",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/feasibility.schema.json"
+      "sha256": "edecba5470af0d793b7a29adeca2c5adeef84fd18d262b7a502fe48a84f1814d",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/feasibility.schema.json"
     },
     {
       "file": "switch.schema.json",
       "media_type": "application/json",
       "bytes": 15973,
-      "sha256": "8c5ed572d4a7e9ac0439ad7a68d737d42b9726b9886239983f6a990810b66923",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/switch.schema.json"
+      "sha256": "ac436a418e5a78da7fba72d523d4fcbbff0bfd843e4b306253658c2a8a58b34e",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/switch.schema.json"
     },
     {
       "file": "bench_ollama.py",
       "media_type": "text/x-python",
-      "bytes": 22180,
-      "sha256": "c46477acb8faf069a747cd5f189fba85e4e2e3e84bb7b959543ad6d49d54e6a7",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/bench_ollama.py"
+      "bytes": 31317,
+      "sha256": "1ed9dee8361ada6d12e9a124fcc8c0fc1453df72edb49f203bda62385d3e36ca",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/bench_ollama.py"
     },
     {
       "file": "raw/index.json",
       "media_type": "application/json",
       "bytes": 5234,
-      "sha256": "6515983dc50601934a3bdf923cf58cd3e39928c0defadbfe927666303633b0cf",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/index.json"
+      "sha256": "d7a434a08a6e1a7af0c4bd7680f73ee4a6f3ad04717643d4583105dc8c70c1c8",
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/index.json"
     },
     {
       "file": "raw/20260616-a6000-slm.txt",
       "media_type": "text/plain",
       "bytes": 2345,
       "sha256": "280461aad81d13b547e82b7e01d24015fcc999ab17ac7f5edb164aa8dbdca097",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260616-a6000-slm.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260616-a6000-slm.txt"
     },
     {
       "file": "raw/20260616-macm4-slm.txt",
       "media_type": "text/plain",
       "bytes": 2179,
       "sha256": "43f3b908ad2bc9f7511761cc2e2ba2f24e217382f9b50e4b08761f52c59b0b9e",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260616-macm4-slm.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260616-macm4-slm.txt"
     },
     {
       "file": "raw/20260616-jons-slm.txt",
       "media_type": "text/plain",
       "bytes": 670,
       "sha256": "a497ad4717711a0e7f4f257913f807de6c91f44d475a28957cb68b37543bf42f",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260616-jons-slm.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260616-jons-slm.txt"
     },
     {
       "file": "raw/20260616-rpi5-slm.txt",
       "media_type": "text/plain",
       "bytes": 993,
       "sha256": "ff7df71afd62f765e15a767a30428e5003bff01e5a7db6b6da9cf08b4cd7f1b5",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260616-rpi5-slm.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260616-rpi5-slm.txt"
     },
     {
       "file": "raw/20260623-rtx4060.txt",
       "media_type": "text/plain",
       "bytes": 999,
       "sha256": "aed279c3c9438618a783be1e2f11b655e8a53d3df010005c1c9567df6718ba6f",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260623-rtx4060.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260623-rtx4060.txt"
     },
     {
       "file": "raw/20260710-pi5-cpu-duel-notes.txt",
       "media_type": "text/plain",
       "bytes": 1547,
       "sha256": "56ddcb63d79dfc8331479ebc84dcc95320b857bda7701d23b929f2616e3f4e24",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260710-pi5-cpu-duel-notes.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260710-pi5-cpu-duel-notes.txt"
     },
     {
       "file": "raw/20260710-pi5-hailo10h-llm-transcript.txt",
       "media_type": "text/plain",
       "bytes": 10281,
       "sha256": "5152a3f699067c2090521b603003021215d9c62d1fbd39caf3812a567647f30d",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260710-pi5-hailo10h-llm-transcript.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260710-pi5-hailo10h-llm-transcript.txt"
     },
     {
       "file": "raw/20260710-pi5-longctx-raw.jsonl",
       "media_type": "application/x-ndjson",
       "bytes": 83826,
       "sha256": "e4475f22d4de7b502aaa9d2362c7159d62672e09722b3f6ded8bacd885bb498e",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260710-pi5-longctx-raw.jsonl"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260710-pi5-longctx-raw.jsonl"
     },
     {
       "file": "raw/20260711-pi5-coldttft-raw.jsonl",
       "media_type": "application/x-ndjson",
       "bytes": 29930,
       "sha256": "8fd74b0714c0c5e28ee5766f350482051845477154fe477c515d74ec609a59c2",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260711-pi5-coldttft-raw.jsonl"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260711-pi5-coldttft-raw.jsonl"
     },
     {
       "file": "raw/20260710-jons-7b-oom.txt",
       "media_type": "text/plain",
       "bytes": 5850,
       "sha256": "22ca5c4c29328df53da18a5e5e725218b3cad5995cc10699c32b52126b2ede57",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260710-jons-7b-oom.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260710-jons-7b-oom.txt"
     },
     {
       "file": "raw/20260710-jons-power-mode.txt",
       "media_type": "text/plain",
       "bytes": 3140,
       "sha256": "08cdedde67e60862b172be72ae17bf17f205594890411a957834f69c972dd62e",
-      "content_url": "https://ai-local-lab.com/data/releases/v1.8.0/raw/20260710-jons-power-mode.txt"
+      "content_url": "https://ai-local-lab.com/data/releases/v1.9.0/raw/20260710-jons-power-mode.txt"
     }
   ]
 }

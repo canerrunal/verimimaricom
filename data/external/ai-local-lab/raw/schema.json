@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ai-local-lab.com/data/releases/v1.8.0/schema.json",
+  "$id": "https://ai-local-lab.com/data/releases/v1.9.0/schema.json",
   "title": "ai-local-lab benchmark record",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "object",
   "required": [
     "id",
@@ -78,6 +78,29 @@
     },
     "notes": {
       "type": "string"
+    },
+    "bench_protocol": {
+      "type": "string",
+      "enum": [
+        "warm-cached-v1",
+        "cache-busted-v2"
+      ],
+      "description": "The cache-busted-v2 label alone does not determine whether TTFT can be compared across devices. The site also requires known prompt_cached_tokens <= 1, known load_ms <= 100, and matching stream, num_ctx, and model_digest values."
+    },
+    "stream": {
+      "type": "boolean"
+    },
+    "prompt_cached_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "model_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{12}$"
+    },
+    "num_ctx": {
+      "type": "integer",
+      "minimum": 1
     }
   }
 }
